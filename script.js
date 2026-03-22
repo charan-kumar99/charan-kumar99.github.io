@@ -140,7 +140,7 @@ setTimeout(() => {
 const API_ENDPOINT = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') 
     ? 'http://localhost:8000/api/chat' 
     // If hosted on GitHub Pages, we must point explicitly to the Vercel backend Production URL
-    : 'https://charan-kumar-charan-kumar99s-projects.vercel.app/api/chat';
+    : 'https://charan-kumar99-github-io.vercel.app/api/chat';
 
 /* ---- System Prompt ---- */
 const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar's portfolio website.
