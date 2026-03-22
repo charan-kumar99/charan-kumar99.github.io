@@ -185,9 +185,9 @@ PROJECTS
    GitHub: https://github.com/charan-kumar99/Orion
 3. **Cricket Performance Analyzer** — Browser analytics tool (HTML5, CSS3, JS, Chart.js)
    GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
-4. **RTGS/NEFT Banking System** — Enterprise payment system (ASP.NET Core, PostgreSQL, MySQL, Oracle, Azure DevOps) — Proprietary
-5. **DevLens** — AI-Powered GitHub Repository Analysis (ASP.NET Core, React, GitHub Tokens, Gemini API, SQLite, D3.js)
+4. **DevLens** — AI-Powered GitHub Repository Analysis (ASP.NET Core, React, GitHub Tokens, Gemini API, SQLite, D3.js)
    GitHub: https://github.com/charan-kumar99/DevLens
+5. **RTGS/NEFT Banking System** — Enterprise payment system (ASP.NET Core, PostgreSQL, MySQL, Oracle, Azure DevOps) — Proprietary
 6. **Portfolio Website** — This portfolio (HTML, CSS, JS)
 
 CONTACT
