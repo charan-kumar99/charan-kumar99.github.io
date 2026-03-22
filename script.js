@@ -137,14 +137,9 @@ setTimeout(() => {
 ================================================================ */
 
 /* ---- API Config ---- */
-const OPENROUTER_API_KEY = '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';
-const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
-// Use proxy for both local and production
-const USE_PROXY = true;
-const API_ENDPOINT = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? '/api/chat'  // Local proxy
-    : 'https://charan-kumar-io6vs61xa-charan-kumar99s-projects.vercel.app/api/chat';  // Vercel proxy
-const AI_MODEL = 'openai/gpt-3.5-turbo';
+const GEMINI_API_KEY = 'AIzaSyBOHl7Z_phtJyvncr-kaXfkWh_CpcWbWBQ';
+const AI_MODEL = 'gemini-2.5-flash';
+const API_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${AI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 /* ---- System Prompt ---- */
 const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar's portfolio website.
@@ -424,7 +419,7 @@ function scrollBottom() {
 }
 
 
-/* ---- Send message to OpenRouter API ---- */
+/* ---- Send message to Gemini API ---- */
 async function sendMessage() {
     const text = chatInputEl.value.trim();
     if (!text || isLoading) return;
@@ -446,8 +441,12 @@ async function sendMessage() {
     showTyping();
 
     try {
-        console.log('Sending request to:', API_ENDPOINT);
-        console.log('Request body:', { model: AI_MODEL, messages: chatHistory.length + 1 });
+        console.log('Sending request to Gemini API');
+
+        const formattedMessages = chatHistory.map(msg => ({
+            role: msg.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: msg.content }]
+        }));
 
         const res = await fetch(API_ENDPOINT, {
             method: 'POST',
@@ -455,10 +454,14 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: AI_MODEL,
-                max_tokens: 400,
-                temperature: 0.65,
-                messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
+                systemInstruction: {
+                    parts: [{ text: SYSTEM_PROMPT }]
+                },
+                contents: formattedMessages,
+                generationConfig: {
+                    temperature: 0.65,
+                    maxOutputTokens: 400
+                }
             })
         });
 
@@ -472,7 +475,7 @@ async function sendMessage() {
 
         const data = await res.json();
         console.log('Response data:', data);
-        const reply = data?.choices?.[0]?.message?.content?.trim();
+        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
         console.log('Extracted reply:', reply);
 
         if (!reply) throw new Error('Empty response received.');
@@ -486,8 +489,7 @@ async function sendMessage() {
         console.error('Error details:', {
             message: err.message,
             stack: err.stack,
-            useProxy: USE_PROXY,
-            endpoint: USE_PROXY ? API_ENDPOINT : OPENROUTER_URL
+            endpoint: API_ENDPOINT
         });
         hideTyping();
         let errorMsg = "Sorry, I couldn't connect right now. ";
