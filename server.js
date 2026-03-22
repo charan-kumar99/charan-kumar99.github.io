@@ -80,8 +80,9 @@ const server = http.createServer(async (req, res) => {
                     console.error('❌ Gemini error:', data);
                 }
                 
-                // Convert to OpenAI format
-                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                // Convert JSON data
+                const parts = data.candidates?.[0]?.content?.parts || [];
+                const reply = parts.map(p => p.text).join('') || '';
                 const openAIFormat = {
                     choices: [{
                         message: {

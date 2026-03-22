@@ -67,7 +67,8 @@ export default async function handler(req, res) {
         }
 
         // Convert Gemini response to OpenAI format for compatibility
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        const parts = data.candidates?.[0]?.content?.parts || [];
+        const reply = parts.map(p => p.text).join('') || '';
         const openAIFormat = {
             choices: [{
                 message: {
