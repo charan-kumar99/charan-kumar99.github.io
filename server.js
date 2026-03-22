@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 8000;
-const OPENROUTER_API_KEY = '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';
+const GEMINI_API_KEY = 'AIzaSyBOHl7Z_phtJyvncr-kaXfkWh_CpcWbWBQ';
 
 const mimeTypes = {
     '.html': 'text/html',
@@ -25,34 +25,77 @@ const server = http.createServer(async (req, res) => {
         req.on('end', async () => {
             try {
                 const requestData = JSON.parse(body);
+                const { messages } = requestData;
                 
-                console.log('📤 Sending request to OpenRouter...');
-                console.log('Model:', requestData.model);
-                console.log('Messages count:', requestData.messages.length);
+                console.log('📤 Sending request to Gemini...');
+                console.log('Messages count:', messages.length);
                 
-                const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                        'HTTP-Referer': 'http://localhost:8000',
-                        'X-Title': "Charan Kumar's Portfolio"
-                    },
-                    body: JSON.stringify(requestData)
-                });
+                // Convert messages to Gemini format
+                const systemMessage = messages.find(m => m.role === 'system');
+                const contents = [];
+                
+                // Add system message as first user message if exists
+                if (systemMessage) {
+                    contents.push({
+                        role: 'user',
+                        parts: [{ text: systemMessage.content }]
+                    });
+                    contents.push({
+                        role: 'model',
+                        parts: [{ text: 'Understood. I will follow these instructions.' }]
+                    });
+                }
+                
+                // Add other messages
+                messages
+                    .filter(m => m.role !== 'system')
+                    .forEach(m => {
+                        contents.push({
+                            role: m.role === 'assistant' ? 'model' : 'user',
+                            parts: [{ text: m.content }]
+                        });
+                    });
+                
+                const response = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            contents,
+                            generationConfig: {
+                                temperature: 0.7,
+                                maxOutputTokens: 400
+                            }
+                        })
+                    }
+                );
 
                 const data = await response.json();
                 
                 console.log('📥 Response status:', response.status);
                 if (!response.ok) {
-                    console.error('❌ OpenRouter error:', data);
+                    console.error('❌ Gemini error:', data);
                 }
+                
+                // Convert to OpenAI format
+                const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+                const openAIFormat = {
+                    choices: [{
+                        message: {
+                            role: 'assistant',
+                            content: reply
+                        }
+                    }]
+                };
                 
                 res.writeHead(response.status, {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 });
-                res.end(JSON.stringify(data));
+                res.end(JSON.stringify(openAIFormat));
             } catch (error) {
                 console.error('❌ API Error:', error);
                 res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -98,5 +141,5 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, () => {
     console.log(`\n🚀 Server running at http://localhost:${PORT}/`);
-    console.log(`📱 AI Chat is enabled and working!\n`);
+    console.log(`📱 AI Chat is enabled with Google Gemini!\n`);
 });
