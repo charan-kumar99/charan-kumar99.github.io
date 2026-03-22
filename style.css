@@ -398,11 +398,37 @@ section {
 /* ================================================================
    SKILLS SECTION
 ================================================================ */
+.skills-category {
+    margin-bottom: 2.5rem;
+}
+
+.skills-category:last-child {
+    margin-bottom: 0;
+}
+
+.skills-category-title {
+    font-size: 1.4rem;
+    color: var(--light);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    position: relative;
+}
+
+.skills-category-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
 }
 
 .skill-card {
@@ -506,6 +532,26 @@ section {
     color: var(--gray);
     margin-bottom: 1.5rem;
     line-height: 1.8;
+    list-style: none;
+    padding: 0;
+}
+
+.project-description li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-description li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.project-description li:last-child {
+    margin-bottom: 0;
 }
 
 .project-tech {
@@ -603,6 +649,27 @@ section {
 .timeline-description {
     color: var(--gray);
     line-height: 1.6;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline-description li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.timeline-description li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.timeline-description li:last-child {
+    margin-bottom: 0;
 }
 
 /* ================================================================
@@ -655,6 +722,97 @@ section {
 
 .education-year {
     color: var(--gray);
+}
+
+/* ================================================================
+   CERTIFICATIONS & TRAINING SECTION
+================================================================ */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.certification-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.certification-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+}
+
+.certification-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.certification-title {
+    font-size: 1.15rem;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.certification-org {
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+}
+
+.certification-date {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* ================================================================
+   ACTIVITIES & INTERESTS SECTION
+================================================================ */
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.activity-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+}
+
+.activity-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.activity-title {
+    font-size: 1.3rem;
+    color: var(--light);
+    margin-bottom: 0.8rem;
+}
+
+.activity-description {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 /* ================================================================

@@ -157,47 +157,71 @@ FORMATTING RULES — follow strictly:
 ABOUT CHARAN KUMAR
 ==================
 Name : Charan Kumar
-Role : Full-Stack Developer / ASP.NET Core Developer
+Role : .NET Developer | Full-Stack Developer
+Phone : +91 9380455922
+Email : charansuvarna99@gmail.com
+Location : Udupi, Karnataka, India
+LinkedIn : https://www.linkedin.com/in/charan-kumar-9b20a8378
+GitHub : https://github.com/charan-kumar99
+Portfolio : https://charan-kumar99.github.io/
+Languages spoken: English, Hindi, Kannada, Tulu, Tamil (mother tongue is Tulu)
+
+PROFESSIONAL SUMMARY
+Versatile .NET Developer with hands-on experience building and maintaining enterprise-grade web applications for the banking and financial sector. Currently developing critical RTGS/NEFT payment processing systems serving multiple banks using ASP.NET Core (.NET 6 & .NET 8), Blazor, and Razor Pages. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, REST API development, API versioning, globalization, and .NET version migration.
 
 EDUCATION
-- **MCA** — MIT, Jaipur (Online) — Currently Pursuing, Expected **2027**
-- **BCA** — Udupi College of Professional Studies, Mangalore University, **2022–2025**
-  Add-on courses: Cybersecurity, Artificial Intelligence, Big Data Analytics
+- **MCA** — MIT, Jaipur (Online) — **Nov 2025 – Present**
+- **BCA** — Udupi College of Professional Studies, Mangalore University — **Sep 2022 – Jun 2025** — CGPA: **6.17**
+  Add-on courses (3 years): Cybersecurity, Artificial Intelligence, Big Data Analytics
+- **Pre-University (12th)** — St Cecily's Composite PU College, Udupi — **Jul 2020 – Apr 2022** — 67.71%
+- **10th Standard** — Volakadu Government High School, Udupi — **Apr 2019 – Jun 2020** — 68%
 
 WORK EXPERIENCE
-- **ASP.NET Core Developer** — NetTech Solutions Pvt. Ltd. (**Dec 2025 – Present**)
-  Leads RTGS/NEFT banking projects for Indian Bank, Sirsi Bank, Naval Bank, Hanumanth Nagar Bank.
-  Full-stack: frontend, backend, database design, testing, debugging, Azure DevOps deployment.
-- **Trainee Developer** — NetTech Solutions Pvt. Ltd. (**Sep 2025 – Dec 2025**)
-  Learned ASP.NET Core, contributed features, fixed bugs, worked with senior devs.
+- **.NET Developer** — Net Tech Services India Private Limited (NTSIPL) (**Dec 2025 – Present**)
+  Development on RTGS/NEFT banking project for major Banks and Vendors.
+  Contributed to CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems.
+  Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, SQL Server.
+  REST APIs, CRUD operations, API globalization, .NET version migration (6→8).
+  Testing, debugging, Azure DevOps deployment. Tools: Visual Studio 2022, Postman, DBeaver, FTP/SFTP.
+- **Trainee Developer** — NTSIPL (**Sep 2025 – Dec 2025**)
+  Gained hands-on experience in ASP.NET Core enterprise development in the financial domain.
+  Contributed features, resolved bugs, collaborated with senior developers.
 
 SKILLS
-- Languages  : **C#**, **Java**, **Python**, **JavaScript**, Dart, HTML5, CSS3
-- Frameworks : **ASP.NET Core**, **Flask**, Flutter
-- Databases  : **PostgreSQL**, **MySQL**, **Oracle**, SQL Server, SQLite
-- Tools      : **Azure DevOps**, GitHub, Visual Studio 2022, VS Code, Postman, DBeaver
-- Other      : **REST APIs**, SQLAlchemy, Chart.js, Bootstrap
+- Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
+- Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, Bootstrap 5, **Flask**, Chart.js
+- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite
+- Tools       : **Azure DevOps**, GitHub, Visual Studio 2022, VS Code, Postman, DBeaver
+- API & Arch  : **REST APIs**, API Versioning, API Globalization, .NET Migration (6→8)
+- Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
-PROJECTS
-1. **Money Mate** — Personal finance manager (Python, Flask, SQLite, Chart.js, Bootstrap 5)
-   GitHub: https://github.com/charan-kumar99/Money_Mate
-2. **Orion AI Assistant** — Voice-controlled web assistant (Python, Flask, JS, Google TTS)
-   GitHub: https://github.com/charan-kumar99/Orion
-3. **Cricket Performance Analyzer** — Browser analytics tool (HTML5, CSS3, JS, Chart.js)
-   GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
-4. **DevLens** — AI-Powered GitHub Repository Analysis (ASP.NET Core, React, GitHub Tokens, Gemini API, SQLite, D3.js)
+PROJECTS (in order)
+1. **DevLens** — AI-Powered GitHub Repository Analyzer (C#, ASP.NET Core, React, GitHub API, Google Gemini API, SQLite, D3.js, Recharts)
    GitHub: https://github.com/charan-kumar99/DevLens
-5. **RTGS/NEFT Banking System** — Enterprise payment system (ASP.NET Core, PostgreSQL, MySQL, Oracle, Azure DevOps) — Proprietary
-6. **Portfolio Website** — This portfolio (HTML, CSS, JS)
+2. **Money Mate** — Personal Finance Management (Python, Flask, SQLite, SQLAlchemy, Chart.js, Bootstrap 5)
+   GitHub: https://github.com/charan-kumar99/Money_Mate
+3. **Cricket Performance Analyzer** — BCA Final Project Enhanced (HTML5, CSS3, JS ES6+, Chart.js, LocalStorage)
+   GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
+4. **Orion** — AI-Powered Personal Voice Assistant (Python, Flask, JS, Google TTS, Speech Recognition)
+   GitHub: https://github.com/charan-kumar99/Orion
+5. **RTGS/NEFT Banking System** — Enterprise payment system (ASP.NET Core, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs) — Proprietary
 
-CONTACT
-- Email    : charansuvarna99@gmail.com
-- Location : **Udupi, Karnataka, India**
-- LinkedIn : https://www.linkedin.com/in/charan-kumar-9b20a8378
-- GitHub   : https://github.com/charan-kumar99
-- Languages spoken: English, Hindi, Kannada, Tulu
+CERTIFICATIONS & TRAINING
+- Fast-Track Internship — Data Analytics, Web Development & Python Projects | Accolade Tech Solutions, Mangaluru (August 2024)
+- Cybersecurity Training | Vijesha IT Services LLP (2024)
+- AI, Big Data Analytics & Cybersecurity Training | Mangalore University (2024)
+- Skill Development & Entrepreneurship Program | Udupi Grameena Buntara Sangha (2024)
+- NCC 'A' Certificate | National Cadet Corps (Ministry of Defence, India)
+- 10-Day NCC Camp — Training with Indian Navy & Army Officers
 
-CURRENT FOCUS: Building **AI-powered applications** and **enterprise banking systems**`;
+EXTRACURRICULAR ACTIVITIES
+- **NCC** — Served as NCC Lead / Head Cadet. Received **Best Cadet Award**. 10-day camp with Indian Navy & Army officers. Holds NCC 'A' Certificate.
+- **Cricket** — Active competitive player, team captain, won multiple district-level matches, plays in regular tournaments.
+- **Volleyball** — District-level player, captained school and college teams, won inter-institution matches.
+- **Kabaddi** — Participated at district level during school years.
+- **Chess** — Regular player, practices with peers and family.
+
+CURRENT FOCUS: Building **AI-powered applications** and **enterprise banking systems** while pursuing **MCA**`;
 
 
 /* ---- State ---- */
@@ -215,7 +239,7 @@ const chatBubbleEl = document.getElementById('chatBubble');
 
 
 /* ================================================================
-   SUGGESTION SETS — 5 rotating sets of 4 questions each
+   SUGGESTION SETS — 12 rotating sets of 4 questions each
 ================================================================ */
 const SUGGESTION_SETS = [
     [
@@ -227,30 +251,73 @@ const SUGGESTION_SETS = [
     [
         { icon: '🎓', text: "What is Charan's education?" },
         { icon: '🏦', text: 'Tell me about the banking project' },
-        { icon: '🐍', text: 'Does he know Python?' },
+        { icon: '🔥', text: 'What is Blazor?' },
         { icon: '🌍', text: 'Where is he located?' }
     ],
     [
         { icon: '⚙️', text: 'What frameworks does he use?' },
         { icon: '🗄️', text: 'Which databases does he work with?' },
         { icon: '☁️', text: 'Does he use Azure or DevOps?' },
-        { icon: '🤖', text: 'What is his current focus?' }
+        { icon: '🎖️', text: 'Tell me about his NCC experience' }
     ],
     [
         { icon: '🔗', text: "What is Charan's GitHub profile?" },
-        { icon: '📱', text: 'Has he built any mobile apps?' },
-        { icon: '🏅', text: 'How long has he been working?' },
+        { icon: '📜', text: 'What certifications does he have?' },
+        { icon: '🏏', text: 'Does he play cricket?' },
         { icon: '🔒', text: 'What is the RTGS/NEFT project?' }
     ],
     [
-        { icon: '🔥', text: 'What is Money Mate?' },
-        { icon: '🎤', text: 'Tell me about Orion AI Assistant' },
-        { icon: '🏏', text: 'What is the Cricket Analyzer?' },
-        { icon: '🔍', text: 'What is DevLens?' }
+        { icon: '🔍', text: 'What is DevLens?' },
+        { icon: '💰', text: 'Tell me about Money Mate' },
+        { icon: '🎤', text: 'What is Orion AI Assistant?' },
+        { icon: '🏏', text: 'What is the Cricket Analyzer?' }
+    ],
+    [
+        { icon: '🎖️', text: 'What is the Best Cadet Award?' },
+        { icon: '🏐', text: 'Does Charan play volleyball?' },
+        { icon: '📊', text: 'What is his BCA CGPA?' },
+        { icon: '🔧', text: 'What tools does he use daily?' }
+    ],
+    [
+        { icon: '🌐', text: 'What languages does he speak?' },
+        { icon: '🔄', text: 'What is .NET version migration?' },
+        { icon: '🏛️', text: 'What is CTS in banking?' },
+        { icon: '🧠', text: 'What are his soft skills?' }
+    ],
+    [
+        { icon: '📱', text: 'Does he know Dart or Flutter?' },
+        { icon: '🛡️', text: 'Has he done cybersecurity training?' },
+        { icon: '🎓', text: 'Where did he study for BCA?' },
+        { icon: '⚡', text: 'What is API versioning?' }
+    ],
+    [
+        { icon: '🏫', text: 'Is he pursuing MCA?' },
+        { icon: '💻', text: 'Does he know React?' },
+        { icon: '🏅', text: 'Was he in NCC?' },
+        { icon: '🗃️', text: 'Does he work with Oracle?' }
+    ],
+    [
+        { icon: '🌍', text: 'What is API globalization?' },
+        { icon: '🏏', text: 'Has he captained any sports team?' },
+        { icon: '📜', text: 'What internships has he done?' },
+        { icon: '🔐', text: 'What is AML in banking?' }
+    ],
+    [
+        { icon: '♟️', text: 'Does Charan play chess?' },
+        { icon: '⚙️', text: 'What is Blazor?' },
+        { icon: '📄', text: 'What are Razor Pages?' },
+        { icon: '🏦', text: 'Which banks does he work with?' }
+    ],
+    [
+        { icon: '🎯', text: 'What is his current focus?' },
+        { icon: '📊', text: 'What databases does he know?' },
+        { icon: '🚀', text: 'Tell me about his career journey' },
+        { icon: '📧', text: "What is Charan's email?" }
     ]
 ];
 
-let suggSetIndex = 0;
+/* Randomize starting set so each page load feels fresh */
+let suggSetIndex = Math.floor(Math.random() * SUGGESTION_SETS.length);
 
 function renderSuggestions() {
     const set = SUGGESTION_SETS[suggSetIndex % SUGGESTION_SETS.length];
