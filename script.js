@@ -137,8 +137,13 @@ setTimeout(() => {
 ================================================================ */
 
 /* ---- API Config ---- */
-const OPENROUTER_API_KEY = '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';
+const OPENROUTER_API_KEY = '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';
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
+// Use proxy for both local and production
+const USE_PROXY = true;
+const API_ENDPOINT = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? '/api/chat'  // Local proxy
+    : 'https://charan-kumar-io6vs61xa-charan-kumar99s-projects.vercel.app/api/chat';  // Vercel proxy
 const AI_MODEL = 'openai/gpt-3.5-turbo';
 
 /* ---- System Prompt ---- */
@@ -441,13 +446,13 @@ async function sendMessage() {
     showTyping();
 
     try {
-        const res = await fetch(OPENROUTER_URL, {
+        console.log('Sending request to:', API_ENDPOINT);
+        console.log('Request body:', { model: AI_MODEL, messages: chatHistory.length + 1 });
+
+        const res = await fetch(API_ENDPOINT, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + OPENROUTER_API_KEY,
-                'HTTP-Referer': window.location.href,
-                'X-Title': "Charan Kumar's Portfolio"
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 model: AI_MODEL,
@@ -457,13 +462,18 @@ async function sendMessage() {
             })
         });
 
+        console.log('Response status:', res.status);
+
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
+            console.error('Error response:', errData);
             throw new Error(errData?.error?.message || 'API error ' + res.status);
         }
 
         const data = await res.json();
+        console.log('Response data:', data);
         const reply = data?.choices?.[0]?.message?.content?.trim();
+        console.log('Extracted reply:', reply);
 
         if (!reply) throw new Error('Empty response received.');
 
@@ -473,8 +483,20 @@ async function sendMessage() {
 
     } catch (err) {
         console.error('Chatbot error:', err);
+        console.error('Error details:', {
+            message: err.message,
+            stack: err.stack,
+            useProxy: USE_PROXY,
+            endpoint: USE_PROXY ? API_ENDPOINT : OPENROUTER_URL
+        });
         hideTyping();
-        appendMessage('bot', "Sorry, I couldn't connect right now. Please try again in a moment.", true);
+        let errorMsg = "Sorry, I couldn't connect right now. ";
+        if (err.message.includes('CORS') || err.message.includes('Failed to fetch')) {
+            errorMsg += "This might be a browser security issue. Check the console for details.";
+        } else {
+            errorMsg += "Please try again in a moment.";
+        }
+        appendMessage('bot', errorMsg, true);
     } finally {
         isLoading = false;
         chatSendBtn.disabled = false;
