@@ -137,9 +137,9 @@ setTimeout(() => {
 ================================================================ */
 
 /* ---- API Config ---- */
-const GEMINI_API_KEY = 'AIzaSyBOHl7Z_phtJyvncr-kaXfkWh_CpcWbWBQ';
-const AI_MODEL = 'gemini-2.5-flash';
-const API_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${AI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+const API_ENDPOINT = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') 
+    ? 'http://localhost:8000/api/chat' 
+    : '/api/chat';
 
 /* ---- System Prompt ---- */
 const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar's portfolio website.
@@ -185,7 +185,9 @@ PROJECTS
 3. **Cricket Performance Analyzer** — Browser analytics tool (HTML5, CSS3, JS, Chart.js)
    GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
 4. **RTGS/NEFT Banking System** — Enterprise payment system (ASP.NET Core, PostgreSQL, MySQL, Oracle, Azure DevOps) — Proprietary
-5. **Portfolio Website** — This portfolio (HTML, CSS, JS)
+5. **DevLens** — AI-Powered GitHub Repository Analysis (ASP.NET Core, React, GitHub Tokens, Gemini API, SQLite, D3.js)
+   GitHub: https://github.com/charan-kumar99/DevLens
+6. **Portfolio Website** — This portfolio (HTML, CSS, JS)
 
 CONTACT
 - Email    : charansuvarna99@gmail.com
@@ -243,7 +245,7 @@ const SUGGESTION_SETS = [
         { icon: '🔥', text: 'What is Money Mate?' },
         { icon: '🎤', text: 'Tell me about Orion AI Assistant' },
         { icon: '🏏', text: 'What is the Cricket Analyzer?' },
-        { icon: '💻', text: 'What languages does he code in?' }
+        { icon: '🔍', text: 'What is DevLens?' }
     ]
 ];
 
@@ -441,28 +443,19 @@ async function sendMessage() {
     showTyping();
 
     try {
-        console.log('Sending request to Gemini API');
+        console.log('Sending request to Backend API');
 
-        const formattedMessages = chatHistory.map(msg => ({
-            role: msg.role === 'assistant' ? 'model' : 'user',
-            parts: [{ text: msg.content }]
-        }));
+        const messagesToSend = [
+            { role: 'system', content: SYSTEM_PROMPT },
+            ...chatHistory.map(msg => ({ role: msg.role === 'assistant' ? 'assistant' : 'user', content: msg.content }))
+        ];
 
         const res = await fetch(API_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                systemInstruction: {
-                    parts: [{ text: SYSTEM_PROMPT }]
-                },
-                contents: formattedMessages,
-                generationConfig: {
-                    temperature: 0.65,
-                    maxOutputTokens: 400
-                }
-            })
+            body: JSON.stringify({ messages: messagesToSend })
         });
 
         console.log('Response status:', res.status);
@@ -470,12 +463,12 @@ async function sendMessage() {
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
             console.error('Error response:', errData);
-            throw new Error(errData?.error?.message || 'API error ' + res.status);
+            throw new Error(errData?.error?.message || errData?.error || 'API error ' + res.status);
         }
 
         const data = await res.json();
         console.log('Response data:', data);
-        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+        const reply = data?.choices?.[0]?.message?.content?.trim();
         console.log('Extracted reply:', reply);
 
         if (!reply) throw new Error('Empty response received.');

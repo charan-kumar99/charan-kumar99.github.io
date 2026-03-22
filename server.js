@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 8000;
-const GEMINI_API_KEY = 'AIzaSyBOHl7Z_phtJyvncr-kaXfkWh_CpcWbWBQ';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'YOUR_NEW_API_KEY_HERE';
 
 const mimeTypes = {
     '.html': 'text/html',
@@ -57,7 +57,7 @@ const server = http.createServer(async (req, res) => {
                     });
                 
                 const response = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
                     {
                         method: 'POST',
                         headers: {

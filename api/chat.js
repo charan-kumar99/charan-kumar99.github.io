@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const apiKey = process.env.GEMINI_API_KEY || 'AIzaSyBOHl7Z_phtJyvncr-kaXfkWh_CpcWbWBQ';
+        const apiKey = process.env.GEMINI_API_KEY || 'YOUR_NEW_API_KEY_HERE';
         const { messages } = req.body;
         
         // Convert messages to Gemini format
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
             });
         
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
             {
                 method: 'POST',
                 headers: {
