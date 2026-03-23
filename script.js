@@ -167,7 +167,7 @@ Portfolio : https://charan-kumar99.github.io/
 Languages spoken: English, Hindi, Kannada, Tulu, Tamil (mother tongue is Tulu)
 
 PROFESSIONAL SUMMARY
-Versatile .NET Developer with hands-on experience building and maintaining enterprise-grade web applications for the banking and financial sector. Currently developing critical RTGS/NEFT payment processing systems serving multiple banks using ASP.NET Core (.NET 6 & .NET 8), Blazor, and Razor Pages. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, REST API development, API versioning, globalization, and .NET version migration.
+Versatile .NET Developer with hands-on experience building and maintaining enterprise-grade web applications for the banking and financial sector. Currently developing critical RTGS/NEFT payment processing systems using Microservices Architecture, serving multiple banks using ASP.NET Core (.NET 6 & .NET 8), Blazor, and Razor Pages. Proven expertise in full-stack development, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, REST API development, API versioning, globalization, and .NET version migration.
 
 EDUCATION
 - **MCA** — MIT, Jaipur (Online) — **Nov 2025 – Present**
@@ -178,7 +178,8 @@ EDUCATION
 
 WORK EXPERIENCE
 - **.NET Developer** — Net Tech Services India Private Limited (NTSIPL) (**Dec 2025 – Present**)
-  Development on RTGS/NEFT banking project for major Banks and Vendors.
+  Development on RTGS/NEFT banking project for major Banks and Vendors using **Microservices Architecture**.
+  Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.
   Contributed to CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems.
   Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, SQL Server.
   REST APIs, CRUD operations, API globalization, .NET version migration (6→8).
@@ -192,7 +193,7 @@ SKILLS
 - Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, Bootstrap 5, **Flask**, Chart.js
 - Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite
 - Tools       : **Azure DevOps**, GitHub, Visual Studio 2022, VS Code, Postman, DBeaver
-- API & Arch  : **REST APIs**, API Versioning, API Globalization, .NET Migration (6→8)
+- API & Arch  : **REST APIs**, **Microservices Architecture**, API Versioning, API Globalization, .NET Migration (6→8)
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
 PROJECTS (in order)
@@ -204,7 +205,7 @@ PROJECTS (in order)
    GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
 4. **Orion** — AI-Powered Personal Voice Assistant (Python, Flask, JS, Google TTS, Speech Recognition)
    GitHub: https://github.com/charan-kumar99/Orion
-5. **RTGS/NEFT Banking System** — Enterprise payment system (ASP.NET Core, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs) — Proprietary
+5. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs) — Proprietary
 
 CERTIFICATIONS & TRAINING
 - Fast-Track Internship — Data Analytics, Web Development & Python Projects | Accolade Tech Solutions, Mangaluru (August 2024)
@@ -221,7 +222,7 @@ EXTRACURRICULAR ACTIVITIES
 - **Kabaddi** — Participated at district level during school years.
 - **Chess** — Regular player, practices with peers and family.
 
-CURRENT FOCUS: Building **AI-powered applications** and **enterprise banking systems** while pursuing **MCA**`;
+CURRENT FOCUS: Building **AI-powered applications** and **enterprise banking systems** with **Microservices Architecture** while pursuing **MCA**`;
 
 
 /* ---- State ---- */
@@ -256,7 +257,7 @@ const SUGGESTION_SETS = [
     ],
     [
         { icon: '⚙️', text: 'What frameworks does he use?' },
-        { icon: '🗄️', text: 'Which databases does he work with?' },
+        { icon: '🧩', text: 'Does he work with microservices?' },
         { icon: '☁️', text: 'Does he use Azure or DevOps?' },
         { icon: '🎖️', text: 'Tell me about his NCC experience' }
     ],
