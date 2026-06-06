@@ -174,7 +174,8 @@ Versatile .NET Developer with hands-on experience building and maintaining enter
 EDUCATION
 - **MCA** — MIT, Jaipur (Online) — **Nov 2025 – Present**
 - **BCA** — Udupi College of Professional Studies, Mangalore University — **Sep 2022 – Jun 2025** — CGPA: **6.17**
-  Add-on courses (3 years): Cybersecurity, Artificial Intelligence, Big Data Analytics
+  Add-on Courses (3-Year Program alongside BCA) in Cyber Security, Artificial Intelligence & Big Data Analytics:
+    Year 1: Certificate Course | Year 2: Diploma Course | Year 3: Advanced Diploma Course
 - **Pre-University (12th)** — St Cecily's Composite PU College, Udupi — **Jul 2020 – Apr 2022** — 67.71%
 - **10th Standard** — Volakadu Government High School, Udupi — **Apr 2019 – Jun 2020** — 68%
 

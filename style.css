@@ -467,10 +467,19 @@ section {
 .skill-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.18) rotate(6deg);
 }
 
 .skill-name {
@@ -847,9 +856,22 @@ section {
 }
 
 .contact-icon {
-    font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.18) rotate(5deg);
+}
+
+.contact-icon svg {
+    width: 2.8rem;
+    height: 2.8rem;
+    object-fit: contain;
 }
 
 .contact-label {
@@ -878,9 +900,10 @@ section {
 ================================================================ */
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem;
     background: var(--dark);
     color: var(--gray);
+    margin-top: 5rem;
 }
 
 .social-links {
@@ -891,16 +914,23 @@ footer {
 }
 
 .social-link {
-    color: var(--primary);
     font-size: 1.5rem;
     transition: all 0.3s ease;
     text-decoration: none;
+    display: inline-block;
 }
 
+.social-link.github { color: #ffffff; }
+.social-link.linkedin { color: #0a66c2; }
+.social-link.email { color: #ea4335; }
+
 .social-link:hover {
-    color: var(--accent);
     transform: translateY(-5px);
 }
+
+.social-link.github:hover { color: var(--accent); }
+.social-link.linkedin:hover { color: #0099ff; }
+.social-link.email:hover { color: #ff4d6d; }
 
 /* ================================================================
    RESPONSIVE — PORTFOLIO
