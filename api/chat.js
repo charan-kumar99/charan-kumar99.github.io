@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-    // Enable CORS for all origins
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -16,11 +15,9 @@ export default async function handler(req, res) {
         const apiKey = process.env.GEMINI_API_KEY || 'YOUR_NEW_API_KEY_HERE';
         const { messages } = req.body;
         
-        // Convert messages to Gemini format
         const systemMessage = messages.find(m => m.role === 'system');
         const contents = [];
         
-        // Add system message as first user message if exists
         if (systemMessage) {
             contents.push({
                 role: 'user',
@@ -32,7 +29,6 @@ export default async function handler(req, res) {
             });
         }
         
-        // Add other messages
         messages
             .filter(m => m.role !== 'system')
             .forEach(m => {
@@ -66,7 +62,6 @@ export default async function handler(req, res) {
             return res.status(response.status).json(data);
         }
 
-        // Convert Gemini response to OpenAI format for compatibility
         const parts = data.candidates?.[0]?.content?.parts || [];
         const reply = parts.map(p => p.text).join('') || '';
         const openAIFormat = {

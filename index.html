@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charan Kumar - .NET Developer | Full-Stack Developer</title>
+    <meta name="description" content="Personal portfolio and resume website of Charan Kumar, a versatile .NET and Full-Stack Developer building enterprise banking microservices.">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2300d4ff'/><stop offset='100%25' stop-color='%2300ffaa'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text x='50' y='68' font-family='Segoe UI,sans-serif' font-size='52' font-weight='900' text-anchor='middle' fill='%230a0e27'>CK</text></svg>"
         type="image/svg+xml">
@@ -15,10 +16,8 @@
 
 <body>
 
-    <!-- Animated Background Canvas -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
             <div class="logo">CK</div>
@@ -40,7 +39,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="hero">
         <div class="hero-content">
             <div class="hero-greeting">Hi, my name is</div>
@@ -58,7 +56,6 @@
         <div class="scroll-indicator"></div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <p class="section-subtitle">Get to know me better</p>
@@ -90,12 +87,11 @@
             </div>
         </div>
     </section>
-    <!-- Skills Section -->
+    
     <section id="skills">
         <h2 class="section-title">Skills &amp; Technologies</h2>
         <p class="section-subtitle">Tools and technologies I work with</p>
 
-        <!-- Languages -->
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#128187; Languages</h3>
             <div class="skills-grid">
@@ -134,7 +130,6 @@
             </div>
         </div>
 
-        <!-- Frameworks & Libraries -->
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#128640; Frameworks &amp; Libraries</h3>
             <div class="skills-grid">
@@ -169,7 +164,6 @@
             </div>
         </div>
 
-        <!-- Databases -->
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#128024; Databases</h3>
             <div class="skills-grid">
@@ -196,7 +190,6 @@
             </div>
         </div>
 
-        <!-- Tools & Platforms -->
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#128295; Tools &amp; Platforms</h3>
             <div class="skills-grid">
@@ -231,7 +224,6 @@
             </div>
         </div>
 
-        <!-- API & Architecture -->
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#128268; API &amp; Architecture</h3>
             <div class="skills-grid">
@@ -258,7 +250,6 @@
             </div>
         </div>
 
-        <!-- Soft Skills -->
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#129504; Soft Skills</h3>
             <div class="skills-grid">
@@ -291,7 +282,6 @@
 
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">Featured Projects</h2>
         <p class="section-subtitle">Some of my recent work</p>
@@ -430,7 +420,6 @@
         </div>
     </section>
 
-    <!-- Experience Timeline -->
     <section id="experience">
         <h2 class="section-title">Work Experience</h2>
         <p class="section-subtitle">My professional journey</p>
@@ -472,7 +461,6 @@
         </div>
     </section>
 
-    <!-- Education Section -->
     <section id="education">
         <h2 class="section-title">Education</h2>
         <p class="section-subtitle">My academic background</p>
@@ -535,7 +523,6 @@
         </div>
     </section>
 
-    <!-- Certifications & Training Section -->
     <section id="certifications">
         <h2 class="section-title">Certifications &amp; Training</h2>
         <p class="section-subtitle">Professional development and continuous learning</p>
@@ -586,7 +573,6 @@
         </div>
     </section>
 
-    <!-- Extracurricular Activities & Interests -->
     <section id="activities">
         <h2 class="section-title">Activities &amp; Interests</h2>
         <p class="section-subtitle">Beyond the code — sports and hobbies</p>
@@ -639,7 +625,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <p class="section-subtitle">Let's connect and build something amazing</p>
@@ -729,7 +714,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="social-links">
             <a href="https://github.com/charan-kumar99" target="_blank" class="social-link github"><i class="fa-brands fa-github"></i></a>
@@ -739,11 +723,6 @@
         <p>&copy; 2025–2026 Charan Kumar. Built with passion for technology and innovation.</p>
     </footer>
 
-    <!-- ============================================================
-         AI SUPPORT CHATBOT
-    ============================================================ -->
-
-    <!-- Chat Bubble Trigger -->
     <button class="chat-bubble" id="chatBubble" onclick="toggleChat()" aria-label="Open AI Assistant">
         <span class="chat-bubble-icon" id="chatBubbleIcon">
             <img src="Ai.png" alt="AI Chat" style="width: 32px; height: 32px; object-fit: contain;">
@@ -758,10 +737,8 @@
         <span class="chat-bubble-pulse"></span>
     </button>
 
-    <!-- Chat Window -->
     <div class="chat-window" id="chatWindow">
 
-        <!-- Header -->
         <div class="chat-header">
             <div class="chat-header-info">
                 <div class="chat-avatar">
@@ -783,13 +760,10 @@
             </button>
         </div>
 
-        <!-- Messages Area -->
         <div class="chat-messages" id="chatMessages"></div>
 
-        <!-- Suggested Questions — populated & rotated dynamically by JS -->
         <div class="chat-suggestions" id="chatSuggestions"></div>
 
-        <!-- Input Area -->
         <div class="chat-input-area">
             <div class="chat-input-wrapper">
                 <textarea id="chatInput" class="chat-input" placeholder="Ask about Charan..." rows="1"

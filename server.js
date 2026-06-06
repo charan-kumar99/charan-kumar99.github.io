@@ -18,7 +18,6 @@ const mimeTypes = {
 };
 
 const server = http.createServer(async (req, res) => {
-    // Handle API proxy
     if (req.url === '/api/chat' && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => body += chunk.toString());
@@ -30,11 +29,9 @@ const server = http.createServer(async (req, res) => {
                 console.log('📤 Sending request to Gemini...');
                 console.log('Messages count:', messages.length);
                 
-                // Convert messages to Gemini format
                 const systemMessage = messages.find(m => m.role === 'system');
                 const contents = [];
                 
-                // Add system message as first user message if exists
                 if (systemMessage) {
                     contents.push({
                         role: 'user',
@@ -46,7 +43,6 @@ const server = http.createServer(async (req, res) => {
                     });
                 }
                 
-                // Add other messages
                 messages
                     .filter(m => m.role !== 'system')
                     .forEach(m => {
@@ -80,7 +76,6 @@ const server = http.createServer(async (req, res) => {
                     console.error('❌ Gemini error:', data);
                 }
                 
-                // Convert JSON data
                 const parts = data.candidates?.[0]?.content?.parts || [];
                 const reply = parts.map(p => p.text).join('') || '';
                 const openAIFormat = {
@@ -106,7 +101,6 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
-    // Handle CORS preflight
     if (req.method === 'OPTIONS') {
         res.writeHead(200, {
             'Access-Control-Allow-Origin': '*',
@@ -117,7 +111,6 @@ const server = http.createServer(async (req, res) => {
         return;
     }
 
-    // Serve static files
     let filePath = '.' + req.url;
     if (filePath === './') filePath = './index.html';
 

@@ -1,12 +1,5 @@
-/* ================================================================
-   PORTFOLIO + AI CHATBOT  —  script.js
-   Complete, self-contained. No external dependencies.
-================================================================ */
 
 
-/* ----------------------------------------------------------------
-   PARTICLE ANIMATION
----------------------------------------------------------------- */
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -64,15 +57,15 @@ function animateParticles() {
 
 animateParticles();
 
+let lastWidth = window.innerWidth;
 window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 });
 
-
-/* ----------------------------------------------------------------
-   SMOOTH SCROLLING
----------------------------------------------------------------- */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -81,40 +74,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
-/* ----------------------------------------------------------------
-   NAVBAR SCROLL EFFECT
----------------------------------------------------------------- */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 100);
 });
 
-
-/* ----------------------------------------------------------------
-   SCROLL FADE-IN ANIMATIONS
----------------------------------------------------------------- */
 const scrollObserver = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
 );
 document.querySelectorAll('.fade-in').forEach(el => scrollObserver.observe(el));
 
-
-/* ----------------------------------------------------------------
-   MOBILE MENU
----------------------------------------------------------------- */
 function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('active');
 }
 function closeMenu() {
     document.getElementById('navLinks').classList.remove('active');
 }
+document.addEventListener('click', e => {
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (
+        navLinks &&
+        navLinks.classList.contains('active') &&
+        !navLinks.contains(e.target) &&
+        !menuToggle.contains(e.target)
+    ) {
+        closeMenu();
+    }
+});
 
-
-/* ----------------------------------------------------------------
-   TYPEWRITER EFFECT — HERO SUBTITLE
----------------------------------------------------------------- */
 const heroSubtitle = document.querySelector('.hero-subtitle');
 const subtitleText = heroSubtitle.textContent;
 heroSubtitle.textContent = '';
@@ -131,18 +120,11 @@ setTimeout(() => {
     typeWriter();
 }, 1500);
 
-
-/* ================================================================
-   AI CHATBOT
-================================================================ */
-
-/* ---- API Config ---- */
 const API_ENDPOINT = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') 
     ? 'http://localhost:8000/api/chat' 
-    // If hosted on GitHub Pages, we must point explicitly to the Vercel backend Production URL
+    
     : 'https://charan-kumar99-github-io.vercel.app/api/chat';
 
-/* ---- System Prompt ---- */
 const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar's portfolio website.
 You answer questions about Charan Kumar — his skills, projects, experience, education, and contact info.
 IMPORTANT: When someone asks about a technology, framework, or concept (e.g. "what is microservices?", "what is Blazor?", "what is REST API?"), ALWAYS start with how Charan specifically uses it in his work, then give a brief technical explanation. The context must be Charan's experience first, not a generic definition.
@@ -235,13 +217,10 @@ Charan works extensively with **Microservices Architecture** at his current comp
 
 CURRENT FOCUS: Building **AI-powered applications** and **enterprise banking systems** with **Microservices Architecture** while pursuing **MCA**`;
 
-
-/* ---- State ---- */
 let chatHistory = [];
 let isChatOpen = false;
 let isLoading = false;
 
-/* ---- DOM refs ---- */
 const chatWindowEl = document.getElementById('chatWindow');
 const chatMessages = document.getElementById('chatMessages');
 const chatInputEl = document.getElementById('chatInput');
@@ -249,10 +228,6 @@ const chatSendBtn = document.getElementById('chatSendBtn');
 const chatSuggEl = document.getElementById('chatSuggestions');
 const chatBubbleEl = document.getElementById('chatBubble');
 
-
-/* ================================================================
-   SUGGESTION SETS — 12 rotating sets of 4 questions each
-================================================================ */
 const SUGGESTION_SETS = [
     [
         { icon: '💡', text: "What are Charan's skills?" },
@@ -328,7 +303,6 @@ const SUGGESTION_SETS = [
     ]
 ];
 
-/* Randomize starting set so each page load feels fresh */
 let suggSetIndex = Math.floor(Math.random() * SUGGESTION_SETS.length);
 
 function renderSuggestions() {
@@ -344,8 +318,6 @@ function renderSuggestions() {
     chatSuggEl.style.display = 'flex';
 }
 
-
-/* ---- Welcome screen ---- */
 function renderWelcome() {
     chatMessages.innerHTML =
         '<div class="chat-welcome">' +
@@ -355,15 +327,13 @@ function renderWelcome() {
         '</div>';
 }
 
-
-/* ---- Toggle open / close ---- */
 function toggleChat() {
     isChatOpen = !isChatOpen;
     chatWindowEl.classList.toggle('open', isChatOpen);
     chatBubbleEl.classList.toggle('is-open', isChatOpen);
 
     if (isChatOpen) {
-        /* First open: render suggestions + welcome */
+        
         if (chatMessages.children.length === 0) {
             renderSuggestions();
             renderWelcome();
@@ -372,12 +342,10 @@ function toggleChat() {
     }
 }
 
-
-/* ---- New chat — advance to next suggestion set ---- */
 function newChat() {
     chatHistory = [];
     chatMessages.innerHTML = '';
-    suggSetIndex++;          /* rotate to next set */
+    suggSetIndex++;          
     renderSuggestions();
     renderWelcome();
     chatInputEl.value = '';
@@ -386,12 +354,6 @@ function newChat() {
     chatInputEl.focus();
 }
 
-
-/* ================================================================
-   TEXT FORMATTING HELPERS
-================================================================ */
-
-/* Escape HTML — used for USER messages (plain text) */
 function escapeHtml(str) {
     return str
         .replace(/&/g, '&amp;')
@@ -401,30 +363,52 @@ function escapeHtml(str) {
         .replace(/\n/g, '<br>');
 }
 
-/* Parse markdown → safe HTML — used for BOT messages only.
-   Handles: **bold**, - unordered lists, 1. ordered lists, newlines */
 function formatBotMessage(text) {
-    /* Step 1 — escape HTML special chars */
-    let t = text
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-
-    /* Step 2 — bold: **text** or __text__ */
-    t = t.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
-    t = t.replace(/__([^_\n]+)__/g, '<strong>$1</strong>');
-
-    /* Step 3 — process line-by-line to build lists */
-    const lines = t.split('\n');
+    const lines = text.split('\n');
     let html = '';
     let inUl = false;
     let inOl = false;
+    let inCode = false;
 
     for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        const ulMatch = line.match(/^[-*]\s+(.+)/);
-        const olMatch = line.match(/^\d+\.\s+(.+)/);
+        let line = lines[i];
+
+        if (line.trim().startsWith('```')) {
+            if (inCode) {
+                html += '</code></pre>';
+                inCode = false;
+            } else {
+                if (inUl) { html += '</ul>'; inUl = false; }
+                if (inOl) { html += '</ol>'; inOl = false; }
+                const lang = line.replace('```', '').trim();
+                html += `<pre><code class="language-${lang || 'txt'}">`;
+                inCode = true;
+            }
+            continue;
+        }
+
+        if (inCode) {
+            const escapedLine = line
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+            html += escapedLine + '\n';
+            continue;
+        }
+
+        let t = line
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+
+        t = t.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+        t = t.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+        t = t.replace(/__([^_\n]+)__/g, '<strong>$1</strong>');
+
+        const ulMatch = t.match(/^[-*]\s+(.+)/);
+        const olMatch = t.match(/^\d+\.\s+(.+)/);
 
         if (ulMatch) {
             if (inOl) { html += '</ol>'; inOl = false; }
@@ -437,10 +421,10 @@ function formatBotMessage(text) {
         } else {
             if (inUl) { html += '</ul>'; inUl = false; }
             if (inOl) { html += '</ol>'; inOl = false; }
-            if (line.trim() === '') {
+            if (t.trim() === '') {
                 html += '<div class="bot-spacer"></div>';
             } else {
-                html += '<span class="bot-line">' + line + '</span>';
+                html += '<span class="bot-line">' + t + '</span>';
             }
         }
     }
@@ -451,10 +435,8 @@ function formatBotMessage(text) {
     return html;
 }
 
-
-/* ---- Append message bubble ---- */
 function appendMessage(role, text, isError = false) {
-    /* Hide suggestion chips once user starts chatting */
+    
     if (role === 'user') chatSuggEl.style.display = 'none';
 
     const wrap = document.createElement('div');
@@ -462,7 +444,7 @@ function appendMessage(role, text, isError = false) {
 
     const initials = role === 'bot' ? 'CK' : 'You';
     const errClass = isError ? ' error' : '';
-    /* Bot messages get rich markdown rendering; user messages are plain escaped */
+    
     const content = role === 'bot' ? formatBotMessage(text) : escapeHtml(text);
 
     wrap.innerHTML =
@@ -473,8 +455,6 @@ function appendMessage(role, text, isError = false) {
     scrollBottom();
 }
 
-
-/* ---- Typing indicator ---- */
 let typingEl = null;
 
 function showTyping() {
@@ -494,28 +474,21 @@ function hideTyping() {
     if (typingEl) { typingEl.remove(); typingEl = null; }
 }
 
-
-/* ---- Scroll to bottom ---- */
 function scrollBottom() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-
-/* ---- Send message to Gemini API ---- */
 async function sendMessage() {
     const text = chatInputEl.value.trim();
     if (!text || isLoading) return;
 
-    /* Clear input */
     chatInputEl.value = '';
     chatInputEl.style.height = '22px';
     chatInputEl.style.overflowY = 'hidden';
 
-    /* Add to UI + history */
     appendMessage('user', text);
     chatHistory.push({ role: 'user', content: text });
 
-    /* Lock while waiting */
     isLoading = true;
     chatSendBtn.disabled = true;
     chatInputEl.disabled = true;
@@ -580,16 +553,12 @@ async function sendMessage() {
     }
 }
 
-
-/* ---- Suggestion click ---- */
 function sendSuggestion(text) {
     if (isLoading) return;
     chatInputEl.value = text;
     sendMessage();
 }
 
-
-/* ---- Keyboard: Enter = send, Shift+Enter = newline ---- */
 function handleInputKeydown(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
@@ -597,8 +566,6 @@ function handleInputKeydown(e) {
     }
 }
 
-
-/* ---- Auto-resize textarea as user types ---- */
 function autoResizeInput(el) {
     el.style.height = '22px';
     const sh = el.scrollHeight;
@@ -606,8 +573,6 @@ function autoResizeInput(el) {
     el.style.overflowY = sh > 110 ? 'auto' : 'hidden';
 }
 
-
-/* ---- Close chat when clicking outside ---- */
 document.addEventListener('click', e => {
     if (
         isChatOpen &&

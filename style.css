@@ -1,6 +1,4 @@
-/* ================================================================
-   RESET & ROOT VARIABLES
-================================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -25,7 +23,6 @@ body {
     line-height: 1.6;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -39,9 +36,6 @@ body {
     border-radius: 5px;
 }
 
-/* ================================================================
-   ANIMATED BACKGROUND
-================================================================ */
 #particles-canvas {
     position: fixed;
     top: 0;
@@ -51,9 +45,6 @@ body {
     z-index: -1;
 }
 
-/* ================================================================
-   NAVIGATION
-================================================================ */
 nav {
     position: fixed;
     top: 0;
@@ -135,9 +126,6 @@ nav .container {
     transition: all 0.3s ease;
 }
 
-/* ================================================================
-   HERO SECTION
-================================================================ */
 #hero {
     min-height: 100vh;
     display: flex;
@@ -300,9 +288,6 @@ nav .container {
     }
 }
 
-/* ================================================================
-   SHARED SECTION STYLES
-================================================================ */
 section {
     padding: 6rem 2rem;
     max-width: 1200px;
@@ -347,9 +332,6 @@ section {
     transform: translateY(0);
 }
 
-/* ================================================================
-   ABOUT SECTION
-================================================================ */
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -395,9 +377,6 @@ section {
     color: var(--light);
 }
 
-/* ================================================================
-   SKILLS SECTION
-================================================================ */
 .skills-category {
     margin-bottom: 2.5rem;
 }
@@ -489,9 +468,6 @@ section {
     color: var(--light);
 }
 
-/* ================================================================
-   PROJECTS SECTION
-================================================================ */
 .projects-grid {
     display: grid;
     gap: 3rem;
@@ -578,9 +554,6 @@ section {
     color: var(--primary);
 }
 
-/* ================================================================
-   EXPERIENCE TIMELINE
-================================================================ */
 .timeline {
     position: relative;
     padding: 2rem 0;
@@ -681,9 +654,6 @@ section {
     margin-bottom: 0;
 }
 
-/* ================================================================
-   EDUCATION SECTION
-================================================================ */
 .education-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -733,9 +703,6 @@ section {
     color: var(--gray);
 }
 
-/* ================================================================
-   CERTIFICATIONS & TRAINING SECTION
-================================================================ */
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -782,9 +749,6 @@ section {
     font-size: 0.9rem;
 }
 
-/* ================================================================
-   ACTIVITIES & INTERESTS SECTION
-================================================================ */
 .activities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -824,9 +788,6 @@ section {
     line-height: 1.6;
 }
 
-/* ================================================================
-   CONTACT SECTION
-================================================================ */
 #contact {
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(0, 255, 170, 0.05));
     border-radius: 30px;
@@ -895,9 +856,6 @@ section {
     color: var(--accent);
 }
 
-/* ================================================================
-   FOOTER
-================================================================ */
 footer {
     text-align: center;
     padding: 2.5rem;
@@ -932,9 +890,6 @@ footer {
 .social-link.linkedin:hover { color: #0099ff; }
 .social-link.email:hover { color: #ff4d6d; }
 
-/* ================================================================
-   RESPONSIVE — PORTFOLIO
-================================================================ */
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;
@@ -969,6 +924,11 @@ footer {
         gap: 2rem;
     }
 
+    .about-image {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
     .timeline::before {
         left: 0;
     }
@@ -997,12 +957,6 @@ footer {
     }
 }
 
-
-/* ================================================================
-   AI CHATBOT STYLES
-================================================================ */
-
-/* ---- Chat Bubble ---- */
 .chat-bubble {
     position: fixed;
     bottom: 2rem;
@@ -1016,7 +970,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* z-index matches navbar — sits alongside it, never covers nav links */
+    
     z-index: 1000;
     box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
@@ -1034,7 +988,6 @@ footer {
     transform: scale(0.96);
 }
 
-/* Icons — centered absolutely inside button */
 .chat-bubble-icon,
 .chat-bubble-close {
     position: absolute;
@@ -1049,13 +1002,11 @@ footer {
     transition: opacity 0.2s ease, transform 0.25s ease;
 }
 
-/* Close icon hidden by default */
 .chat-bubble-close {
     opacity: 0;
     transform: rotate(-90deg) scale(0.7);
 }
 
-/* Swap icons when open */
 .chat-bubble.is-open .chat-bubble-icon {
     opacity: 0;
     transform: rotate(90deg) scale(0.7);
@@ -1066,7 +1017,6 @@ footer {
     transform: rotate(0deg) scale(1);
 }
 
-/* Pulse ring */
 .chat-bubble-pulse {
     position: absolute;
     width: 100%;
@@ -1093,10 +1043,6 @@ footer {
     }
 }
 
-/* ---- Chat Window ----
-   bottom: 6rem  =  bubble height (60px) + gap (32px) + breathing room
-   z-index: 999  =  always below navbar (1000), never overlaps nav
-*/
 .chat-window {
     position: fixed;
     bottom: 6rem;
@@ -1127,7 +1073,6 @@ footer {
     pointer-events: all;
 }
 
-/* ---- Chat Header ---- */
 .chat-header {
     display: flex;
     align-items: center;
@@ -1205,7 +1150,6 @@ footer {
     transform: translateY(-1px);
 }
 
-/* ---- Messages Area ---- */
 .chat-messages {
     flex: 1;
     overflow-y: auto;
@@ -1229,7 +1173,6 @@ footer {
     border-radius: 3px;
 }
 
-/* ---- Message Rows ---- */
 .chat-msg {
     display: flex;
     gap: 0.55rem;
@@ -1276,7 +1219,6 @@ footer {
     color: #fff;
 }
 
-/* ---- Bubbles ---- */
 .msg-bubble {
     max-width: 80%;
     padding: 0.7rem 0.95rem;
@@ -1293,6 +1235,30 @@ footer {
     border-bottom-left-radius: 5px;
 }
 
+.chat-msg.bot .msg-bubble pre {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.65rem;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+
+.chat-msg.bot .msg-bubble code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.08);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+
+.chat-msg.bot .msg-bubble pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
 .chat-msg.user .msg-bubble {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: #fff;
@@ -1305,7 +1271,6 @@ footer {
     color: #ff8080;
 }
 
-/* ---- Bot Message Rich Formatting ---- */
 .chat-msg.bot .msg-bubble strong {
     color: #ffffff;
     font-weight: 700;
@@ -1351,7 +1316,6 @@ footer {
     font-weight: 700;
 }
 
-/* ---- Welcome Card ---- */
 .chat-welcome {
     text-align: center;
     padding: 1.2rem 1rem 0.4rem;
@@ -1375,7 +1339,6 @@ footer {
     line-height: 1.5;
 }
 
-/* ---- Typing Indicator ---- */
 .typing-indicator {
     display: flex;
     gap: 0.55rem;
@@ -1426,7 +1389,6 @@ footer {
     }
 }
 
-/* ---- Suggestions ---- */
 .chat-suggestions {
     padding: 0 0.9rem 0.55rem;
     display: flex;
@@ -1455,7 +1417,6 @@ footer {
     box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
 }
 
-/* ---- Input Area ---- */
 .chat-input-area {
     padding: 0.7rem 0.9rem 0.9rem;
     border-top: 1px solid rgba(0, 212, 255, 0.12);
@@ -1538,7 +1499,6 @@ footer {
     margin-top: 0.5rem;
 }
 
-/* ---- Responsive — Chat ---- */
 @media (max-width: 480px) {
     .chat-window {
         width: calc(100vw - 1.4rem);
