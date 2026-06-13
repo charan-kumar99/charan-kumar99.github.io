@@ -23,8 +23,8 @@ class Particle {
         if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
     }
-    draw() {
-        ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+    draw(color) {
+        ctx.fillStyle = color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -35,15 +35,20 @@ for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const particleColor = isLight ? 'rgba(0, 119, 204, 0.6)' : 'rgba(0, 212, 255, 0.5)';
+    const lineBaseColor = isLight ? 'rgba(0, 119, 204, ' : 'rgba(0, 212, 255, ';
+    const lineOpacityMultiplier = isLight ? 0.25 : 0.2;
+
     particles.forEach((p, i) => {
         p.update();
-        p.draw();
+        p.draw(particleColor);
         for (let j = i + 1; j < particles.length; j++) {
             const dx = p.x - particles[j].x;
             const dy = p.y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 100) {
-                ctx.strokeStyle = 'rgba(0, 212, 255, ' + (0.2 - dist / 500) + ')';
+                ctx.strokeStyle = lineBaseColor + (lineOpacityMultiplier - dist / 500) + ')';
                 ctx.lineWidth = 0.5;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
@@ -868,6 +873,216 @@ function autoResizeInput(el) {
     el.style.overflowY = sh > 110 ? 'auto' : 'hidden';
 }
 
+
+// ===================================================================
+// FEATURE: PROJECT TAG FILTERING
+// ===================================================================
+
+(function initProjectFilters() {
+    const filtersContainer = document.getElementById('projectFilters');
+    if (!filtersContainer) return;
+
+    const pills = filtersContainer.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.project-card[data-tags]');
+
+    filtersContainer.addEventListener('click', (e) => {
+        const pill = e.target.closest('.filter-pill');
+        if (!pill) return;
+
+        // Update active pill
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const filter = pill.dataset.filter;
+
+        cards.forEach((card, i) => {
+            const tags = card.dataset.tags || '';
+            const show = filter === 'all' || tags.split(',').includes(filter);
+
+            // Stagger the animation
+            card.style.transitionDelay = show ? `${i * 0.06}s` : '0s';
+
+            if (show) {
+                card.classList.remove('filter-hidden');
+                // Ensure fade-in visible state is preserved
+                card.classList.add('visible');
+            } else {
+                card.classList.add('filter-hidden');
+            }
+        });
+
+        // Clear delays after animation
+        setTimeout(() => {
+            cards.forEach(card => card.style.transitionDelay = '');
+        }, 500);
+    });
+})();
+
+// ===================================================================
+// FEATURE: SKILLS SEARCH & HIGHLIGHT
+// ===================================================================
+
+(function initSkillsSearch() {
+    const searchInput = document.getElementById('skillsSearch');
+    const clearBtn = document.getElementById('skillsSearchClear');
+    if (!searchInput || !clearBtn) return;
+
+    const skillCards = document.querySelectorAll('.skill-card');
+    const categories = document.querySelectorAll('.skills-category');
+    const skillsSection = document.getElementById('skills');
+
+    // Create results count element
+    const resultsDiv = document.createElement('div');
+    resultsDiv.className = 'skills-search-results-count';
+    resultsDiv.style.display = 'none';
+    const searchWrapper = document.querySelector('.skills-search-wrapper');
+    if (searchWrapper) {
+        searchWrapper.insertAdjacentElement('afterend', resultsDiv);
+    }
+
+    function performSearch(query) {
+        const q = query.toLowerCase().trim();
+
+        // Show/hide clear button
+        clearBtn.classList.toggle('visible', q.length > 0);
+
+        if (!q) {
+            // Reset all
+            skillCards.forEach(card => {
+                card.classList.remove('skill-match', 'skill-dim');
+            });
+            categories.forEach(cat => {
+                cat.classList.remove('category-hidden');
+            });
+            resultsDiv.style.display = 'none';
+            return;
+        }
+
+        let matchCount = 0;
+
+        // Check each category
+        categories.forEach(category => {
+            const cardsInCategory = category.querySelectorAll('.skill-card');
+            let categoryHasMatch = false;
+
+            cardsInCategory.forEach(card => {
+                const name = card.querySelector('.skill-name');
+                const text = name ? name.textContent.toLowerCase() : '';
+                const isMatch = text.includes(q);
+
+                card.classList.toggle('skill-match', isMatch);
+                card.classList.toggle('skill-dim', !isMatch);
+
+                if (isMatch) {
+                    categoryHasMatch = true;
+                    matchCount++;
+                }
+            });
+
+            // Hide empty categories
+            category.classList.toggle('category-hidden', !categoryHasMatch);
+        });
+
+        // Update results count
+        resultsDiv.innerHTML = `Found <span>${matchCount}</span> skill${matchCount !== 1 ? 's' : ''} matching "<span>${escapeHtml(q).replace(/<br>/g, '')}</span>"`;
+        resultsDiv.style.display = 'block';
+    }
+
+    // Debounced search
+    let searchTimeout;
+    searchInput.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            performSearch(searchInput.value);
+        }, 150);
+    });
+
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        performSearch('');
+        searchInput.focus();
+    });
+})();
+
+// ===================================================================
+// FEATURE: RADAR CHART TOOLTIP
+// ===================================================================
+
+(function initRadarTooltip() {
+    const container = document.getElementById('radarChartContainer');
+    if (!container) return;
+
+    const dots = container.querySelectorAll('.radar-dot');
+
+    // Create tooltip element
+    const tooltip = document.createElement('div');
+    tooltip.className = 'radar-tooltip';
+    tooltip.style.cssText = `
+        position: absolute;
+        padding: 0.45rem 0.8rem;
+        background: rgba(10, 14, 39, 0.92);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 10px;
+        color: #e8f1ff;
+        font-size: 0.82rem;
+        font-weight: 600;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        transform: translateY(5px);
+        z-index: 10;
+        white-space: nowrap;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    `;
+    container.style.position = 'relative';
+    container.appendChild(tooltip);
+
+    dots.forEach(dot => {
+        dot.addEventListener('mouseenter', (e) => {
+            const label = dot.getAttribute('data-label');
+            const value = dot.getAttribute('data-value');
+            tooltip.innerHTML = `<span style="color:var(--primary)">${label}</span>: <span style="color:var(--accent)">${value}%</span>`;
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = 'translateY(0)';
+
+            // Position tooltip
+            const svg = container.querySelector('.radar-svg');
+            const svgRect = svg.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const cx = parseFloat(dot.getAttribute('cx'));
+            const cy = parseFloat(dot.getAttribute('cy'));
+
+            // Convert SVG coordinates to container coordinates
+            const viewBox = svg.viewBox.baseVal;
+            const scaleX = svgRect.width / viewBox.width;
+            const scaleY = svgRect.height / viewBox.height;
+            const offsetX = svgRect.left - containerRect.left;
+            const offsetY = svgRect.top - containerRect.top;
+
+            const x = cx * scaleX + offsetX;
+            const y = cy * scaleY + offsetY;
+
+            tooltip.style.left = `${x}px`;
+            tooltip.style.top = `${y - 40}px`;
+
+            // Adjust if going off-screen right
+            const tooltipRect = tooltip.getBoundingClientRect();
+            if (tooltipRect.right > containerRect.right) {
+                tooltip.style.left = `${x - tooltipRect.width}px`;
+            }
+            if (tooltipRect.left < containerRect.left) {
+                tooltip.style.left = `${offsetX + 10}px`;
+            }
+        });
+
+        dot.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+            tooltip.style.transform = 'translateY(5px)';
+        });
+    });
+})();
+
 document.addEventListener('click', e => {
     if (
         isChatOpen &&
@@ -876,4 +1091,4 @@ document.addEventListener('click', e => {
     ) {
         toggleChat();
     }
-});
+});

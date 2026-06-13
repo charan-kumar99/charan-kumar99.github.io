@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charan Kumar - .NET Developer | Full-Stack Developer</title>
-    <meta name="description" content="Personal portfolio and resume website of Charan Kumar, a versatile .NET and Full-Stack Developer building enterprise banking microservices.">
+    <meta name="description"
+        content="Personal portfolio and resume website of Charan Kumar, a versatile .NET and Full-Stack Developer building enterprise banking microservices.">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2300d4ff'/><stop offset='100%25' stop-color='%2300ffaa'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text x='50' y='68' font-family='Segoe UI,sans-serif' font-size='52' font-weight='900' text-anchor='middle' fill='%230a0e27'>CK</text></svg>"
         type="image/svg+xml">
@@ -50,7 +51,8 @@
             <h1 class="hero-title">Charan Kumar</h1>
             <h2 class="hero-subtitle">.NET Developer | Full-Stack Developer</h2>
             <p class="hero-description">
-                Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture &amp; Docker |
+                Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture
+                &amp; Docker |
                 Previously built critical RTGS/NEFT banking systems using Microservices Architecture |
                 ASP.NET Core, Entity Framework &amp; SQL Server | MCA Student with a passion for continuous learning
             </p>
@@ -91,10 +93,22 @@
             </div>
         </div>
     </section>
-    
+
     <section id="skills">
         <h2 class="section-title">Skills &amp; Technologies</h2>
         <p class="section-subtitle">Tools and technologies I work with</p>
+        <div class="skills-search-wrapper">
+            <div class="skills-search-box">
+                <svg class="skills-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="skillsSearch" class="skills-search-input"
+                    placeholder="Search skills (e.g. SQL, React, Docker...)">
+                <button class="skills-search-clear" id="skillsSearchClear" title="Clear search">&times;</button>
+            </div>
+        </div>
 
         <div class="skills-category fade-in">
             <h3 class="skills-category-title">&#128187; Languages</h3>
@@ -301,17 +315,29 @@
     <section id="projects">
         <h2 class="section-title">Featured Projects</h2>
         <p class="section-subtitle">Some of my recent work</p>
+        <div class="project-filters" id="projectFilters">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="dotnet">.NET Core</button>
+            <button class="filter-pill" data-filter="python">Python</button>
+            <button class="filter-pill" data-filter="javascript">JavaScript</button>
+            <button class="filter-pill" data-filter="fullstack">Full Stack</button>
+            <button class="filter-pill" data-filter="ai">AI / ML</button>
+        </div>
         <div class="projects-grid">
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-tags="dotnet,javascript,fullstack,ai">
                 <div class="project-header">
                     <div class="project-number">01</div>
                     <h3 class="project-title">DevLens &ndash; AI-Powered GitHub Repository Analyzer</h3>
                     <ul class="project-description">
-                        <li>Built a full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.</li>
-                        <li>Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub API.</li>
-                        <li>Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and automated README scoring.</li>
-                        <li>Designed interactive data visualizations using D3.js and Recharts with an intelligent caching system for performance.</li>
+                        <li>Built a full-stack web application providing comprehensive, AI-driven insights into GitHub
+                            repositories.</li>
+                        <li>Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub
+                            API.</li>
+                        <li>Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and
+                            automated README scoring.</li>
+                        <li>Designed interactive data visualizations using D3.js and Recharts with an intelligent
+                            caching system for performance.</li>
                     </ul>
                     <div class="project-tech">
                         <span class="tech-tag">C#</span>
@@ -332,13 +358,16 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-tags="python,fullstack">
                 <div class="project-header">
                     <div class="project-number">02</div>
                     <h3 class="project-title">Money Mate &ndash; Personal Finance Management Web Application</h3>
                     <ul class="project-description">
-                        <li>Built a Flask-based web application to track expenses, income, budgets, savings goals, and recurring subscriptions with interactive Chart.js visualizations.</li>
-                        <li>Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.</li>
+                        <li>Built a Flask-based web application to track expenses, income, budgets, savings goals, and
+                            recurring subscriptions with interactive Chart.js visualizations.</li>
+                        <li>Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and
+                            security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.
+                        </li>
                     </ul>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
@@ -357,14 +386,17 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-tags="javascript">
                 <div class="project-header">
                     <div class="project-number">03</div>
                     <h3 class="project-title">Cricket Performance Analyzer &ndash; BCA Final Project (Enhanced)</h3>
                     <ul class="project-description">
-                        <li>Designed a browser-based cricket analytics tool with automatic strike rate calculations, input validation, and interactive Chart.js performance charts.</li>
-                        <li>Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural language query interface for performance insights.</li>
-                        <li>Originally developed as the BCA final project and add-on course project; subsequently improved with additional features.</li>
+                        <li>Designed a browser-based cricket analytics tool with automatic strike rate calculations,
+                            input validation, and interactive Chart.js performance charts.</li>
+                        <li>Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural
+                            language query interface for performance insights.</li>
+                        <li>Originally developed as the BCA final project and add-on course project; subsequently
+                            improved with additional features.</li>
                     </ul>
                     <div class="project-tech">
                         <span class="tech-tag">HTML5</span>
@@ -382,13 +414,15 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-tags="python,javascript,ai">
                 <div class="project-header">
                     <div class="project-number">04</div>
                     <h3 class="project-title">Orion &ndash; AI-Powered Personal Voice Assistant</h3>
                     <ul class="project-description">
-                        <li>Developed a voice and text-controlled personal assistant with speech recognition input and text-to-speech responses via Google TTS.</li>
-                        <li>Built a Flask-based web interface supporting website navigation, music playback, Google search queries, and basic task automation.</li>
+                        <li>Developed a voice and text-controlled personal assistant with speech recognition input and
+                            text-to-speech responses via Google TTS.</li>
+                        <li>Built a Flask-based web interface supporting website navigation, music playback, Google
+                            search queries, and basic task automation.</li>
                     </ul>
                     <div class="project-tech">
                         <span class="tech-tag">Python</span>
@@ -408,14 +442,18 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in">
+            <div class="project-card fade-in" data-tags="dotnet,fullstack">
                 <div class="project-header">
                     <div class="project-number">05</div>
                     <h3 class="project-title">RTGS/NEFT Banking System</h3>
                     <ul class="project-description">
-                        <li>Enterprise banking payment processing system built on Microservices Architecture, serving multiple banks; handles RTGS and NEFT services with full-stack ASP.NET Core implementation.</li>
-                        <li>Designed and maintained independently deployable microservices with service-to-service communication, API gateway integration, and database-per-service patterns.</li>
-                        <li>Optimized database operations across PostgreSQL, MySQL, and Oracle; managed secure deployment pipelines through Azure DevOps.</li>
+                        <li>Enterprise banking payment processing system built on Microservices Architecture, serving
+                            multiple banks; handles RTGS and NEFT services with full-stack ASP.NET Core implementation.
+                        </li>
+                        <li>Designed and maintained independently deployable microservices with service-to-service
+                            communication, API gateway integration, and database-per-service patterns.</li>
+                        <li>Optimized database operations across PostgreSQL, MySQL, and Oracle; managed secure
+                            deployment pipelines through Azure DevOps.</li>
                     </ul>
                     <div class="project-tech">
                         <span class="tech-tag">ASP.NET Core</span>
@@ -447,11 +485,16 @@
                     <h3 class="timeline-title">.NET Developer</h3>
                     <div class="timeline-company">AGREMATE Private Limited</div>
                     <ul class="timeline-description">
-                        <li>Building scalable backend APIs and automated workflows for India's smart property management platform serving gated communities, PG owners, and individual landlords.</li>
-                        <li>Developing and maintaining RESTful APIs using ASP.NET Core with Clean Architecture patterns, ensuring separation of concerns and maintainable codebase.</li>
-                        <li>Containerizing applications using Docker for consistent development, testing, and deployment environments.</li>
-                        <li>Implementing API documentation and testing with Swagger (OpenAPI) for seamless frontend-backend integration.</li>
-                        <li>Working with SQL Server, Entity Framework Core, and Azure cloud services for the multi-tenant property management platform.</li>
+                        <li>Building scalable backend APIs and automated workflows for India's smart property management
+                            platform serving gated communities, PG owners, and individual landlords.</li>
+                        <li>Developing and maintaining RESTful APIs using ASP.NET Core with Clean Architecture patterns,
+                            ensuring separation of concerns and maintainable codebase.</li>
+                        <li>Containerizing applications using Docker for consistent development, testing, and deployment
+                            environments.</li>
+                        <li>Implementing API documentation and testing with Swagger (OpenAPI) for seamless
+                            frontend-backend integration.</li>
+                        <li>Working with SQL Server, Entity Framework Core, and Azure cloud services for the
+                            multi-tenant property management platform.</li>
                     </ul>
                 </div>
                 <div class="timeline-dot"></div>
@@ -463,14 +506,26 @@
                     <h3 class="timeline-title">.NET Developer</h3>
                     <div class="timeline-company">Net Tech Services India Private Limited (NTSIPL)</div>
                     <ul class="timeline-description">
-                        <li>Development on the RTGS/NEFT (Real-Time Gross Settlement / National Electronic Funds Transfer) banking project, delivering payment processing services to major Banks and Vendors using Microservices Architecture.</li>
-                        <li>Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.</li>
-                        <li>Contributed to multiple banking projects including CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems across the company's banking portfolio.</li>
-                        <li>Building, upgrading, and maintaining full-stack web applications using ASP.NET Core with Blazor and Razor Pages; handled end-to-end responsibility for frontend, backend, and database design.</li>
-                        <li>Performed database management and query optimization across PostgreSQL, MySQL, Oracle Database, and SQL Server.</li>
-                        <li>Developed and maintained REST APIs and CRUD operations; API globalization and version migration from .NET 6 to .NET 8.</li>
-                        <li>Executed testing, debugging, and bug fixing; managed deployment pipelines through Azure DevOps and maintained version control.</li>
-                        <li>Utilized Visual Studio 2022, Postman, DBeaver, and FTP/SFTP servers in daily development workflows.</li>
+                        <li>Development on the RTGS/NEFT (Real-Time Gross Settlement / National Electronic Funds
+                            Transfer) banking project, delivering payment processing services to major Banks and Vendors
+                            using Microservices Architecture.</li>
+                        <li>Working with microservices-based architecture for building scalable, independently
+                            deployable banking services with service-to-service communication and API gateway patterns.
+                        </li>
+                        <li>Contributed to multiple banking projects including CTS (Cheque Truncation System), AML
+                            (Anti-Money Laundering), and User Management systems across the company's banking portfolio.
+                        </li>
+                        <li>Building, upgrading, and maintaining full-stack web applications using ASP.NET Core with
+                            Blazor and Razor Pages; handled end-to-end responsibility for frontend, backend, and
+                            database design.</li>
+                        <li>Performed database management and query optimization across PostgreSQL, MySQL, Oracle
+                            Database, and SQL Server.</li>
+                        <li>Developed and maintained REST APIs and CRUD operations; API globalization and version
+                            migration from .NET 6 to .NET 8.</li>
+                        <li>Executed testing, debugging, and bug fixing; managed deployment pipelines through Azure
+                            DevOps and maintained version control.</li>
+                        <li>Utilized Visual Studio 2022, Postman, DBeaver, and FTP/SFTP servers in daily development
+                            workflows.</li>
                     </ul>
                 </div>
                 <div class="timeline-dot"></div>
@@ -482,9 +537,12 @@
                     <h3 class="timeline-title">Trainee Developer</h3>
                     <div class="timeline-company">Net Tech Services India Private Limited (NTSIPL)</div>
                     <ul class="timeline-description">
-                        <li>Gained practical, hands-on experience in ASP.NET Core enterprise application development within the financial domain.</li>
-                        <li>Contributed to existing banking projects by implementing new features and resolving identified bugs.</li>
-                        <li>Collaborated with senior developers to learn industry best practices for secure, scalable financial software.</li>
+                        <li>Gained practical, hands-on experience in ASP.NET Core enterprise application development
+                            within the financial domain.</li>
+                        <li>Contributed to existing banking projects by implementing new features and resolving
+                            identified bugs.</li>
+                        <li>Collaborated with senior developers to learn industry best practices for secure, scalable
+                            financial software.</li>
                     </ul>
                 </div>
                 <div class="timeline-dot"></div>
@@ -516,19 +574,29 @@
                     CGPA: 6.17
                 </p>
                 <div class="addon-courses" style="margin-top: 1.2rem;">
-                    <p style="color: var(--primary); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.8rem;">&#128218; Add-on Courses (3-Year Program alongside BCA)</p>
+                    <p style="color: var(--primary); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.8rem;">
+                        &#128218; Add-on Courses (3-Year Program alongside BCA)</p>
                     <div style="display: grid; gap: 0.6rem;">
-                        <div class="addon-year" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 10px; padding: 0.8rem 1rem;">
-                            <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;">Year 1 &mdash; Certificate Course</span>
-                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem;">Cyber Security &bull; Artificial Intelligence &bull; Big Data Analytics</p>
+                        <div class="addon-year"
+                            style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 10px; padding: 0.8rem 1rem;">
+                            <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;">Year 1 &mdash;
+                                Certificate Course</span>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem;">Cyber Security &bull;
+                                Artificial Intelligence &bull; Big Data Analytics</p>
                         </div>
-                        <div class="addon-year" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 10px; padding: 0.8rem 1rem;">
-                            <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;">Year 2 &mdash; Diploma Course</span>
-                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem;">Cyber Security &bull; Artificial Intelligence &bull; Big Data Analytics</p>
+                        <div class="addon-year"
+                            style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 10px; padding: 0.8rem 1rem;">
+                            <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;">Year 2 &mdash;
+                                Diploma Course</span>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem;">Cyber Security &bull;
+                                Artificial Intelligence &bull; Big Data Analytics</p>
                         </div>
-                        <div class="addon-year" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 10px; padding: 0.8rem 1rem;">
-                            <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;">Year 3 &mdash; Advanced Diploma Course</span>
-                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem;">Cyber Security &bull; Artificial Intelligence &bull; Big Data Analytics</p>
+                        <div class="addon-year"
+                            style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 10px; padding: 0.8rem 1rem;">
+                            <span style="color: var(--accent); font-weight: 600; font-size: 0.85rem;">Year 3 &mdash;
+                                Advanced Diploma Course</span>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem;">Cyber Security &bull;
+                                Artificial Intelligence &bull; Big Data Analytics</p>
                         </div>
                     </div>
                 </div>
@@ -562,7 +630,8 @@
 
             <div class="certification-card fade-in">
                 <div class="certification-icon">&#127891;</div>
-                <h3 class="certification-title">Fast-Track Internship &ndash; Data Analytics, Web Development &amp; Python Projects</h3>
+                <h3 class="certification-title">Fast-Track Internship &ndash; Data Analytics, Web Development &amp;
+                    Python Projects</h3>
                 <p class="certification-org">Accolade Tech Solutions, Mangaluru</p>
                 <p class="certification-date">August 2024</p>
             </div>
@@ -597,7 +666,8 @@
 
             <div class="certification-card fade-in">
                 <div class="certification-icon">&#127941;</div>
-                <h3 class="certification-title">10-Day NCC Camp &ndash; Training with Indian Navy &amp; Army Officers</h3>
+                <h3 class="certification-title">10-Day NCC Camp &ndash; Training with Indian Navy &amp; Army Officers
+                </h3>
                 <p class="certification-org">National Cadet Corps</p>
                 <p class="certification-date">Completed during School</p>
             </div>
@@ -655,6 +725,72 @@
             </div>
 
         </div>
+
+        <div class="radar-chart-section fade-in">
+            <h3 class="radar-chart-title">&#127942; Leadership & Sports Profile</h3>
+            <p class="radar-chart-subtitle">A snapshot of traits shaped by NCC, cricket captaincy, and competitive
+                sports</p>
+            <div class="radar-chart-container" id="radarChartContainer">
+                <svg viewBox="-100 0 600 400" class="radar-svg" id="radarSvg" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="radarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.35" />
+                            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.35" />
+                        </linearGradient>
+                        <linearGradient id="radarStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--primary)" />
+                            <stop offset="100%" stop-color="var(--accent)" />
+                        </linearGradient>
+                        <filter id="radarGlow">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Grid rings (5 levels) -->
+                    <polygon class="radar-ring" points="200,40 352,150 310,330 90,330 48,150" />
+                    <polygon class="radar-ring" points="200,72 321,158 288,302 112,302 79,158" />
+                    <polygon class="radar-ring" points="200,104 290,166 266,274 134,274 110,166" />
+                    <polygon class="radar-ring" points="200,136 259,174 244,246 156,246 141,174" />
+                    <polygon class="radar-ring" points="200,168 228,182 222,218 178,218 172,182" />
+
+                    <!-- Axis lines from center -->
+                    <line class="radar-axis" x1="200" y1="200" x2="200" y2="40" />
+                    <line class="radar-axis" x1="200" y1="200" x2="352" y2="150" />
+                    <line class="radar-axis" x1="200" y1="200" x2="310" y2="330" />
+                    <line class="radar-axis" x1="200" y1="200" x2="90" y2="330" />
+                    <line class="radar-axis" x1="200" y1="200" x2="48" y2="150" />
+
+                    <!-- Data polygon: Leadership=95, Strategy=80, Teamwork=90, Endurance=88, Technical Agility=85 -->
+                    <polygon class="radar-data" points="200,48 341,155 298,317 100,322 58,155"
+                        filter="url(#radarGlow)" />
+
+                    <!-- Data dots -->
+                    <circle class="radar-dot" cx="200" cy="48" r="5" data-label="Leadership" data-value="95" />
+                    <circle class="radar-dot" cx="341" cy="155" r="5" data-label="Strategy" data-value="80" />
+                    <circle class="radar-dot" cx="298" cy="317" r="5" data-label="Teamwork" data-value="90" />
+                    <circle class="radar-dot" cx="100" cy="322" r="5" data-label="Endurance" data-value="88" />
+                    <circle class="radar-dot" cx="58" cy="155" r="5" data-label="Technical Agility" data-value="85" />
+
+                    <!-- Axis labels -->
+                    <text class="radar-label" x="200" y="22" text-anchor="middle">Leadership</text>
+                    <text class="radar-label" x="368" y="148" text-anchor="start">Strategy</text>
+                    <text class="radar-label" x="320" y="358" text-anchor="middle">Teamwork</text>
+                    <text class="radar-label" x="78" y="358" text-anchor="middle">Endurance</text>
+                    <text class="radar-label" x="32" y="148" text-anchor="end">Technical Agility</text>
+
+                    <!-- Value labels (hidden until hover) -->
+                    <text class="radar-value" x="200" y="38" text-anchor="middle">95%</text>
+                    <text class="radar-value" x="358" y="164" text-anchor="start">80%</text>
+                    <text class="radar-value" x="320" y="342" text-anchor="middle">90%</text>
+                    <text class="radar-value" x="78" y="342" text-anchor="middle">88%</text>
+                    <text class="radar-value" x="32" y="164" text-anchor="end">85%</text>
+                </svg>
+            </div>
+        </div>
     </section>
 
     <section id="contact">
@@ -665,7 +801,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#EA4335"/>
+                        <path
+                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                            fill="#EA4335" />
                     </svg>
                 </div>
                 <div class="contact-label">Email</div>
@@ -677,7 +815,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.003 2c-5.523 0-10 4.477-10 10 0 1.76.455 3.414 1.252 4.862L2 22l5.328-1.218A9.948 9.948 0 0012.003 22c5.522 0 10-4.477 10-10s-4.478-10-10-10zm5.69 13.754c-.244.686-1.222 1.255-1.688 1.32-.463.064-.91.096-2.905-.724-2.55-1.047-4.185-3.64-4.312-3.808-.126-.168-.948-1.255-.948-2.393 0-1.138.59-1.696.8-1.922.212-.225.463-.283.616-.283h.444c.143 0 .338-.053.528.402.197.47.677 1.654.736 1.776.059.122.099.263.018.423-.08.16-.12.26-.239.398-.119.138-.25.309-.357.415-.119.117-.244.244-.105.483.138.239.613 1.012 1.314 1.636.9.8 1.656 1.048 1.894 1.167.238.119.377.1.517-.06.14-.16.59-.686.748-.919.158-.233.317-.197.528-.117s1.343.633 1.575.75c.233.117.388.176.444.272.057.096.057.553-.187 1.239z" fill="#25D366"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12.003 2c-5.523 0-10 4.477-10 10 0 1.76.455 3.414 1.252 4.862L2 22l5.328-1.218A9.948 9.948 0 0012.003 22c5.522 0 10-4.477 10-10s-4.478-10-10-10zm5.69 13.754c-.244.686-1.222 1.255-1.688 1.32-.463.064-.91.096-2.905-.724-2.55-1.047-4.185-3.64-4.312-3.808-.126-.168-.948-1.255-.948-2.393 0-1.138.59-1.696.8-1.922.212-.225.463-.283.616-.283h.444c.143 0 .338-.053.528.402.197.47.677 1.654.736 1.776.059.122.099.263.018.423-.08.16-.12.26-.239.398-.119.138-.25.309-.357.415-.119.117-.244.244-.105.483.138.239.613 1.012 1.314 1.636.9.8 1.656 1.048 1.894 1.167.238.119.377.1.517-.06.14-.16.59-.686.748-.919.158-.233.317-.197.528-.117s1.343.633 1.575.75c.233.117.388.176.444.272.057.096.057.553-.187 1.239z"
+                            fill="#25D366" />
                     </svg>
                 </div>
                 <div class="contact-label">Phone</div>
@@ -689,7 +829,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/>
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                            fill="#EA4335" />
                     </svg>
                 </div>
                 <div class="contact-label">Location</div>
@@ -699,7 +841,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" fill="#0A66C2"/>
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"
+                            fill="#0A66C2" />
                     </svg>
                 </div>
                 <div class="contact-label">LinkedIn</div>
@@ -712,7 +856,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="#FFFFFF"/>
+                        <path
+                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                            fill="#FFFFFF" />
                     </svg>
                 </div>
                 <div class="contact-label">GitHub</div>
@@ -724,7 +870,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="#00D4FF"/>
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                            fill="#00D4FF" />
                     </svg>
                 </div>
                 <div class="contact-label">Portfolio</div>
@@ -736,7 +884,9 @@
             <div class="contact-card fade-in">
                 <div class="contact-icon">
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" fill="#FF9F1C"/>
+                        <path
+                            d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"
+                            fill="#FF9F1C" />
                     </svg>
                 </div>
                 <div class="contact-label">Languages</div>
@@ -748,16 +898,30 @@
 
     <footer>
         <div class="social-links">
-            <a href="https://github.com/charan-kumar99" target="_blank" class="social-link github"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/charan-kumar-9b20a8378" target="_blank" class="social-link linkedin"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:charansuvarna99@gmail.com" class="social-link email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/charan-kumar99" target="_blank" class="social-link github"><i
+                    class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/charan-kumar-9b20a8378" target="_blank" class="social-link linkedin"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:charansuvarna99@gmail.com" class="social-link email"><i
+                    class="fa-solid fa-envelope"></i></a>
         </div>
         <p>&copy; 2025–2026 Charan Kumar. Built with passion for technology and innovation.</p>
     </footer>
 
     <button class="chat-bubble" id="chatBubble" onclick="toggleChat()" aria-label="Open AI Assistant">
         <span class="chat-bubble-icon" id="chatBubbleIcon">
-            <img src="Ai.png" alt="AI Chat" style="width: 32px; height: 32px; object-fit: contain;">
+            <svg width="32" height="32" viewBox="-2 -2 28 28" xmlns="http://www.w3.org/2000/svg" style="display: block; overflow: visible;">
+                <!-- Glowing AI Sparks -->
+                <path class="ai-spark-1" d="M22 2.5c0 .6-.5 1-1 1 .5 0 1 .4 1 1 0-.6.5-1 1-1-.5 0-1-.4-1-1z" fill="var(--accent)" stroke="none" />
+                <path class="ai-spark-2" d="M2.5 17.5c0 .4-.3.7-.7.7.4 0 .7.3.7.7 0-.4.3-.7.7-.7-.4 0-.7-.3-.7-.7z" fill="var(--accent)" stroke="none" />
+                <!-- Main Robot Face Body -->
+                <path fill="currentColor" d="M21.928 11.607c-.202-.488-.635-.605-.928-.633V8c0-1.103-.897-2-2-2h-6V4.61c.305-.274.5-.668.5-1.11a1.5 1.5 0 0 0-3 0c0 .442.195.836.5 1.11V6H5c-1.103 0-2 .897-2 2v2.997l-.082.006A1 1 0 0 0 1.99 12v2a1 1 0 0 0 1 1H3v5c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5a1 1 0 0 0 1-1v-1.938a1.006 1.006 0 0 0-.072-.455zM5 20V8h14l.001 3.996L19 12v2l.001.005.001 5.995H5z"/>
+                <!-- Glowing Robot Eyes (linked to theme accent color) -->
+                <ellipse class="robot-eye-left" fill="var(--accent)" cx="8.5" cy="12" rx="1.5" ry="2"/>
+                <ellipse class="robot-eye-right" fill="var(--accent)" cx="15.5" cy="12" rx="1.5" ry="2"/>
+                <!-- Mouth -->
+                <path fill="currentColor" d="M8 16h8v2H8z"/>
+            </svg>
         </span>
         <span class="chat-bubble-close" id="chatBubbleClose">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -783,7 +947,8 @@
                 </div>
             </div>
             <div class="chat-header-actions" style="display: flex; align-items: center; gap: 0.5rem;">
-                <button class="chat-tts-btn" id="chatTtsBtn" onclick="toggleTts()" title="Toggle Speech Output" aria-label="Toggle Speech Output">
+                <button class="chat-tts-btn" id="chatTtsBtn" onclick="toggleTts()" title="Toggle Speech Output"
+                    aria-label="Toggle Speech Output">
                     <span id="chatTtsIcon">🔇</span>
                 </button>
                 <button class="chat-new-btn" onclick="newChat()" title="New Chat">
@@ -803,7 +968,8 @@
 
         <div class="chat-input-area">
             <div class="chat-input-wrapper">
-                <button class="chat-mic-btn" id="chatMicBtn" onclick="toggleSpeech()" title="Voice Input" aria-label="Voice Input">
+                <button class="chat-mic-btn" id="chatMicBtn" onclick="toggleSpeech()" title="Voice Input"
+                    aria-label="Voice Input">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
