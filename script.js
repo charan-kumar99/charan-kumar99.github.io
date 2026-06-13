@@ -120,10 +120,7 @@ setTimeout(() => {
     typeWriter();
 }, 1500);
 
-const API_ENDPOINT = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') 
-    ? 'http://localhost:8000/api/chat' 
-
-    : 'https://charan-kumar99-github-io.vercel.app/api/chat';
+const API_ENDPOINT = 'https://charan-kumar99-github-io.vercel.app/api/chat';
 
 // Theme handling: respects prefers-color-scheme and persists in localStorage
 function applyTheme(name) {
@@ -134,12 +131,12 @@ function applyTheme(name) {
 }
 
 function toggleTheme() {
-    const current = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const current = localStorage.getItem('theme') || 'dark';
     applyTheme(current === 'dark' ? 'light' : 'dark');
 }
 
 (function initTheme() {
-    const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const saved = localStorage.getItem('theme') || 'dark';
     applyTheme(saved);
 })();
 
@@ -253,6 +250,258 @@ let chatHistory = [];
 let isChatOpen = false;
 let isLoading = false;
 
+// Voice API & Speech variables
+let isTtsEnabled = localStorage.getItem('chat_tts') === 'true';
+let isRecording = false;
+let recognition = null;
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => {
+        isRecording = true;
+        updateMicButtonState(true);
+        chatInputEl.placeholder = "Listening...";
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        chatInputEl.value = transcript;
+        autoResizeInput(chatInputEl);
+    };
+
+    recognition.onerror = (event) => {
+        console.error("Speech recognition error:", event.error);
+        stopRecording();
+        if (event.error === 'not-allowed') {
+            alert("Microphone permission denied. Please allow microphone access in your browser settings.");
+        }
+    };
+
+    recognition.onend = () => {
+        stopRecording();
+        if (chatInputEl.value.trim()) {
+            sendMessage();
+        }
+    };
+} else {
+    console.warn("Speech recognition is not supported in this browser.");
+}
+
+function toggleSpeech() {
+    if (!recognition) {
+        alert("Speech recognition is not supported in this browser. Please use Google Chrome or Microsoft Edge.");
+        return;
+    }
+    if (isRecording) {
+        recognition.stop();
+    } else {
+        if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+        }
+        try {
+            recognition.start();
+        } catch (e) {
+            console.error("Failed to start speech recognition:", e);
+        }
+    }
+}
+
+function stopRecording() {
+    isRecording = false;
+    updateMicButtonState(false);
+    chatInputEl.placeholder = "Ask about Charan...";
+}
+
+function updateMicButtonState(recording) {
+    const micBtn = document.getElementById('chatMicBtn');
+    if (micBtn) {
+        if (recording) {
+            micBtn.classList.add('recording');
+        } else {
+            micBtn.classList.remove('recording');
+        }
+    }
+}
+
+function toggleTts() {
+    isTtsEnabled = !isTtsEnabled;
+    localStorage.setItem('chat_tts', isTtsEnabled);
+    updateTtsIcon();
+    if (!isTtsEnabled && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+}
+
+function updateTtsIcon() {
+    const icon = document.getElementById('chatTtsIcon');
+    const btn = document.getElementById('chatTtsBtn');
+    if (icon && btn) {
+        icon.textContent = isTtsEnabled ? '🔊' : '🔇';
+        btn.title = isTtsEnabled ? 'Mute Speech Output' : 'Enable Speech Output';
+        btn.classList.toggle('active', isTtsEnabled);
+    }
+}
+
+function speakText(text) {
+    if (!isTtsEnabled || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+
+    let cleanText = text
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/__([^_]+)__/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/[-*]\s+/g, '')
+        .replace(/^\d+\.\s+/g, '')
+        .replace(/```[\s\S]*?```/g, '')
+        .trim();
+
+    if (!cleanText) return;
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = 'en-US';
+
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural')));
+    if (preferredVoice) utterance.voice = preferredVoice;
+
+    window.speechSynthesis.speak(utterance);
+}
+
+// Rich Cards Registry & Helper
+const PROJECT_CARDS_DATA = [
+    {
+        keywords: ['devlens'],
+        title: 'DevLens',
+        sub: 'AI GitHub Repository Analyzer',
+        github: 'https://github.com/charan-kumar99/DevLens',
+        tags: ['C#', 'ASP.NET Core', 'React', 'Gemini API'],
+        icon: '🔍'
+    },
+    {
+        keywords: ['money mate', 'moneymate'],
+        title: 'Money Mate',
+        sub: 'Personal Finance Web App',
+        github: 'https://github.com/charan-kumar99/Money_Mate',
+        tags: ['Python', 'Flask', 'SQLite', 'Chart.js'],
+        icon: '💰'
+    },
+    {
+        keywords: ['cricket performance', 'cricket analyzer'],
+        title: 'Cricket Performance Analyzer',
+        sub: 'Sports Performance Analytics',
+        github: 'https://github.com/charan-kumar99/Cricket-Performance-Analyzer',
+        tags: ['HTML5', 'CSS3', 'JavaScript', 'Chart.js'],
+        icon: '🏏'
+    },
+    {
+        keywords: ['orion'],
+        title: 'Orion',
+        sub: 'AI-Powered Personal Voice Assistant',
+        github: 'https://github.com/charan-kumar99/Orion',
+        tags: ['Python', 'Flask', 'Speech Recog', 'Google TTS'],
+        icon: '🎙️'
+    },
+    {
+        keywords: ['rtgs/neft', 'banking system', 'payment processing'],
+        title: 'RTGS/NEFT Banking System',
+        sub: 'Enterprise Microservices Project',
+        proprietary: true,
+        tags: ['ASP.NET Core', 'Microservices', 'PostgreSQL', 'Oracle'],
+        icon: '🏦'
+    }
+];
+
+const CONTACT_CARDS_DATA = [
+    {
+        keywords: ['email', 'gmail', 'mail charan', 'contact'],
+        title: 'Email Charan',
+        val: 'charansuvarna99@gmail.com',
+        link: 'mailto:charansuvarna99@gmail.com',
+        icon: '✉️',
+        btnText: 'Send Email'
+    },
+    {
+        keywords: ['linkedin', 'linkedin profile'],
+        title: 'LinkedIn',
+        val: 'charan-kumar-9b20a8378',
+        link: 'https://www.linkedin.com/in/charan-kumar-9b20a8378',
+        icon: '🔗',
+        btnText: 'Connect on LinkedIn'
+    },
+    {
+        keywords: ['github profile', 'github repo', 'github account'],
+        title: 'GitHub',
+        val: 'charan-kumar99',
+        link: 'https://github.com/charan-kumar99',
+        icon: '🐙',
+        btnText: 'Follow on GitHub'
+    }
+];
+
+function generateRichCardsHTML(text) {
+    const lowerText = text.toLowerCase();
+    let html = '';
+    let cardCount = 0;
+    const maxCards = 2;
+
+    PROJECT_CARDS_DATA.forEach(proj => {
+        const matches = proj.keywords.some(kw => lowerText.includes(kw));
+        if (matches && cardCount < maxCards) {
+            const tagSpans = proj.tags.map(t => `<span class="card-tag">${t}</span>`).join('');
+            const actionButton = proj.proprietary 
+                ? `<span class="card-proprietary-label">🔒 Proprietary Enterprise Project</span>`
+                : `<a href="${proj.github}" target="_blank" class="card-action-btn"><i class="fa-brands fa-github"></i> View Code</a>`;
+            
+            html += `
+            <div class="rich-card">
+                <div class="rich-card-header">
+                    <span class="rich-card-icon">${proj.icon}</span>
+                    <div class="rich-card-title-group">
+                        <div class="rich-card-title">${proj.title}</div>
+                        <div class="rich-card-sub">${proj.sub}</div>
+                    </div>
+                </div>
+                <div class="rich-card-tags">${tagSpans}</div>
+                <div class="rich-card-actions">${actionButton}</div>
+            </div>
+            `;
+            cardCount++;
+        }
+    });
+
+    // Match contacts if room left
+    CONTACT_CARDS_DATA.forEach(c => {
+        const matches = c.keywords.some(kw => lowerText.includes(kw));
+        if (matches && cardCount < maxCards) {
+            html += `
+            <div class="rich-card">
+                <div class="rich-card-header">
+                    <span class="rich-card-icon">${c.icon}</span>
+                    <div class="rich-card-title-group">
+                        <div class="rich-card-title">${c.title}</div>
+                        <div class="rich-card-sub">${c.val}</div>
+                    </div>
+                </div>
+                <div class="rich-card-actions">
+                    <a href="${c.link}" target="_blank" class="card-action-btn primary-btn">${c.btnText}</a>
+                </div>
+            </div>
+            `;
+            cardCount++;
+        }
+    });
+
+    return html;
+}
+
+// Trigger initial speaker toggle update
+setTimeout(updateTtsIcon, 100);
+
 const chatWindowEl = document.getElementById('chatWindow');
 const chatMessages = document.getElementById('chatMessages');
 const chatInputEl = document.getElementById('chatInput');
@@ -364,6 +613,10 @@ function toggleChat() {
     chatWindowEl.classList.toggle('open', isChatOpen);
     chatBubbleEl.classList.toggle('is-open', isChatOpen);
 
+    if (!isChatOpen && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+
     if (isChatOpen) {
         
         if (chatMessages.children.length === 0) {
@@ -464,6 +717,11 @@ function formatBotMessage(text) {
     if (inUl) html += '</ul>';
     if (inOl) html += '</ol>';
 
+    const cardsHtml = generateRichCardsHTML(text);
+    if (cardsHtml) {
+        html += '<div class="rich-cards-container">' + cardsHtml + '</div>';
+    }
+
     return html;
 }
 
@@ -514,6 +772,10 @@ async function sendMessage() {
     const text = chatInputEl.value.trim();
     if (!text || isLoading) return;
 
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+
     chatInputEl.value = '';
     chatInputEl.style.height = '22px';
     chatInputEl.style.overflowY = 'hidden';
@@ -561,6 +823,7 @@ async function sendMessage() {
         hideTyping();
         appendMessage('bot', reply);
         chatHistory.push({ role: 'assistant', content: reply });
+        speakText(reply);
 
     } catch (err) {
         console.error('Chatbot error:', err);
