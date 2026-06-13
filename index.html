@@ -21,11 +21,6 @@
     <nav id="navbar">
         <div class="container">
             <div class="logo">CK</div>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" onclick="closeMenu()">Home</a></li>
                 <li><a href="#about" onclick="closeMenu()">About</a></li>
@@ -36,6 +31,16 @@
                 <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
+            <div class="nav-controls">
+                <button id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme" onclick="toggleTheme()">
+                    <span id="themeIcon">☀️</span>
+                </button>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -45,8 +50,9 @@
             <h1 class="hero-title">Charan Kumar</h1>
             <h2 class="hero-subtitle">.NET Developer | Full-Stack Developer</h2>
             <p class="hero-description">
-                Versatile .NET Developer building critical RTGS/NEFT payment processing systems using Microservices Architecture for multiple banks |
-                ASP.NET Core (.NET 6 &amp; .NET 8), Blazor &amp; Razor Pages | MCA Student with a passion for continuous learning
+                Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture &amp; Docker |
+                Previously built critical RTGS/NEFT banking systems using Microservices Architecture |
+                ASP.NET Core, Entity Framework &amp; SQL Server | MCA Student with a passion for continuous learning
             </p>
             <div class="cta-buttons">
                 <a href="#projects" class="btn btn-primary"><span>View My Work</span></a>
@@ -62,19 +68,17 @@
         <div class="about-content fade-in">
             <div class="about-text">
                 <p>
-                    I'm a versatile .NET Developer with hands-on experience building and maintaining
-                    enterprise-grade web applications for the banking and financial sector. Currently
-                    developing critical RTGS/NEFT payment processing systems using Microservices
-                    Architecture, serving some major banks and vendors using ASP.NET Core (.NET 6 &amp; .NET 8),
-                    Blazor, and Razor Pages.
+                    I'm a versatile .NET Developer currently building scalable backend APIs at
+                    AGREMATE Private Limited &mdash; India's smart property management platform. Working with
+                    ASP.NET Core, Clean Architecture, Docker, and Swagger to power digital rental agreements,
+                    automated payments, and community management for properties across India.
                 </p>
                 <br>
                 <p>
-                    Proven expertise in full-stack development, microservices-based application design,
-                    database management across PostgreSQL, MySQL, Oracle Database, and SQL Server,
+                    Previously developed critical RTGS/NEFT payment processing systems using Microservices
+                    Architecture at NTSIPL, serving multiple banks and vendors. Proven expertise in full-stack
+                    development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server,
                     REST API development, API versioning, globalization, and .NET version migration.
-                    Seamless deployment through Azure DevOps with end-to-end responsibility for
-                    frontend, backend, and database design.
                 </p>
                 <br>
                 <p>
@@ -221,6 +225,14 @@
                     <div class="skill-icon">&#128228;</div>
                     <div class="skill-name">FTP / SFTP</div>
                 </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="devicon-docker-plain"></i></div>
+                    <div class="skill-name">Docker</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="devicon-swagger-plain"></i></div>
+                    <div class="skill-name">Swagger</div>
+                </div>
             </div>
         </div>
 
@@ -234,6 +246,10 @@
                 <div class="skill-card">
                     <div class="skill-icon"><i class="devicon-kubernetes-plain"></i></div>
                     <div class="skill-name">Microservices Architecture</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">&#127959;</div>
+                    <div class="skill-name">Clean Architecture</div>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon"><i class="devicon-git-plain"></i></div>
@@ -427,7 +443,23 @@
 
             <div class="timeline-item fade-in">
                 <div class="timeline-content">
-                    <div class="timeline-date">Dec 2025 &ndash; Present</div>
+                    <div class="timeline-date">Jun 2026 &ndash; Present</div>
+                    <h3 class="timeline-title">.NET Developer</h3>
+                    <div class="timeline-company">AGREMATE Private Limited</div>
+                    <ul class="timeline-description">
+                        <li>Building scalable backend APIs and automated workflows for India's smart property management platform serving gated communities, PG owners, and individual landlords.</li>
+                        <li>Developing and maintaining RESTful APIs using ASP.NET Core with Clean Architecture patterns, ensuring separation of concerns and maintainable codebase.</li>
+                        <li>Containerizing applications using Docker for consistent development, testing, and deployment environments.</li>
+                        <li>Implementing API documentation and testing with Swagger (OpenAPI) for seamless frontend-backend integration.</li>
+                        <li>Working with SQL Server, Entity Framework Core, and Azure cloud services for the multi-tenant property management platform.</li>
+                    </ul>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">Dec 2025 &ndash; Jun 2026</div>
                     <h3 class="timeline-title">.NET Developer</h3>
                     <div class="timeline-company">Net Tech Services India Private Limited (NTSIPL)</div>
                     <ul class="timeline-description">

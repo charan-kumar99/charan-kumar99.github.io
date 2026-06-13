@@ -23,6 +23,17 @@ body {
     line-height: 1.6;
 }
 
+/* Light theme overrides when data-theme="light" is set on <html> */
+html[data-theme="light"] {
+    --primary: #0077cc;
+    --secondary: #0099ee;
+    --accent: #006bb3;
+    --dark: #f0f4f8;
+    --darker: #ffffff;
+    --light: #1a1a2e;
+    --gray: #5a6a7a;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -57,6 +68,15 @@ nav {
     transition: all 0.3s ease;
 }
 
+html[data-theme="light"] nav {
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] nav.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 119, 204, 0.15);
+}
+
 nav.scrolled {
     box-shadow: 0 5px 30px rgba(0, 212, 255, 0.3);
 }
@@ -64,10 +84,29 @@ nav.scrolled {
 nav .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+.logo {
+    margin-right: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-controls {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .logo {
@@ -78,6 +117,51 @@ nav .container {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: pointer;
+}
+
+/* Theme toggle button — invisible container, just the icon */
+#themeToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    line-height: 1;
+    box-shadow: none;
+    flex-shrink: 0;
+    position: relative;
+}
+
+#themeToggle:hover {
+    color: var(--primary);
+    transform: rotate(20deg) scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+}
+
+#themeToggle:active {
+    transform: scale(0.9);
+}
+
+#themeToggle:focus {
+    outline: none;
+}
+
+/* Light theme — same invisible style, just adjust hover glow */
+html[data-theme="light"] #themeToggle {
+    color: var(--gray);
+}
+
+html[data-theme="light"] #themeToggle:hover {
+    color: #e6a800;
+    filter: drop-shadow(0 0 8px rgba(230, 168, 0, 0.4));
 }
 
 .nav-links {
@@ -895,16 +979,28 @@ footer {
         display: flex;
     }
 
-    .nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        flex-direction: column;
-        background: rgba(10, 14, 39, 0.98);
-        padding: 2rem;
-        border-radius: 10px;
-        transition: right 0.3s ease;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    /* Adjust theme toggle on small screens */
+    #themeToggle {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+
+    /* Stack header for small screens */
+    nav .container {
+        grid-template-columns: 1fr auto;
+    }
+
+    .logo { justify-self: start; }
+    .nav-links { display: none; }
+    .nav-links.active { display: flex; position: fixed; top: 70px; right: 2rem; flex-direction: column; background: rgba(10,14,39,0.98); padding: 2rem; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
+    html[data-theme="light"] .nav-links.active { background: rgba(255,255,255,0.98); box-shadow: 0 10px 40px rgba(0,0,0,0.12); }
+
+    .nav-controls { justify-self: end; }
+
+    .hero-title {
+        font-size: 2.5rem;
     }
 
     .nav-links.active {
@@ -1522,4 +1618,189 @@ footer {
     .suggestion-btn {
         font-size: 0.73rem;
     }
+}
+
+/* ===================================================================
+   COMPREHENSIVE LIGHT THEME OVERRIDES
+   =================================================================== */
+
+/* Scrollbar */
+html[data-theme="light"] ::-webkit-scrollbar-track {
+    background: #f0f4f8;
+}
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: #0077cc;
+}
+
+/* Particles — fade them in light mode so they don't clash */
+html[data-theme="light"] #particles-canvas {
+    opacity: 0.25;
+}
+
+/* Cards — skill, project, education, certification, activity, contact */
+html[data-theme="light"] .skill-card,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .education-card,
+html[data-theme="light"] .certification-card,
+html[data-theme="light"] .activity-card,
+html[data-theme="light"] .contact-card {
+    background: rgba(0, 119, 204, 0.03);
+    border-color: rgba(0, 119, 204, 0.15);
+}
+
+html[data-theme="light"] .skill-card:hover,
+html[data-theme="light"] .project-card:hover,
+html[data-theme="light"] .education-card:hover,
+html[data-theme="light"] .certification-card:hover,
+html[data-theme="light"] .activity-card:hover,
+html[data-theme="light"] .contact-card:hover {
+    box-shadow: 0 12px 36px rgba(0, 119, 204, 0.15);
+    border-color: var(--primary);
+}
+
+/* Project header */
+html[data-theme="light"] .project-header {
+    background: linear-gradient(135deg, rgba(0, 119, 204, 0.06), rgba(0, 153, 238, 0.06));
+}
+
+/* Tech tags */
+html[data-theme="light"] .tech-tag {
+    background: rgba(0, 119, 204, 0.08);
+    border-color: rgba(0, 119, 204, 0.2);
+}
+
+/* Skills category divider */
+html[data-theme="light"] .skills-category-title {
+    border-bottom-color: rgba(0, 119, 204, 0.12);
+}
+
+/* Timeline */
+html[data-theme="light"] .timeline-content {
+    background: rgba(0, 119, 204, 0.03);
+    border-color: rgba(0, 119, 204, 0.15);
+}
+html[data-theme="light"] .timeline-content:hover {
+    box-shadow: 0 12px 36px rgba(0, 119, 204, 0.15);
+}
+html[data-theme="light"] .timeline-dot {
+    border-color: var(--darker);
+    box-shadow: 0 0 14px rgba(0, 119, 204, 0.4);
+}
+
+/* Contact section */
+html[data-theme="light"] #contact {
+    background: linear-gradient(135deg, rgba(0, 119, 204, 0.04), rgba(0, 153, 238, 0.04));
+}
+
+/* Footer */
+html[data-theme="light"] footer {
+    background: #f0f4f8;
+}
+html[data-theme="light"] .social-link.github {
+    color: #333;
+}
+html[data-theme="light"] .social-link.github:hover {
+    color: var(--primary);
+}
+
+/* Buttons — ensure primary button text stays white in light mode */
+html[data-theme="light"] .btn-primary {
+    box-shadow: 0 5px 20px rgba(0, 119, 204, 0.25);
+}
+html[data-theme="light"] .btn-secondary {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+html[data-theme="light"] .btn-secondary:hover {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 119, 204, 0.3);
+}
+
+/* Chat window in light mode */
+html[data-theme="light"] .chat-window {
+    background: rgba(255, 255, 255, 0.97);
+    border-color: rgba(0, 119, 204, 0.18);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 119, 204, 0.08);
+}
+html[data-theme="light"] .chat-header {
+    background: linear-gradient(135deg, rgba(0, 119, 204, 0.08), rgba(0, 153, 238, 0.05));
+    border-bottom-color: rgba(0, 119, 204, 0.1);
+}
+html[data-theme="light"] .chat-avatar-status {
+    border-color: rgba(255, 255, 255, 0.97);
+}
+html[data-theme="light"] .chat-msg.bot .msg-bubble {
+    background: rgba(0, 119, 204, 0.05);
+    border-color: rgba(0, 119, 204, 0.12);
+}
+html[data-theme="light"] .chat-msg.bot .msg-bubble strong {
+    color: #1a1a2e;
+}
+html[data-theme="light"] .chat-msg.bot .msg-bubble pre {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 119, 204, 0.12);
+}
+html[data-theme="light"] .chat-msg.bot .msg-bubble code {
+    background: rgba(0, 119, 204, 0.08);
+    color: var(--accent);
+}
+html[data-theme="light"] .chat-input-wrapper {
+    background: rgba(0, 119, 204, 0.03);
+    border-color: rgba(0, 119, 204, 0.15);
+}
+html[data-theme="light"] .chat-input-area {
+    border-top-color: rgba(0, 119, 204, 0.08);
+}
+html[data-theme="light"] .chat-new-btn {
+    background: rgba(0, 119, 204, 0.06);
+    border-color: rgba(0, 119, 204, 0.2);
+}
+html[data-theme="light"] .suggestion-btn {
+    background: rgba(0, 119, 204, 0.05);
+    border-color: rgba(0, 119, 204, 0.18);
+}
+html[data-theme="light"] .typing-dots {
+    background: rgba(0, 119, 204, 0.05);
+    border-color: rgba(0, 119, 204, 0.12);
+}
+html[data-theme="light"] .chat-bubble {
+    box-shadow: 0 8px 28px rgba(0, 119, 204, 0.3);
+}
+html[data-theme="light"] .chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(0, 119, 204, 0.2);
+}
+
+/* About image */
+html[data-theme="light"] .about-image {
+    box-shadow: 0 16px 48px rgba(0, 119, 204, 0.15);
+}
+html[data-theme="light"] .about-image-placeholder {
+    background: linear-gradient(135deg, #e8f1ff, var(--primary));
+}
+
+/* Education card radial glow */
+html[data-theme="light"] .education-card::before {
+    opacity: 0.1;
+}
+
+/* Add-on course boxes */
+html[data-theme="light"] .addon-year {
+    background: rgba(0, 119, 204, 0.04) !important;
+    border-color: rgba(0, 119, 204, 0.12) !important;
+}
+
+/* Proprietary project banner */
+html[data-theme="light"] .project-card div[style*="rgba(255,170,0"] {
+    background: rgba(204, 136, 0, 0.08) !important;
+    border-color: rgba(204, 136, 0, 0.2) !important;
+}
+
+/* Transition for theme switching — smooth color change */
+html, body, nav, .skill-card, .project-card, .education-card,
+.certification-card, .activity-card, .contact-card,
+.timeline-content, .chat-window, footer,
+#themeToggle, .btn-secondary, .tech-tag {
+    transition: background 0.35s ease, color 0.35s ease,
+                border-color 0.35s ease, box-shadow 0.35s ease;
 }
