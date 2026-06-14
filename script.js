@@ -35,10 +35,30 @@ for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
 
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    const particleColor = isLight ? 'rgba(0, 119, 204, 0.6)' : 'rgba(0, 212, 255, 0.5)';
-    const lineBaseColor = isLight ? 'rgba(0, 119, 204, ' : 'rgba(0, 212, 255, ';
-    const lineOpacityMultiplier = isLight ? 0.25 : 0.2;
+    const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    let particleColor, lineBaseColor, lineOpacityMultiplier;
+    switch (theme) {
+        case 'light':
+            particleColor = 'rgba(0, 119, 204, 0.6)';
+            lineBaseColor = 'rgba(0, 119, 204, ';
+            lineOpacityMultiplier = 0.25;
+            break;
+        case 'cyberpunk':
+            particleColor = 'rgba(255, 0, 127, 0.5)';
+            lineBaseColor = 'rgba(255, 0, 127, ';
+            lineOpacityMultiplier = 0.2;
+            break;
+        case 'emerald':
+            particleColor = 'rgba(16, 185, 129, 0.5)';
+            lineBaseColor = 'rgba(16, 185, 129, ';
+            lineOpacityMultiplier = 0.2;
+            break;
+        default:
+            particleColor = 'rgba(0, 212, 255, 0.5)';
+            lineBaseColor = 'rgba(0, 212, 255, ';
+            lineOpacityMultiplier = 0.2;
+            break;
+    }
 
     particles.forEach((p, i) => {
         p.update();
@@ -80,8 +100,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 const navbar = document.getElementById('navbar');
+const scrollProgressBar = document.getElementById('scrollProgressBar');
+
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 100);
+
+    if (scrollProgressBar) {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        scrollProgressBar.style.width = scrollPercent + '%';
+    }
 });
 
 const scrollObserver = new IntersectionObserver(
@@ -127,22 +156,50 @@ setTimeout(() => {
 
 const API_ENDPOINT = 'https://charan-kumar99-github-io.vercel.app/api/chat';
 
-// Theme handling: respects prefers-color-scheme and persists in localStorage
-function applyTheme(name) {
+// Palette / Theme handling: supports 4 palettes with localStorage persistence
+const PALETTES = {
+    dark:      { name: 'Neo-Cyan',  icon: '🌊' },
+    cyberpunk: { name: 'Cyberpunk', icon: '🌆' },
+    emerald:   { name: 'Emerald',   icon: '🌿' },
+    light:     { name: 'Light Pro', icon: '☀️' }
+};
+
+function applyPalette(name) {
     document.documentElement.setAttribute('data-theme', name);
     localStorage.setItem('theme', name);
     const icon = document.getElementById('themeIcon');
-    if (icon) icon.textContent = name === 'dark' ? '☀️' : '🌙';
+    if (icon && PALETTES[name]) {
+        icon.textContent = PALETTES[name].icon;
+    }
+    // Update active swatch
+    document.querySelectorAll('.palette-swatch').forEach(s => {
+        s.classList.toggle('active', s.dataset.palette === name);
+    });
+    closePalettePanel();
 }
 
-function toggleTheme() {
-    const current = localStorage.getItem('theme') || 'dark';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
+function togglePalettePanel() {
+    const panel = document.getElementById('palettePanel');
+    if (panel) panel.classList.toggle('open');
 }
+
+function closePalettePanel() {
+    const panel = document.getElementById('palettePanel');
+    if (panel) panel.classList.remove('open');
+}
+
+// Close palette panel on outside click
+document.addEventListener('click', (e) => {
+    const wrapper = document.getElementById('paletteWrapper');
+    if (wrapper && !wrapper.contains(e.target)) {
+        closePalettePanel();
+    }
+});
+
 
 (function initTheme() {
     const saved = localStorage.getItem('theme') || 'dark';
-    applyTheme(saved);
+    applyPalette(saved);
 })();
 
 const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar's portfolio website.
@@ -249,7 +306,13 @@ Charan worked extensively with **Microservices Architecture** at NTSIPL.
 - Microservices were built using **ASP.NET Core (.NET 6 & .NET 8)** with **REST APIs** for inter-service communication.
 - Deployment was managed through **Azure DevOps** CI/CD pipelines for each microservice independently.
 
-CURRENT FOCUS: Building **scalable property management APIs** at **AGREMATE** using **Clean Architecture** & **Docker** while pursuing **MCA**`;
+CURRENT FOCUS: Building **scalable property management APIs** at **AGREMATE** using **Clean Architecture** & **Docker** while pursuing **MCA**.
+
+PORTFOLIO FEATURES & EASTER EGGS (Tell users about these if they ask about the website)
+- **Developer CLI Terminal**: There is a hidden matrix-style terminal drawer! Users can open it by clicking the 💻 icon in the top navbar or pressing the Backtick (\`) key. They can type commands like 'help', 'skills', 'projects', and 'contact' to interact with the site.
+- **AI Voice Assistant**: This chat box supports Voice Input (with a live audio waveform visualizer) and Text-to-Speech playback!
+- **Projects Simulator**: There is an interactive projects simulator on the page that lets users test out Orion Voice Assistant and DevLens right from the browser.
+- **Theme Palette**: Users can change the website's color theme (Cyberpunk, Emerald, Neo-Cyan, Light Pro) using the palette icon in the navbar.`;
 
 let chatHistory = [];
 let isChatOpen = false;
@@ -859,6 +922,32 @@ function sendSuggestion(text) {
     sendMessage();
 }
 
+function askAiQuestion(text) {
+    if (isLoading) return;
+
+    // Scroll down to the chat bubble if viewport width matches mobile (< 768px)
+    if (window.innerWidth < 768) {
+        const chatBubble = document.getElementById('chatBubble');
+        if (chatBubble) {
+            chatBubble.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Open chat window if not already open
+    if (!isChatOpen) {
+        toggleChat();
+    }
+
+    // Populate the question in the text area
+    chatInputEl.value = text;
+    autoResizeInput(chatInputEl);
+
+    // Briefly delay sending to allow the open animation/focus to complete
+    setTimeout(() => {
+        sendMessage();
+    }, 150);
+}
+
 function handleInputKeydown(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
@@ -1008,13 +1097,17 @@ function autoResizeInput(el) {
 // FEATURE: RADAR CHART TOOLTIP
 // ===================================================================
 
-(function initRadarTooltip() {
+(function initRadarInteractive() {
     const container = document.getElementById('radarChartContainer');
     if (!container) return;
 
+    const svg = container.querySelector('.radar-svg');
+    const dataPoly = container.querySelector('.radar-data');
     const dots = container.querySelectorAll('.radar-dot');
+    const labels = container.querySelectorAll('.radar-label');
+    const traitCard = document.getElementById('radarTraitCard');
 
-    // Create tooltip element
+    // Tooltip creation
     const tooltip = document.createElement('div');
     tooltip.className = 'radar-tooltip';
     tooltip.style.cssText = `
@@ -1038,22 +1131,160 @@ function autoResizeInput(el) {
     container.style.position = 'relative';
     container.appendChild(tooltip);
 
+    // Target coordinates
+    const targetPoints = [
+        { x: 200, y: 48 },   // Leadership
+        { x: 341, y: 155 },  // Strategy
+        { x: 298, y: 317 },  // Teamwork
+        { x: 100, y: 322 },  // Endurance
+        { x: 58, y: 155 }    // Technical Agility
+    ];
+
+    const centerPoint = { x: 200, y: 200 };
+
+    // Trait narratives
+    const narratives = {
+        'leadership': {
+            icon: '👑',
+            title: 'Leadership',
+            value: '95%',
+            desc: 'Developed as NCC Lead Cadet and Captain of school/college sports teams. Proven track record of team organization, event planning, and guiding groups towards shared goals under pressure.'
+        },
+        'strategy': {
+            icon: '🎯',
+            title: 'Strategy & Tactics',
+            value: '80%',
+            desc: 'Cultivated through competitive chess and leading cricket teams. Applied in technical environments to design optimal SQL server query plans, structure microservices API topologies, and architect clean solutions.'
+        },
+        'teamwork': {
+            icon: '🤝',
+            title: 'Collaborative Teamwork',
+            value: '90%',
+            desc: 'Refined by collaborating on complex RTGS/NEFT payment gateway microservices. Focuses on seamless integration, documentation, and active communication within agile teams.'
+        },
+        'endurance': {
+            icon: '⚡',
+            title: 'Endurance & Grit',
+            value: '88%',
+            desc: 'Demonstrated by pursuing an online MCA degree from MIT Jaipur in parallel with full-time software developer employment, sustaining high performance across academic and professional duties.'
+        },
+        'technical agility': {
+            icon: '💻',
+            title: 'Technical Agility',
+            value: '85%',
+            desc: 'Proven ability to work fluidly across diverse databases (PostgreSQL, SQL Server, MySQL, Oracle) and migrate platforms from .NET 6 to .NET 8, adapting quickly to new architectural requirements.'
+        }
+    };
+
+    // Set initial layout at center
+    function setRadarCoordinates(progress) {
+        const currentPoints = targetPoints.map(target => {
+            const x = centerPoint.x + (target.x - centerPoint.x) * progress;
+            const y = centerPoint.y + (target.y - centerPoint.y) * progress;
+            return { x, y };
+        });
+
+        // Update Polygon points
+        const pointsStr = currentPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+        dataPoly.setAttribute('points', pointsStr);
+
+        // Update Dots position
+        dots.forEach((dot, idx) => {
+            dot.setAttribute('cx', currentPoints[idx].x.toFixed(1));
+            dot.setAttribute('cy', currentPoints[idx].y.toFixed(1));
+        });
+    }
+
+    // Initialize at center
+    setRadarCoordinates(0);
+
+    // Scroll trigger observer
+    let hasAnimated = false;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                animateRadar();
+            }
+        });
+    }, { threshold: 0.15 });
+
+    observer.observe(container);
+
+    function animateRadar() {
+        const duration = 1200; // ms
+        const startTime = performance.now();
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Ease out cubic
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            
+            setRadarCoordinates(easeProgress);
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    // Update trait card text
+    function selectTrait(labelName) {
+        const key = labelName.toLowerCase().trim();
+        const data = narratives[key];
+        if (!data || !traitCard) return;
+
+        // Visual flash animation
+        traitCard.classList.remove('active-pulse');
+        void traitCard.offsetWidth; // Reflow
+        traitCard.classList.add('active-pulse');
+
+        // Update content
+        const iconEl = traitCard.querySelector('.radar-trait-icon');
+        const titleEl = traitCard.querySelector('.radar-trait-title');
+        const valueEl = traitCard.querySelector('.radar-trait-value');
+        const descEl = traitCard.querySelector('.radar-trait-desc');
+
+        if (iconEl) iconEl.textContent = data.icon;
+        if (titleEl) titleEl.textContent = data.title;
+        if (valueEl) valueEl.textContent = data.value;
+        if (descEl) descEl.textContent = data.desc;
+
+        // Set active classes on SVG elements
+        dots.forEach(dot => {
+            const isMatch = dot.getAttribute('data-label').toLowerCase().trim() === key;
+            dot.classList.toggle('active', isMatch);
+        });
+
+        labels.forEach(label => {
+            const isMatch = label.textContent.toLowerCase().trim() === key;
+            label.classList.toggle('active', isMatch);
+        });
+    }
+
+    // Attach click handlers
     dots.forEach(dot => {
-        dot.addEventListener('mouseenter', (e) => {
+        dot.addEventListener('click', () => {
+            const label = dot.getAttribute('data-label');
+            selectTrait(label);
+        });
+
+        // Hover Tooltip positions
+        dot.addEventListener('mouseenter', () => {
             const label = dot.getAttribute('data-label');
             const value = dot.getAttribute('data-value');
             tooltip.innerHTML = `<span style="color:var(--primary)">${label}</span>: <span style="color:var(--accent)">${value}%</span>`;
             tooltip.style.opacity = '1';
             tooltip.style.transform = 'translateY(0)';
 
-            // Position tooltip
-            const svg = container.querySelector('.radar-svg');
             const svgRect = svg.getBoundingClientRect();
             const containerRect = container.getBoundingClientRect();
             const cx = parseFloat(dot.getAttribute('cx'));
             const cy = parseFloat(dot.getAttribute('cy'));
 
-            // Convert SVG coordinates to container coordinates
             const viewBox = svg.viewBox.baseVal;
             const scaleX = svgRect.width / viewBox.width;
             const scaleY = svgRect.height / viewBox.height;
@@ -1066,7 +1297,6 @@ function autoResizeInput(el) {
             tooltip.style.left = `${x}px`;
             tooltip.style.top = `${y - 40}px`;
 
-            // Adjust if going off-screen right
             const tooltipRect = tooltip.getBoundingClientRect();
             if (tooltipRect.right > containerRect.right) {
                 tooltip.style.left = `${x - tooltipRect.width}px`;
@@ -1081,14 +1311,985 @@ function autoResizeInput(el) {
             tooltip.style.transform = 'translateY(5px)';
         });
     });
+
+    // Also support clicking text labels
+    labels.forEach(label => {
+        label.style.cursor = 'pointer';
+        label.addEventListener('click', () => {
+            const name = label.textContent;
+            selectTrait(name);
+        });
+    });
 })();
 
 document.addEventListener('click', e => {
     if (
         isChatOpen &&
         !chatWindowEl.contains(e.target) &&
-        !chatBubbleEl.contains(e.target)
+        !chatBubbleEl.contains(e.target) &&
+        !e.target.closest('.hero-chip')
     ) {
         toggleChat();
     }
-});
+});
+
+// ===================================================================
+// FEATURE: GLASSMORPHIC AVATAR 3D TILT
+// ===================================================================
+
+(function initAvatarTilt() {
+    const avatar = document.getElementById('aboutAvatar');
+    if (!avatar) return;
+    const card = avatar.querySelector('.avatar-glass-card');
+    if (!card) return;
+
+    avatar.addEventListener('mousemove', (e) => {
+        const rect = avatar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -12;
+        const rotateY = ((x - centerX) / centerX) * 12;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    avatar.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+})();
+
+// ===================================================================
+// FEATURE: SKILL CARD BRAND GLOW COLORS
+// ===================================================================
+
+(function initSkillGlows() {
+    const glowMap = {
+        'C#': '#68217A',
+        'Java': '#ED8B00',
+        'JavaScript': '#F7DF1E',
+        'C': '#A8B9CC',
+        'HTML5': '#E34F26',
+        'CSS3': '#1572B6',
+        'Dart': '#0175C2',
+        'Python': '#3776AB',
+        'ASP.NET Core (.NET 6 & .NET 8)': '#512BD4',
+        'Blazor': '#512BD4',
+        'Razor Pages': '#512BD4',
+        'React': '#61DAFB',
+        'Bootstrap 5': '#7952B3',
+        'Flask': '#44A833',
+        'Chart.js': '#FF6384',
+        'PostgreSQL': '#4169E1',
+        'MySQL': '#4479A1',
+        'Oracle Database': '#F80000',
+        'SQL Server': '#CC2927',
+        'SQLite': '#44A8D6',
+        'Azure DevOps': '#0078D7',
+        'GitHub': '#6e7681',
+        'Visual Studio 2022': '#5C2D91',
+        'VS Code': '#007ACC',
+        'Postman': '#FF6C37',
+        'DBeaver': '#8A6B4D',
+        'FTP / SFTP': '#00D4FF',
+        'Docker': '#2496ED',
+        'Swagger': '#85EA2D',
+        'REST APIs': '#00D4FF',
+        'Microservices Architecture': '#00D4FF',
+        'Clean Architecture': '#10B981',
+        'API Versioning': '#00D4FF',
+        'API Globalization': '#FFB800',
+        '.NET Migration (6→8)': '#512BD4',
+        'Analytical Thinking': '#FF6B6B',
+        'Active Listening': '#4ECDC4',
+        'Team Leadership': '#FFE66D',
+        'Fast Learner': '#A8E6CF',
+        'Detail-Oriented': '#FF8B94',
+        'Collaborative': '#DDA0DD'
+    };
+
+    document.querySelectorAll('.skill-card').forEach(card => {
+        const nameEl = card.querySelector('.skill-name');
+        if (!nameEl) return;
+        const name = nameEl.textContent.trim();
+        const color = glowMap[name];
+        if (color) {
+            card.style.setProperty('--glow-color', color);
+        }
+    });
+})();
+
+// ===================================================================
+// FEATURE: INTERACTIVE WORK EXPERIENCE DRAWERS & BADGES
+// ===================================================================
+
+(function initTimelineDrawers() {
+    const toggleButtons = document.querySelectorAll('.timeline-toggle-btn');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const drawer = btn.nextElementSibling;
+            if (!drawer) return;
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !isExpanded);
+            drawer.classList.toggle('expanded', !isExpanded);
+            
+            const textSpan = btn.querySelector('span');
+            if (textSpan) {
+                textSpan.textContent = isExpanded ? 'Architecture & Tech Details' : 'Hide Details';
+            }
+        });
+    });
+
+    const badges = document.querySelectorAll('.timeline-badge');
+    badges.forEach(badge => {
+        badge.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const skillName = badge.getAttribute('data-skill');
+            if (!skillName) return;
+            
+            const skillCards = document.querySelectorAll('.skill-card');
+            let matchedCard = null;
+            
+            skillCards.forEach(card => {
+                const nameEl = card.querySelector('.skill-name');
+                if (nameEl) {
+                    const text = nameEl.textContent.trim().toLowerCase();
+                    const target = skillName.trim().toLowerCase();
+                    if (text === target || text.includes(target) || target.includes(text)) {
+                        matchedCard = card;
+                    }
+                }
+            });
+
+            if (matchedCard) {
+                const skillsSection = document.getElementById('skills');
+                if (skillsSection) {
+                    skillsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                setTimeout(() => {
+                    matchedCard.classList.remove('skill-highlight-active');
+                    void matchedCard.offsetWidth; // Reflow
+                    matchedCard.classList.add('skill-highlight-active');
+                    
+                    setTimeout(() => {
+                        matchedCard.classList.remove('skill-highlight-active');
+                    }, 2600);
+                }, 600);
+            }
+        });
+    });
+})();
+
+// ===================================================================
+// FEATURE: PROJECTS WORKFLOW SIMULATOR
+// ===================================================================
+
+(function initProjectsSimulator() {
+    const flowMetadata = {
+        devlens: {
+            nodes: [
+                { icon: "💻", title: "Web UI Input", sub: "React Client Search" },
+                { icon: "🛡️", title: "API Gateway", sub: "ASP.NET Core Router" },
+                { icon: "🐙", title: "Git Wrapper", sub: "GitHub REST API client" },
+                { icon: "🤖", title: "Gemini Agent", sub: "Google Gemini AI" },
+                { icon: "🗄️", title: "Cache Service", sub: "SQLite Database TTL" },
+                { icon: "📊", title: "Chart Engine", sub: "D3.js / Recharts" },
+                { icon: "📈", title: "Visual Dashboard", sub: "Metrics Analytics UI" }
+            ],
+            steps: [
+                {
+                    nodeName: "Web UI Input",
+                    desc: "User enters repository URL 'charan-kumar99/DevLens' in the search bar of the React client.",
+                    logs: [
+                        "INFO - Repository lookup initiated: charan-kumar99/DevLens",
+                        "DEBUG - Checking inputs: url=https://github.com/charan-kumar99/DevLens",
+                        "INFO - Handing request to HTTP client..."
+                    ]
+                },
+                {
+                    nodeName: "API Gateway",
+                    desc: "ASP.NET Core Gateway intercepts request, performs security handshake, and routes to Git Analysis Service.",
+                    logs: [
+                        "SEC - SSL Handshake completed with React UI Client",
+                        "SEC - API Key check: OK, CORS validation: PASSED",
+                        "INFO - Routing request to internal GitHub Wrapper Service..."
+                    ]
+                },
+                {
+                    nodeName: "Git Wrapper",
+                    desc: "GitHub Wrapper sends authenticated REST queries to GitHub API to scrape commits, forks, issues, and size metrics.",
+                    logs: [
+                        "INFO - Dispatching request to api.github.com/repos/charan-kumar99/DevLens",
+                        "DEBUG - Rate limiting: 4982/5000 remaining",
+                        "SUCCESS - Fetched repo details, commits history, and language files successfully."
+                    ]
+                },
+                {
+                    nodeName: "Gemini Agent",
+                    desc: "Google Gemini API analyzes documentation files, scores README content, and generates risk/architectural summaries.",
+                    logs: [
+                        "INFO - Sending repo structure & README.md context payload to Google Gemini API",
+                        "DEBUG - Invoking Gemini model gemini-1.5-flash",
+                        "SUCCESS - AI Summary generated. Scoring: README=95/100, Risk=Low"
+                    ]
+                },
+                {
+                    nodeName: "Cache Service",
+                    desc: "Saves analysis response into SQLite database with a 24-hour TTL timestamp to optimize repeated searches.",
+                    logs: [
+                        "SQL - INSERT INTO RepoCache (repo_path, payload, analyzed_at) VALUES ('charan-kumar99/DevLens', '...', datetime('now'))",
+                        "DEBUG - SQLite cache written successfully",
+                        "INFO - Cached record expires in 24 hours"
+                    ]
+                },
+                {
+                    nodeName: "Chart Engine",
+                    desc: "D3.js and Recharts parse repository data to compute code metrics, timeline distributions, and contributor ratios.",
+                    logs: [
+                        "DEBUG - Aggregating file types: C#=72%, TSX=20%, CSS=5%, Others=3%",
+                        "INFO - Compiling commits timeline: total_commits=142, duration=6 months",
+                        "DEBUG - Generating D3 charts coordinates payload..."
+                    ]
+                },
+                {
+                    nodeName: "Visual Dashboard",
+                    desc: "React dashboard renders responsive interactive charts, AI risk matrices, and comprehensive repository scores.",
+                    logs: [
+                        "SUCCESS - Visual Dashboard components loaded successfully",
+                        "SYSTEM - Flow completed. Repository analyzed in 340ms"
+                    ]
+                }
+            ]
+        },
+        moneymate: {
+            nodes: [
+                { icon: "👤", title: "UI Transaction", sub: "User Expense / CSV" },
+                { icon: "📂", title: "Flask Route", sub: "Route Controller" },
+                { icon: "🛡️", title: "Sanitizer Unit", sub: "CSRF & SQL Audit" },
+                { icon: "🔄", title: "SQLAlchemy ORM", sub: "ORM Data Mapper" },
+                { icon: "🗄️", title: "SQLite DB", sub: "Local Storage Node" },
+                { icon: "📊", title: "Chart.js Engine", sub: "Data Visualization" },
+                { icon: "🔔", title: "Alert Engine", sub: "Budget Threshold Check" }
+            ],
+            steps: [
+                {
+                    nodeName: "UI Transaction",
+                    desc: "User logs a new expense (₹12,000 for rent) or imports a monthly credit card statement CSV file.",
+                    logs: [
+                        "INFO - Expense submission triggered: Category=Rent, Amount=12000 INR",
+                        "DEBUG - File upload detected: statement_june2026.csv (size=12KB)",
+                        "INFO - Packing parameters into JSON request..."
+                    ]
+                },
+                {
+                    nodeName: "Flask Route",
+                    desc: "Flask Backend route parses POST request headers and initiates a transaction scope.",
+                    logs: [
+                        "INFO - HTTP POST /api/transactions - Request intercepted",
+                        "DEBUG - User authenticated: user_id=402",
+                        "INFO - Handing parameters to transaction processing unit..."
+                    ]
+                },
+                {
+                    nodeName: "Sanitizer Unit",
+                    desc: "Security middleware verifies CSRF tokens and strips input strings to prevent SQL injections.",
+                    logs: [
+                        "SEC - CSRF token verification: PASSED",
+                        "SEC - SQL Injection checks: CLEAN",
+                        "INFO - Forwarding sanitized data to ORM layer..."
+                    ]
+                },
+                {
+                    nodeName: "SQLAlchemy ORM",
+                    desc: "SQLAlchemy ORM maps the transaction entity schema and generates an atomic database query.",
+                    logs: [
+                        "INFO - Creating Transaction entity object mapping",
+                        "DEBUG - Entity State: Pending, Currency: INR, Multi-currency Conversion: 1.00",
+                        "INFO - Initializing Unit of Work transaction scope..."
+                    ]
+                },
+                {
+                    nodeName: "SQLite DB",
+                    desc: "SQLite database commits the record, updating current account ledger balances and saving historical stats.",
+                    logs: [
+                        "SQL - INSERT INTO transactions (user_id, amount, category, date) VALUES (402, 12000, 'Rent', '2026-06-14')",
+                        "SQL - UPDATE accounts SET balance = balance - 12000 WHERE user_id = 402",
+                        "SUCCESS - Transaction committed. Database synchronized successfully."
+                    ]
+                },
+                {
+                    nodeName: "Chart.js Engine",
+                    desc: "Chart.js updates expense distribution graphs, budget trackers, and monthly spending profiles on the screen.",
+                    logs: [
+                        "DEBUG - Aggregating categories totals: Rent=35%, Food=15%, Transport=10%, Misc=40%",
+                        "INFO - Refreshing canvas chart.js instance",
+                        "SUCCESS - Chart rendering completed successfully."
+                    ]
+                },
+                {
+                    nodeName: "Alert Engine",
+                    desc: "Budget engine verifies thresholds. Dispatches alerts if the category limits are breached.",
+                    logs: [
+                        "INFO - Category check: 'Rent' threshold set to 15,000 INR",
+                        "INFO - Monthly spent in 'Rent': 12,000 INR (80% of budget)",
+                        "SYSTEM - Flow completed. Transaction processed successfully."
+                    ]
+                }
+            ]
+        },
+        cricket: {
+            nodes: [
+                { icon: "🏏", title: "Match Form", sub: "Scorecard Metric Input" },
+                { icon: "⚙️", title: "ES6 Calc Engine", sub: "Strike Rate Processor" },
+                { icon: "💾", title: "LocalStorage", sub: "Persistent Cache" },
+                { icon: "📊", title: "Chart.js compiler", sub: "Trends Visualization" },
+                { icon: "💬", title: "Query Input UI", sub: "Natural Query Box" },
+                { icon: "🤖", title: "Query Parser", sub: "Keyword Parser Engine" },
+                { icon: "📋", title: "Stats Dashboard", sub: "Filtered Output Board" }
+            ],
+            steps: [
+                {
+                    nodeName: "Match Form",
+                    desc: "User inputs player match performance stats (e.g. 84 runs off 42 balls, 2 wickets in 4 overs).",
+                    logs: [
+                        "INFO - Match entry form submitted",
+                        "DEBUG - Inputs: batsman_runs=84, balls_faced=42, wickets=2, overs=4",
+                        "INFO - Forwarding metrics to Calculation Engine..."
+                    ]
+                },
+                {
+                    nodeName: "ES6 Calc Engine",
+                    desc: "Pure ES6 engine computes analytics metrics: strike rate (200.00), economy rate (6.00), and player averages.",
+                    logs: [
+                        "DEBUG - Calculating strike rate: (84 / 42) * 100 = 200.00",
+                        "DEBUG - Calculating economy: (24 runs / 4 overs) = 6.00 RPO",
+                        "INFO - Computations completed successfully."
+                    ]
+                },
+                {
+                    nodeName: "LocalStorage",
+                    desc: "Serializes the performance record into JSON and saves it in LocalStorage for persistent offline access.",
+                    logs: [
+                        "INFO - Serializing scorecard record to JSON string...",
+                        "SUCCESS - LocalStorage update: saved key 'cricket_match_104'",
+                        "DEBUG - Storage size: 1.2KB / 5.0MB"
+                    ]
+                },
+                {
+                    nodeName: "Chart.js compiler",
+                    desc: "Chart.js maps player trends across historic scorecards, rendering batting and bowling curves.",
+                    logs: [
+                        "INFO - Loading past matches records from cache...",
+                        "DEBUG - Computing trend curve points (Last 5 matches: 45, 12, 84, 56, 30)",
+                        "SUCCESS - Chart.js redrew performance trendline canvas."
+                    ]
+                },
+                {
+                    nodeName: "Query Input UI",
+                    desc: "User enters natural query: 'Find matches where strike rate was above 180' in the query input.",
+                    logs: [
+                        "INFO - Query input intercepted: 'Find matches where strike rate was above 180'",
+                        "INFO - Initiating semantic parser analysis..."
+                    ]
+                },
+                {
+                    nodeName: "Query Parser",
+                    desc: "Local NLP-style keyword engine parses terms to identify filters ('strike rate', 'above', '180').",
+                    logs: [
+                        "DEBUG - Matching tokens: metric='strike_rate', operation='>', value=180",
+                        "INFO - Executing filter on LocalStorage data pool",
+                        "SUCCESS - 3 matches found matching filters."
+                    ]
+                },
+                {
+                    nodeName: "Stats Dashboard",
+                    desc: "UI updates with filtered match cards, highlighting achievements and averages for the parsed query.",
+                    logs: [
+                        "INFO - Rendered 3 scorecards matching criteria",
+                        "SYSTEM - Flow completed. Query processed in 12ms."
+                    ]
+                }
+            ]
+        },
+        orion: {
+            nodes: [
+                { icon: "🎙️", title: "Voice Input", sub: "Web Speech Capture" },
+                { icon: "🧠", title: "Speech Recognizer", sub: "Audio-to-Text Parser" },
+                { icon: "📂", title: "Flask Route", sub: "POST Route Handler" },
+                { icon: "⚙️", title: "Command Parser", sub: "Intent Classifier" },
+                { icon: "⚡", title: "Task Dispatcher", sub: "Automation Hook Engine" },
+                { icon: "🗣️", title: "Google TTS", sub: "Voice Synthesis API" },
+                { icon: "🔊", title: "Audio Playback", sub: "Speech Response Stream" }
+            ],
+            steps: [
+                {
+                    nodeName: "Voice Input",
+                    desc: "User clicks the microphone button and says, 'Orion, play music and search for .NET tutorials.'",
+                    logs: [
+                        "INFO - Voice capturing active. Capturing microphone input stream...",
+                        "DEBUG - Sample rate: 44100Hz, status: Capturing audio buffer",
+                        "INFO - Input captured. Streaming audio bytes to parser..."
+                    ]
+                },
+                {
+                    nodeName: "Speech Recognizer",
+                    desc: "The Web Speech Recognition API processes the audio input, converting speech-to-text with 94% confidence.",
+                    logs: [
+                        "INFO - Processing speech buffer bytes...",
+                        "DEBUG - Match detected: 'orion play music and search for dot net tutorials'",
+                        "SUCCESS - Speech-to-Text translation confidence: 94.2%"
+                    ]
+                },
+                {
+                    nodeName: "Flask Route",
+                    desc: "Sends the parsed text payload via a secure HTTP POST request to the Flask backend assistant route.",
+                    logs: [
+                        "INFO - HTTP POST /api/assistant/query - Request sent",
+                        "DEBUG - Payload: { query: 'play music and search for dot net tutorials' }",
+                        "INFO - Flask controller received request scope"
+                    ]
+                },
+                {
+                    nodeName: "Command Parser",
+                    desc: "Regex and keyword parser classifies the user intent and extracts parameters (Intent: 'Play Music', Intent: 'Search').",
+                    logs: [
+                        "INFO - Tokenizing command query text",
+                        "DEBUG - Pattern matches: Intent='music_playback', Action='search', Term='dot net tutorials'",
+                        "SUCCESS - Intent classification completed successfully."
+                    ]
+                },
+                {
+                    nodeName: "Task Dispatcher",
+                    desc: "Executes automation hooks: triggers a browser search query and schedules background music playback.",
+                    logs: [
+                        "INFO - Triggering Web Search Automation: Term='dot net tutorials'",
+                        "INFO - Executing Music Player Service: play_stream=active",
+                        "SUCCESS - Automated background browser tabs launched successfully."
+                    ]
+                },
+                {
+                    nodeName: "Google TTS",
+                    desc: "Google TTS engine synthesizes the response ('Searching for .NET tutorials and opening music player') into an MP3 stream.",
+                    logs: [
+                        "INFO - Synthesizing speech text response via Google TTS API...",
+                        "DEBUG - Request payload: 'Searching for .NET tutorials and opening music player'",
+                        "SUCCESS - Google Speech API response: 200 OK. Audio stream ready."
+                    ]
+                },
+                {
+                    nodeName: "Audio Playback",
+                    desc: "Browser receives the synthesized voice response stream and plays back the confirmation speech to the user.",
+                    logs: [
+                        "INFO - Playing back synthesized MP3 response stream...",
+                        "SUCCESS - Audio voice playback finished.",
+                        "SYSTEM - Flow completed. Speech action resolved in 410ms."
+                    ]
+                }
+            ]
+        }
+    };
+
+    let activeFlow = 'devlens';
+    let currentStep = -1; // -1 means initial idle state
+    let isPlaying = false;
+    let playInterval = null;
+
+    const nodesContainer = document.getElementById('simulatorNodes');
+    const svg = document.getElementById('simulatorSvg');
+    const packet = document.getElementById('simulatorPacket');
+    const activeNodeNameEl = document.getElementById('simActiveNodeName');
+    const activeNodeDescEl = document.getElementById('simActiveNodeDesc');
+    const terminalEl = document.getElementById('simTerminal');
+
+    const playBtn = document.getElementById('simPlayBtn');
+    const stepBtn = document.getElementById('simStepBtn');
+    const resetBtn = document.getElementById('simResetBtn');
+
+    if (!nodesContainer || !svg || !packet) return;
+
+    // Helper to log in terminal
+    function addTerminalLog(message, type = 'info') {
+        const timestamp = new Date().toLocaleTimeString();
+        const logLine = document.createElement('div');
+        logLine.className = `log-line ${type}`;
+        logLine.textContent = `[${timestamp} ${type.toUpperCase()}] ${message}`;
+        terminalEl.appendChild(logLine);
+        terminalEl.scrollTop = terminalEl.scrollHeight;
+    }
+
+    // Render nodes based on selected flow
+    function renderNodes() {
+        nodesContainer.innerHTML = '';
+        const data = flowMetadata[activeFlow];
+        data.nodes.forEach((node, idx) => {
+            const nodeEl = document.createElement('div');
+            nodeEl.className = `sim-node node-pos-${idx}`;
+            nodeEl.setAttribute('data-index', idx);
+            nodeEl.title = `Click to inspect ${node.title}`;
+            
+            nodeEl.innerHTML = `
+                <div class="sim-node-icon-wrapper">
+                    <span>${node.icon}</span>
+                </div>
+                <div class="sim-node-title">${node.title}</div>
+                <div class="sim-node-subtitle">${node.sub}</div>
+            `;
+            
+            nodeEl.addEventListener('click', () => {
+                jumpToStep(idx);
+            });
+
+            nodesContainer.appendChild(nodeEl);
+        });
+
+        // Re-draw lines
+        setTimeout(drawSimulatorLines, 60);
+    }
+
+    // Draw lines connecting nodes
+    function drawSimulatorLines() {
+        const container = document.getElementById('simulatorMapContainer');
+        if (!container || !svg) return;
+
+        svg.innerHTML = '';
+        const nodes = nodesContainer.querySelectorAll('.sim-node');
+        if (nodes.length < 2) return;
+
+        const containerRect = container.getBoundingClientRect();
+        const positions = [];
+
+        nodes.forEach(node => {
+            const rect = node.getBoundingClientRect();
+            const x = rect.left - containerRect.left + rect.width / 2;
+            const y = rect.top - containerRect.top + rect.height / 2;
+            positions.push({ x, y });
+        });
+
+        const isMobile = window.innerWidth <= 768;
+
+        for (let i = 0; i < positions.length - 1; i++) {
+            const start = positions[i];
+            const end = positions[i + 1];
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            
+            let d = '';
+            if (isMobile) {
+                // Vertical straight lines
+                d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
+            } else {
+                // Desktop snake flow curved connecting lines
+                if (i === 3) {
+                    // Turn downwards from node 3 to node 4
+                    d = `M ${start.x} ${start.y} C ${start.x + 40} ${start.y}, ${end.x + 40} ${end.y}, ${end.x} ${end.y}`;
+                } else if (i >= 4) {
+                    // Leftwards lines (Row 2)
+                    d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
+                } else {
+                    // Rightwards lines (Row 1)
+                    d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
+                }
+            }
+
+            path.setAttribute('d', d);
+            const isActiveSegment = currentStep > i;
+            path.setAttribute('class', `sim-svg-path path-seg-${i} ${isActiveSegment ? 'active' : ''}`);
+            svg.appendChild(path);
+        }
+    }
+
+    // Position packet glow
+    function positionPacket(nodeIdx, animate = true) {
+        const nodes = nodesContainer.querySelectorAll('.sim-node');
+        const container = document.getElementById('simulatorMapContainer');
+        if (!nodes[nodeIdx] || !container) return;
+
+        const containerRect = container.getBoundingClientRect();
+        const rect = nodes[nodeIdx].getBoundingClientRect();
+        const x = rect.left - containerRect.left + rect.width / 2;
+        const y = rect.top - containerRect.top + rect.height / 2;
+
+        if (!animate) {
+            packet.style.transition = 'none';
+        } else {
+            packet.style.transition = 'left 0.75s cubic-bezier(0.25, 1, 0.5, 1), top 0.75s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease';
+        }
+        
+        packet.classList.add('active');
+        packet.style.left = `${x}px`;
+        packet.style.top = `${y}px`;
+    }
+
+    // Execute step
+    function runStep() {
+        const data = flowMetadata[activeFlow];
+        const totalSteps = data.steps.length;
+
+        if (currentStep >= totalSteps - 1) {
+            // End reached, reset
+            resetSimulation();
+            return;
+        }
+
+        const prevStep = currentStep;
+        currentStep++;
+
+        const stepData = data.steps[currentStep];
+        const nodes = nodesContainer.querySelectorAll('.sim-node');
+
+        // Update active class on nodes
+        nodes.forEach((node, idx) => {
+            node.classList.remove('active');
+            if (idx === currentStep) {
+                node.classList.add('active');
+            }
+            if (idx < currentStep) {
+                node.classList.add('processed');
+            } else {
+                node.classList.remove('processed');
+            }
+        });
+
+        // Update active segment classes in SVG
+        const paths = svg.querySelectorAll('.sim-svg-path');
+        paths.forEach((path, idx) => {
+            path.classList.toggle('active', idx < currentStep);
+        });
+
+        // Position & Animate packet
+        if (prevStep === -1) {
+            positionPacket(0, false);
+        } else {
+            positionPacket(currentStep, true);
+        }
+
+        // Update Panel details
+        if (activeNodeNameEl) activeNodeNameEl.textContent = `${currentStep + 1}. ${stepData.nodeName}`;
+        if (activeNodeDescEl) activeNodeDescEl.textContent = stepData.desc;
+
+        // Print Logs with tiny stagger
+        stepData.logs.forEach((log, idx) => {
+            setTimeout(() => {
+                let logType = 'info';
+                if (log.startsWith('SEC')) logType = 'system';
+                else if (log.startsWith('SQL')) logType = 'db';
+                else if (log.startsWith('SUCCESS') || log.startsWith('SYSTEM')) logType = 'success';
+                else if (log.startsWith('ERROR')) logType = 'error';
+
+                addTerminalLog(log, logType);
+            }, idx * 180);
+        });
+
+        // Stop auto play if we reached the final step
+        if (currentStep === totalSteps - 1) {
+            if (isPlaying) {
+                setTimeout(pauseSimulation, 1500);
+            }
+        }
+    }
+
+    function jumpToStep(idx) {
+        pauseSimulation();
+        resetSimulation(false); // reset classes and packet
+        
+        const data = flowMetadata[activeFlow];
+        const nodes = nodesContainer.querySelectorAll('.sim-node');
+        
+        currentStep = idx;
+
+        nodes.forEach((node, nodeIdx) => {
+            node.classList.remove('active', 'processed');
+            if (nodeIdx === idx) node.classList.add('active');
+            if (nodeIdx < idx) node.classList.add('processed');
+        });
+
+        const paths = svg.querySelectorAll('.sim-svg-path');
+        paths.forEach((path, pathIdx) => {
+            path.classList.toggle('active', pathIdx < idx);
+        });
+
+        positionPacket(idx, false);
+
+        const stepData = data.steps[idx];
+        if (activeNodeNameEl) activeNodeNameEl.textContent = `${idx + 1}. ${stepData.nodeName}`;
+        if (activeNodeDescEl) activeNodeDescEl.textContent = stepData.desc;
+
+        addTerminalLog(`[MANUAL INSPECT] Navigating directly to component: ${stepData.nodeName}`, 'system');
+        stepData.logs.forEach(log => {
+            let logType = 'info';
+            if (log.startsWith('SEC')) logType = 'system';
+            else if (log.startsWith('SQL')) logType = 'db';
+            else if (log.startsWith('SUCCESS') || log.startsWith('SYSTEM')) logType = 'success';
+            addTerminalLog(log, logType);
+        });
+    }
+
+    function playSimulation() {
+        if (isPlaying) return;
+        isPlaying = true;
+        
+        const playBtnText = playBtn.querySelector('.sim-btn-text') || playBtn;
+        const playBtnIcon = playBtn.querySelector('.sim-btn-icon');
+        if (playBtnText) playBtnText.textContent = 'Pause';
+        if (playBtnIcon) playBtnIcon.textContent = '⏸';
+
+        addTerminalLog("Auto-simulation started.", "system");
+
+        // Run first step instantly
+        runStep();
+
+        playInterval = setInterval(() => {
+            const data = flowMetadata[activeFlow];
+            if (currentStep >= data.steps.length - 1) {
+                resetSimulation();
+                runStep();
+            } else {
+                runStep();
+            }
+        }, 2200);
+    }
+
+    // Pause
+    function pauseSimulation() {
+        if (!isPlaying) return;
+        isPlaying = false;
+        clearInterval(playInterval);
+        
+        const playBtnText = playBtn.querySelector('.sim-btn-text') || playBtn;
+        const playBtnIcon = playBtn.querySelector('.sim-btn-icon');
+        if (playBtnText) playBtnText.textContent = 'Play';
+        if (playBtnIcon) playBtnIcon.textContent = '▶';
+
+        addTerminalLog("Simulation paused.", "system");
+    }
+
+    // Reset
+    function resetSimulation(clearLogs = true) {
+        clearInterval(playInterval);
+        isPlaying = false;
+        currentStep = -1;
+
+        const playBtnText = playBtn.querySelector('.sim-btn-text') || playBtn;
+        const playBtnIcon = playBtn.querySelector('.sim-btn-icon');
+        if (playBtnText) playBtnText.textContent = 'Play';
+        if (playBtnIcon) playBtnIcon.textContent = '▶';
+
+        const nodes = nodesContainer.querySelectorAll('.sim-node');
+        nodes.forEach(node => {
+            node.classList.remove('active', 'processed');
+        });
+
+        const paths = svg.querySelectorAll('.sim-svg-path');
+        paths.forEach(path => {
+            path.classList.remove('active');
+        });
+
+        packet.classList.remove('active');
+
+        if (activeNodeNameEl) activeNodeNameEl.textContent = 'Active Component';
+        if (activeNodeDescEl) activeNodeDescEl.textContent = 'Click Play or Step to begin visualization.';
+
+        if (clearLogs) {
+            terminalEl.innerHTML = '';
+            addTerminalLog(`Simulator reset. Ready to run flow: ${activeFlow.toUpperCase()}`, 'system');
+        }
+    }
+
+    // Attach controllers listeners
+    playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            pauseSimulation();
+        } else {
+            playSimulation();
+        }
+    });
+
+    stepBtn.addEventListener('click', () => {
+        pauseSimulation();
+        runStep();
+    });
+
+    resetBtn.addEventListener('click', () => {
+        resetSimulation();
+    });
+
+    // Handle Tabs
+    const tabs = document.querySelectorAll('.sim-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            if (tab.classList.contains('active')) return;
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            activeFlow = tab.getAttribute('data-flow');
+            resetSimulation();
+            renderNodes();
+        });
+    });
+
+    // Handle Resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            drawSimulatorLines();
+            if (currentStep !== -1) {
+                positionPacket(currentStep, false);
+            }
+        }, 150);
+    });
+
+    // Initialize layout
+    renderNodes();
+})();
+
+
+// ===================================================================
+// FEATURE: DEVELOPER TERMINAL CLI DRAWER
+// ===================================================================
+(function initTerminalCLI() {
+    const terminalDrawer = document.getElementById('terminalDrawer');
+    const toggleBtn = document.getElementById('terminalToggleBtn');
+    const closeBtn = document.querySelector('.terminal-drawer-close');
+    const dotCloseBtn = document.getElementById('terminalCloseBtn');
+    const actualInput = document.getElementById('terminalActualInput');
+    const dummyInput = document.getElementById('terminalDummyInput');
+    const outputLog = document.getElementById('terminalDrawerOutput');
+    const drawerBody = document.getElementById('terminalDrawerBody');
+
+    if (!terminalDrawer || !actualInput || !dummyInput || !outputLog) return;
+
+    // Toggle drawer
+    function toggleTerminalDrawer() {
+        terminalDrawer.classList.toggle('open');
+        if (terminalDrawer.classList.contains('open')) {
+            setTimeout(() => actualInput.focus(), 100);
+        }
+    }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleTerminalDrawer);
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', toggleTerminalDrawer);
+    }
+    if (dotCloseBtn) {
+        dotCloseBtn.addEventListener('click', toggleTerminalDrawer);
+    }
+
+    // Toggle with hotkeys
+    window.addEventListener('keydown', (e) => {
+        // Toggle with backtick (`) key
+        if (e.key === '`') {
+            e.preventDefault();
+            toggleTerminalDrawer();
+        }
+        // Toggle with Ctrl+Shift+T
+        if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
+            e.preventDefault();
+            toggleTerminalDrawer();
+        }
+    });
+
+    // Mirror input into custom styled dummy text
+    actualInput.addEventListener('input', () => {
+        dummyInput.textContent = actualInput.value;
+    });
+
+    // Refocus input on click inside the body
+    if (drawerBody) {
+        drawerBody.addEventListener('click', () => {
+            actualInput.focus();
+        });
+    }
+
+    // Command responses
+    const commandResponses = {
+        help: `Available commands:
+  help        - Show this list of available commands
+  skills      - Print my current developer skill stack
+  experience  - Show professional history overview
+  projects    - Show key featured projects
+  contact     - Display contact options
+  clear       - Clear terminal lines`,
+
+        skills: `Charan Kumar's Developer Skill Stack:
+  Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
+  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database
+  DevOps/Tools: Docker, Azure DevOps, Git, Postman, Swagger
+  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Chart.js`,
+
+        experience: `Professional History:
+  - .NET Developer @ AGREMATE Private Limited (Jun 2026 - Present)
+    Building scalable backend REST APIs and automated property management workflows.
+  - Backend Intern @ NTSIPL (Dec 2025 - May 2026)
+    Contributed to enterprise RTGS/NEFT Microservices payment processing networks.`,
+
+        projects: `Featured Projects:
+  1. DevLens - AI GitHub Repo Analyzer (ASP.NET Core, React, Google Gemini API)
+  2. Money Mate - Personal Finance Manager (Python, Flask, SQLAlchemy, Chart.js)
+  3. Cricket Performance Analyzer - Sports Metrics Web App (ES6 JS, Chart.js)
+  4. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS Speech API)
+  5. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
+
+        contact: `Contact Details:
+  - Email:      charansuvarna99@gmail.com
+  - Phone:      +91 9380455922
+  - Location:   Udupi, Karnataka, India
+  - GitHub:     https://github.com/charan-kumar99
+  - LinkedIn:   https://www.linkedin.com/in/charan-kumar-9b20a8378`
+    };
+
+    // Print helper
+    function appendTerminalLine(text, type = '') {
+        const line = document.createElement('div');
+        line.className = `terminal-line ${type}`;
+        line.textContent = text;
+        outputLog.appendChild(line);
+        // Scroll to bottom
+        if (drawerBody) {
+            drawerBody.scrollTop = drawerBody.scrollHeight;
+        }
+    }
+
+    // Handle command entry
+    actualInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const rawVal = actualInput.value;
+            const command = rawVal.trim().toLowerCase();
+            actualInput.value = '';
+            dummyInput.textContent = '';
+
+            // Echo input in terminal
+            appendTerminalLine(`guest@charankumar:~$ ${rawVal}`, 'input-echo');
+
+            if (command === '') {
+                return;
+            }
+
+            if (command === 'clear') {
+                outputLog.innerHTML = '';
+                appendTerminalLine("Welcome to Charan's Interactive CLI! [v1.0.0]", "system");
+                appendTerminalLine("Type 'help' to see all available commands. Press ` (backtick) or click the nav button to toggle.", "system");
+                const spacer = document.createElement('div');
+                spacer.className = 'terminal-line spacer';
+                outputLog.appendChild(spacer);
+                return;
+            }
+
+            const response = commandResponses[command];
+            if (response) {
+                appendTerminalLine(response);
+            } else {
+                appendTerminalLine(`Command not found: '${command}'. Type 'help' for available commands.`, 'system');
+            }
+
+            // Stagger empty spacer
+            appendTerminalLine('', 'spacer');
+        }
+    });
+})();
+
+
