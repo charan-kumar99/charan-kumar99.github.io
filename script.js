@@ -239,29 +239,29 @@ EDUCATION
 - **10th Standard** — Volakadu Government High School, Udupi — **Apr 2019 – Jun 2020** — 68%
 
 WORK EXPERIENCE
-- **.NET Developer** — AGREMATE Private Limited (**Jun 2026 – Present**)
+- **.NET Developer (Hybrid)** — AGREMATE Private Limited (**Jun 2026 – Present**)
   Building scalable backend APIs and automated workflows for India's smart property management platform (www.agremate.com).
   AGREMATE bridges the gap between property and software with digital rental agreements, automated payments, community management for gated communities, PG owners, and individual landlords.
   Developing RESTful APIs using **ASP.NET Core** with **Clean Architecture** patterns.
   Containerizing applications using **Docker** for consistent development, testing, and deployment.
   Implementing API documentation with **Swagger** (OpenAPI) for seamless frontend-backend integration.
   Working with **SQL Server**, **Entity Framework Core**, and **Azure** cloud services for the multi-tenant platform.
-- **.NET Developer** — Net Tech Services India Private Limited (NTSIPL) (**Dec 2025 – Jun 2026**)
+- **.NET Developer (Onsite)** — Net Tech Services India Private Limited (NTSIPL) (**Dec 2025 – Jun 2026**)
   Development on RTGS/NEFT banking project for major Banks and Vendors using **Microservices Architecture**.
   Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.
   Contributed to CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems.
   Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, SQL Server.
   REST APIs, CRUD operations, API globalization, .NET version migration (6→8).
   Testing, debugging, Azure DevOps deployment. Tools: Visual Studio 2022, Postman, DBeaver, FTP/SFTP.
-- **Trainee Developer** — NTSIPL (**Sep 2025 – Dec 2025**)
+- **Trainee Developer (Onsite)** — NTSIPL (**Sep 2025 – Dec 2025**)
   Gained hands-on experience in ASP.NET Core enterprise development in the financial domain.
   Contributed features, resolved bugs, collaborated with senior developers.
 
 SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
-- Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**
+- Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**
 - Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite
-- Tools       : **Azure DevOps**, GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**
+- Tools       : **Azure DevOps**, GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**
 - API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, API Versioning, API Globalization, .NET Migration (6→8)
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
@@ -274,7 +274,12 @@ PROJECTS (in order)
    GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
 4. **Orion** — AI-Powered Personal Voice Assistant (Python, Flask, JS, Google TTS, Speech Recognition)
    GitHub: https://github.com/charan-kumar99/Orion
-5. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs) — Proprietary (built at NTSIPL)
+5. **DueZy** — Premium Bill & EMI Reminder Mobile App (Flutter, Dart, Firebase Firestore, Firebase Auth, Local Notifications, SharedPreferences) — Designed to track education loans, EMIs, and bills.
+   GitHub: https://github.com/charan-kumar99/DueZy
+6. **Advanced Developer Portfolio** — Immersive Next.js/React portfolio featuring 3D visuals (Three.js, React Three Fiber), GSAP, WakaTime metrics, and GROQ/Gemini AI chat assistant.
+   GitHub: https://github.com/charan-kumar99/Advanced-Portfolio
+   Live: https://advanced-portfolio-sandy.vercel.app/
+7. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET 6 & .NET 8) — Proprietary (built at NTSIPL)
 
 CERTIFICATIONS & TRAINING
 - Fast-Track Internship — Data Analytics, Web Development & Python Projects | Accolade Tech Solutions, Mangaluru (August 2024)
@@ -1787,6 +1792,138 @@ document.addEventListener('click', e => {
                     ]
                 }
             ]
+        },
+        duezy: {
+            nodes: [
+                { icon: "📱", title: "Flutter App UI", sub: "Dashboard & Alerts" },
+                { icon: "🔐", title: "Firebase Auth", sub: "Anonymous Login" },
+                { icon: "☁️", title: "Firestore Service", sub: "Real-time Queries" },
+                { icon: "📂", title: "Local Cache", sub: "SharedPreferences" },
+                { icon: "🔔", title: "Notification Service", sub: "Local Push Scheduler" },
+                { icon: "🔄", title: "Status Sync", sub: "Real-time DB Rollover" }
+            ],
+            steps: [
+                {
+                    nodeName: "Flutter App UI",
+                    desc: "User launches DueZy. The app queries the local state and checks outstanding EMI payments on the glassmorphic dashboard.",
+                    logs: [
+                        "INFO - Launching DueZy App...",
+                        "DEBUG - Loading user profile context from SharedPreferences",
+                        "INFO - Building glassmorphic dashboard widgets..."
+                    ]
+                },
+                {
+                    nodeName: "Firebase Auth",
+                    desc: "Authenticates the user silently using Firebase Anonymous Authentication for secure, scoped database queries.",
+                    logs: [
+                        "INFO - Firebase Auth check initiated",
+                        "DEBUG - Checking cached credentials...",
+                        "SUCCESS - Logged in anonymously. User UID: uid_4091a92e"
+                    ]
+                },
+                {
+                    nodeName: "Firestore Service",
+                    desc: "Connects to Firestore via real-time streams to fetch updated bills and education loan EMI schedules.",
+                    logs: [
+                        "INFO - Subscribing to Firestore stream: /users/uid_4091a92e/reminders",
+                        "DEBUG - Database query: where('dayStart', '<=', now.day)",
+                        "SUCCESS - Fetched 3 reminders: Education Loan EMI (Due Day 15), Rent, Broadband."
+                    ]
+                },
+                {
+                    nodeName: "Local Cache",
+                    desc: "Caches reminders locally using SharedPreferences to support offline reading and instant app startups.",
+                    logs: [
+                        "INFO - Syncing Firestore results to local SharedPreferences cache",
+                        "DEBUG - Writing 3 records to local repository...",
+                        "SUCCESS - Offline cache synchronized successfully."
+                    ]
+                },
+                {
+                    nodeName: "Notification Service",
+                    desc: "Schedules localized reminders on the device using local notifications to alert user before the billing cycle ends.",
+                    logs: [
+                        "INFO - Evaluating notification queue",
+                        "DEBUG - Scheduling alarm for Education Loan EMI (ID: 1) on Day 14 at 09:00 AM",
+                        "SUCCESS - Local push notification registered with system alarm manager."
+                    ]
+                },
+                {
+                    nodeName: "Status Sync",
+                    desc: "Triggers dynamic rollover. Once user marks EMI as paid, the app updates Firestore and resets status for the next billing cycle.",
+                    logs: [
+                        "INFO - User clicked 'Mark Paid' on Education Loan EMI",
+                        "SQL - Firestore update: users/uid_4091a92e/reminders/edu_loan { isPaidThisCycle: true, updatedAt: Timestamp.now() }",
+                        "SUCCESS - Firestore sync complete. UI updated to show updated billing status."
+                    ]
+                }
+            ]
+        },
+        advportfolio: {
+            nodes: [
+                { icon: "🎨", title: "Next.js UI Node", sub: "React 3D Render" },
+                { icon: "🧊", title: "Three.js Engine", sub: "R3F / GSAP Scroll" },
+                { icon: "⚙️", title: "Stats Service", sub: "WakaTime & Git API" },
+                { icon: "💬", title: "GROQ Gateway", sub: "Primary AI Prompt" },
+                { icon: "🤖", title: "Gemini Sync", sub: "Fallback AI model" },
+                { icon: "📡", title: "Vercel Analytics", sub: "Telemetry Tracker" }
+            ],
+            steps: [
+                {
+                    nodeName: "Next.js UI Node",
+                    desc: "User requests page. Next.js App Router hydrates the responsive layout with TypeScript components.",
+                    logs: [
+                        "INFO - Client connection established",
+                        "DEBUG - Initializing Next.js 16 context in React 19...",
+                        "SUCCESS - UI elements rendered, initiating 3D viewport canvas."
+                    ]
+                },
+                {
+                    nodeName: "Three.js Engine",
+                    desc: "React Three Fiber loads WebGL meshes, lights, and binds scroll events via GSAP and Framer Motion.",
+                    logs: [
+                        "INFO - Creating WebGLRenderer context...",
+                        "DEBUG - Compiling Three.js shader pipelines",
+                        "SUCCESS - 3D scene loaded. Target FPS: 60 (Low Power check: Normal)"
+                    ]
+                },
+                {
+                    nodeName: "Stats Service",
+                    desc: "Queries the GitHub API and WakaTime endpoint to retrieve real-time coding hours and repository metrics.",
+                    logs: [
+                        "INFO - Querying api.wakatime.com/v1/users/current/stats",
+                        "DEBUG - Querying api.github.com/users/charan-kumar99",
+                        "SUCCESS - Coding activity retrieved: 1400+ total hours mapped."
+                    ]
+                },
+                {
+                    nodeName: "GROQ Gateway",
+                    desc: "User asks chatbot a question. GROQ gateway forwards query to the primary LLaMA model.",
+                    logs: [
+                        "INFO - Chat request received: 'tell me about Charan's .NET experience'",
+                        "DEBUG - Forwarding prompt to GROQ endpoint...",
+                        "SUCCESS - Response received in 180ms."
+                    ]
+                },
+                {
+                    nodeName: "Gemini Sync",
+                    desc: "If GROQ reaches quota limits, the backend triggers fallback to Google Gemini model for uninterrupted service.",
+                    logs: [
+                        "WARNING - GROQ primary client rate limited, switching to fallback...",
+                        "DEBUG - Invoking Gemini fallback model...",
+                        "SUCCESS - Gemini response completed successfully."
+                    ]
+                },
+                {
+                    nodeName: "Vercel Analytics",
+                    desc: "Pipes layout vitals and interaction clicks to Vercel telemetry backend for performance scoring.",
+                    logs: [
+                        "INFO - Dispatching performance metrics...",
+                        "DEBUG - FCP: 0.8s, LCP: 1.2s, CLS: 0.01",
+                        "SYSTEM - Flow completed. Session telemetry fully synced."
+                    ]
+                }
+            ]
         }
     };
 
@@ -2218,13 +2355,13 @@ document.addEventListener('click', e => {
         skills: `Charan Kumar's Developer Skill Stack:
   Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
   Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database
-  DevOps/Tools: Docker, Azure DevOps, Git, Postman, Swagger
-  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Chart.js`,
+  DevOps/Tools: Docker, Azure DevOps, Git, Postman, Swagger, Firebase, Razorpay
+  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Chart.js`,
 
         experience: `Professional History:
-  - .NET Developer @ AGREMATE Private Limited (Jun 2026 - Present)
+  - .NET Developer (Hybrid) @ AGREMATE Private Limited (Jun 2026 - Present)
     Building scalable backend REST APIs and automated property management workflows.
-  - Backend Intern @ NTSIPL (Dec 2025 - May 2026)
+  - Backend Intern (Onsite) @ NTSIPL (Dec 2025 - May 2026)
     Contributed to enterprise RTGS/NEFT Microservices payment processing networks.`,
 
         projects: `Featured Projects:
@@ -2232,14 +2369,17 @@ document.addEventListener('click', e => {
   2. Money Mate - Personal Finance Manager (Python, Flask, SQLAlchemy, Chart.js)
   3. Cricket Performance Analyzer - Sports Metrics Web App (ES6 JS, Chart.js)
   4. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS Speech API)
-  5. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
+  5. DueZy - Premium Flutter/Firebase Bill & EMI Reminder Mobile App
+  6. Advanced Developer Portfolio - Immersive Next.js/React portfolio with 3D elements
+  7. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
 
         contact: `Contact Details:
   - Email:      charansuvarna99@gmail.com
   - Phone:      +91 9380455922
   - Location:   Udupi, Karnataka, India
   - GitHub:     https://github.com/charan-kumar99
-  - LinkedIn:   https://www.linkedin.com/in/charan-kumar-9b20a8378`
+  - LinkedIn:   https://www.linkedin.com/in/charan-kumar-9b20a8378
+  - Advanced Portfolio: https://advanced-portfolio-sandy.vercel.app/`
     };
 
     // Print helper

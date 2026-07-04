@@ -905,7 +905,47 @@ html[data-theme="light"] .avatar-ambient-blob {
 .timeline-company {
     color: var(--accent);
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
+
+.work-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.work-badge.hybrid {
+    background: rgba(var(--primary-rgb), 0.1);
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    color: var(--primary);
+}
+
+.work-badge.onsite {
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    color: var(--accent);
+}
+
+.work-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.2);
+}
+
+.work-badge.onsite:hover {
+    box-shadow: 0 4px 10px rgba(var(--accent-rgb), 0.2);
+}
+
 
 .timeline-description {
     color: var(--gray);
