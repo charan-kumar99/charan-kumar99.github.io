@@ -206,6 +206,7 @@ const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar'
 You answer questions about Charan Kumar — his skills, projects, experience, education, and contact info.
 IMPORTANT: When someone asks about a technology, framework, or concept (e.g. "what is microservices?", "what is Blazor?", "what is REST API?"), ALWAYS start with how Charan specifically uses it in his work, then give a brief technical explanation. The context must be Charan's experience first, not a generic definition.
 Only decline questions that are completely unrelated to Charan or his tech stack (e.g. cooking recipes, politics, etc).
+Note: If asked about Redis, explicitly state that Charan uses Redis caching at his current company, AGREMATE, and clarify that he did not use it at NTSIPL.
 
 FORMATTING RULES — follow strictly:
 - Use **bold** (markdown asterisks) for important words: names, technologies, roles, dates, key facts.
@@ -228,7 +229,7 @@ Portfolio : https://charan-kumar99.github.io/
 Languages spoken: English, Hindi, Kannada, Tulu, Tamil (mother tongue is Tulu)
 
 PROFESSIONAL SUMMARY
-Versatile .NET Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, REST API development, Docker containerization, API versioning, globalization, and .NET version migration.
+Versatile .NET Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, Redis cache, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, SQL Server, and Redis, REST API development, Docker containerization, API versioning, globalization, and .NET version migration.
 
 EDUCATION
 - **MCA** — MIT, Jaipur (Online) — **Nov 2025 – Present**
@@ -245,14 +246,14 @@ WORK EXPERIENCE
   Developing RESTful APIs using **ASP.NET Core** with **Clean Architecture** patterns.
   Containerizing applications using **Docker** for consistent development, testing, and deployment.
   Implementing API documentation with **Swagger** (OpenAPI) for seamless frontend-backend integration.
-  Working with **SQL Server**, **Entity Framework Core**, and **Azure** cloud services for the multi-tenant platform.
+  Working with **SQL Server**, **Entity Framework Core**, **Redis** (caching layer), and **Azure** cloud services for the multi-tenant platform.
 - **.NET Developer (Onsite)** — Net Tech Services India Private Limited (NTSIPL) (**Dec 2025 – Jun 2026**)
   Development on RTGS/NEFT banking project for major Banks and Vendors using **Microservices Architecture**.
   Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.
   Contributed to CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems.
-  Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, SQL Server.
+  Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, and SQL Server.
   REST APIs, CRUD operations, API globalization, .NET version migration (6→8).
-  Testing, debugging, Azure DevOps deployment. Tools: Visual Studio 2022, Postman, DBeaver, FTP/SFTP.
+  Testing, debugging, Azure DevOps CI/CD deployment. Tools: Visual Studio 2022, Postman, DBeaver, FTP/SFTP.
 - **Trainee Developer (Onsite)** — NTSIPL (**Sep 2025 – Dec 2025**)
   Gained hands-on experience in ASP.NET Core enterprise development in the financial domain.
   Contributed features, resolved bugs, collaborated with senior developers.
@@ -260,9 +261,9 @@ WORK EXPERIENCE
 SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
 - Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**
-- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite
-- Tools       : **Azure DevOps**, GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**
-- API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, API Versioning, API Globalization, .NET Migration (6→8)
+- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**
+- Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**
+- API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**, API Versioning, API Globalization, .NET Migration (6→8)
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
 PROJECTS (in order)
@@ -301,7 +302,7 @@ AGREMATE (www.agremate.com) is India's smart property management platform by AGR
 - It bridges the gap between property and software with digital rental agreements, automated payments, community management, and a clean UI.
 - Built for **gated communities**, **PG owners**, and **individual landlords** across India.
 - Features include: AI-powered digital rental agreements, AutoPay rent collection, guard app, amenity management, community notice boards, finance reports, and 25+ features.
-- Charan works as a **.NET Developer** building the backend APIs using **Clean Architecture**, **Docker**, **Swagger**, **ASP.NET Core**, **SQL Server**, and **Entity Framework Core**.
+- Charan works as a **.NET Developer** building the backend APIs using **Clean Architecture**, **Docker**, **Swagger**, **ASP.NET Core**, **SQL Server**, **Entity Framework Core**, and **Redis** caching.
 
 MICROSERVICES EXPERTISE (from previous role at NTSIPL)
 Charan worked extensively with **Microservices Architecture** at NTSIPL.
@@ -311,7 +312,7 @@ Charan worked extensively with **Microservices Architecture** at NTSIPL.
 - Microservices were built using **ASP.NET Core (.NET 6 & .NET 8)** with **REST APIs** for inter-service communication.
 - Deployment was managed through **Azure DevOps** CI/CD pipelines for each microservice independently.
 
-CURRENT FOCUS: Building **scalable property management APIs** at **AGREMATE** using **Clean Architecture** & **Docker** while pursuing **MCA**.
+CURRENT FOCUS: Building **scalable property management APIs** at **AGREMATE** using **Clean Architecture**, **Docker**, and **Redis** caching while pursuing **MCA**.
 
 PORTFOLIO FEATURES & EASTER EGGS (Tell users about these if they ask about the website)
 - **Developer CLI Terminal**: There is a hidden matrix-style terminal drawer! Users can open it by clicking the 💻 icon in the top navbar or pressing the Backtick (\`) key. They can type commands like 'help', 'skills', 'projects', and 'contact' to interact with the site.
@@ -702,6 +703,7 @@ function toggleChat() {
 
 function newChat() {
     chatHistory = [];
+    localStorage.removeItem('chat_history');
     chatMessages.innerHTML = '';
     suggSetIndex++;          
     renderSuggestions();
@@ -712,6 +714,37 @@ function newChat() {
     chatInputEl.focus();
 }
 
+function saveChatHistory() {
+    localStorage.setItem('chat_history', JSON.stringify(chatHistory));
+}
+
+function loadChatHistory() {
+    const saved = localStorage.getItem('chat_history');
+    if (saved) {
+        try {
+            chatHistory = JSON.parse(saved);
+            chatMessages.innerHTML = '';
+            if (chatHistory.length === 0) {
+                renderSuggestions();
+                renderWelcome();
+            } else {
+                chatSuggEl.style.display = 'none'; // Hide suggestions if history exists
+                chatHistory.forEach(msg => {
+                    appendMessage(msg.role === 'assistant' ? 'bot' : 'user', msg.content);
+                });
+            }
+        } catch (e) {
+            console.error('Failed to parse chat history:', e);
+            chatHistory = [];
+            renderSuggestions();
+            renderWelcome();
+        }
+    } else {
+        renderSuggestions();
+        renderWelcome();
+    }
+}
+
 function escapeHtml(str) {
     return str
         .replace(/&/g, '&amp;')
@@ -720,6 +753,26 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;')
         .replace(/\n/g, '<br>');
 }
+
+window.copyCodeText = function(button) {
+    const wrapper = button.closest('.code-block-wrapper');
+    const code = wrapper.querySelector('code');
+    if (!code) return;
+    
+    const textToCopy = code.innerText || code.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        button.textContent = 'Copied!';
+        button.style.borderColor = 'var(--accent)';
+        button.style.color = 'var(--accent)';
+        setTimeout(() => {
+            button.textContent = 'Copy';
+            button.style.borderColor = '';
+            button.style.color = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy code:', err);
+    });
+};
 
 function formatBotMessage(text) {
     const lines = text.split('\n');
@@ -733,13 +786,13 @@ function formatBotMessage(text) {
 
         if (line.trim().startsWith('```')) {
             if (inCode) {
-                html += '</code></pre>';
+                html += '</code></pre><button class="code-copy-btn" onclick="copyCodeText(this)">Copy</button></div>';
                 inCode = false;
             } else {
                 if (inUl) { html += '</ul>'; inUl = false; }
                 if (inOl) { html += '</ol>'; inOl = false; }
                 const lang = line.replace('```', '').trim();
-                html += `<pre><code class="language-${lang || 'txt'}">`;
+                html += `<div class="code-block-wrapper"><pre><code class="language-${lang || 'txt'}">`;
                 inCode = true;
             }
             continue;
@@ -789,6 +842,7 @@ function formatBotMessage(text) {
 
     if (inUl) html += '</ul>';
     if (inOl) html += '</ol>';
+    if (inCode) html += '</code></pre><button class="code-copy-btn" onclick="copyCodeText(this)">Copy</button></div>';
 
     const cardsHtml = generateRichCardsHTML(text);
     if (cardsHtml) {
@@ -855,6 +909,7 @@ async function sendMessage() {
 
     appendMessage('user', text);
     chatHistory.push({ role: 'user', content: text });
+    saveChatHistory();
 
     isLoading = true;
     chatSendBtn.disabled = true;
@@ -896,6 +951,7 @@ async function sendMessage() {
         hideTyping();
         appendMessage('bot', reply);
         chatHistory.push({ role: 'assistant', content: reply });
+        saveChatHistory();
         speakText(reply);
 
     } catch (err) {
@@ -1390,7 +1446,9 @@ document.addEventListener('click', e => {
         'Oracle Database': '#F80000',
         'SQL Server': '#CC2927',
         'SQLite': '#44A8D6',
+        'Redis': '#DC382D',
         'Azure DevOps': '#0078D7',
+        'CI/CD Pipelines': '#00F5FF',
         'GitHub': '#6e7681',
         'Visual Studio 2022': '#5C2D91',
         'VS Code': '#007ACC',
@@ -1399,6 +1457,12 @@ document.addEventListener('click', e => {
         'FTP / SFTP': '#00D4FF',
         'Docker': '#2496ED',
         'Swagger': '#85EA2D',
+        'Firebase': '#FFCA28',
+        'Razorpay': '#1075F3',
+        'Vercel Serverless': '#000000',
+        'localStorage': '#FF9900',
+        'Web Speech API': '#10B981',
+        'HTML5 Canvas': '#E34F26',
         'REST APIs': '#00D4FF',
         'Microservices Architecture': '#00D4FF',
         'Clean Architecture': '#10B981',
@@ -2031,6 +2095,7 @@ document.addEventListener('click', e => {
 
             path.setAttribute('d', d);
             const isActiveSegment = currentStep > i;
+            path.setAttribute('id', `sim-path-${activeFlow}-${i}`);
             path.setAttribute('class', `sim-svg-path path-seg-${i} ${isActiveSegment ? 'active' : ''}`);
             svg.appendChild(path);
         }
@@ -2056,6 +2121,41 @@ document.addEventListener('click', e => {
         packet.classList.add('active');
         packet.style.left = `${x}px`;
         packet.style.top = `${y}px`;
+    }
+
+    // Shoot animated glowing particle along a curved SVG path
+    function shootPathParticle(fromIdx) {
+        const path = svg.querySelector(`.path-seg-${fromIdx}`);
+        if (!path) return;
+
+        const pathId = path.getAttribute('id');
+        if (!pathId) return;
+
+        // Create particle element (SVG circle)
+        const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        particle.setAttribute('r', '6');
+        particle.setAttribute('fill', 'var(--accent)');
+        particle.setAttribute('style', 'filter: drop-shadow(0 0 6px var(--accent)); pointer-events: none;');
+
+        // Create animateMotion
+        const anim = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+        anim.setAttribute('dur', '0.75s');
+        anim.setAttribute('repeatCount', '1');
+        anim.setAttribute('fill', 'freeze');
+
+        // Create mpath child targeting the path ID
+        const mpath = document.createElementNS('http://www.w3.org/2000/svg', 'mpath');
+        mpath.setAttribute('href', `#${pathId}`);
+        mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `#${pathId}`);
+
+        anim.appendChild(mpath);
+        particle.appendChild(anim);
+        svg.appendChild(particle);
+
+        // Auto-remove particle after animation ends
+        setTimeout(() => {
+            particle.remove();
+        }, 800);
     }
 
     // Execute step
@@ -2099,6 +2199,7 @@ document.addEventListener('click', e => {
             positionPacket(0, false);
         } else {
             positionPacket(currentStep, true);
+            shootPathParticle(prevStep);
         }
 
         // Update Panel details
@@ -2345,17 +2446,19 @@ document.addEventListener('click', e => {
     // Command responses
     const commandResponses = {
         help: `Available commands:
-  help        - Show this list of available commands
-  skills      - Print my current developer skill stack
-  experience  - Show professional history overview
-  projects    - Show key featured projects
-  contact     - Display contact options
-  clear       - Clear terminal lines`,
+  help         - Show this list of available commands
+  skills       - Print my current developer skill stack
+  experience   - Show professional history overview
+  projects     - Show key featured projects
+  contact      - Display contact options
+  theme [name] - Change color theme (dark, cyberpunk, emerald, light)
+  neofetch     - Show system specs & profile overview
+  clear        - Clear terminal lines`,
 
         skills: `Charan Kumar's Developer Skill Stack:
   Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
-  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database
-  DevOps/Tools: Docker, Azure DevOps, Git, Postman, Swagger, Firebase, Razorpay
+  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database, Redis
+  DevOps/Tools: Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Razorpay, Vercel Serverless, localStorage, Web Speech API, HTML5 Canvas
   Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Chart.js`,
 
         experience: `Professional History:
@@ -2394,11 +2497,53 @@ document.addEventListener('click', e => {
         }
     }
 
-    // Handle command entry
+    // CLI History, Tab Autocomplete and Custom Command Handler
+    const commandHistory = [];
+    let historyIndex = -1;
+    const availableCommands = ['help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'];
+
     actualInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+        // Tab Auto-completion
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const inputVal = actualInput.value.trim().toLowerCase();
+            if (!inputVal) return;
+            const matches = availableCommands.filter(cmd => cmd.startsWith(inputVal));
+            if (matches.length > 0) {
+                actualInput.value = matches[0];
+                dummyInput.textContent = matches[0];
+            }
+        }
+        
+        // Command History: Up Arrow
+        else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (commandHistory.length > 0 && historyIndex > 0) {
+                historyIndex--;
+                actualInput.value = commandHistory[historyIndex];
+                dummyInput.textContent = commandHistory[historyIndex];
+            }
+        }
+        
+        // Command History: Down Arrow
+        else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                actualInput.value = commandHistory[historyIndex];
+                dummyInput.textContent = commandHistory[historyIndex];
+            } else {
+                historyIndex = commandHistory.length;
+                actualInput.value = '';
+                dummyInput.textContent = '';
+            }
+        }
+        
+        // Command Execution
+        else if (e.key === 'Enter') {
             const rawVal = actualInput.value;
-            const command = rawVal.trim().toLowerCase();
+            const command = rawVal.trim();
+            const lowerCommand = command.toLowerCase();
             actualInput.value = '';
             dummyInput.textContent = '';
 
@@ -2409,7 +2554,11 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            if (command === 'clear') {
+            // Save to history
+            commandHistory.push(rawVal);
+            historyIndex = commandHistory.length;
+
+            if (lowerCommand === 'clear') {
                 outputLog.innerHTML = '';
                 appendTerminalLine("Welcome to Charan's Interactive CLI! [v1.0.0]", "system");
                 appendTerminalLine("Type 'help' to see all available commands. Press ` (backtick) or click the nav button to toggle.", "system");
@@ -2419,7 +2568,55 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            const response = commandResponses[command];
+            // Theme custom command handler
+            if (lowerCommand.startsWith('theme')) {
+                const parts = command.split(/\s+/);
+                if (parts.length < 2) {
+                    appendTerminalLine("Usage: theme [name]");
+                    appendTerminalLine("Available themes: dark (Neo-Cyan), cyberpunk, emerald, light (Light Pro)");
+                } else {
+                    const themeName = parts[1].toLowerCase();
+                    if (['dark', 'cyberpunk', 'emerald', 'light'].includes(themeName)) {
+                        if (typeof applyPalette === 'function') {
+                            applyPalette(themeName);
+                            appendTerminalLine(`Successfully switched theme to '${themeName}'!`, 'success');
+                        } else {
+                            appendTerminalLine("Error: Theme changer not available.", 'error');
+                        }
+                    } else {
+                        appendTerminalLine(`Unknown theme: '${themeName}'. Available: dark, cyberpunk, emerald, light`, 'error');
+                    }
+                }
+                appendTerminalLine('', 'spacer');
+                return;
+            }
+
+            // Neofetch custom command handler
+            if (lowerCommand === 'neofetch') {
+                const uptimeSeconds = Math.floor(performance.now() / 1000);
+                const mins = Math.floor(uptimeSeconds / 60);
+                const secs = uptimeSeconds % 60;
+                const uptimeStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+
+                const neofetchText = `         .----.         charan@portfolio
+       .'      '.       ----------------
+      /          \\      OS: Portfolio Web CLI v1.0.0
+     |   .----.   |     Host: charan-kumar99.github.io
+    |   /      \\   |    Kernel: Vanilla JS / HTML5 / CSS3
+    |  |   .NET |  |    Uptime: ${uptimeStr}
+    |   \\      /   |    Shell: Charan's Custom JS CLI
+     |   '----'   |     Education: MCA Student @ MIT Jaipur
+      \\          /      Role: .NET & Full-Stack Developer
+       '.      .'       Backend: C# / ASP.NET Core / EF Core
+         '----'         Databases: SQL Server / PostgreSQL
+                        DevOps: Azure DevOps / Docker / CI-CD`;
+                
+                appendTerminalLine(neofetchText);
+                appendTerminalLine('', 'spacer');
+                return;
+            }
+
+            const response = commandResponses[lowerCommand];
             if (response) {
                 appendTerminalLine(response);
             } else {
@@ -2430,6 +2627,13 @@ document.addEventListener('click', e => {
             appendTerminalLine('', 'spacer');
         }
     });
+})();
+
+// Initialize chat history persistence on load
+(function() {
+    if (typeof loadChatHistory === 'function') {
+        loadChatHistory();
+    }
 })();
 
 

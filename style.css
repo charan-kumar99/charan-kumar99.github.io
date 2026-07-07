@@ -3199,7 +3199,10 @@ html[data-theme="emerald"] .chat-avatar-status {
 }
 
 .sim-svg-path.active {
-    stroke: rgba(var(--accent-rgb), 0.4);
+    stroke: var(--accent);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 4px var(--accent));
+    animation: dashOffset 8s linear infinite;
 }
 
 @keyframes dashOffset {
@@ -3876,4 +3879,50 @@ html[data-theme="light"] .sim-tab.active {
     background: linear-gradient(90deg, var(--primary), var(--accent));
     z-index: 9999;
     transition: width 0.1s ease-out;
+}
+
+/* Code block styling with copy button */
+.code-block-wrapper {
+    position: relative;
+    margin: 0.8rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: var(--light);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.code-copy-btn:hover {
+    background: rgba(var(--primary-rgb), 0.15);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.25);
+}
+
+/* Light mode overrides */
+html[data-theme="light"] .code-copy-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.12);
+    color: var(--light);
+}
+
+html[data-theme="light"] .code-copy-btn:hover {
+    background: rgba(var(--primary-rgb), 0.08);
+    border-color: var(--primary);
+    color: var(--primary);
 }
