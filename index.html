@@ -1485,40 +1485,44 @@
         </div>
     </div>
 
-    <!-- Floating Resume Generator Trigger Pill -->
-    <button class="floating-resume-pill" id="floatingResumeBtn" aria-label="Tailored Resume Generator">
+    <!-- Floating Resume Generator Circular Pill -->
+    <button class="floating-resume-pill" id="floatingResumeBtn" aria-label="Generate Resume" title="Generate Resume">
         <span class="pill-icon">✨</span>
-        <span class="pill-text">Tailored Resume</span>
+        <span class="pill-text">Generate Resume</span>
     </button>
 
     <!-- Tailored Resume Modal -->
     <div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle">
         <div class="resume-modal-container">
             <button class="resume-modal-close" id="closeResumeModal" aria-label="Close modal">&times;</button>
-            <h3 class="resume-modal-title" id="resumeModalTitle">✨ Tailored Resume Generator</h3>
-            <p class="resume-modal-subtitle">Paste a job description below. We will match it against Charan's actual experience and projects to generate a clean, ATS-compliant PDF resume.</p>
+            <h3 class="resume-modal-title" id="resumeModalTitle">
+                <span class="modal-title-emoji">✨</span><span class="modal-title-text">Match &amp; Generate Resume</span>
+            </h3>
+            <p class="resume-modal-subtitle">Paste a job description below — we'll match it against Charan's skills and experience to generate a clean, ATS-friendly resume.</p>
             
             <div class="resume-modal-body">
                 <div class="input-group">
                     <label for="jobDescriptionInput" class="input-label">Job Description / Requirements</label>
-                    <textarea id="jobDescriptionInput" class="resume-textarea" placeholder="Paste the job description or role requirements here..."></textarea>
+                    <textarea id="jobDescriptionInput" class="resume-textarea" placeholder="Paste job description or requirements here..."></textarea>
                 </div>
                 
                 <div class="ai-toggle-wrapper">
+                    <div class="ai-toggle-text">
+                        <span class="ai-toggle-title">Enhance phrasing with AI</span>
+                        <span class="ai-toggle-desc">Rewords bullets to match job keywords — no new claims added.</span>
+                    </div>
                     <label class="switch-container">
-                        <input type="checkbox" id="aiEnhanceToggle">
+                        <input type="checkbox" id="aiEnhanceToggle" checked>
                         <span class="switch-slider"></span>
                     </label>
-                    <div class="ai-toggle-text">
-                        <span class="ai-toggle-title">Enhance phrasing with AI (Gemini Free)</span>
-                        <span class="ai-toggle-desc">Slightly rephrases selected bullets to match JD keywords (no new claims/hallucinations).</span>
-                    </div>
                 </div>
             </div>
             
             <div class="resume-modal-footer">
-                <button class="btn btn-secondary" id="cancelResumeBtn">Cancel</button>
-                <button class="btn btn-primary" id="generateResumeBtn"><span>Generate &amp; Download</span></button>
+                <button class="btn btn-secondary modal-btn-cancel" id="cancelResumeBtn">Cancel</button>
+                <button class="btn btn-primary modal-btn-generate" id="generateResumeBtn">
+                    <span>⚡ Generate &amp; Download</span>
+                </button>
             </div>
 
             <!-- Loading Overlay -->

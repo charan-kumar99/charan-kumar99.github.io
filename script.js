@@ -2875,8 +2875,6 @@ document.addEventListener('click', e => {
             });
             return { project: proj, score, originalIndex: index };
         });
-
-        // Sort projects by score desc
         scoredProjects.sort((a, b) => {
             if (b.score !== a.score) return b.score - a.score;
             return a.originalIndex - b.originalIndex;
@@ -2891,231 +2889,396 @@ document.addEventListener('click', e => {
         return result;
     }
 
-    // 7. Client-Side jsPDF Generator
+    // 7. Client-Side jsPDF Generator (Matches User's Exact Serif Template with Clickable Links)
     function generatePdfResume(data, filenameRole) {
         // Create document: portrait, points, letter (612pt x 792pt)
         const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
         
-        let currentY = 30;
-        const marginX = 30;
+        let currentY = 36;
+        const marginX = 36;
         const pageWidth = 612;
         const pageHeight = 792;
-        const printableWidth = 552;
+        const printableWidth = 540;
 
         function checkPageSpace(heightNeeded) {
-            if (currentY + heightNeeded > pageHeight - 30) {
+            if (currentY + heightNeeded > pageHeight - 36) {
                 doc.addPage();
-                currentY = 30;
+                currentY = 36;
             }
         }
 
-        // --- TITLE BLOCK ---
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(18);
-        doc.setTextColor(15, 23, 42); // Navy Dark
-        doc.text(data.personal.name, pageWidth / 2, currentY, { align: 'center' });
+        function drawClickableLink(text, url, x, y, options = {}) {
+            doc.text(text, x, y, options);
+            const textWidth = doc.getTextWidth(text);
+            let startX = x;
+            if (options.align === 'center') {
+                startX = x - textWidth / 2;
+            } else if (options.align === 'right') {
+                startX = x - textWidth;
+            }
+            const fontSize = doc.getFontSize();
+            doc.link(startX, y - fontSize + 2, textWidth, fontSize + 2, { url: url });
+            return textWidth;
+        }
+
+        // --- TITLE / HEADER BLOCK ---
+        doc.setFont('times', 'bold');
+        doc.setFontSize(22);
+        doc.setTextColor(0, 0, 0);
+        doc.text("CHARAN KUMAR", pageWidth / 2, currentY, { align: 'center' });
         currentY += 16;
 
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(10.5);
-        doc.setTextColor(70, 80, 95);
-        doc.text(data.personal.title, pageWidth / 2, currentY, { align: 'center' });
+        doc.setFont('times', 'italic');
+        doc.setFontSize(11);
+        doc.setTextColor(40, 40, 40);
+        doc.text("Developer", pageWidth / 2, currentY, { align: 'center' });
+        currentY += 16;
+
+        // Vector Icon Drawing Helpers (100% Crisp Vector Graphics - No Garbled Emoji Text)
+        function drawEnvelope(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.6);
+            doc.rect(x, y - 6.5, 9, 6.5);
+            doc.line(x, y - 6.5, x + 4.5, y - 3);
+            doc.line(x + 4.5, y - 3, x + 9, y - 6.5);
+        }
+
+        function drawPhone(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.75);
+            doc.line(x + 1, y - 7, x + 3.5, y - 7);
+            doc.line(x + 3.5, y - 7, x + 3.5, y - 4.5);
+            doc.line(x + 3.5, y - 4.5, x + 5.5, y - 2.5);
+            doc.line(x + 5.5, y - 2.5, x + 7.5, y - 2.5);
+            doc.line(x + 7.5, y - 2.5, x + 7.5, y);
+        }
+
+        function drawPin(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.6);
+            doc.circle(x + 3.5, y - 4.5, 2.5);
+            doc.line(x + 3.5, y - 2, x + 3.5, y);
+        }
+
+        function drawLinkedInBox(x, y) {
+            doc.setFillColor(0, 0, 0);
+            doc.rect(x, y - 7, 7.5, 7.5, 'F');
+            doc.setFont('times', 'bold');
+            doc.setFontSize(6);
+            doc.setTextColor(255, 255, 255);
+            doc.text("in", x + 1.2, y - 1.2);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont('times', 'normal');
+            doc.setFontSize(9);
+        }
+
+        function drawGitIcon(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.75);
+            doc.circle(x + 4, y - 4, 3);
+            doc.circle(x + 4, y - 4, 1);
+        }
+
+        function drawLinkChain(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.75);
+            doc.line(x, y - 4, x + 7, y - 4);
+            doc.circle(x + 2, y - 4, 1.8);
+            doc.circle(x + 5, y - 4, 1.8);
+        }
+
+        // Contact info row 1: email, phone, location, LinkedIn
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+
+        const emailStr = "charansuvarna99@gmail.com";
+        const phoneStr = "+91 9380455922";
+        const locStr = "Udupi, Karnataka, India";
+        const liStr = "LinkedIn";
+        const sep = "    ";
+        const iconGap = 12;
+
+        const w1 = iconGap + doc.getTextWidth(emailStr);
+        const w2 = iconGap + doc.getTextWidth(phoneStr);
+        const w3 = iconGap + doc.getTextWidth(locStr);
+        const w4 = iconGap + doc.getTextWidth(liStr);
+        const wSep = doc.getTextWidth(sep);
+
+        const totalRow1W = w1 + wSep + w2 + wSep + w3 + wSep + w4;
+        let startX1 = (pageWidth - totalRow1W) / 2;
+
+        // Mail
+        drawEnvelope(startX1, currentY);
+        drawClickableLink(emailStr, "mailto:charansuvarna99@gmail.com", startX1 + iconGap, currentY);
+        startX1 += w1;
+        doc.text(sep, startX1, currentY);
+        startX1 += wSep;
+
+        // Phone
+        drawPhone(startX1, currentY);
+        drawClickableLink(phoneStr, "tel:+919380455922", startX1 + iconGap, currentY);
+        startX1 += w2;
+        doc.text(sep, startX1, currentY);
+        startX1 += wSep;
+
+        // Location
+        drawPin(startX1, currentY);
+        doc.text(locStr, startX1 + iconGap, currentY);
+        startX1 += w3;
+        doc.text(sep, startX1, currentY);
+        startX1 += wSep;
+
+        // LinkedIn
+        drawLinkedInBox(startX1, currentY);
+        drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar-9b20a8378", startX1 + iconGap, currentY);
         currentY += 14;
 
-        // Contact info line
-        const contactLine = `${data.personal.email}   |   ${data.personal.phone}   |   ${data.personal.location}`;
-        const linksLine = `LinkedIn: linkedin.com/in/charan-kumar-9b20a8378   |   GitHub: github.com/charan-kumar99`;
-        
-        doc.setFontSize(8.5);
-        doc.setTextColor(80, 80, 80);
-        doc.text(contactLine, pageWidth / 2, currentY, { align: 'center' });
-        currentY += 12;
-        doc.text(linksLine, pageWidth / 2, currentY, { align: 'center' });
-        currentY += 16;
+        // Contact info row 2: GitHub, Portfolio
+        const ghStr = "GitHub";
+        const portStr = "Portfolio";
+        const wGh = iconGap + doc.getTextWidth(ghStr);
+        const wPort = iconGap + doc.getTextWidth(portStr);
+        const totalRow2W = wGh + wSep + wPort;
+        let startX2 = (pageWidth - totalRow2W) / 2;
 
-        // Divider
-        doc.setLineWidth(0.75);
-        doc.setDrawColor(180, 190, 200);
-        doc.line(marginX, currentY, pageWidth - marginX, currentY);
-        currentY += 12;
+        drawGitIcon(startX2, currentY);
+        drawClickableLink(ghStr, "https://github.com/charan-kumar99", startX2 + iconGap, currentY);
+        startX2 += wGh;
+        doc.text(sep, startX2, currentY);
+        startX2 += wSep;
+
+        drawLinkChain(startX2, currentY);
+        drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2 + iconGap, currentY);
+        currentY += 18;
 
         // --- PROFESSIONAL SUMMARY ---
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(10);
-        doc.setTextColor(15, 23, 42);
-        doc.text("PROFESSIONAL SUMMARY", marginX, currentY);
-        currentY += 6;
+        drawSectionHeader("PROFESSIONAL SUMMARY");
 
-        doc.setFont('helvetica', 'normal');
+        doc.setFont('times', 'normal');
         doc.setFontSize(9);
-        doc.setTextColor(60, 60, 60);
+        doc.setTextColor(20, 20, 20);
         
-        const summaryText = data.summaryVariants.default;
+        const summaryText = ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.";
         const wrappedSummary = doc.splitTextToSize(summaryText, printableWidth);
         wrappedSummary.forEach(line => {
+            checkPageSpace(11.5);
             doc.text(line, marginX, currentY);
-            currentY += 11;
+            currentY += 11.5;
         });
         currentY += 4;
 
-        // --- SKILLS & TECHNOLOGIES ---
-        drawSectionHeader("SKILLS & TECHNOLOGIES");
-        
-        const skillsFormat = [
-            { label: "Languages: ", list: data.skills.languages.slice(0, 7).join(", ") },
-            { label: "Frameworks/Libraries: ", list: data.skills.frameworks.slice(0, 7).join(", ") },
-            { label: "Databases: ", list: data.skills.databases.slice(0, 5).join(", ") },
-            { label: "Tools/Architecture: ", list: data.skills.tools.slice(0, 8).join(", ") }
-        ];
-
-        skillsFormat.forEach(skillLine => {
-            checkPageSpace(12);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(8.5);
-            doc.setTextColor(15, 23, 42);
-            doc.text(skillLine.label, marginX, currentY);
-            
-            const labelWidth = doc.getTextWidth(skillLine.label);
-            doc.setFont('helvetica', 'normal');
-            doc.setTextColor(60, 60, 60);
-            
-            const wrappedList = doc.splitTextToSize(skillLine.list, printableWidth - labelWidth);
-            wrappedList.forEach((line, index) => {
-                if (index === 0) {
-                    doc.text(line, marginX + labelWidth, currentY);
-                } else {
-                    currentY += 10;
-                    checkPageSpace(10);
-                    doc.text(line, marginX + labelWidth, currentY);
-                }
-            });
-            currentY += 11;
-        });
-        currentY += 3;
+        // --- KEY HIGHLIGHTS ---
+        drawSectionHeader("KEY HIGHLIGHTS");
+        drawBulletPoint("1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)");
+        drawBulletPoint("Built microservices-based applications serving multiple banks");
+        drawBulletPoint("Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics");
+        drawBulletPoint("Strong full-stack expertise in ASP.NET Core, React, and SQL");
+        currentY += 4;
 
         // --- WORK EXPERIENCE ---
         drawSectionHeader("WORK EXPERIENCE");
 
         data.experience.forEach(job => {
-            // Draw header line
-            checkPageSpace(26);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(9.5);
-            doc.setTextColor(15, 23, 42);
-            doc.text(`${job.role}  –  ${job.company}`, marginX, currentY);
+            checkPageSpace(28);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(job.role, marginX, currentY);
             
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(8.5);
-            doc.setTextColor(80, 80, 80);
-            const datesLoc = `${job.dates}  |  ${job.location}`;
-            const rightWidth = doc.getTextWidth(datesLoc);
-            doc.text(datesLoc, pageWidth - marginX - rightWidth, currentY);
-            
-            currentY += 11;
+            doc.setFont('times', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(50, 50, 50);
+            const dateStr = job.dates || "";
+            const rightWidth = doc.getTextWidth(dateStr);
+            doc.text(dateStr, pageWidth - marginX - rightWidth, currentY);
+            currentY += 12;
 
-            // Draw bullets
+            doc.setFont('times', 'bold');
+            doc.setFontSize(9.5);
+            doc.setTextColor(0, 0, 0);
+            doc.text(job.company, marginX, currentY);
+            currentY += 12;
+
             job.bullets.forEach(bullet => {
                 drawBulletPoint(bullet.text);
             });
-            currentY += 4;
-        });
-
-        // --- FEATURED PROJECTS ---
-        drawSectionHeader("FEATURED PROJECTS");
-
-        data.projects.forEach(project => {
-            checkPageSpace(26);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(9.5);
-            doc.setTextColor(15, 23, 42);
-            doc.text(project.name, marginX, currentY);
-            
-            const techStr = `Tech Stack: ${project.techStack.join(", ")}`;
-            doc.setFont('helvetica', 'italic');
-            doc.setFontSize(8);
-            doc.setTextColor(80, 80, 80);
-            const techWidth = doc.getTextWidth(techStr);
-            doc.text(techStr, pageWidth - marginX - techWidth, currentY);
-            currentY += 11;
-
-            project.bullets.forEach(bullet => {
-                drawBulletPoint(bullet.text);
-            });
-            currentY += 4;
+            currentY += 5;
         });
 
         // --- EDUCATION ---
         drawSectionHeader("EDUCATION");
 
-        data.education.forEach(edu => {
-            checkPageSpace(20);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(9.5);
-            doc.setTextColor(15, 23, 42);
-            doc.text(edu.degree, marginX, currentY);
+        // MCA
+        checkPageSpace(24);
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Master of Computer Applications (MCA)", marginX, currentY);
+        
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(50, 50, 50);
+        const mcaDate = "Nov 2025 – Present";
+        doc.text(mcaDate, pageWidth - marginX - doc.getTextWidth(mcaDate), currentY);
+        currentY += 12;
+
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(30, 30, 30);
+        doc.text("MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.", marginX, currentY);
+        currentY += 15;
+
+        // BCA
+        checkPageSpace(32);
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Bachelor of Computer Applications (BCA)", marginX, currentY);
+        
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(50, 50, 50);
+        const bcaDate = "Sep 2022 – Jun 2025";
+        doc.text(bcaDate, pageWidth - marginX - doc.getTextWidth(bcaDate), currentY);
+        currentY += 12;
+
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(30, 30, 30);
+        doc.text("Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |", marginX, currentY);
+        currentY += 12;
+
+        doc.setFont('times', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        const labelAddon = "Add-on Courses: ";
+        doc.text(labelAddon, marginX, currentY);
+
+        doc.setFont('times', 'normal');
+        doc.setTextColor(30, 30, 30);
+        doc.text("Cybersecurity, Artificial Intelligence & Big Data Analytics.", marginX + doc.getTextWidth(labelAddon), currentY);
+        currentY += 8;
+
+        // --- SKILLS ---
+        drawSectionHeader("SKILLS");
+
+        const skillsFormat = [
+            { label: "Languages:", list: data.skills && data.skills.languages ? data.skills.languages.join(", ") : "C#, Java, JavaScript, C, HTML5, CSS3, Dart, Python" },
+            { label: "Frameworks:", list: data.skills && data.skills.frameworks ? data.skills.frameworks.join(", ") : "ASP.NET Core, Flutter, Blazor, React, Flask" },
+            { label: "Databases:", list: data.skills && data.skills.databases ? data.skills.databases.join(", ") : "PostgreSQL, MySQL, Oracle, SQL Server, Firebase" },
+            { label: "Tools:", list: data.skills && data.skills.tools ? data.skills.tools.slice(0, 10).join(", ") : "Azure DevOps, GitHub, Postman, DBeaver" },
+            { label: "Concepts:", list: "Microservices, REST APIs, API Versioning, System Design" }
+        ];
+
+        skillsFormat.forEach(skillLine => {
+            checkPageSpace(13);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            const labelText = skillLine.label + " ";
+            doc.text(labelText, marginX, currentY);
             
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(8.5);
-            doc.setTextColor(80, 80, 80);
-            const dateInst = `${edu.institution}  |  ${edu.dates}`;
-            const rightWidth = doc.getTextWidth(dateInst);
-            doc.text(dateInst, pageWidth - marginX - rightWidth, currentY);
+            const labelW = doc.getTextWidth(labelText);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(30, 30, 30);
+            doc.text(skillLine.list, marginX + labelW, currentY);
+            currentY += 12;
+        });
+        currentY += 4;
+
+        // --- PROJECTS ---
+        drawSectionHeader("PROJECTS");
+
+        data.projects.slice(0, 3).forEach(project => {
+            checkPageSpace(26);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(project.name, marginX, currentY);
+            currentY += 12;
             
-            currentY += 10;
-            const wrappedDetails = doc.splitTextToSize(edu.details, printableWidth);
-            wrappedDetails.forEach(line => {
-                checkPageSpace(10);
-                doc.text(line, marginX, currentY);
-                currentY += 10;
+            doc.setFont('times', 'bold');
+            doc.setFontSize(9);
+            const techLabel = "Tech: ";
+            doc.text(techLabel, marginX, currentY);
+            
+            doc.setFont('times', 'normal');
+            doc.setTextColor(40, 40, 40);
+            const techText = project.techStack.join(", ");
+            doc.text(techText, marginX + doc.getTextWidth(techLabel), currentY);
+            currentY += 12;
+
+            project.bullets.forEach(bullet => {
+                drawBulletPoint(bullet.text);
             });
-            currentY += 3;
+
+            if (project.links && project.links.github) {
+                checkPageSpace(12);
+                doc.setFont('times', 'bold');
+                doc.setFontSize(9);
+                doc.setTextColor(0, 0, 0);
+                const ghLabel = "GitHub: ";
+                doc.text(ghLabel, marginX, currentY);
+                
+                const labelW = doc.getTextWidth(ghLabel);
+                doc.setFont('times', 'normal');
+                doc.setTextColor(30, 30, 30);
+                drawClickableLink(project.links.github, project.links.github, marginX + labelW, currentY);
+                currentY += 12;
+            }
+            currentY += 4;
         });
 
-        // --- CERTIFICATIONS ---
-        drawSectionHeader("CERTIFICATIONS");
-        
-        data.certifications.forEach(cert => {
-            checkPageSpace(12);
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(8.5);
-            doc.setTextColor(15, 23, 42);
-            doc.text("•  " + cert.name, marginX + 5, currentY);
-            
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(8);
-            doc.setTextColor(80, 80, 80);
-            const dateStr = `${cert.issuer}  (${cert.date})`;
-            const rightWidth = doc.getTextWidth(dateStr);
-            doc.text(dateStr, pageWidth - marginX - rightWidth, currentY);
-            currentY += 10;
-        });
+        // --- CERTIFICATIONS & TRAINING ---
+        drawSectionHeader("CERTIFICATIONS & TRAINING");
+        drawBulletPoint("Data Analytics & Web Dev Internship – Accolade Tech Solutions (2024)");
+        drawBulletPoint("Cybersecurity & AI Training – Mangalore University (2024)");
+        drawBulletPoint("NCC 'A' Certificate");
+        currentY += 4;
+
+        // --- ACHIEVEMENTS ---
+        drawSectionHeader("ACHIEVEMENTS");
+        drawBulletPoint("Best Cadet Award – National Cadet Corps (NCC)");
+        drawBulletPoint("Served as Head Cadet leading school NCC unit");
+        drawBulletPoint("District-level player in Cricket and Volleyball");
+        currentY += 4;
+
+        // --- LANGUAGES ---
+        drawSectionHeader("LANGUAGES");
+        checkPageSpace(13);
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(20, 20, 20);
+        doc.text("English, Hindi, Kannada, Tulu", marginX, currentY);
+        currentY += 12;
 
         // Helper: Section Divider Line
         function drawSectionHeader(title) {
-            checkPageSpace(25);
-            currentY += 8;
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(10);
-            doc.setTextColor(15, 23, 42);
+            checkPageSpace(26);
+            currentY += 6;
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10.5);
+            doc.setTextColor(0, 0, 0);
             doc.text(title, marginX, currentY);
             
             currentY += 3;
-            doc.setLineWidth(0.5);
-            doc.setDrawColor(200, 210, 220);
+            doc.setLineWidth(0.75);
+            doc.setDrawColor(0, 0, 0);
             doc.line(marginX, currentY, pageWidth - marginX, currentY);
-            currentY += 10;
+            currentY += 13;
         }
 
         // Helper: Bullet point wrapper
         function drawBulletPoint(text) {
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(8.5);
-            doc.setTextColor(60, 60, 60);
+            doc.setFont('times', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(20, 20, 20);
             
             const bulletSymbol = "•";
-            const indent = 10;
+            const indent = 12;
             const wrappedLines = doc.splitTextToSize(text, printableWidth - indent);
-            const lineHeight = 10.5;
+            const lineHeight = 11.5;
             const heightNeeded = wrappedLines.length * lineHeight;
             
             checkPageSpace(heightNeeded);
@@ -3139,7 +3302,7 @@ document.addEventListener('click', e => {
             sanitizedRole = "NET_Developer";
         }
 
-        const filename = `Charan_Kumar_Resume_${sanitizedRole}.pdf`;
+        const filename = "Charan_Kumar_Resume.pdf";
 
         // Save file using jsPDF built-in save (bypasses Chrome's Blob URL UUID naming bug)
         try {
@@ -3183,6 +3346,7 @@ document.addEventListener('click', e => {
         const openModal = async (e) => {
             e.preventDefault();
             generateBtn.disabled = false;
+            if (aiToggle) aiToggle.checked = true;
             
             resumeModal.classList.add("open");
             jdInput.focus();
