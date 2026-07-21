@@ -3141,27 +3141,30 @@ document.addEventListener('click', e => {
 
         const filename = `Charan_Kumar_Resume_${sanitizedRole}.pdf`;
 
-        // Output as Blob and trigger standard HTML5 anchor download for explicit .pdf extension
-        const blob = doc.output('blob');
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = blobUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-
-        setTimeout(() => {
-            if (document.body.contains(a)) {
-                document.body.removeChild(a);
-            }
-            URL.revokeObjectURL(blobUrl);
-        }, 1000);
+        // Save file using jsPDF built-in save (bypasses Chrome's Blob URL UUID naming bug)
+        try {
+            doc.save(filename);
+        } catch (e) {
+            console.warn("jsPDF doc.save failed, falling back to Data URI download:", e);
+            const dataUrl = doc.output('datauristring');
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = dataUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                if (document.body.contains(a)) {
+                    document.body.removeChild(a);
+                }
+            }, 1000);
+        }
     }
 
     // 8. Event Bindings & Modal Functionality
     document.addEventListener("DOMContentLoaded", () => {
         const resumeModal = document.getElementById("resumeModal");
+        const floatingBtn = document.getElementById("floatingResumeBtn");
         const navBtn = document.getElementById("navTailoredResumeBtn");
         const heroBtn = document.getElementById("heroTailoredResumeBtn");
         const closeBtn = document.getElementById("closeResumeModal");
@@ -3188,6 +3191,7 @@ document.addEventListener('click', e => {
             await loadResumeData();
         };
 
+        if (floatingBtn) floatingBtn.addEventListener("click", openModal);
         if (navBtn) navBtn.addEventListener("click", openModal);
         if (heroBtn) heroBtn.addEventListener("click", openModal);
 
