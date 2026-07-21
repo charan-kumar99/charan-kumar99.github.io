@@ -39,7 +39,7 @@
     <nav id="navbar">
         <div class="container">
             <div class="logo">CK</div>
-            <ul class="nav-links" id="navLinks">
+             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" onclick="closeMenu()">Home</a></li>
                 <li><a href="#about" onclick="closeMenu()">About</a></li>
                 <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
@@ -48,6 +48,7 @@
                 <li><a href="#education" onclick="closeMenu()">Education</a></li>
                 <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                <li><a href="#" id="navTailoredResumeBtn" onclick="closeMenu(); return false;" style="color: var(--accent); font-weight: bold;">✨ Tailor Resume</a></li>
             </ul>
             <div class="nav-controls">
                 <div class="palette-wrapper" id="paletteWrapper">
@@ -87,22 +88,25 @@
             </div>
         </div>
     </nav>
-
-    <section id="hero">
-        <div class="hero-content">
-            <div class="hero-greeting">Hi, my name is</div>
-            <h1 class="hero-title">Charan Kumar</h1>
-            <h2 class="hero-subtitle">.NET Developer | Full-Stack Developer</h2>
-            <p class="hero-description">
-                Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture
-                &amp; Docker |
-                Previously built critical RTGS/NEFT banking systems using Microservices Architecture |
-                ASP.NET Core, Entity Framework &amp; SQL Server | MCA Student with a passion for continuous learning
-            </p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary"><span>View My Work</span></a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
+ 
+     <section id="hero">
+         <div class="hero-content">
+             <div class="hero-greeting">Hi, my name is</div>
+             <h1 class="hero-title">Charan Kumar</h1>
+             <h2 class="hero-subtitle">.NET Developer | Full-Stack Developer</h2>
+             <p class="hero-description">
+                 Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture
+                 &amp; Docker |
+                 Previously built critical RTGS/NEFT banking systems using Microservices Architecture |
+                 ASP.NET Core, Entity Framework &amp; SQL Server | MCA Student with a passion for continuous learning
+             </p>
+             <div class="cta-buttons" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                 <a href="#projects" class="btn btn-primary"><span>View My Work</span></a>
+                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                 <button id="heroTailoredResumeBtn" class="btn btn-secondary" style="border: 1px dashed var(--primary); display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                     <span>✨ Get Tailored Resume</span>
+                 </button>
+             </div>
             <div class="hero-chips">
                 <button class="hero-chip" onclick="askAiQuestion('Tell me about Charan\'s Clean Architecture experience')">
                     <span class="chip-emoji">🤖</span> Ask AI about Charan's Clean Architecture experience
@@ -1485,6 +1489,58 @@
         </div>
     </div>
 
+    <!-- Tailored Resume Modal -->
+    <div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle">
+        <div class="resume-modal-container">
+            <button class="resume-modal-close" id="closeResumeModal" aria-label="Close modal">&times;</button>
+            <h3 class="resume-modal-title" id="resumeModalTitle">✨ Tailored Resume Generator</h3>
+            <p class="resume-modal-subtitle">Paste a job description below. We will match it against Charan's actual experience and projects to generate a clean, ATS-compliant PDF resume.</p>
+            
+            <div class="resume-modal-body">
+                <div class="input-group">
+                    <label for="jobDescriptionInput" class="input-label">Job Description / Requirements</label>
+                    <textarea id="jobDescriptionInput" class="resume-textarea" placeholder="Paste the job description or role requirements here..."></textarea>
+                </div>
+                
+                <div class="ai-toggle-wrapper">
+                    <label class="switch-container">
+                        <input type="checkbox" id="aiEnhanceToggle">
+                        <span class="switch-slider"></span>
+                    </label>
+                    <div class="ai-toggle-text">
+                        <span class="ai-toggle-title">Enhance phrasing with AI (Gemini Free)</span>
+                        <span class="ai-toggle-desc">Slightly rephrases selected bullets to match JD keywords (no new claims/hallucinations).</span>
+                    </div>
+                </div>
+
+                <div class="cooldown-warning" id="cooldownWarning" style="display: none;">
+                    ⚠️ Cooldown: Please wait <span id="cooldownSeconds">300</span>s before generating another resume.
+                </div>
+            </div>
+            
+            <div class="resume-modal-footer">
+                <button class="btn btn-secondary" id="cancelResumeBtn">Cancel</button>
+                <button class="btn btn-primary" id="generateResumeBtn"><span>Generate &amp; Download</span></button>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="resume-loading-overlay" id="resumeLoadingOverlay">
+                <div class="resume-spinner-wrapper">
+                    <div class="resume-spinner"></div>
+                    <div class="resume-loading-steps">
+                        <div class="resume-loading-step" id="loadingStep1">🔍 Analyzing Job Description...</div>
+                        <div class="resume-loading-step" id="loadingStep2" style="display: none;">🎯 Matching keywords &amp; experiences...</div>
+                        <div class="resume-loading-step" id="loadingStep3" style="display: none;">🧠 Rephrasing bullets with Gemini AI...</div>
+                        <div class="resume-loading-step" id="loadingStep4" style="display: none;">📄 Rendering ATS-friendly PDF...</div>
+                        <div class="resume-loading-step" id="loadingStep5" style="display: none;">⬇️ Downloading Resume...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jsPDF CDN Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 
