@@ -3170,21 +3170,16 @@ document.addEventListener('click', e => {
         const jdInput = document.getElementById("jobDescriptionInput");
         const aiToggle = document.getElementById("aiEnhanceToggle");
         const loadingOverlay = document.getElementById("resumeLoadingOverlay");
-        const cooldownWarning = document.getElementById("cooldownWarning");
-        const cooldownSeconds = document.getElementById("cooldownSeconds");
+
+        // Clear any legacy cooldown timestamp from previous runs
+        try {
+            localStorage.removeItem("resume_cooldown_timestamp");
+        } catch (e) {}
 
         // Open modal
         const openModal = async (e) => {
             e.preventDefault();
-            
-            // Check rate limit (cooldown)
-            const remaining = getCooldownRemaining();
-            if (remaining > 0) {
-                showCooldown(remaining);
-            } else {
-                cooldownWarning.style.display = "none";
-                generateBtn.disabled = false;
-            }
+            generateBtn.disabled = false;
             
             resumeModal.classList.add("open");
             jdInput.focus();
@@ -3204,20 +3199,6 @@ document.addEventListener('click', e => {
 
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
         if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
-
-        // Cooldown Helpers (Disabled - instant generation anytime)
-        function getCooldownRemaining() {
-            return 0;
-        }
-
-        function setCooldown() {
-            // Disabled
-        }
-
-        function showCooldown(seconds) {
-            if (cooldownWarning) cooldownWarning.style.display = "none";
-            generateBtn.disabled = false;
-        }
 
         // Loading Overlay steps animation controller
         function showStep(stepNum) {
