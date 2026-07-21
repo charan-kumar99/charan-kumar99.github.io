@@ -3179,35 +3179,18 @@ document.addEventListener('click', e => {
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
         if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
 
-        // Cooldown Helpers (localStorage, 5 minutes = 300 seconds)
-        const COOLDOWN_DURATION = 300000; // 5 mins in ms
-        
+        // Cooldown Helpers (Disabled - instant generation anytime)
         function getCooldownRemaining() {
-            const lastTime = localStorage.getItem("resume_cooldown_timestamp");
-            if (!lastTime) return 0;
-            const elapsed = Date.now() - parseInt(lastTime, 10);
-            return elapsed < COOLDOWN_DURATION ? Math.ceil((COOLDOWN_DURATION - elapsed) / 1000) : 0;
+            return 0;
         }
 
         function setCooldown() {
-            localStorage.setItem("resume_cooldown_timestamp", Date.now().toString());
+            // Disabled
         }
 
         function showCooldown(seconds) {
-            cooldownWarning.style.display = "flex";
-            cooldownSeconds.textContent = seconds;
-            generateBtn.disabled = true;
-            
-            const interval = setInterval(() => {
-                const rem = getCooldownRemaining();
-                if (rem <= 0) {
-                    clearInterval(interval);
-                    cooldownWarning.style.display = "none";
-                    generateBtn.disabled = false;
-                } else {
-                    cooldownSeconds.textContent = rem;
-                }
-            }, 1000);
+            if (cooldownWarning) cooldownWarning.style.display = "none";
+            generateBtn.disabled = false;
         }
 
         // Loading Overlay steps animation controller
@@ -3224,13 +3207,6 @@ document.addEventListener('click', e => {
             if (!jdText) {
                 alert("Please paste a job description first.");
                 jdInput.focus();
-                return;
-            }
-
-            // Check cooldown again
-            const remaining = getCooldownRemaining();
-            if (remaining > 0) {
-                alert(`Please wait ${remaining} seconds before generating another resume.`);
                 return;
             }
 
@@ -3309,15 +3285,9 @@ document.addEventListener('click', e => {
                 showStep(5);
                 await new Promise(r => setTimeout(r, 400));
                 
-                // Set cooldown limit
-                setCooldown();
-                
                 // Close modal
                 loadingOverlay.classList.remove("active");
                 closeModal();
-                
-                // Refresh cooldown display
-                showCooldown(COOLDOWN_DURATION / 1000);
             } catch (error) {
                 console.error("Generator failed:", error);
                 alert("An error occurred during resume generation. Please try again.");
