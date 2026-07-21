@@ -3128,9 +3128,35 @@ document.addEventListener('click', e => {
             currentY += heightNeeded + 2;
         }
 
-        // Save file
-        const cleanRole = filenameRole.replace(/[^a-z0-9]/gi, '_');
-        doc.save(`Charan_Kumar_Resume_${cleanRole}.pdf`);
+        // Clean filename safely: keep alphanumeric & spaces, remove dots/symbols, then join with underscores
+        let sanitizedRole = filenameRole
+            .replace(/[^a-zA-Z0-9\s]/g, '')
+            .trim()
+            .replace(/\s+/g, '_')
+            .replace(/_+/g, '_');
+
+        if (!sanitizedRole || sanitizedRole.length < 2) {
+            sanitizedRole = "NET_Developer";
+        }
+
+        const filename = `Charan_Kumar_Resume_${sanitizedRole}.pdf`;
+
+        // Output as Blob and trigger standard HTML5 anchor download for explicit .pdf extension
+        const blob = doc.output('blob');
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        setTimeout(() => {
+            if (document.body.contains(a)) {
+                document.body.removeChild(a);
+            }
+            URL.revokeObjectURL(blobUrl);
+        }, 1000);
     }
 
     // 8. Event Bindings & Modal Functionality
