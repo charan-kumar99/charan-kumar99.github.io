@@ -2636,4 +2636,841 @@ document.addEventListener('click', e => {
     }
 })();
 
+// ==========================================================================
+// TAILORED RESUME GENERATOR INTEGRATION (Step 2, 3, 4, 5)
+// ==========================================================================
+(function() {
+    // 1. Synonym Definitions
+    const SYNONYMS = {
+        "postgres": ["postgresql", "postgres", "pg", "postgre sql"],
+        "postgresql": ["postgresql", "postgres", "pg", "postgre sql"],
+        "dotnet": ["dotnet", ".net", "asp.net", "c#", "csharp"],
+        "c#": ["c#", "csharp", "dotnet", ".net"],
+        "csharp": ["c#", "csharp", "dotnet", ".net"],
+        "asp.net": ["asp.net", "dotnet", ".net", "c#", "csharp", "blazor", "razor pages"],
+        "sql server": ["sql server", "mssql", "microsoft sql server", "sqlserver"],
+        "mssql": ["sql server", "mssql", "microsoft sql server", "sqlserver"],
+        "react": ["react", "react.js", "reactjs"],
+        "reactjs": ["react", "react.js", "reactjs"],
+        "react.js": ["react", "react.js", "reactjs"],
+        "next.js": ["next.js", "nextjs", "next"],
+        "nextjs": ["next.js", "nextjs", "next"],
+        "three.js": ["three.js", "threejs", "r3f", "react three fiber", "webgl"],
+        "threejs": ["three.js", "threejs", "r3f", "react three fiber", "webgl"],
+        "javascript": ["javascript", "js", "es6", "ecmascript"],
+        "js": ["javascript", "js", "es6"],
+        "typescript": ["typescript", "ts"],
+        "ts": ["typescript", "ts"],
+        "azure devops": ["azure devops", "azure", "devops", "ci/cd", "ci-cd"],
+        "ci/cd": ["ci/cd", "ci-cd", "pipelines", "pipeline", "github actions", "devops"],
+        "pipelines": ["ci/cd", "ci-cd", "pipelines", "pipeline", "github actions", "devops"],
+        "docker": ["docker", "containerization", "containers", "containerized"],
+        "containers": ["docker", "containerization", "containers", "containerized"],
+        "rest api": ["rest api", "restful", "apis", "api", "web api", "webapis", "endpoints"],
+        "apis": ["rest api", "restful", "apis", "api", "web api", "webapis"],
+        "api": ["rest api", "restful", "apis", "api", "web api", "webapis"],
+        "microservices": ["microservices", "microservice", "distributed systems"],
+        "clean architecture": ["clean architecture", "onion architecture", "hexagonal architecture", "ddd"],
+        "ef core": ["ef core", "entity framework", "entity framework core", "orm"],
+        "entity framework": ["ef core", "entity framework", "entity framework core", "orm"]
+    };
+
+    // 2. Load resume-data.json
+    let resumeData = null;
+    async function loadResumeData() {
+        if (resumeData) return resumeData;
+        try {
+            const response = await fetch('./resume-data.json');
+            if (!response.ok) throw new Error('Failed to load resume data.');
+            resumeData = await response.json();
+            return resumeData;
+        } catch (error) {
+            console.error('Error loading resume data:', error);
+            alert('Could not load resume data. Please try again.');
+            return null;
+        }
+    }
+
+    // Helper: Match a tag within the JD text
+    function matchTag(text, tag) {
+        const term = tag.toLowerCase();
+        
+        if (term === "c#" || term === "csharp") {
+            return text.includes("c#") || text.includes("csharp");
+        }
+        if (term === ".net" || term === "dotnet") {
+            return text.includes(".net") || text.includes("dotnet");
+        }
+        
+        // Escape characters except spaces
+        const escaped = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        // Word boundaries check matching characters
+        const regex = new RegExp(`(?:^|[^a-zA-Z0-9_#\\.\\-+])` + escaped + `(?:$|[^a-zA-Z0-9_#\\.\\-+])`, 'i');
+        return regex.test(text);
+    }
+
+    // 3. Extract keywords based on tags & synonyms
+    function extractKeywords(jdText) {
+        const jdLower = jdText.toLowerCase();
+        const foundKeywords = new Set();
+        
+        // All known tags in resume
+        const allTags = [
+            "asp.net core", ".net", "backend", "api", "property management", "automation", "workflow", "c#", 
+            "clean architecture", "design patterns", "docker", "containerization", "deployment", "devops", 
+            "swagger", "openapi", "api documentation", "testing", "sql server", "ef core", "redis", "caching", 
+            "azure", "multi-tenant", "database", "banking", "rtgs", "neft", "microservices", "payment processing", 
+            "service-to-service", "api gateway", "scalability", "cts", "aml", "user management", "blazor", 
+            "razor pages", "fullstack", "web applications", "postgresql", "mysql", "oracle database", 
+            "query optimization", "rest api", "crud", "globalization", ".net migration", "api versioning", 
+            "ci/cd", "azure devops", "git", "version control", "enterprise application", "financial", 
+            "feature development", "bug fixing", "collaboration", "best practices", "security", "react", 
+            "sqlite", "metrics", "gemini api", "ai", "google gemini", "d3.js", "recharts", "visualization", 
+            "performance", "python", "flask", "chart.js", "finance", "sqlalchemy", "csv", "sql injection", 
+            "javascript", "cricket", "analytics", "localstorage", "natural language", "academic", "final project", 
+            "speech recognition", "voice assistant", "tts", "web interface", "flutter", "dart", "mobile app", 
+            "dashboard", "glassmorphism", "firebase", "firestore", "sharedpreferences", "local notifications", 
+            "push alerts", "scheduling", "next.js", "three.js", "ai assistant", "framer motion", "tailwind css", 
+            "gsap", "webgl", "react three fiber", "groq api", "ai chat", "wakatime api", "sftp", "ftp", "iis", 
+            "razorpay", "payment gateway", "integration", "c", "java", "html5", "css3", "bootstrap 5"
+        ];
+        
+        for (const tag of allTags) {
+            if (matchTag(jdLower, tag)) {
+                foundKeywords.add(tag);
+                const syns = SYNONYMS[tag];
+                if (syns) syns.forEach(s => foundKeywords.add(s));
+            }
+        }
+        
+        // Scan other synonym keys
+        for (const key in SYNONYMS) {
+            if (matchTag(jdLower, key)) {
+                SYNONYMS[key].forEach(s => foundKeywords.add(s));
+            }
+        }
+        
+        return foundKeywords;
+    }
+
+    // 4. Role Title Guesser
+    function guessRoleTitle(jdText) {
+        const lines = jdText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        const patterns = [
+            /\b(\.?net\s+(?:core\s+)?developer)\b/i,
+            /\b(full\s*stack\s+developer)\b/i,
+            /\b(backend\s+developer)\b/i,
+            /\b(frontend\s+developer)\b/i,
+            /\b(software\s+engineer)\b/i,
+            /\b(software\s+developer)\b/i,
+            /\b(web\s+developer)\b/i,
+            /\b(\.?net\s+engineer)\b/i,
+            /\b(c#\s+developer)\b/i
+        ];
+        
+        for (const line of lines) {
+            if (/^(?:job\s+)?(?:title|role|position|job)\s*:\s*(.+)$/i.test(line)) {
+                const match = line.match(/^(?:job\s+)?(?:title|role|position|job)\s*:\s*(.+)$/i);
+                if (match && match[1].trim().length > 3) {
+                    return cleanTitle(match[1].trim());
+                }
+            }
+        }
+        
+        for (let i = 0; i < Math.min(3, lines.length); i++) {
+            for (const pattern of patterns) {
+                const match = lines[i].match(pattern);
+                if (match) return cleanTitle(match[1]);
+            }
+        }
+        
+        for (const pattern of patterns) {
+            const match = jdText.match(pattern);
+            if (match) return cleanTitle(match[1]);
+        }
+        
+        return ".NET Developer";
+    }
+
+    function cleanTitle(title) {
+        return title
+            .split(/[-|–(]/)[0]
+            .trim()
+            .replace(/\b(hiring|immediate|vacancy|opening)\b/gi, '')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    // Helper to check skill overlap
+    function isSkillMatched(skill, foundKeywords) {
+        const lower = skill.toLowerCase();
+        if (foundKeywords.has(lower)) return true;
+        const syns = SYNONYMS[lower];
+        if (syns && syns.some(s => foundKeywords.has(s))) return true;
+        return false;
+    }
+
+    // 5. Skills Reordering
+    function reorderSkills(skillsList, foundKeywords) {
+        return [...skillsList].sort((a, b) => {
+            const aMatch = isSkillMatched(a, foundKeywords);
+            const bMatch = isSkillMatched(b, foundKeywords);
+            if (aMatch && !bMatch) return -1;
+            if (!aMatch && bMatch) return 1;
+            return 0;
+        });
+    }
+
+    // 6. Match JD against Resume Data
+    function matchResumeData(data, foundKeywords) {
+        const result = JSON.parse(JSON.stringify(data)); // Deep clone
+
+        // Reorder skills lists
+        for (const category in result.skills) {
+            result.skills[category] = reorderSkills(result.skills[category], foundKeywords);
+        }
+
+        // Score and filter work experience bullets
+        result.experience = result.experience.map(job => {
+            // Score each bullet
+            const scoredBullets = job.bullets.map((b, index) => {
+                let score = 0;
+                b.tags.forEach(t => {
+                    if (foundKeywords.has(t.toLowerCase())) {
+                        score += 2;
+                    }
+                });
+                return { bullet: b, score, originalIndex: index };
+            });
+
+            // Sort by score desc, keeping high match at top, but if scores are equal keep chronological order
+            scoredBullets.sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return a.originalIndex - b.originalIndex;
+            });
+
+            // Select top 3-4 bullets
+            const limit = job.company.includes("AGREMATE") ? 4 : 4;
+            const selectedScored = scoredBullets.slice(0, limit);
+
+            // Re-sort selected back to their original index order (preserve sequence)
+            selectedScored.sort((a, b) => a.originalIndex - b.originalIndex);
+
+            return {
+                ...job,
+                bullets: selectedScored.map(sb => sb.bullet)
+            };
+        });
+
+        // Score and filter projects (select top 2-3)
+        const scoredProjects = result.projects.map((proj, index) => {
+            let score = 0;
+            proj.techStack.forEach(t => {
+                if (isSkillMatched(t, foundKeywords)) score += 3;
+            });
+            proj.bullets.forEach(b => {
+                b.tags.forEach(t => {
+                    if (foundKeywords.has(t.toLowerCase())) score += 1;
+                });
+            });
+            return { project: proj, score, originalIndex: index };
+        });
+        scoredProjects.sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            return a.originalIndex - b.originalIndex;
+        });
+
+        // Take top 3 projects, fallback to default order (first 3) if no matches
+        const selectedScoredProjects = scoredProjects.slice(0, 3);
+        // Sort back to keep portfolio relative order
+        selectedScoredProjects.sort((a, b) => a.originalIndex - b.originalIndex);
+        result.projects = selectedScoredProjects.map(sp => sp.project);
+
+        return result;
+    }
+
+    // 7. Client-Side jsPDF Generator (Matches User's Exact Serif Template with Clickable Links)
+    function generatePdfResume(data, filenameRole) {
+        // Create document: portrait, points, letter (612pt x 792pt)
+        const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
+        
+        let currentY = 36;
+        const marginX = 36;
+        const pageWidth = 612;
+        const pageHeight = 792;
+        const printableWidth = 540;
+
+        function checkPageSpace(heightNeeded) {
+            if (currentY + heightNeeded > pageHeight - 36) {
+                doc.addPage();
+                currentY = 36;
+            }
+        }
+
+        function drawClickableLink(text, url, x, y, options = {}) {
+            doc.text(text, x, y, options);
+            const textWidth = doc.getTextWidth(text);
+            let startX = x;
+            if (options.align === 'center') {
+                startX = x - textWidth / 2;
+            } else if (options.align === 'right') {
+                startX = x - textWidth;
+            }
+            const fontSize = doc.getFontSize();
+            doc.link(startX, y - fontSize + 2, textWidth, fontSize + 2, { url: url });
+            return textWidth;
+        }
+
+        // --- TITLE / HEADER BLOCK ---
+        doc.setFont('times', 'bold');
+        doc.setFontSize(22);
+        doc.setTextColor(0, 0, 0);
+        doc.text("CHARAN KUMAR", pageWidth / 2, currentY, { align: 'center' });
+        currentY += 16;
+
+        doc.setFont('times', 'italic');
+        doc.setFontSize(11);
+        doc.setTextColor(40, 40, 40);
+        doc.text("Developer", pageWidth / 2, currentY, { align: 'center' });
+        currentY += 16;
+
+        // Vector Icon Drawing Helpers (100% Crisp Vector Graphics - No Garbled Emoji Text)
+        function drawEnvelope(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.6);
+            doc.rect(x, y - 6.5, 9, 6.5);
+            doc.line(x, y - 6.5, x + 4.5, y - 3);
+            doc.line(x + 4.5, y - 3, x + 9, y - 6.5);
+        }
+
+        function drawPhone(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.75);
+            doc.line(x + 1, y - 7, x + 3.5, y - 7);
+            doc.line(x + 3.5, y - 7, x + 3.5, y - 4.5);
+            doc.line(x + 3.5, y - 4.5, x + 5.5, y - 2.5);
+            doc.line(x + 5.5, y - 2.5, x + 7.5, y - 2.5);
+            doc.line(x + 7.5, y - 2.5, x + 7.5, y);
+        }
+
+        function drawPin(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.6);
+            doc.circle(x + 3.5, y - 4.5, 2.5);
+            doc.line(x + 3.5, y - 2, x + 3.5, y);
+        }
+
+        function drawLinkedInBox(x, y) {
+            doc.setFillColor(0, 0, 0);
+            doc.rect(x, y - 7, 7.5, 7.5, 'F');
+            doc.setFont('times', 'bold');
+            doc.setFontSize(6);
+            doc.setTextColor(255, 255, 255);
+            doc.text("in", x + 1.2, y - 1.2);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont('times', 'normal');
+            doc.setFontSize(9);
+        }
+
+        function drawGitIcon(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.75);
+            doc.circle(x + 4, y - 4, 3);
+            doc.circle(x + 4, y - 4, 1);
+        }
+
+        function drawLinkChain(x, y) {
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.75);
+            doc.line(x, y - 4, x + 7, y - 4);
+            doc.circle(x + 2, y - 4, 1.8);
+            doc.circle(x + 5, y - 4, 1.8);
+        }
+
+        // Contact info row 1: email, phone, location, LinkedIn
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+
+        const emailStr = "charansuvarna99@gmail.com";
+        const phoneStr = "+91 9380455922";
+        const locStr = "Udupi, Karnataka, India";
+        const liStr = "LinkedIn";
+        const sep = "    ";
+        const iconGap = 12;
+
+        const w1 = iconGap + doc.getTextWidth(emailStr);
+        const w2 = iconGap + doc.getTextWidth(phoneStr);
+        const w3 = iconGap + doc.getTextWidth(locStr);
+        const w4 = iconGap + doc.getTextWidth(liStr);
+        const wSep = doc.getTextWidth(sep);
+
+        const totalRow1W = w1 + wSep + w2 + wSep + w3 + wSep + w4;
+        let startX1 = (pageWidth - totalRow1W) / 2;
+
+        // Mail
+        drawEnvelope(startX1, currentY);
+        drawClickableLink(emailStr, "mailto:charansuvarna99@gmail.com", startX1 + iconGap, currentY);
+        startX1 += w1;
+        doc.text(sep, startX1, currentY);
+        startX1 += wSep;
+
+        // Phone
+        drawPhone(startX1, currentY);
+        drawClickableLink(phoneStr, "tel:+919380455922", startX1 + iconGap, currentY);
+        startX1 += w2;
+        doc.text(sep, startX1, currentY);
+        startX1 += wSep;
+
+        // Location
+        drawPin(startX1, currentY);
+        doc.text(locStr, startX1 + iconGap, currentY);
+        startX1 += w3;
+        doc.text(sep, startX1, currentY);
+        startX1 += wSep;
+
+        // LinkedIn
+        drawLinkedInBox(startX1, currentY);
+        drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar-9b20a8378", startX1 + iconGap, currentY);
+        currentY += 14;
+
+        // Contact info row 2: GitHub, Portfolio
+        const ghStr = "GitHub";
+        const portStr = "Portfolio";
+        const wGh = iconGap + doc.getTextWidth(ghStr);
+        const wPort = iconGap + doc.getTextWidth(portStr);
+        const totalRow2W = wGh + wSep + wPort;
+        let startX2 = (pageWidth - totalRow2W) / 2;
+
+        drawGitIcon(startX2, currentY);
+        drawClickableLink(ghStr, "https://github.com/charan-kumar99", startX2 + iconGap, currentY);
+        startX2 += wGh;
+        doc.text(sep, startX2, currentY);
+        startX2 += wSep;
+
+        drawLinkChain(startX2, currentY);
+        drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2 + iconGap, currentY);
+        currentY += 18;
+
+        // --- PROFESSIONAL SUMMARY ---
+        drawSectionHeader("PROFESSIONAL SUMMARY");
+
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(20, 20, 20);
+        
+        const summaryText = ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.";
+        const wrappedSummary = doc.splitTextToSize(summaryText, printableWidth);
+        wrappedSummary.forEach(line => {
+            checkPageSpace(11.5);
+            doc.text(line, marginX, currentY);
+            currentY += 11.5;
+        });
+        currentY += 4;
+
+        // --- KEY HIGHLIGHTS ---
+        drawSectionHeader("KEY HIGHLIGHTS");
+        drawBulletPoint("1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)");
+        drawBulletPoint("Built microservices-based applications serving multiple banks");
+        drawBulletPoint("Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics");
+        drawBulletPoint("Strong full-stack expertise in ASP.NET Core, React, and SQL");
+        currentY += 4;
+
+        // --- WORK EXPERIENCE ---
+        drawSectionHeader("WORK EXPERIENCE");
+
+        data.experience.forEach(job => {
+            checkPageSpace(28);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(job.role, marginX, currentY);
+            
+            doc.setFont('times', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(50, 50, 50);
+            const dateStr = job.dates || "";
+            const rightWidth = doc.getTextWidth(dateStr);
+            doc.text(dateStr, pageWidth - marginX - rightWidth, currentY);
+            currentY += 12;
+
+            doc.setFont('times', 'bold');
+            doc.setFontSize(9.5);
+            doc.setTextColor(0, 0, 0);
+            doc.text(job.company, marginX, currentY);
+            currentY += 12;
+
+            job.bullets.forEach(bullet => {
+                drawBulletPoint(bullet.text);
+            });
+            currentY += 5;
+        });
+
+        // --- EDUCATION ---
+        drawSectionHeader("EDUCATION");
+
+        // MCA
+        checkPageSpace(24);
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Master of Computer Applications (MCA)", marginX, currentY);
+        
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(50, 50, 50);
+        const mcaDate = "Nov 2025 – Present";
+        doc.text(mcaDate, pageWidth - marginX - doc.getTextWidth(mcaDate), currentY);
+        currentY += 12;
+
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(30, 30, 30);
+        doc.text("MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.", marginX, currentY);
+        currentY += 15;
+
+        // BCA
+        checkPageSpace(32);
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Bachelor of Computer Applications (BCA)", marginX, currentY);
+        
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(50, 50, 50);
+        const bcaDate = "Sep 2022 – Jun 2025";
+        doc.text(bcaDate, pageWidth - marginX - doc.getTextWidth(bcaDate), currentY);
+        currentY += 12;
+
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(30, 30, 30);
+        doc.text("Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |", marginX, currentY);
+        currentY += 12;
+
+        doc.setFont('times', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        const labelAddon = "Add-on Courses: ";
+        doc.text(labelAddon, marginX, currentY);
+
+        doc.setFont('times', 'normal');
+        doc.setTextColor(30, 30, 30);
+        doc.text("Cybersecurity, Artificial Intelligence & Big Data Analytics.", marginX + doc.getTextWidth(labelAddon), currentY);
+        currentY += 8;
+
+        // --- SKILLS ---
+        drawSectionHeader("SKILLS");
+
+        const skillsFormat = [
+            { label: "Languages:", list: data.skills && data.skills.languages ? data.skills.languages.join(", ") : "C#, Java, JavaScript, C, HTML5, CSS3, Dart, Python" },
+            { label: "Frameworks:", list: data.skills && data.skills.frameworks ? data.skills.frameworks.join(", ") : "ASP.NET Core, Flutter, Blazor, React, Flask" },
+            { label: "Databases:", list: data.skills && data.skills.databases ? data.skills.databases.join(", ") : "PostgreSQL, MySQL, Oracle, SQL Server, Firebase" },
+            { label: "Tools:", list: data.skills && data.skills.tools ? data.skills.tools.slice(0, 10).join(", ") : "Azure DevOps, GitHub, Postman, DBeaver" },
+            { label: "Concepts:", list: "Microservices, REST APIs, API Versioning, System Design" }
+        ];
+
+        skillsFormat.forEach(skillLine => {
+            checkPageSpace(13);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            const labelText = skillLine.label + " ";
+            doc.text(labelText, marginX, currentY);
+            
+            const labelW = doc.getTextWidth(labelText);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(30, 30, 30);
+            doc.text(skillLine.list, marginX + labelW, currentY);
+            currentY += 12;
+        });
+        currentY += 4;
+
+        // --- PROJECTS ---
+        drawSectionHeader("PROJECTS");
+
+        data.projects.slice(0, 3).forEach(project => {
+            checkPageSpace(26);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(project.name, marginX, currentY);
+            currentY += 12;
+            
+            doc.setFont('times', 'bold');
+            doc.setFontSize(9);
+            const techLabel = "Tech: ";
+            doc.text(techLabel, marginX, currentY);
+            
+            doc.setFont('times', 'normal');
+            doc.setTextColor(40, 40, 40);
+            const techText = project.techStack.join(", ");
+            doc.text(techText, marginX + doc.getTextWidth(techLabel), currentY);
+            currentY += 12;
+
+            project.bullets.forEach(bullet => {
+                drawBulletPoint(bullet.text);
+            });
+
+            if (project.links && project.links.github) {
+                checkPageSpace(12);
+                doc.setFont('times', 'bold');
+                doc.setFontSize(9);
+                doc.setTextColor(0, 0, 0);
+                const ghLabel = "GitHub: ";
+                doc.text(ghLabel, marginX, currentY);
+                
+                const labelW = doc.getTextWidth(ghLabel);
+                doc.setFont('times', 'normal');
+                doc.setTextColor(30, 30, 30);
+                drawClickableLink(project.links.github, project.links.github, marginX + labelW, currentY);
+                currentY += 12;
+            }
+            currentY += 4;
+        });
+
+        // --- CERTIFICATIONS & TRAINING ---
+        drawSectionHeader("CERTIFICATIONS & TRAINING");
+        drawBulletPoint("Data Analytics & Web Dev Internship – Accolade Tech Solutions (2024)");
+        drawBulletPoint("Cybersecurity & AI Training – Mangalore University (2024)");
+        drawBulletPoint("NCC 'A' Certificate");
+        currentY += 4;
+
+        // --- ACHIEVEMENTS ---
+        drawSectionHeader("ACHIEVEMENTS");
+        drawBulletPoint("Best Cadet Award – National Cadet Corps (NCC)");
+        drawBulletPoint("Served as Head Cadet leading school NCC unit");
+        drawBulletPoint("District-level player in Cricket and Volleyball");
+        currentY += 4;
+
+        // --- LANGUAGES ---
+        drawSectionHeader("LANGUAGES");
+        checkPageSpace(13);
+        doc.setFont('times', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(20, 20, 20);
+        doc.text("English, Hindi, Kannada, Tulu", marginX, currentY);
+        currentY += 12;
+
+        // Helper: Section Divider Line
+        function drawSectionHeader(title) {
+            checkPageSpace(26);
+            currentY += 6;
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10.5);
+            doc.setTextColor(0, 0, 0);
+            doc.text(title, marginX, currentY);
+            
+            currentY += 3;
+            doc.setLineWidth(0.75);
+            doc.setDrawColor(0, 0, 0);
+            doc.line(marginX, currentY, pageWidth - marginX, currentY);
+            currentY += 13;
+        }
+
+        // Helper: Bullet point wrapper
+        function drawBulletPoint(text) {
+            doc.setFont('times', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(20, 20, 20);
+            
+            const bulletSymbol = "•";
+            const indent = 12;
+            const wrappedLines = doc.splitTextToSize(text, printableWidth - indent);
+            const lineHeight = 11.5;
+            const heightNeeded = wrappedLines.length * lineHeight;
+            
+            checkPageSpace(heightNeeded);
+            doc.text(bulletSymbol, marginX + 3, currentY);
+            
+            wrappedLines.forEach((line, index) => {
+                doc.text(line, marginX + indent, currentY + (index * lineHeight));
+            });
+            
+            currentY += heightNeeded + 2;
+        }
+
+        // Clean filename safely: keep alphanumeric & spaces, remove dots/symbols, then join with underscores
+        let sanitizedRole = filenameRole
+            .replace(/[^a-zA-Z0-9\s]/g, '')
+            .trim()
+            .replace(/\s+/g, '_')
+            .replace(/_+/g, '_');
+
+        if (!sanitizedRole || sanitizedRole.length < 2) {
+            sanitizedRole = "NET_Developer";
+        }
+
+        const filename = "Charan_Kumar_Resume.pdf";
+
+        // Save file using jsPDF built-in save (bypasses Chrome's Blob URL UUID naming bug)
+        try {
+            doc.save(filename);
+        } catch (e) {
+            console.warn("jsPDF doc.save failed, falling back to Data URI download:", e);
+            const dataUrl = doc.output('datauristring');
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = dataUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                if (document.body.contains(a)) {
+                    document.body.removeChild(a);
+                }
+            }, 1000);
+        }
+    }
+
+    // 8. Event Bindings & Modal Functionality
+    document.addEventListener("DOMContentLoaded", () => {
+        const resumeModal = document.getElementById("resumeModal");
+        const floatingBtn = document.getElementById("floatingResumeBtn");
+        const navBtn = document.getElementById("navTailoredResumeBtn");
+        const heroBtn = document.getElementById("heroTailoredResumeBtn");
+        const closeBtn = document.getElementById("closeResumeModal");
+        const cancelBtn = document.getElementById("cancelResumeBtn");
+        const generateBtn = document.getElementById("generateResumeBtn");
+        const jdInput = document.getElementById("jobDescriptionInput");
+        const aiToggle = document.getElementById("aiEnhanceToggle");
+        const loadingOverlay = document.getElementById("resumeLoadingOverlay");
+
+        // Clear any legacy cooldown timestamp from previous runs
+        try {
+            localStorage.removeItem("resume_cooldown_timestamp");
+        } catch (e) {}
+
+        // Open modal
+        const openModal = async (e) => {
+            e.preventDefault();
+            generateBtn.disabled = false;
+            if (aiToggle) aiToggle.checked = true;
+            
+            resumeModal.classList.add("open");
+            jdInput.focus();
+            
+            // Pre-fetch resume data
+            await loadResumeData();
+        };
+
+        if (floatingBtn) floatingBtn.addEventListener("click", openModal);
+        if (navBtn) navBtn.addEventListener("click", openModal);
+        if (heroBtn) heroBtn.addEventListener("click", openModal);
+
+        // Close modal
+        const closeModal = () => {
+            resumeModal.classList.remove("open");
+            jdInput.value = "";
+        };
+
+        if (closeBtn) closeBtn.addEventListener("click", closeModal);
+        if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
+
+        // Loading Overlay steps animation controller
+        function showStep(stepNum) {
+            for (let i = 1; i <= 5; i++) {
+                const el = document.getElementById(`loadingStep${i}`);
+                if (el) el.style.display = i === stepNum ? "block" : "none";
+            }
+        }
+
+        // Generate Resume Action handler
+        generateBtn.addEventListener("click", async () => {
+            const jdText = jdInput.value.trim();
+            if (!jdText) {
+                alert("Please paste a job description first.");
+                jdInput.focus();
+                return;
+            }
+
+            // Step 1: Active Loading
+            loadingOverlay.classList.add("active");
+            showStep(1);
+
+            try {
+                // Wait briefly for smooth loader transitions
+                await new Promise(r => setTimeout(r, 600));
+                
+                // Step 2: Extract keywords and match
+                showStep(2);
+                const keywords = extractKeywords(jdText);
+                const roleTitle = guessRoleTitle(jdText);
+                const sourceData = await loadResumeData();
+                
+                if (!sourceData) {
+                    throw new Error("Could not load source resume data.");
+                }
+
+                let finalData = matchResumeData(sourceData, keywords);
+                
+                // Step 3: LLM Polish (if toggled)
+                if (aiToggle.checked) {
+                    showStep(3);
+                    try {
+                        const polishResponse = await fetch('./api/polish', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                jobDescription: jdText,
+                                experience: finalData.experience.map(j => ({
+                                    company: j.company,
+                                    role: j.role,
+                                    bullets: j.bullets.map(b => ({ text: b.text }))
+                                }))
+                            })
+                        });
+
+                        if (polishResponse.ok) {
+                            const polishedJson = await polishResponse.json();
+                            if (polishedJson && polishedJson.experience) {
+                                // Overwrite experience bullets in matched data with rephrased bullets
+                                finalData.experience = finalData.experience.map(originalJob => {
+                                    const polishedJob = polishedJson.experience.find(pj => pj.company === originalJob.company);
+                                    if (polishedJob && polishedJob.bullets) {
+                                        return {
+                                            ...originalJob,
+                                            bullets: originalJob.bullets.map((b, bIdx) => {
+                                                const polishedB = polishedJob.bullets[bIdx];
+                                                return {
+                                                    text: polishedB ? polishedB.text : b.text,
+                                                    tags: b.tags
+                                                };
+                                            })
+                                        };
+                                    }
+                                    return originalJob;
+                                });
+                            }
+                        } else {
+                            console.warn("AI Polishing endpoint failed, falling back to local matches.", await polishResponse.text());
+                        }
+                    } catch (aiErr) {
+                        console.error("AI Polish failed, using matched resume copy:", aiErr);
+                    }
+                }
+
+                // Step 4: Render PDF
+                showStep(4);
+                await new Promise(r => setTimeout(r, 400));
+                generatePdfResume(finalData, roleTitle);
+
+                // Step 5: Complete & Download
+                showStep(5);
+                await new Promise(r => setTimeout(r, 400));
+                
+                // Close modal
+                loadingOverlay.classList.remove("active");
+                closeModal();
+            } catch (error) {
+                console.error("Generator failed:", error);
+                alert("An error occurred during resume generation. Please try again.");
+                loadingOverlay.classList.remove("active");
+            }
+        });
+    });
+})();
+
+
 
