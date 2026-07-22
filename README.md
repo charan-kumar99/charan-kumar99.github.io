@@ -1,6 +1,6 @@
 # charan-kumar99.github.io 🚀
 
-Personal portfolio & resume website for **Charan Kumar** — Software Developer (.NET / Full-Stack Developer).  
+Personal portfolio & resume website for **Charan Kumar** — Software Developer | .NET Developer | Full-Stack Developer.  
 Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring an AI-powered assistant, an interactive Project Workflow Simulator, a Developer CLI Terminal, and a 6-Tier AI-Powered Tailored ATS Resume Generator.
 
 ---
