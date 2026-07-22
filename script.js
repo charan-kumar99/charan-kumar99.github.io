@@ -220,7 +220,7 @@ FORMATTING RULES — follow strictly:
 ABOUT CHARAN KUMAR
 ==================
 Name : Charan Kumar
-Role : .NET Developer | Full-Stack Developer
+Role : Software Developer | .NET Developer | Full-Stack Developer
 Phone : +91 9380455922
 Email : charansuvarna99@gmail.com
 Location : Udupi, Karnataka, India
@@ -2696,7 +2696,7 @@ document.addEventListener('click', e => {
     |  |   .NET |  |    Uptime: ${uptimeStr}
     |   \\      /   |    Shell: Charan's Custom JS CLI
      |   '----'   |     Education: MCA Student @ MIT Jaipur
-      \\          /      Role: .NET & Full-Stack Developer
+      \\          /      Role: Software Developer | .NET & Full-Stack Developer
        '.      .'       Backend: C# / ASP.NET Core / EF Core
          '----'         Databases: SQL Server / PostgreSQL
                         DevOps: Azure DevOps / Docker / CI-CD`;
