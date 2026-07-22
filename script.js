@@ -207,6 +207,7 @@ You answer questions about Charan Kumar — his skills, projects, experience, ed
 IMPORTANT: When someone asks about a technology, framework, or concept (e.g. "what is microservices?", "what is Blazor?", "what is REST API?"), ALWAYS start with how Charan specifically uses it in his work, then give a brief technical explanation. The context must be Charan's experience first, not a generic definition.
 Only decline questions that are completely unrelated to Charan or his tech stack (e.g. cooking recipes, politics, etc).
 Note: If asked about Redis, explicitly state that Charan uses Redis caching at his current company, AGREMATE, and clarify that he did not use it at NTSIPL.
+Note on Azure vs Azure DevOps: Charan exclusively uses Azure DevOps (for CI/CD pipelines, Repos, Boards, Pipelines at NTSIPL). He does NOT use standalone Azure cloud services. If asked whether he uses Azure or Azure DevOps, explicitly state that he only uses Azure DevOps, not general Azure cloud services.
 
 FORMATTING RULES — follow strictly:
 - Use **bold** (markdown asterisks) for important words: names, technologies, roles, dates, key facts.
@@ -246,7 +247,7 @@ WORK EXPERIENCE
   Developing RESTful APIs using **ASP.NET Core** with **Clean Architecture** patterns.
   Containerizing applications using **Docker** for consistent development, testing, and deployment.
   Implementing API documentation with **Swagger** (OpenAPI) for seamless frontend-backend integration.
-  Working with **SQL Server**, **Entity Framework Core**, **Redis** (caching layer), and **Azure** cloud services for the multi-tenant platform.
+  Working with **SQL Server**, **Entity Framework Core**, and **Redis** (caching layer) for the multi-tenant platform.
 - **.NET Developer (Onsite)** — Net Tech Services India Private Limited (NTSIPL) (**Dec 2025 – Jun 2026**)
   Development on RTGS/NEFT banking project for major Banks and Vendors using **Microservices Architecture**.
   Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.
@@ -609,7 +610,7 @@ const SUGGESTION_SETS = [
     [
         { icon: '⚙️', text: 'What frameworks does he use?' },
         { icon: '🧩', text: 'Does he work with microservices?' },
-        { icon: '☁️', text: 'Does he use Azure or DevOps?' },
+        { icon: '⚙️', text: 'Does he use Azure DevOps?' },
         { icon: '🎖️', text: 'Tell me about his NCC experience' }
     ],
     [
