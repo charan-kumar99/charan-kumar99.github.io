@@ -134,13 +134,12 @@
           ]
         },
         {
-          "text": "Working with SQL Server, Entity Framework Core, Redis caching, and Azure cloud services for the multi-tenant property management platform.",
+          "text": "Working with SQL Server, Entity Framework Core, and Redis caching for the multi-tenant property management platform.",
           "tags": [
             "sql server",
             "ef core",
             "redis",
             "caching",
-            "azure",
             "multi-tenant",
             "database"
           ]
