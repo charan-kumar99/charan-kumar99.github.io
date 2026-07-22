@@ -240,7 +240,7 @@ EDUCATION
 - **10th Standard** — Volakadu Government High School, Udupi — **Apr 2019 – Jun 2020** — 68%
 
 WORK EXPERIENCE
-- **.NET Developer (Hybrid)** — AGREMATE Private Limited (**Jun 2026 – Present**)
+- **Software Developer (Hybrid)** — AGREMATE Private Limited (**Jun 2026 – Present**)
   Building scalable backend APIs and automated workflows for India's smart property management platform (www.agremate.com).
   AGREMATE bridges the gap between property and software with digital rental agreements, automated payments, community management for gated communities, PG owners, and individual landlords.
   Developing RESTful APIs using **ASP.NET Core** with **Clean Architecture** patterns.
@@ -304,7 +304,7 @@ AGREMATE (www.agremate.com) is India's smart property management platform by AGR
 - It bridges the gap between property and software with digital rental agreements, automated payments, community management, and a clean UI.
 - Built for **gated communities**, **PG owners**, and **individual landlords** across India.
 - Features include: AI-powered digital rental agreements, AutoPay rent collection, guard app, amenity management, community notice boards, finance reports, and 25+ features.
-- Charan works as a **.NET Developer** building the backend APIs using **Clean Architecture**, **Docker**, **Swagger**, **ASP.NET Core**, **SQL Server**, **Entity Framework Core**, and **Redis** caching.
+- Charan works as a **Software Developer** building the backend APIs using **Clean Architecture**, **Docker**, **Swagger**, **ASP.NET Core**, **SQL Server**, **Entity Framework Core**, and **Redis** caching.
 
 MICROSERVICES EXPERTISE (from previous role at NTSIPL)
 Charan worked extensively with **Microservices Architecture** at NTSIPL.
@@ -2550,7 +2550,7 @@ document.addEventListener('click', e => {
   Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Chart.js`,
 
         experience: `Professional History:
-  - .NET Developer (Hybrid) @ AGREMATE Private Limited (Jun 2026 - Present)
+  - Software Developer (Hybrid) @ AGREMATE Private Limited (Jun 2026 - Present)
     Building scalable backend REST APIs and automated property management workflows.
   - Backend Intern (Onsite) @ NTSIPL (Dec 2025 - May 2026)
     Contributed to enterprise RTGS/NEFT Microservices payment processing networks.`,
