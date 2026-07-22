@@ -6,16 +6,50 @@
     "phone": "+91 9380455922",
     "location": "Udupi, Karnataka, India",
     "linkedin": "https://www.linkedin.com/in/charan-kumar-9b20a8378",
-    "github": "https://github.com/charan-kumar99"
+    "github": "https://github.com/charan-kumar99",
+    "portfolio": "https://advanced-portfolio-sandy.vercel.app/",
+    "languages": [
+      "English",
+      "Hindi",
+      "Kannada",
+      "Tulu"
+    ]
   },
   "summaryVariants": {
     "default": "Versatile .NET Developer currently building scalable property management APIs at AGREMATE using Clean Architecture and Docker. Previously developed critical RTGS/NEFT banking microservices at NTSIPL. Experienced in ASP.NET Core, EF Core, SQL Server, PostgreSQL, Redis, and REST APIs. Fast learner and team player pursuing MCA alongside full-time work.",
-    "short": ".NET & Full-Stack Developer with experience building scalable REST APIs, microservices, and web applications using ASP.NET Core, SQL Server, and Clean Architecture."
+    "short": ".NET & Full-Stack Developer with experience building scalable REST APIs, microservices, and web applications using ASP.NET Core, SQL Server, and Clean Architecture.",
+    "long": "I'm a versatile .NET Developer currently building scalable backend APIs at AGREMATE Private Limited — India's smart property management platform. Working with ASP.NET Core, Clean Architecture, Docker, and Swagger to power digital rental agreements, automated payments, and community management for properties across India. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks and vendors. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, REST API development, API versioning, globalization, and .NET version migration. Passionate about building secure, scalable solutions and continuously expanding technical knowledge while pursuing an MCA alongside full-time employment.",
+    "tagline": "Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture & Docker | Previously built critical RTGS/NEFT banking systems using Microservices Architecture | ASP.NET Core, Entity Framework & SQL Server | MCA Student with a passion for continuous learning"
   },
   "skills": {
-    "languages": ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Dart", "Python"],
-    "frameworks": ["ASP.NET Core (.NET 6 & .NET 8)", "Flutter", "Blazor", "Razor Pages", "React", "Bootstrap 5", "Flask", "Chart.js"],
-    "databases": ["PostgreSQL", "MySQL", "Oracle Database", "SQL Server", "SQLite", "Redis"],
+    "languages": [
+      "C#",
+      "Java",
+      "JavaScript",
+      "C",
+      "HTML5",
+      "CSS3",
+      "Dart",
+      "Python"
+    ],
+    "frameworks": [
+      "ASP.NET Core (.NET 6 & .NET 8)",
+      "Flutter",
+      "Blazor",
+      "Razor Pages",
+      "React",
+      "Bootstrap 5",
+      "Flask",
+      "Chart.js"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "MySQL",
+      "Oracle Database",
+      "SQL Server",
+      "SQLite",
+      "Redis"
+    ],
     "tools": [
       "Azure DevOps",
       "CI/CD Pipelines",
@@ -30,12 +64,23 @@
       "Firebase",
       "Razorpay",
       "Vercel Serverless",
+      "localStorage",
+      "Web Speech API",
+      "HTML5 Canvas",
       "REST APIs",
       "Microservices Architecture",
       "Clean Architecture",
       "API Versioning",
       "API Globalization",
       ".NET Migration (6→8)"
+    ],
+    "softSkills": [
+      "Analytical Thinking",
+      "Active Listening",
+      "Team Leadership",
+      "Fast Learner",
+      "Detail-Oriented",
+      "Collaborative"
     ]
   },
   "experience": [
@@ -47,23 +92,58 @@
       "bullets": [
         {
           "text": "Building scalable backend APIs and automated workflows for India's smart property management platform serving gated communities, PG owners, and individual landlords.",
-          "tags": ["asp.net core", ".net", "backend", "api", "property management", "automation", "workflow", "c#"]
+          "tags": [
+            "asp.net core",
+            ".net",
+            "backend",
+            "api",
+            "property management",
+            "automation",
+            "workflow",
+            "c#"
+          ]
         },
         {
           "text": "Developing and maintaining RESTful APIs using ASP.NET Core with Clean Architecture patterns, ensuring separation of concerns and maintainable codebase.",
-          "tags": ["asp.net core", ".net", "c#", "rest api", "clean architecture", "design patterns"]
+          "tags": [
+            "asp.net core",
+            ".net",
+            "c#",
+            "rest api",
+            "clean architecture",
+            "design patterns"
+          ]
         },
         {
           "text": "Containerizing applications using Docker for consistent development, testing, and deployment environments.",
-          "tags": ["docker", "containerization", "deployment", "devops"]
+          "tags": [
+            "docker",
+            "containerization",
+            "deployment",
+            "devops"
+          ]
         },
         {
           "text": "Implementing API documentation and testing with Swagger (OpenAPI) for seamless frontend-backend integration.",
-          "tags": ["swagger", "openapi", "api documentation", "testing", "rest api"]
+          "tags": [
+            "swagger",
+            "openapi",
+            "api documentation",
+            "testing",
+            "rest api"
+          ]
         },
         {
           "text": "Working with SQL Server, Entity Framework Core, Redis caching, and Azure cloud services for the multi-tenant property management platform.",
-          "tags": ["sql server", "ef core", "redis", "caching", "azure", "multi-tenant", "database"]
+          "tags": [
+            "sql server",
+            "ef core",
+            "redis",
+            "caching",
+            "azure",
+            "multi-tenant",
+            "database"
+          ]
         }
       ]
     },
@@ -75,31 +155,74 @@
       "bullets": [
         {
           "text": "Development on the RTGS/NEFT (Real-Time Gross Settlement / National Electronic Funds Transfer) banking project, delivering payment processing services to major Banks and Vendors using Microservices Architecture.",
-          "tags": ["c#", "banking", "rtgs", "neft", "microservices", "payment processing"]
+          "tags": [
+            "c#",
+            "banking",
+            "rtgs",
+            "neft",
+            "microservices",
+            "payment processing"
+          ]
         },
         {
           "text": "Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.",
-          "tags": ["microservices", "service-to-service", "api gateway", "scalability"]
+          "tags": [
+            "microservices",
+            "service-to-service",
+            "api gateway",
+            "scalability"
+          ]
         },
         {
           "text": "Contributed to multiple banking projects including CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems across the company's banking portfolio.",
-          "tags": ["banking", "cts", "aml", "user management"]
+          "tags": [
+            "banking",
+            "cts",
+            "aml",
+            "user management"
+          ]
         },
         {
           "text": "Building, upgrading, and maintaining full-stack web applications using ASP.NET Core with Blazor and Razor Pages; handled end-to-end responsibility for frontend, backend, and database design.",
-          "tags": ["asp.net core", "blazor", "razor pages", "fullstack", "web applications"]
+          "tags": [
+            "asp.net core",
+            "blazor",
+            "razor pages",
+            "fullstack",
+            "web applications"
+          ]
         },
         {
           "text": "Performed database management and query optimization across PostgreSQL, MySQL, Oracle Database, and SQL Server.",
-          "tags": ["postgresql", "mysql", "oracle database", "sql server", "database", "query optimization"]
+          "tags": [
+            "postgresql",
+            "mysql",
+            "oracle database",
+            "sql server",
+            "database",
+            "query optimization"
+          ]
         },
         {
           "text": "Developed and maintained REST APIs and CRUD operations; API globalization and version migration from .NET 6 to .NET 8.",
-          "tags": ["rest api", "crud", "globalization", ".net migration", "api versioning"]
+          "tags": [
+            "rest api",
+            "crud",
+            "globalization",
+            ".net migration",
+            "api versioning"
+          ]
         },
         {
           "text": "Executed testing, debugging, and bug fixing; managed automated CI/CD pipelines through Azure DevOps and maintained version control.",
-          "tags": ["testing", "debugging", "ci/cd", "azure devops", "git", "version control"]
+          "tags": [
+            "testing",
+            "debugging",
+            "ci/cd",
+            "azure devops",
+            "git",
+            "version control"
+          ]
         }
       ]
     },
@@ -111,15 +234,28 @@
       "bullets": [
         {
           "text": "Gained practical, hands-on experience in ASP.NET Core enterprise application development within the financial domain.",
-          "tags": ["asp.net core", "enterprise application", "financial"]
+          "tags": [
+            "asp.net core",
+            "enterprise application",
+            "financial"
+          ]
         },
         {
           "text": "Contributed to existing banking projects by implementing new features and resolving identified bugs.",
-          "tags": ["banking", "feature development", "bug fixing"]
+          "tags": [
+            "banking",
+            "feature development",
+            "bug fixing"
+          ]
         },
         {
           "text": "Collaborated with senior developers to learn industry best practices for secure, scalable financial software.",
-          "tags": ["collaboration", "best practices", "security", "financial"]
+          "tags": [
+            "collaboration",
+            "best practices",
+            "security",
+            "financial"
+          ]
         }
       ]
     }
@@ -128,7 +264,16 @@
     {
       "name": "DevLens – AI-Powered GitHub Repository Analyzer",
       "description": "Full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.",
-      "techStack": ["C#", "ASP.NET Core", "React", "GitHub API", "Google Gemini API", "SQLite", "D3.js", "Recharts"],
+      "techStack": [
+        "C#",
+        "ASP.NET Core",
+        "React",
+        "GitHub API",
+        "Google Gemini API",
+        "SQLite",
+        "D3.js",
+        "Recharts"
+      ],
       "links": {
         "github": "https://github.com/charan-kumar99/DevLens",
         "demo": "https://devlens-nine.vercel.app/"
@@ -136,26 +281,53 @@
       "bullets": [
         {
           "text": "Built a full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.",
-          "tags": ["fullstack", "ai", "github api", "react", "sqlite"]
+          "tags": [
+            "fullstack",
+            "ai",
+            "github api",
+            "react",
+            "sqlite"
+          ]
         },
         {
           "text": "Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub API.",
-          "tags": ["github api", "rest api", "metrics"]
+          "tags": [
+            "github api",
+            "rest api",
+            "metrics"
+          ]
         },
         {
           "text": "Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and automated README scoring.",
-          "tags": ["gemini api", "ai", "google gemini"]
+          "tags": [
+            "gemini api",
+            "ai",
+            "google gemini"
+          ]
         },
         {
           "text": "Designed interactive data visualizations using D3.js and Recharts with an intelligent caching system for performance.",
-          "tags": ["d3.js", "recharts", "visualization", "caching", "performance"]
+          "tags": [
+            "d3.js",
+            "recharts",
+            "visualization",
+            "caching",
+            "performance"
+          ]
         }
       ]
     },
     {
       "name": "Money Mate – Personal Finance Management Web Application",
       "description": "Flask-based personal finance management web application.",
-      "techStack": ["Python", "Flask", "SQLite", "SQLAlchemy", "Chart.js", "Bootstrap 5"],
+      "techStack": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "SQLAlchemy",
+        "Chart.js",
+        "Bootstrap 5"
+      ],
       "links": {
         "github": "https://github.com/charan-kumar99/Money_Mate",
         "demo": "https://money-mate-e33v.onrender.com/login"
@@ -163,18 +335,35 @@
       "bullets": [
         {
           "text": "Built a Flask-based web application to track expenses, income, budgets, savings goals, and recurring subscriptions with interactive Chart.js visualizations.",
-          "tags": ["python", "flask", "sqlite", "chart.js", "finance"]
+          "tags": [
+            "python",
+            "flask",
+            "sqlite",
+            "chart.js",
+            "finance"
+          ]
         },
         {
           "text": "Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.",
-          "tags": ["security", "sqlalchemy", "csv", "sql injection"]
+          "tags": [
+            "security",
+            "sqlalchemy",
+            "csv",
+            "sql injection"
+          ]
         }
       ]
     },
     {
       "name": "Cricket Performance Analyzer – BCA Final Project (Enhanced)",
       "description": "Browser-based cricket analytics tool with custom metric engine.",
-      "techStack": ["HTML5", "CSS3", "JavaScript (ES6+)", "Chart.js", "LocalStorage"],
+      "techStack": [
+        "HTML5",
+        "CSS3",
+        "JavaScript (ES6+)",
+        "Chart.js",
+        "LocalStorage"
+      ],
       "links": {
         "github": "https://github.com/charan-kumar99/Cricket-Performance-Analyzer",
         "demo": "https://charan-kumar99.github.io/Cricket-Performance-Analyzer/"
@@ -182,22 +371,42 @@
       "bullets": [
         {
           "text": "Designed a browser-based cricket analytics tool with automatic strike rate calculations, input validation, and interactive Chart.js performance charts.",
-          "tags": ["javascript", "chart.js", "cricket", "analytics"]
+          "tags": [
+            "javascript",
+            "chart.js",
+            "cricket",
+            "analytics"
+          ]
         },
         {
           "text": "Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural language query interface for performance insights.",
-          "tags": ["localstorage", "csv", "natural language"]
+          "tags": [
+            "localstorage",
+            "csv",
+            "natural language"
+          ]
         },
         {
           "text": "Originally developed as the BCA final project and add-on course project; subsequently improved with additional features.",
-          "tags": ["academic", "final project"]
+          "tags": [
+            "academic",
+            "final project"
+          ]
         }
       ]
     },
     {
       "name": "Orion – AI-Powered Personal Voice Assistant",
       "description": "Voice and text-controlled assistant with speech recognition and Google TTS.",
-      "techStack": ["Python", "Flask", "JavaScript", "HTML", "CSS", "Google TTS", "Speech Recognition"],
+      "techStack": [
+        "Python",
+        "Flask",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Google TTS",
+        "Speech Recognition"
+      ],
       "links": {
         "github": "https://github.com/charan-kumar99/Orion",
         "demo": "https://charan-kumar99.github.io/Orion/"
@@ -205,44 +414,89 @@
       "bullets": [
         {
           "text": "Developed a voice and text-controlled personal assistant with speech recognition input and text-to-speech responses via Google TTS.",
-          "tags": ["python", "speech recognition", "voice assistant", "tts"]
+          "tags": [
+            "python",
+            "speech recognition",
+            "voice assistant",
+            "tts"
+          ]
         },
         {
           "text": "Built a Flask-based web interface supporting website navigation, music playback, Google search queries, and basic task automation.",
-          "tags": ["flask", "web interface", "automation"]
+          "tags": [
+            "flask",
+            "web interface",
+            "automation"
+          ]
         }
       ]
     },
     {
       "name": "DueZy – Premium Bill & EMI Reminder Mobile App",
       "description": "Premium mobile application to track and remind users of education loans, EMIs, and bills.",
-      "techStack": ["Flutter", "Dart", "Firebase Firestore", "Firebase Auth", "Local Notifications", "SharedPreferences"],
+      "techStack": [
+        "Flutter",
+        "Dart",
+        "Firebase Firestore",
+        "Firebase Auth",
+        "Local Notifications",
+        "SharedPreferences"
+      ],
       "links": {
         "github": "https://github.com/charan-kumar99/DueZy"
       },
       "bullets": [
         {
           "text": "Developed a premium, highly aesthetic mobile application to track and remind users of education loans, EMIs, and bills, ensuring zero missed payments.",
-          "tags": ["flutter", "dart", "mobile app", "finance"]
+          "tags": [
+            "flutter",
+            "dart",
+            "mobile app",
+            "finance"
+          ]
         },
         {
           "text": "Implemented a sleek, responsive glassmorphic dashboard showcasing real-time visual summaries of total due, paid, and pending cycles.",
-          "tags": ["flutter", "dart", "dashboard", "glassmorphism"]
+          "tags": [
+            "flutter",
+            "dart",
+            "dashboard",
+            "glassmorphism"
+          ]
         },
         {
           "text": "Integrated real-time database synchronization and offline resilience with Firebase Firestore, SharedPreferences caching, and secure anonymous authentication.",
-          "tags": ["firebase", "firestore", "sharedpreferences", "caching", "authentication"]
+          "tags": [
+            "firebase",
+            "firestore",
+            "sharedpreferences",
+            "caching",
+            "authentication"
+          ]
         },
         {
           "text": "Configured local scheduling workflows for proactive push alerts using local notifications to notify users before payment deadlines.",
-          "tags": ["local notifications", "push alerts", "scheduling"]
+          "tags": [
+            "local notifications",
+            "push alerts",
+            "scheduling"
+          ]
         }
       ]
     },
     {
       "name": "Advanced Developer Portfolio",
       "description": "Immersive Next.js portfolio featuring 3D visuals, live metrics, and AI assistant.",
-      "techStack": ["Next.js", "React", "TypeScript", "Three.js", "Framer Motion", "Tailwind CSS", "GROQ / Gemini API", "WakaTime API"],
+      "techStack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Three.js",
+        "Framer Motion",
+        "Tailwind CSS",
+        "GROQ / Gemini API",
+        "WakaTime API"
+      ],
       "links": {
         "github": "https://github.com/charan-kumar99/Advanced-Portfolio",
         "demo": "https://advanced-portfolio-sandy.vercel.app/"
@@ -250,71 +504,229 @@
       "bullets": [
         {
           "text": "Developed an immersive, high-performance developer portfolio featuring responsive 3D visual environments, real-time metrics integrations, and an AI chat assistant.",
-          "tags": ["next.js", "react", "three.js", "ai assistant", "framer motion"]
+          "tags": [
+            "next.js",
+            "react",
+            "three.js",
+            "ai assistant",
+            "framer motion"
+          ]
         },
         {
           "text": "Implemented complex user interface animations and layout structures using Next.js, React 19, Tailwind CSS, Framer Motion, and GSAP.",
-          "tags": ["next.js", "react", "tailwind css", "framer motion", "gsap"]
+          "tags": [
+            "next.js",
+            "react",
+            "tailwind css",
+            "framer motion",
+            "gsap"
+          ]
         },
         {
           "text": "Configured WebGL interactions powered by Three.js and React Three Fiber featuring low-power mode hardware adaptation.",
-          "tags": ["three.js", "webgl", "react three fiber"]
+          "tags": [
+            "three.js",
+            "webgl",
+            "react three fiber"
+          ]
         },
         {
           "text": "Integrated GROQ API with Google Gemini fallback for context-trained AI conversations, alongside WakaTime and GitHub API widgets.",
-          "tags": ["gemini api", "groq api", "ai chat", "github api"]
+          "tags": [
+            "gemini api",
+            "groq api",
+            "ai chat",
+            "github api"
+          ]
         }
       ]
     },
     {
       "name": "RTGS/NEFT Banking System",
       "description": "Enterprise banking payment processing system serving major banks and vendors.",
-      "techStack": ["C#", "ASP.NET Core", ".NET 6 / 8", "Microservices", "EF Core", "PostgreSQL", "MySQL", "Oracle DB", "SQL Server", "SFTP / FTP", "Azure DevOps", "CI/CD Pipelines", "IIS Hosting", "REST APIs", "Blazor", "Razor Pages"],
+      "techStack": [
+        "C#",
+        "ASP.NET Core",
+        ".NET 6 / 8",
+        "Microservices",
+        "EF Core",
+        "PostgreSQL",
+        "MySQL",
+        "Oracle DB",
+        "SQL Server",
+        "SFTP / FTP",
+        "Azure DevOps",
+        "CI/CD Pipelines",
+        "IIS Hosting",
+        "REST APIs",
+        "Blazor",
+        "Razor Pages"
+      ],
       "links": {
         "isProprietary": true
       },
       "bullets": [
         {
           "text": "Enterprise banking payment processing system built on Microservices Architecture (.NET 6 & .NET 8), serving multiple banks and vendors; handles RTGS and NEFT services with Blazor and Razor Pages.",
-          "tags": ["c#", "asp.net core", "microservices", "banking", "rtgs", "neft", "blazor", "razor pages"]
+          "tags": [
+            "c#",
+            "asp.net core",
+            "microservices",
+            "banking",
+            "rtgs",
+            "neft",
+            "blazor",
+            "razor pages"
+          ]
         },
         {
           "text": "Designed and maintained independently deployable microservices with service-to-service communication, API gateway integration, and database-per-service patterns.",
-          "tags": ["microservices", "service-to-service", "api gateway", "database"]
+          "tags": [
+            "microservices",
+            "service-to-service",
+            "api gateway",
+            "database"
+          ]
         },
         {
           "text": "Optimized database operations and queries across Oracle Database, SQL Server, MySQL, and PostgreSQL using Entity Framework Core, DBeaver, and database migration scripts.",
-          "tags": ["oracle", "sql server", "mysql", "postgresql", "ef core", "dbeaver", "database migration"]
+          "tags": [
+            "oracle",
+            "sql server",
+            "mysql",
+            "postgresql",
+            "ef core",
+            "dbeaver",
+            "database migration"
+          ]
         },
         {
           "text": "Integrated secure SFTP/FTP file delivery channels and managed automated CI/CD pipelines for IIS hosting deployments via Azure DevOps.",
-          "tags": ["sftp", "ftp", "ci/cd", "iis", "azure devops", "deployment"]
+          "tags": [
+            "sftp",
+            "ftp",
+            "ci/cd",
+            "iis",
+            "azure devops",
+            "deployment"
+          ]
         }
       ]
     },
     {
       "name": "Agremate – Smart Property Management Platform",
       "description": "Smart property management platform backend with Clean Architecture.",
-      "techStack": ["C#", "ASP.NET Core", ".NET 8", "EF Core", "PostgreSQL", "SQL Server", "Razorpay", "Docker", "Redis", "REST APIs", "Clean Architecture"],
+      "techStack": [
+        "C#",
+        "ASP.NET Core",
+        ".NET 8",
+        "EF Core",
+        "PostgreSQL",
+        "SQL Server",
+        "Razorpay",
+        "Docker",
+        "Redis",
+        "REST APIs",
+        "Clean Architecture"
+      ],
       "links": {
         "isProprietary": true
       },
       "bullets": [
         {
           "text": "Developed scalable backend REST APIs (.NET 8) and automated property workflows (digital rental agreements, billing) for India's smart property management platform.",
-          "tags": ["c#", "asp.net core", "rest api", "property management", "automation"]
+          "tags": [
+            "c#",
+            "asp.net core",
+            "rest api",
+            "property management",
+            "automation"
+          ]
         },
         {
           "text": "Implemented Clean Architecture with Entity Framework Core and Unit of Work repository patterns, supporting PostgreSQL and SQL Server backend databases.",
-          "tags": ["clean architecture", "ef core", "postgresql", "sql server", "repository pattern", "unit of work"]
+          "tags": [
+            "clean architecture",
+            "ef core",
+            "postgresql",
+            "sql server",
+            "repository pattern",
+            "unit of work"
+          ]
         },
         {
           "text": "Integrated Razorpay payment gateways for secure rent, PG, and automated landlord-tenant payments.",
-          "tags": ["razorpay", "payment gateway", "integration"]
+          "tags": [
+            "razorpay",
+            "payment gateway",
+            "integration"
+          ]
         },
         {
           "text": "Containerized application environments using Docker to ensure cross-platform scalability and robust API testing pipelines.",
-          "tags": ["docker", "containerization", "api testing", "scalability"]
+          "tags": [
+            "docker",
+            "containerization",
+            "api testing",
+            "scalability"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Migration Master – High-Performance PostgreSQL Migration Tool",
+      "description": "High-performance database migration tool in C# (.NET 8) featuring native bulk binary COPY protocol and interactive CLI UI.",
+      "techStack": [
+        "C#",
+        "ASP.NET Core / .NET 8",
+        "PostgreSQL",
+        "Npgsql",
+        "Spectre.Console",
+        "Clean Architecture"
+      ],
+      "links": {
+        "github": "https://github.com/charan-kumar99/Migration-Master"
+      },
+      "bullets": [
+        {
+          "text": "Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# (.NET 8) using PostgreSQL's native Binary COPY protocol (COPY FROM STDIN via Npgsql) for ultra-fast data transfer.",
+          "tags": [
+            "c#",
+            ".net 8",
+            "postgresql",
+            "npgsql",
+            "binary copy",
+            "database migration"
+          ]
+        },
+        {
+          "text": "Implemented topological dependency sorting using Kahn's Algorithm to automatically resolve table creation and insertion order based on foreign key relationships.",
+          "tags": [
+            "kahns algorithm",
+            "topological sort",
+            "dependency resolution",
+            "foreign keys"
+          ]
+        },
+        {
+          "text": "Engineered full schema and data replication supporting automated primary/foreign key creation, unique/check constraints, custom indexes, identity sequence syncing, and smart staging copy with ON CONFLICT DO NOTHING.",
+          "tags": [
+            "schema replication",
+            "constraints",
+            "indexes",
+            "sequence syncing",
+            "staging copy"
+          ]
+        },
+        {
+          "text": "Designed a modern interactive terminal UI with Spectre.Console featuring connection status checks, table row estimation grids, real-time progress bars, and execution statistics.",
+          "tags": [
+            "spectre.console",
+            "cli",
+            "terminal ui",
+            "interactive",
+            "progress tracking"
+          ]
         }
       ]
     }
@@ -330,7 +742,36 @@
       "degree": "Bachelor of Computer Applications (BCA)",
       "institution": "Udupi College of Professional Studies, Mangalore University",
       "dates": "Sep 2022 – Jun 2025",
-      "details": "CGPA: 6.17. Completed 3-Year Add-on program in Cyber Security, Artificial Intelligence, and Big Data Analytics alongside BCA."
+      "details": "CGPA: 6.17. Completed 3-Year Add-on program in Cyber Security, Artificial Intelligence, and Big Data Analytics alongside BCA.",
+      "addOnCourses": [
+        {
+          "year": "Year 1",
+          "level": "Certificate Course",
+          "subjects": [
+            "Cyber Security",
+            "Artificial Intelligence",
+            "Big Data Analytics"
+          ]
+        },
+        {
+          "year": "Year 2",
+          "level": "Diploma Course",
+          "subjects": [
+            "Cyber Security",
+            "Artificial Intelligence",
+            "Big Data Analytics"
+          ]
+        },
+        {
+          "year": "Year 3",
+          "level": "Advanced Diploma Course",
+          "subjects": [
+            "Cyber Security",
+            "Artificial Intelligence",
+            "Big Data Analytics"
+          ]
+        }
+      ]
     },
     {
       "degree": "Pre-University Certificate (12th Standard)",
@@ -376,5 +817,42 @@
       "issuer": "National Cadet Corps",
       "date": "Completed during School"
     }
-  ]
+  ],
+  "activitiesAndInterests": [
+    {
+      "icon": "🎖",
+      "name": "NCC – National Cadet Corps",
+      "description": "Served as NCC Lead / Head Cadet for the school unit. Received the prestigious Best Cadet Award for outstanding discipline and leadership. Completed a 10-day NCC camp with training alongside Indian Navy and Army officers. Holds NCC 'A' Certificate."
+    },
+    {
+      "icon": "🏏",
+      "name": "Cricket",
+      "description": "Active competitive player; served as team captain; participated in and won multiple district-level matches; continues to play in regular tournaments."
+    },
+    {
+      "icon": "🏐",
+      "name": "Volleyball",
+      "description": "District-level player; captained school and college volleyball teams; participated in and won multiple inter-institution matches."
+    },
+    {
+      "icon": "🤼",
+      "name": "Kabaddi",
+      "description": "Participated at district level during school years."
+    },
+    {
+      "icon": "♟",
+      "name": "Chess",
+      "description": "Regular player; practices consistently with peers and family."
+    }
+  ],
+  "leadershipAndSportsProfile": {
+    "description": "Traits shaped by NCC leadership, cricket captaincy, and competitive sports.",
+    "traits": {
+      "Leadership": 95,
+      "Strategy": 80,
+      "Teamwork": 90,
+      "Endurance": 88,
+      "Technical Agility": 85
+    }
+  }
 }

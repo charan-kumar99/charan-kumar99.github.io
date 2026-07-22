@@ -706,9 +706,32 @@
                         style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.3); border-radius: 10px; color: #ffaa00; font-size: 0.95rem;">
                         &#128274; Proprietary Enterprise Project
                     </div>
+            <div class="project-card fade-in" data-tags="dotnet,fullstack">
+                <div class="project-header">
+                    <div class="project-number">09</div>
+                    <h3 class="project-title">Migration Master &ndash; High-Performance PostgreSQL Migration Tool</h3>
+                    <ul class="project-description">
+                        <li>Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# (.NET 8) using PostgreSQL's native Binary COPY protocol (<code style="color:var(--accent-cyan);">COPY FROM STDIN</code> via Npgsql) for ultra-fast data transfer.</li>
+                        <li>Implemented topological dependency sorting using Kahn's Algorithm to automatically resolve table creation and insertion order based on foreign key relationships.</li>
+                        <li>Engineered full schema &amp; data replication supporting automated primary/foreign key creation, unique/check constraints, custom indexes, identity sequence syncing, and smart staging copy with <code style="color:var(--accent-cyan);">ON CONFLICT DO NOTHING</code>.</li>
+                        <li>Designed a modern interactive terminal UI with Spectre.Console featuring connection status checks, table row estimation grids, real-time progress bars, and execution statistics.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">.NET 8</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Npgsql</span>
+                        <span class="tech-tag">Spectre.Console</span>
+                        <span class="tech-tag">Clean Architecture</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://github.com/charan-kumar99/Migration-Master" target="_blank" class="btn btn-primary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>&#128025; View on GitHub</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-
 
         </div>
     </section>
@@ -727,6 +750,13 @@
                         <div class="sim-tab-text">
                             <span class="sim-tab-title">DevLens Analyzer</span>
                             <span class="sim-tab-desc">AI Repo Metrics & Summary</span>
+                        </div>
+                    </button>
+                    <button class="sim-tab" data-flow="migrationmaster">
+                        <span class="sim-tab-icon">🚀</span>
+                        <div class="sim-tab-text">
+                            <span class="sim-tab-title">Migration Master</span>
+                            <span class="sim-tab-desc">PostgreSQL Binary COPY Flow</span>
                         </div>
                     </button>
                     <button class="sim-tab" data-flow="moneymate">
@@ -1324,7 +1354,7 @@
                     </svg>
                 </div>
                 <div class="contact-label">Languages</div>
-                <div class="contact-value">English, Hindi, Kannada, Tulu, Tamil</div>
+                <div class="contact-value">English, Hindi, Kannada, Tulu</div>
             </div>
 
         </div>

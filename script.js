@@ -226,7 +226,7 @@ Location : Udupi, Karnataka, India
 LinkedIn : https://www.linkedin.com/in/charan-kumar-9b20a8378
 GitHub : https://github.com/charan-kumar99
 Portfolio : https://charan-kumar99.github.io/
-Languages spoken: English, Hindi, Kannada, Tulu, Tamil (mother tongue is Tulu)
+Languages spoken: English, Hindi, Kannada, Tulu (mother tongue is Tulu)
 
 PROFESSIONAL SUMMARY
 Versatile .NET Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, Redis cache, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, SQL Server, and Redis, REST API development, Docker containerization, API versioning, globalization, and .NET version migration.
@@ -280,7 +280,9 @@ PROJECTS (in order)
 6. **Advanced Developer Portfolio** — Immersive Next.js/React portfolio featuring 3D visuals (Three.js, React Three Fiber), GSAP, WakaTime metrics, and GROQ/Gemini AI chat assistant.
    GitHub: https://github.com/charan-kumar99/Advanced-Portfolio
    Live: https://advanced-portfolio-sandy.vercel.app/
-7. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET 6 & .NET 8) — Proprietary (built at NTSIPL)
+7. **Migration Master** — High-Performance PostgreSQL Database Migration Tool in C# (.NET 8) featuring bulk binary COPY protocol ('COPY FROM STDIN'), topological dependency sorting with Kahn's Algorithm, full schema/constraint replication, identity sequence syncing, and interactive Spectre.Console CLI.
+   GitHub: https://github.com/charan-kumar99/Migration-Master
+8. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET 6 & .NET 8) — Proprietary (built at NTSIPL)
 
 CERTIFICATIONS & TRAINING
 - Fast-Track Internship — Data Analytics, Web Development & Python Projects | Accolade Tech Solutions, Mangaluru (August 2024)
@@ -481,6 +483,14 @@ const PROJECT_CARDS_DATA = [
         icon: '🎙️'
     },
     {
+        keywords: ['migration master', 'migration-master', 'migrationmaster', 'postgres migration', 'database migration'],
+        title: 'Migration Master',
+        sub: 'PostgreSQL Migration Tool in C#',
+        github: 'https://github.com/charan-kumar99/Migration-Master',
+        tags: ['C#', '.NET 8', 'PostgreSQL', 'Binary COPY', 'Spectre.Console'],
+        icon: '🚀'
+    },
+    {
         keywords: ['rtgs/neft', 'banking system', 'payment processing'],
         title: 'RTGS/NEFT Banking System',
         sub: 'Enterprise Microservices Project',
@@ -609,10 +619,10 @@ const SUGGESTION_SETS = [
         { icon: '🔒', text: 'What is the RTGS/NEFT project?' }
     ],
     [
+        { icon: '🚀', text: 'Tell me about Migration Master' },
         { icon: '🔍', text: 'What is DevLens?' },
         { icon: '💰', text: 'Tell me about Money Mate' },
-        { icon: '🎤', text: 'What is Orion AI Assistant?' },
-        { icon: '🏏', text: 'What is the Cricket Analyzer?' }
+        { icon: '🎤', text: 'What is Orion AI Assistant?' }
     ],
     [
         { icon: '🎖️', text: 'What is the Best Cadet Award?' },
@@ -1988,6 +1998,84 @@ document.addEventListener('click', e => {
                     ]
                 }
             ]
+        },
+        migrationmaster: {
+            nodes: [
+                { icon: "💻", title: "Interactive CLI", sub: "Spectre.Console Engine" },
+                { icon: "🔌", title: "Conn Validator", sub: "Source & Dest Handshake" },
+                { icon: "🔎", title: "Schema Reader", sub: "Catalog & Constraint Inspection" },
+                { icon: "🔄", title: "Kahn's Sorter", sub: "Topological Dependency Sorting" },
+                { icon: "🏗️", title: "DDL Replicator", sub: "Schemas & Tables Creation" },
+                { icon: "⚡", title: "Binary COPY", sub: "Npgsql Stream COPY FROM STDIN" },
+                { icon: "🔒", title: "Post-Processing", sub: "PKs, FKs, Indexes & Sequence Sync" }
+            ],
+            steps: [
+                {
+                    nodeName: "Interactive CLI",
+                    desc: "User launches Migration Master CLI, prompted for source and destination PostgreSQL connection strings.",
+                    logs: [
+                        "CLI - Initializing Spectre.Console Interactive UI...",
+                        "PROMPT - Enter Source PostgreSQL Connection String",
+                        "PROMPT - Enter Destination PostgreSQL Connection String"
+                    ]
+                },
+                {
+                    nodeName: "Conn Validator",
+                    desc: "Migration Master tests connectivity, SSL handshake, and permissions on both source and target database instances.",
+                    logs: [
+                        "CONNECT - Testing connection to source database [Host: localhost, DB: source_db]",
+                        "SUCCESS - Connected to source PostgreSQL instance successfully.",
+                        "CONNECT - Testing connection to destination database [Host: remote, DB: target_db]",
+                        "SUCCESS - Connected to destination PostgreSQL instance successfully."
+                    ]
+                },
+                {
+                    nodeName: "Schema Reader",
+                    desc: "SchemaReader queries PostgreSQL system catalogs (information_schema, pg_catalog) to discover tables, columns, constraints, and sequences.",
+                    logs: [
+                        "QUERY - Inspecting pg_tables, pg_attribute, and pg_constraint catalog views...",
+                        "DISCOVER - Found 24 database tables, 156 columns, 18 primary keys, and 32 foreign key constraints.",
+                        "INFO - Calculating table row counts via pg_class tuple estimates..."
+                    ]
+                },
+                {
+                    nodeName: "Kahn's Sorter",
+                    desc: "Applies Kahn's Algorithm for topological sorting to organize table copy order based on foreign key dependency trees.",
+                    logs: [
+                        "ALGO - Building directed acyclic graph (DAG) of table dependencies...",
+                        "SORT - Applying Kahn's Algorithm for topological sorting...",
+                        "SUCCESS - Table dependency tree resolved: [users -> categories -> products -> orders -> order_items]"
+                    ]
+                },
+                {
+                    nodeName: "DDL Replicator",
+                    desc: "Creates required PostgreSQL schemas and base tables on target database without constraints to prepare for fast data loading.",
+                    logs: [
+                        "DDL - CREATE SCHEMA IF NOT EXISTS public;",
+                        "DDL - Creating 24 base target tables with matching data types...",
+                        "SUCCESS - Base target table structure established."
+                    ]
+                },
+                {
+                    nodeName: "Binary COPY",
+                    desc: "Executes Npgsql binary copy protocol (COPY FROM STDIN) streaming raw binary tuples directly from source to destination staging tables.",
+                    logs: [
+                        "COPY - Setting session_replication_role = 'replica' to bypass triggers & constraints...",
+                        "STREAM - Executing NpgsqlBinaryExporter -> NpgsqlBinaryImporter streaming COPY...",
+                        "SUCCESS - Transferred 2,450,000 rows across 24 tables in 4.12 seconds (594,660 rows/sec)."
+                    ]
+                },
+                {
+                    nodeName: "Post-Processing",
+                    desc: "Re-enables constraints, builds primary keys, foreign keys, unique indexes, and synchronizes identity sequences with max(id).",
+                    logs: [
+                        "DDL - Re-applying Primary Keys and Foreign Key constraints...",
+                        "INDEX - Rebuilding 14 custom B-Tree & GIN indexes on target tables...",
+                        "SYNC - Executing pg_get_serial_sequence & setval() to sync identity sequences...",
+                        "SUMMARY - PostgreSQL Migration completed successfully! Total time: 6.84s."
+                    ]
+                }
+            ]
         }
     };
 
@@ -2474,7 +2562,8 @@ document.addEventListener('click', e => {
   4. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS Speech API)
   5. DueZy - Premium Flutter/Firebase Bill & EMI Reminder Mobile App
   6. Advanced Developer Portfolio - Immersive Next.js/React portfolio with 3D elements
-  7. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
+  7. Migration Master - PostgreSQL Binary COPY Migration Tool (C#, .NET 8, Spectre.Console)
+  8. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
 
         contact: `Contact Details:
   - Email:      charansuvarna99@gmail.com
