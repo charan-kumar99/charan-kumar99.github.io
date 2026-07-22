@@ -5,11 +5,38 @@ Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring an 
 
 ---
 
+## 🤖 AI Models & Integration Architecture
+
+The application leverages state-of-the-art Large Language Models (LLMs) via secure serverless proxy endpoints to power both interactive candidate Q&A and instant ATS resume tailoring:
+
+### 1. 💬 AI Support Chatbot & Voice Assistant (`/api/chat.js`)
+- **Primary AI Engine**: **Groq LLaMA 3.3 70B Versatile** (`llama-3.3-70b-versatile`) — Delivers sub-second inference speeds for real-time candidate Q&A.
+- **Secondary / Fallback Engine**: **Google Gemini 2.5 Flash** (`gemini-2.5-flash`) — Activates seamlessly if primary rate limits or network limits are met.
+- **Resilience Strategy**: Multi-provider fallback chain across Groq, Google Gemini, OpenRouter, Cohere, and Mistral ensuring 99.9% uptime.
+- **Features**:
+  - Voice input with live CSS audio waveform visualizer via Web Speech API.
+  - Text-to-Speech (TTS) natural voice responses.
+  - Context-trained prompt engineering based on `resume-data.json`.
+  - Smart chips and 12 randomized prompt sets.
+
+### 2. 📄 Tailored ATS Resume Generator (`/api/polish.js`)
+- **Primary AI Engine**: **Google Gemini 2.5 Flash** (`gemini-2.5-flash`) — Evaluates complex Job Descriptions (JDs), extracts key requirements, and performs structured JSON outputs.
+- **Fallback Engine**: **Groq LLaMA 3.3 70B** — Ensures resume generation succeeds even during high traffic.
+- **6-Tier AI Processing Pipeline**:
+  1. **JD Parsing & Role Extraction**: Extracts target job title, core technology requirements, and key competencies.
+  2. **Summary Customization**: Rewrites the professional summary to align with target role keywords while keeping core achievements intact.
+  3. **Experience Rephrasing & Metric Polishing**: Transforms raw bullet points into STAR-method achievements with strong action verbs and quantitative impact metrics.
+  4. **Skill Prioritization**: Automatically sorts and highlights matching technical skills (.NET 8, C#, SQL Server, Clean Architecture, Microservices, PostgreSQL, Docker, Redis).
+  5. **Project Selection**: Filters and highlights top matching projects (e.g., **Migration Master**, **DevLens**, **AGREMATE Platform**, **RTGS/NEFT Microservices**).
+  6. **Client-Side PDF Compilation**: Formats the tailored JSON structure into a clean, single-page Serif ATS resume rendered instantly on-the-fly using `jsPDF`.
+
+---
+
 ## 🌟 Core Features & Highlights
 
 - **📄 AI-Powered Tailored ATS Resume Generator**: Floating glassmorphic tool on the bottom-right that accepts any Job Description (JD), runs a 6-tier AI pipeline via Gemini API to rephrase bullet points with quantitative impact metrics, tailors skills & projects, and renders clean PDF resumes on-the-fly using `jsPDF`.
 - **💻 Interactive Project Workflow Simulator**: Step-by-step visual map and terminal log simulator showcasing data flows, API gateways, and database execution logic for projects including **DevLens**, **Migration Master**, **Money Mate**, **Orion**, **DueZy**, and **Advanced Portfolio**.
-- **🤖 AI Support Chatbot & Voice Assistant**: Powered by the **Google Gemini API** (with Groq LLaMA 3.3 fallback), featuring voice input with real-time CSS audio visualizer, text-to-speech (TTS), smart chips, and context-trained knowledge.
+- **🤖 AI Support Chatbot & Voice Assistant**: Powered by **Groq LLaMA 3.3 70B** and **Google Gemini 2.5 Flash**, featuring voice input with real-time CSS audio visualizer, text-to-speech (TTS), smart chips, and context-trained knowledge.
 - **🚀 Featured Projects Portfolio**: Showcases 9 major projects across .NET 8, C#, Python, Flask, React, Flutter, and PostgreSQL — including open-source tools like **Migration Master** and proprietary systems at **AGREMATE** and **NTSIPL**.
 - **🎮 Developer CLI Drawer**: Matrix-style interactive terminal (` key or 💻 navbar icon) supporting commands like `help`, `skills`, `experience`, `projects`, `contact`, `theme`, and `neofetch`.
 - **🎨 Dynamic Theme Palette**: Switch color themes instantly (Dark, Cyberpunk, Emerald, Neo-Cyan, Light Pro) with persistent localStorage state.
@@ -20,7 +47,7 @@ Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring an 
 ## 🛠️ Tech Stack & Architecture
 
 - **Frontend**: HTML5, Vanilla CSS3 (CSS Variables, Glassmorphism, Animations), Modern ES6+ JavaScript, Chart.js, jsPDF, D3.js.
-- **Backend / APIs**: Node.js, Vercel Serverless Functions (`/api/chat`, `/api/polish`), Google Gemini API, Groq LLaMA 3.3.
+- **Backend / APIs**: Node.js, Vercel Serverless Functions (`/api/chat`, `/api/polish`), Google Gemini 2.5 Flash, Groq LLaMA 3.3 70B.
 - **Data Source**: `resume-data.json` single-source-of-truth for experience, skills, certifications, and project metadata.
 
 ---
@@ -48,8 +75,8 @@ Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring an 
 ├── resume-data.json  — Centralized JSON data source for resume, experience, and project details
 ├── server.js         — Node.js development server with local API proxies
 ├── api/
-│   ├── chat.js       — Serverless endpoint for AI support chatbot (Groq + Gemini fallback)
-│   └── polish.js     — Serverless endpoint for AI resume polishing and tailoring
+│   ├── chat.js       — Serverless endpoint for AI support chatbot (Groq LLaMA 3.3 + Gemini 2.5 Flash fallback)
+│   └── polish.js     — Serverless endpoint for AI resume polishing and ATS tailoring (Gemini 2.5 Flash + Groq fallback)
 ├── vercel.json       — Vercel deployment & routing configuration
 ├── Ai.png            — Custom AI chat floating bubble icon
 └── README.md         — Portfolio documentation
@@ -65,9 +92,9 @@ Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring an 
    cd charan-kumar99.github.io
    ```
 
-2. Set your Google Gemini API key as an environment variable and launch the local server:
+2. Set your AI API keys as environment variables and launch the local server:
    ```powershell
-   $env:GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"; node server.js
+   $env:GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"; $env:GROQ_API_KEY="YOUR_GROQ_API_KEY_HERE"; node server.js
    ```
 
 3. Open your browser at:
@@ -80,7 +107,7 @@ Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring an 
 ## 🌐 Deployment
 
 - **GitHub Pages**: Serves `index.html` as the static frontend directly from the `main` branch.
-- **Vercel Serverless Functions**: Serves the backend AI endpoints (`/api/chat` and `/api/polish`).
+- **Vercel Serverless Functions**: Serves backend AI endpoints (`/api/chat` and `/api/polish`).
 - **Live URL**: [https://charan-kumar99.github.io](https://charan-kumar99.github.io)
 
 ---
