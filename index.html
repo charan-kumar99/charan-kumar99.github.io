@@ -252,6 +252,18 @@
                     <div class="skill-icon"><i class="devicon-chartjs-plain"></i></div>
                     <div class="skill-name">Chart.js</div>
                 </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="skill-name">Mozilla PDF.js</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-file-zipper"></i></div>
+                    <div class="skill-name">JSZip</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="skill-name">jsPDF</div>
+                </div>
             </div>
         </div>
 
@@ -281,6 +293,10 @@
                 <div class="skill-card">
                     <div class="skill-icon"><i class="devicon-redis-plain"></i></div>
                     <div class="skill-name">Redis</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-box-archive"></i></div>
+                    <div class="skill-name">IndexedDB</div>
                 </div>
             </div>
         </div>
@@ -371,6 +387,14 @@
                 <div class="skill-card">
                     <div class="skill-icon"><i class="fa-solid fa-palette"></i></div>
                     <div class="skill-name">HTML5 Canvas</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <div class="skill-name">PWA (Service Worker)</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                    <div class="skill-name">Web Share API</div>
                 </div>
             </div>
         </div>
@@ -584,26 +608,27 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-tags="mobile,fullstack">
+            <div class="project-card fade-in" data-tags="javascript,fullstack,pwa">
                 <div class="project-header">
                     <div class="project-number">05</div>
-                    <h3 class="project-title">DueZy &ndash; Premium Bill &amp; EMI Reminder Mobile App</h3>
+                    <h3 class="project-title">Vaulta &ndash; Personal &amp; Official Document Manager</h3>
                     <ul class="project-description">
-                        <li>Developed a premium, highly aesthetic mobile application to track and remind users of education loans, EMIs, and bills, ensuring zero missed payments.</li>
-                        <li>Implemented a sleek, responsive glassmorphic dashboard showcasing real-time visual summaries of total due, paid, and pending cycles.</li>
-                        <li>Integrated real-time database synchronization and offline resilience with Firebase Firestore, SharedPreferences caching, and secure anonymous authentication.</li>
-                        <li>Configured local scheduling workflows for proactive push alerts using local notifications to notify users before payment deadlines.</li>
+                        <li>Built a modern, privacy-first offline Progressive Web Application (PWA) to securely store, organize, preview, and share personal and official documents completely on-device.</li>
+                        <li>Engineered 100% private zero-cloud storage utilizing browser IndexedDB (DocDB) and offline Service Worker (sw.js) asset pre-caching.</li>
+                        <li>Integrated Mozilla PDF.js v3.11.174 HTML5 canvas rendering engine with custom zoom, fit-to-screen, and page-by-page touch control toolbars.</li>
+                        <li>Implemented dual-vault architecture (Personal &amp; Official), native Web Share API integration, image-to-PDF conversion with jsPDF, and bulk ZIP export via JSZip.</li>
                     </ul>
                     <div class="project-tech">
-                        <span class="tech-tag">Flutter</span>
-                        <span class="tech-tag">Dart</span>
-                        <span class="tech-tag">Firebase Firestore</span>
-                        <span class="tech-tag">Firebase Auth</span>
-                        <span class="tech-tag">Local Notifications</span>
-                        <span class="tech-tag">SharedPreferences</span>
+                        <span class="tech-tag">JavaScript (ES6+)</span>
+                        <span class="tech-tag">IndexedDB</span>
+                        <span class="tech-tag">Mozilla PDF.js</span>
+                        <span class="tech-tag">PWA (Service Worker)</span>
+                        <span class="tech-tag">Web Share API</span>
+                        <span class="tech-tag">JSZip</span>
+                        <span class="tech-tag">jsPDF</span>
                     </div>
                     <div style="margin-top: 1.5rem;">
-                        <a href="https://github.com/charan-kumar99/DueZy" target="_blank" class="btn btn-primary"
+                        <a href="https://github.com/charan-kumar99/Vaulta" target="_blank" class="btn btn-primary"
                             style="padding: 0.8rem 2rem; font-size: 0.95rem;">
                             <span>&#128025; View on GitHub</span>
                         </a>
@@ -783,11 +808,11 @@
                             <span class="sim-tab-desc">Speech & Task Automation</span>
                         </div>
                     </button>
-                    <button class="sim-tab" data-flow="duezy">
-                        <span class="sim-tab-icon">📱</span>
+                    <button class="sim-tab" data-flow="vaulta">
+                        <span class="sim-tab-icon">🔒</span>
                         <div class="sim-tab-text">
-                            <span class="sim-tab-title">DueZy Reminders</span>
-                            <span class="sim-tab-desc">Flutter/Firestore Sync Flow</span>
+                            <span class="sim-tab-title">Vaulta Doc Manager</span>
+                            <span class="sim-tab-desc">PWA &amp; IndexedDB PDF Pipeline</span>
                         </div>
                     </button>
                     <button class="sim-tab" data-flow="advportfolio">
@@ -1553,6 +1578,9 @@
             
             <div class="resume-modal-footer">
                 <button class="btn btn-secondary modal-btn-cancel" id="cancelResumeBtn">Cancel</button>
+                <button class="btn btn-secondary" id="copyLatexBtn" style="margin-right: 8px;">
+                    <span>📋 Copy LaTeX Source</span>
+                </button>
                 <button class="btn btn-primary modal-btn-generate" id="generateResumeBtn">
                     <span>⚡ Generate &amp; Download</span>
                 </button>

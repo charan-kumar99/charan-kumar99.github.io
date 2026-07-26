@@ -35,7 +35,7 @@ The application leverages state-of-the-art Large Language Models (LLMs) via secu
 ## 🌟 Core Features & Highlights
 
 - **📄 AI-Powered Tailored ATS Resume Generator**: Floating glassmorphic tool on the bottom-right that accepts any Job Description (JD), runs a 6-tier AI pipeline via Gemini API to rephrase bullet points with quantitative impact metrics, tailors skills & projects, and renders clean PDF resumes on-the-fly using `jsPDF`.
-- **💻 Interactive Project Workflow Simulator**: Step-by-step visual map and terminal log simulator showcasing data flows, API gateways, and database execution logic for projects including **DevLens**, **Migration Master**, **Money Mate**, **Orion**, **DueZy**, and **Advanced Portfolio**.
+- **💻 Interactive Project Workflow Simulator**: Step-by-step visual map and terminal log simulator showcasing data flows, API gateways, and database execution logic for projects including **DevLens**, **Migration Master**, **Money Mate**, **Orion**, **Vaulta**, and **Advanced Portfolio**.
 - **🤖 AI Support Chatbot & Voice Assistant**: Powered by **Groq LLaMA 3.3 70B** and **Google Gemini 2.5 Flash**, featuring voice input with real-time CSS audio visualizer, text-to-speech (TTS), smart chips, and context-trained knowledge.
 - **🚀 Featured Projects Portfolio**: Showcases 9 major projects across .NET 8, C#, Python, Flask, React, Flutter, and PostgreSQL — including open-source tools like **Migration Master** and proprietary systems at **AGREMATE** and **NTSIPL**.
 - **🎮 Developer CLI Drawer**: Matrix-style interactive terminal (` key or 💻 navbar icon) supporting commands like `help`, `skills`, `experience`, `projects`, `contact`, `theme`, and `neofetch`.
@@ -60,7 +60,7 @@ The application leverages state-of-the-art Large Language Models (LLMs) via secu
 4. **RTGS/NEFT Banking Microservices**: Enterprise payment processing services built on Microservices Architecture (.NET 6/8), serving major banks and vendors.
 5. **Money Mate**: Flask & SQLite personal finance manager with multi-currency tracking and Chart.js analytics.
 6. **Orion**: AI voice assistant with Speech Recognition and Google TTS automation.
-7. **DueZy**: Premium Flutter & Firebase bill and EMI reminder mobile app with glassmorphic UI.
+7. **Vaulta**: Personal & Official Document Manager — Modern, privacy-first, offline PWA with IndexedDB storage, Mozilla PDF.js viewer, Web Share API, and JSZip/jsPDF backup utilities.
 8. **Advanced Portfolio**: Next.js 15, React 19, Three.js 3D environment, Framer Motion, and GSAP animations.
 9. **Cricket Performance Analyzer**: ES6 JavaScript analytics tool with custom metric engine and Chart.js visualizations.
 

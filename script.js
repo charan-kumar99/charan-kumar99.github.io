@@ -261,9 +261,9 @@ WORK EXPERIENCE
 
 SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
-- Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**
-- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**
-- Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**
+- Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**, **Mozilla PDF.js**, **JSZip**, **jsPDF**
+- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**, **IndexedDB**
+- Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**, **PWA (Service Worker)**, **Web Share API**
 - API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**, API Versioning, API Globalization, .NET Migration (6→8)
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
@@ -276,8 +276,8 @@ PROJECTS (in order)
    GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
 4. **Orion** — AI-Powered Personal Voice Assistant (Python, Flask, JS, Google TTS, Speech Recognition)
    GitHub: https://github.com/charan-kumar99/Orion
-5. **DueZy** — Premium Bill & EMI Reminder Mobile App (Flutter, Dart, Firebase Firestore, Firebase Auth, Local Notifications, SharedPreferences) — Designed to track education loans, EMIs, and bills.
-   GitHub: https://github.com/charan-kumar99/DueZy
+5. **Vaulta** — Personal & Official Document Manager (JavaScript ES6+, IndexedDB, Mozilla PDF.js, PWA Service Worker, Web Share API, JSZip, jsPDF) — Modern, 100% private offline PWA for storing, previewing, converting, and sharing documents.
+   GitHub: https://github.com/charan-kumar99/Vaulta
 6. **Advanced Developer Portfolio** — Immersive Next.js/React portfolio featuring 3D visuals (Three.js, React Three Fiber), GSAP, WakaTime metrics, and GROQ/Gemini AI chat assistant.
    GitHub: https://github.com/charan-kumar99/Advanced-Portfolio
    Live: https://advanced-portfolio-sandy.vercel.app/
@@ -1868,68 +1868,68 @@ document.addEventListener('click', e => {
                 }
             ]
         },
-        duezy: {
+        vaulta: {
             nodes: [
-                { icon: "📱", title: "Flutter App UI", sub: "Dashboard & Alerts" },
-                { icon: "🔐", title: "Firebase Auth", sub: "Anonymous Login" },
-                { icon: "☁️", title: "Firestore Service", sub: "Real-time Queries" },
-                { icon: "📂", title: "Local Cache", sub: "SharedPreferences" },
-                { icon: "🔔", title: "Notification Service", sub: "Local Push Scheduler" },
-                { icon: "🔄", title: "Status Sync", sub: "Real-time DB Rollover" }
+                { icon: "📱", title: "PWA Container", sub: "Service Worker & Manifest" },
+                { icon: "📂", title: "Dual Vault UI", sub: "Personal & Official Layout" },
+                { icon: "💾", title: "IndexedDB (DocDB)", sub: "100% Local Storage" },
+                { icon: "📄", title: "Mozilla PDF.js", sub: "Canvas PDF Renderer" },
+                { icon: "📤", title: "Web Share API", sub: "Native File Sharing Engine" },
+                { icon: "📦", title: "Export Utilities", sub: "JSZip & jsPDF Conversion" }
             ],
             steps: [
                 {
-                    nodeName: "Flutter App UI",
-                    desc: "User launches DueZy. The app queries the local state and checks outstanding EMI payments on the glassmorphic dashboard.",
+                    nodeName: "PWA Container",
+                    desc: "User launches Vaulta. The Service Worker (sw.js) intercepts network requests and serves app shell and PDF.js assets directly from offline cache.",
                     logs: [
-                        "INFO - Launching DueZy App...",
-                        "DEBUG - Loading user profile context from SharedPreferences",
-                        "INFO - Building glassmorphic dashboard widgets..."
+                        "INFO - Registering Service Worker: sw.js...",
+                        "DEBUG - Checking CacheStorage: vaulta-v1 pre-cached assets",
+                        "SUCCESS - Service Worker active. Vaulta running in 100% offline mode."
                     ]
                 },
                 {
-                    nodeName: "Firebase Auth",
-                    desc: "Authenticates the user silently using Firebase Anonymous Authentication for secure, scoped database queries.",
+                    nodeName: "Dual Vault UI",
+                    desc: "App initializes dynamic DOM screen router showing Personal Vault (Aadhaar, PAN, Medical) & Official Vault (Offer letters, Payslips).",
                     logs: [
-                        "INFO - Firebase Auth check initiated",
-                        "DEBUG - Checking cached credentials...",
-                        "SUCCESS - Logged in anonymously. User UID: uid_4091a92e"
+                        "INFO - Loading dual vault UI view...",
+                        "DEBUG - Fetching active category filter: Personal Vault / Official Vault",
+                        "SUCCESS - Glassmorphic vault dashboard mounted."
                     ]
                 },
                 {
-                    nodeName: "Firestore Service",
-                    desc: "Connects to Firestore via real-time streams to fetch updated bills and education loan EMI schedules.",
+                    nodeName: "IndexedDB (DocDB)",
+                    desc: "Queries local browser IndexedDB database to retrieve stored document metadata, blob data, and starred favorites with zero cloud footprint.",
                     logs: [
-                        "INFO - Subscribing to Firestore stream: /users/uid_4091a92e/reminders",
-                        "DEBUG - Database query: where('dayStart', '<=', now.day)",
-                        "SUCCESS - Fetched 3 reminders: Education Loan EMI (Due Day 15), Rent, Broadband."
+                        "INFO - Opening IndexedDB connection: DocDB (v1)...",
+                        "DEBUG - Querying objectStore('documents') index 'category'",
+                        "SUCCESS - Fetched 12 document records instantly from local IndexedDB."
                     ]
                 },
                 {
-                    nodeName: "Local Cache",
-                    desc: "Caches reminders locally using SharedPreferences to support offline reading and instant app startups.",
+                    nodeName: "Mozilla PDF.js",
+                    desc: "Renders uploaded PDF documents natively onto HTML5 Canvas using PDF.js v3.11.174 engine with page navigation, zoom, and fit-to-screen controls.",
                     logs: [
-                        "INFO - Syncing Firestore results to local SharedPreferences cache",
-                        "DEBUG - Writing 3 records to local repository...",
-                        "SUCCESS - Offline cache synchronized successfully."
+                        "INFO - Initializing Mozilla PDF.js v3.11.174 canvas renderer...",
+                        "DEBUG - Decoding document ArrayBuffer for page 1/4",
+                        "SUCCESS - PDF canvas view rendered at 100% scale in 85ms."
                     ]
                 },
                 {
-                    nodeName: "Notification Service",
-                    desc: "Schedules localized reminders on the device using local notifications to alert user before the billing cycle ends.",
+                    nodeName: "Web Share API",
+                    desc: "Invokes navigator.share() to send original file Blobs (.pdf, .jpg, .png) directly to native apps like WhatsApp, Gmail, or Telegram.",
                     logs: [
-                        "INFO - Evaluating notification queue",
-                        "DEBUG - Scheduling alarm for Education Loan EMI (ID: 1) on Day 14 at 09:00 AM",
-                        "SUCCESS - Local push notification registered with system alarm manager."
+                        "INFO - Preparing File Blob payload for native Web Share API...",
+                        "DEBUG - Checking navigator.canShare({ files: [ documentFile ] })",
+                        "SUCCESS - Native share sheet invoked successfully."
                     ]
                 },
                 {
-                    nodeName: "Status Sync",
-                    desc: "Triggers dynamic rollover. Once user marks EMI as paid, the app updates Firestore and resets status for the next billing cycle.",
+                    nodeName: "Export Utilities",
+                    desc: "Executes bulk zip backup using JSZip or converts uploaded images into clean single/multi-page PDFs using jsPDF.",
                     logs: [
-                        "INFO - User clicked 'Mark Paid' on Education Loan EMI",
-                        "SQL - Firestore update: users/uid_4091a92e/reminders/edu_loan { isPaidThisCycle: true, updatedAt: Timestamp.now() }",
-                        "SUCCESS - Firestore sync complete. UI updated to show updated billing status."
+                        "INFO - Initiating bulk document export package...",
+                        "DEBUG - Packing 5 document Blobs into JSZip archive...",
+                        "SUCCESS - Backup ZIP generated (vaulta_backup.zip). Download initiated."
                     ]
                 }
             ]
@@ -2546,9 +2546,9 @@ document.addEventListener('click', e => {
 
         skills: `Charan Kumar's Developer Skill Stack:
   Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
-  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database, Redis
-  DevOps/Tools: Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Razorpay, Vercel Serverless, localStorage, Web Speech API, HTML5 Canvas
-  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Chart.js`,
+  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database, Redis, IndexedDB
+  DevOps/Tools: Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Razorpay, Vercel Serverless, PWA (Service Worker), Web Share API, localStorage, Web Speech API, HTML5 Canvas
+  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Chart.js, Mozilla PDF.js, JSZip, jsPDF`,
 
         experience: `Professional History:
   - Software Developer (Hybrid) @ AGREMATE Private Limited (Jun 2026 - Present)
@@ -2561,7 +2561,7 @@ document.addEventListener('click', e => {
   2. Money Mate - Personal Finance Manager (Python, Flask, SQLAlchemy, Chart.js)
   3. Cricket Performance Analyzer - Sports Metrics Web App (ES6 JS, Chart.js)
   4. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS Speech API)
-  5. DueZy - Premium Flutter/Firebase Bill & EMI Reminder Mobile App
+  5. Vaulta - Personal & Official Document Manager (Offline PWA, IndexedDB, PDF.js)
   6. Advanced Developer Portfolio - Immersive Next.js/React portfolio with 3D elements
   7. Migration Master - PostgreSQL Binary COPY Migration Tool (C#, .NET 8, Spectre.Console)
   8. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
@@ -2900,24 +2900,27 @@ document.addEventListener('click', e => {
         return false;
     }
 
-    // 5. Skills Reordering
-    function reorderSkills(skillsList, foundKeywords) {
-        return [...skillsList].sort((a, b) => {
-            const aMatch = isSkillMatched(a, foundKeywords);
-            const bMatch = isSkillMatched(b, foundKeywords);
-            if (aMatch && !bMatch) return -1;
-            if (!aMatch && bMatch) return 1;
-            return 0;
-        });
+    // 5. Skills Reordering & Filtering
+    function filterAndReorderSkills(skillsList, foundKeywords, maxCount = 6) {
+        // Find skills that match found keywords
+        const matched = skillsList.filter(s => isSkillMatched(s, foundKeywords));
+        const nonMatched = skillsList.filter(s => !isSkillMatched(s, foundKeywords));
+        
+        // Combine matched first, then fill up with non-matched up to maxCount
+        const combined = [...matched, ...nonMatched];
+        return combined.slice(0, Math.max(matched.length, maxCount));
     }
 
     // 6. Match JD against Resume Data
     function matchResumeData(data, foundKeywords) {
         const result = JSON.parse(JSON.stringify(data)); // Deep clone
 
-        // Reorder skills lists
-        for (const category in result.skills) {
-            result.skills[category] = reorderSkills(result.skills[category], foundKeywords);
+        // Tailor Skills: keep matched skills + top relevant up to limit (e.g. 5-6 tools instead of 10+)
+        if (result.skills) {
+            result.skills.languages = filterAndReorderSkills(result.skills.languages || [], foundKeywords, 6);
+            result.skills.frameworks = filterAndReorderSkills(result.skills.frameworks || [], foundKeywords, 5);
+            result.skills.databases = filterAndReorderSkills(result.skills.databases || [], foundKeywords, 4);
+            result.skills.tools = filterAndReorderSkills(result.skills.tools || [], foundKeywords, 5);
         }
 
         // Score and filter work experience bullets
@@ -2933,17 +2936,17 @@ document.addEventListener('click', e => {
                 return { bullet: b, score, originalIndex: index };
             });
 
-            // Sort by score desc, keeping high match at top, but if scores are equal keep chronological order
+            // Sort by score desc, keeping high match at top
             scoredBullets.sort((a, b) => {
                 if (b.score !== a.score) return b.score - a.score;
                 return a.originalIndex - b.originalIndex;
             });
 
             // Select top 3-4 bullets
-            const limit = job.company.includes("AGREMATE") ? 4 : 4;
+            const limit = 4;
             const selectedScored = scoredBullets.slice(0, limit);
 
-            // Re-sort selected back to their original index order (preserve sequence)
+            // Re-sort selected back to original index order
             selectedScored.sort((a, b) => a.originalIndex - b.originalIndex);
 
             return {
@@ -2952,7 +2955,7 @@ document.addEventListener('click', e => {
             };
         });
 
-        // Score and filter projects (select top 2-3)
+        // Score and filter projects (select TOP 3 most relevant projects)
         const scoredProjects = result.projects.map((proj, index) => {
             let score = 0;
             proj.techStack.forEach(t => {
@@ -2960,40 +2963,55 @@ document.addEventListener('click', e => {
             });
             proj.bullets.forEach(b => {
                 b.tags.forEach(t => {
-                    if (foundKeywords.has(t.toLowerCase())) score += 1;
+                    if (foundKeywords.has(t.toLowerCase())) score += 2;
                 });
             });
             return { project: proj, score, originalIndex: index };
         });
+
         scoredProjects.sort((a, b) => {
             if (b.score !== a.score) return b.score - a.score;
             return a.originalIndex - b.originalIndex;
         });
 
-        // Take top 3 projects, fallback to default order (first 3) if no matches
+        // Strictly take top 3 projects matching job description
         const selectedScoredProjects = scoredProjects.slice(0, 3);
-        // Sort back to keep portfolio relative order
         selectedScoredProjects.sort((a, b) => a.originalIndex - b.originalIndex);
         result.projects = selectedScoredProjects.map(sp => sp.project);
+
+        // Dynamically tailor summary & key highlights if keywords found
+        const topKeywordsArr = Array.from(foundKeywords).slice(0, 5);
+        if (topKeywordsArr.length > 0) {
+            const kwString = topKeywordsArr.join(", ");
+            result.tailoredSummary = `.NET Developer with hands-on experience building enterprise-grade applications, microservices, and REST APIs using ASP.NET Core, SQL Server, and Azure DevOps. Demonstrated expertise in ${kwString}. Proven track record delivering scalable, secure solutions across banking and property management domains while pursuing MCA full-time.`;
+            
+            result.tailoredHighlights = [
+                `1+ year experience building enterprise systems with ${topKeywordsArr.slice(0, 3).join(", ")}`,
+                `Built microservices-based applications serving multiple enterprise clients`,
+                `Developed AI-powered GitHub analyzer (DevLens) and scalable cloud backends`,
+                `Strong full-stack expertise in ASP.NET Core, React, and SQL database management`
+            ];
+        }
 
         return result;
     }
 
     // 7. Client-Side jsPDF Generator (Matches User's Exact Serif Template with Clickable Links)
     function generatePdfResume(data, filenameRole) {
-        // Create document: portrait, points, letter (612pt x 792pt)
+        // Create document: portrait, points, Letter (612pt x 792pt) - LaTeX geometry [top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]
         const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
         
-        let currentY = 36;
-        const marginX = 36;
+        const marginX = 43.2; // 0.6 in = 43.2 pt
+        const marginTop = 43.2; // 0.6 in = 43.2 pt
+        let currentY = marginTop + 18; // \begin{center} top offset
         const pageWidth = 612;
         const pageHeight = 792;
-        const printableWidth = 540;
+        const printableWidth = 525.6; // 612 - 86.4
 
         function checkPageSpace(heightNeeded) {
-            if (currentY + heightNeeded > pageHeight - 36) {
+            if (currentY + heightNeeded > pageHeight - marginTop) {
                 doc.addPage();
-                currentY = 36;
+                currentY = marginTop + 14;
             }
         }
 
@@ -3011,83 +3029,103 @@ document.addEventListener('click', e => {
             return textWidth;
         }
 
-        // --- TITLE / HEADER BLOCK ---
+        // --- TITLE / HEADER BLOCK (LaTeX \begin{center}) ---
+        // {\Huge \textbf{CHARAN KUMAR}}
         doc.setFont('times', 'bold');
         doc.setFontSize(22);
         doc.setTextColor(0, 0, 0);
         doc.text("CHARAN KUMAR", pageWidth / 2, currentY, { align: 'center' });
-        currentY += 16;
+        currentY += 18;
 
+        // {\large \textit{Developer}}
         doc.setFont('times', 'italic');
-        doc.setFontSize(11);
+        doc.setFontSize(11.5);
         doc.setTextColor(40, 40, 40);
         doc.text("Developer", pageWidth / 2, currentY, { align: 'center' });
-        currentY += 16;
+        currentY += 18;
 
-        // Vector Icon Drawing Helpers (100% Crisp Vector Graphics - No Garbled Emoji Text)
+        // Vector Icon Drawing Helpers (FontAwesome 5 LaTeX Icons)
         function drawEnvelope(x, y) {
+            // \faEnvelope (solid envelope outline)
             doc.setDrawColor(0, 0, 0);
+            doc.setFillColor(0, 0, 0);
             doc.setLineWidth(0.6);
-            doc.rect(x, y - 6.5, 9, 6.5);
+            doc.rect(x, y - 6.5, 9, 6.5, 'FD');
+            doc.setFillColor(255, 255, 255);
+            doc.triangle(x + 0.5, y - 6, x + 8.5, y - 6, x + 4.5, y - 3, 'F');
+            doc.setDrawColor(0, 0, 0);
             doc.line(x, y - 6.5, x + 4.5, y - 3);
             doc.line(x + 4.5, y - 3, x + 9, y - 6.5);
         }
 
         function drawPhone(x, y) {
+            // \faPhone (FontAwesome phone handset silhouette)
+            doc.setFillColor(0, 0, 0);
             doc.setDrawColor(0, 0, 0);
-            doc.setLineWidth(0.75);
-            doc.line(x + 1, y - 7, x + 3.5, y - 7);
-            doc.line(x + 3.5, y - 7, x + 3.5, y - 4.5);
-            doc.line(x + 3.5, y - 4.5, x + 5.5, y - 2.5);
-            doc.line(x + 5.5, y - 2.5, x + 7.5, y - 2.5);
-            doc.line(x + 7.5, y - 2.5, x + 7.5, y);
+            doc.setLineWidth(1.2);
+            doc.line(x + 1, y - 6.5, x + 3.5, y - 6.5);
+            doc.line(x + 3.5, y - 6.5, x + 3.5, y - 4);
+            doc.line(x + 3.5, y - 4, x + 5.5, y - 2);
+            doc.line(x + 5.5, y - 2, x + 7.5, y - 2);
+            doc.line(x + 7.5, y - 2, x + 7.5, y - 0.5);
+            doc.circle(x + 2, y - 6.5, 1, 'F');
+            doc.circle(x + 7.5, y - 1, 1, 'F');
         }
 
         function drawPin(x, y) {
+            // \faMapMarker*[-0.5pt] (FontAwesome solid map marker pin)
+            doc.setFillColor(0, 0, 0);
             doc.setDrawColor(0, 0, 0);
-            doc.setLineWidth(0.6);
-            doc.circle(x + 3.5, y - 4.5, 2.5);
-            doc.line(x + 3.5, y - 2, x + 3.5, y);
+            doc.circle(x + 3.5, y - 4.5, 2.5, 'F');
+            doc.triangle(x + 1, y - 4, x + 6, y - 4, x + 3.5, y, 'F');
+            doc.setFillColor(255, 255, 255);
+            doc.circle(x + 3.5, y - 4.5, 0.8, 'F');
         }
 
         function drawLinkedInBox(x, y) {
+            // \faLinkedin (FontAwesome LinkedIn square logo)
             doc.setFillColor(0, 0, 0);
-            doc.rect(x, y - 7, 7.5, 7.5, 'F');
+            doc.roundedRect(x, y - 7, 7.5, 7.5, 1, 1, 'F');
             doc.setFont('times', 'bold');
             doc.setFontSize(6);
             doc.setTextColor(255, 255, 255);
-            doc.text("in", x + 1.2, y - 1.2);
+            doc.text("in", x + 1.1, y - 1.2);
             doc.setTextColor(0, 0, 0);
             doc.setFont('times', 'normal');
-            doc.setFontSize(9);
+            doc.setFontSize(9.5);
         }
 
         function drawGitIcon(x, y) {
+            // \faGithub (FontAwesome GitHub Octocat logo)
+            doc.setFillColor(0, 0, 0);
             doc.setDrawColor(0, 0, 0);
-            doc.setLineWidth(0.75);
-            doc.circle(x + 4, y - 4, 3);
-            doc.circle(x + 4, y - 4, 1);
+            doc.circle(x + 4, y - 3.8, 3.2, 'F');
+            doc.triangle(x + 1.2, y - 5.5, x + 3, y - 6.8, x + 3.4, y - 5, 'F');
+            doc.triangle(x + 4.6, y - 5, x + 5, y - 6.8, x + 6.8, y - 5.5, 'F');
+            doc.setFillColor(255, 255, 255);
+            doc.ellipse(x + 4, y - 2.8, 1.6, 1.2, 'F');
         }
 
         function drawLinkChain(x, y) {
+            // \faGlobe (FontAwesome globe/link icon)
             doc.setDrawColor(0, 0, 0);
-            doc.setLineWidth(0.75);
-            doc.line(x, y - 4, x + 7, y - 4);
-            doc.circle(x + 2, y - 4, 1.8);
-            doc.circle(x + 5, y - 4, 1.8);
+            doc.setLineWidth(1.1);
+            doc.circle(x + 4, y - 3.5, 3);
+            doc.line(x + 1, y - 3.5, x + 7, y - 3.5);
+            doc.ellipse(x + 4, y - 3.5, 1.4, 3);
         }
 
         // Contact info row 1: email, phone, location, LinkedIn
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(0, 0, 0);
 
         const emailStr = "charansuvarna99@gmail.com";
         const phoneStr = "+91 9380455922";
         const locStr = "Udupi, Karnataka, India";
         const liStr = "LinkedIn";
-        const sep = "    ";
-        const iconGap = 12;
+        const sep = "   ";
+        const iconGap = 13;
 
         const w1 = iconGap + doc.getTextWidth(emailStr);
         const w2 = iconGap + doc.getTextWidth(phoneStr);
@@ -3122,7 +3160,7 @@ document.addEventListener('click', e => {
         // LinkedIn
         drawLinkedInBox(startX1, currentY);
         drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar-9b20a8378", startX1 + iconGap, currentY);
-        currentY += 14;
+        currentY += 16;
 
         // Contact info row 2: GitHub, Portfolio
         const ghStr = "GitHub";
@@ -3140,31 +3178,34 @@ document.addEventListener('click', e => {
 
         drawLinkChain(startX2, currentY);
         drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2 + iconGap, currentY);
-        currentY += 18;
+        currentY += 26;
 
         // --- PROFESSIONAL SUMMARY ---
         drawSectionHeader("PROFESSIONAL SUMMARY");
 
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(20, 20, 20);
         
-        const summaryText = ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.";
+        const summaryText = data.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.";
         const wrappedSummary = doc.splitTextToSize(summaryText, printableWidth);
         wrappedSummary.forEach(line => {
-            checkPageSpace(11.5);
+            checkPageSpace(12.5);
             doc.text(line, marginX, currentY);
-            currentY += 11.5;
+            currentY += 12.5;
         });
-        currentY += 4;
+        currentY += 6;
 
         // --- KEY HIGHLIGHTS ---
         drawSectionHeader("KEY HIGHLIGHTS");
-        drawBulletPoint("1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)");
-        drawBulletPoint("Built microservices-based applications serving multiple banks");
-        drawBulletPoint("Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics");
-        drawBulletPoint("Strong full-stack expertise in ASP.NET Core, React, and SQL");
-        currentY += 4;
+        const highlightsList = data.tailoredHighlights || [
+            "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
+            "Built microservices-based applications serving multiple banks",
+            "Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics",
+            "Strong full-stack expertise in ASP.NET Core, React, and SQL"
+        ];
+        highlightsList.forEach(hl => drawBulletPoint(hl));
+        currentY += 6;
 
         // --- WORK EXPERIENCE ---
         drawSectionHeader("WORK EXPERIENCE");
@@ -3177,23 +3218,23 @@ document.addEventListener('click', e => {
             doc.text(job.role, marginX, currentY);
             
             doc.setFont('times', 'normal');
-            doc.setFontSize(9);
+            doc.setFontSize(9.5);
             doc.setTextColor(50, 50, 50);
             const dateStr = job.dates || "";
             const rightWidth = doc.getTextWidth(dateStr);
             doc.text(dateStr, pageWidth - marginX - rightWidth, currentY);
-            currentY += 12;
+            currentY += 13;
 
             doc.setFont('times', 'bold');
             doc.setFontSize(9.5);
             doc.setTextColor(0, 0, 0);
             doc.text(job.company, marginX, currentY);
-            currentY += 12;
+            currentY += 13;
 
             job.bullets.forEach(bullet => {
                 drawBulletPoint(bullet.text);
             });
-            currentY += 5;
+            currentY += 6;
         });
 
         // --- EDUCATION ---
@@ -3207,17 +3248,17 @@ document.addEventListener('click', e => {
         doc.text("Master of Computer Applications (MCA)", marginX, currentY);
         
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(50, 50, 50);
         const mcaDate = "Nov 2025 – Present";
         doc.text(mcaDate, pageWidth - marginX - doc.getTextWidth(mcaDate), currentY);
-        currentY += 12;
+        currentY += 13;
 
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(30, 30, 30);
         doc.text("MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.", marginX, currentY);
-        currentY += 15;
+        currentY += 16;
 
         // BCA
         checkPageSpace(32);
@@ -3227,20 +3268,20 @@ document.addEventListener('click', e => {
         doc.text("Bachelor of Computer Applications (BCA)", marginX, currentY);
         
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(50, 50, 50);
         const bcaDate = "Sep 2022 – Jun 2025";
         doc.text(bcaDate, pageWidth - marginX - doc.getTextWidth(bcaDate), currentY);
-        currentY += 12;
+        currentY += 13;
 
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(30, 30, 30);
         doc.text("Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |", marginX, currentY);
-        currentY += 12;
+        currentY += 13;
 
         doc.setFont('times', 'bold');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(0, 0, 0);
         const labelAddon = "Add-on Courses: ";
         doc.text(labelAddon, marginX, currentY);
@@ -3264,7 +3305,7 @@ document.addEventListener('click', e => {
         skillsFormat.forEach(skillLine => {
             checkPageSpace(13);
             doc.setFont('times', 'bold');
-            doc.setFontSize(9);
+            doc.setFontSize(9.5);
             doc.setTextColor(0, 0, 0);
             const labelText = skillLine.label + " ";
             doc.text(labelText, marginX, currentY);
@@ -3273,7 +3314,7 @@ document.addEventListener('click', e => {
             doc.setFont('times', 'normal');
             doc.setTextColor(30, 30, 30);
             doc.text(skillLine.list, marginX + labelW, currentY);
-            currentY += 12;
+            currentY += 13;
         });
         currentY += 4;
 
@@ -3286,10 +3327,10 @@ document.addEventListener('click', e => {
             doc.setFontSize(10);
             doc.setTextColor(0, 0, 0);
             doc.text(project.name, marginX, currentY);
-            currentY += 12;
+            currentY += 13;
             
             doc.setFont('times', 'bold');
-            doc.setFontSize(9);
+            doc.setFontSize(9.5);
             const techLabel = "Tech: ";
             doc.text(techLabel, marginX, currentY);
             
@@ -3297,7 +3338,7 @@ document.addEventListener('click', e => {
             doc.setTextColor(40, 40, 40);
             const techText = project.techStack.join(", ");
             doc.text(techText, marginX + doc.getTextWidth(techLabel), currentY);
-            currentY += 12;
+            currentY += 13;
 
             project.bullets.forEach(bullet => {
                 drawBulletPoint(bullet.text);
@@ -3306,18 +3347,24 @@ document.addEventListener('click', e => {
             if (project.links && project.links.github) {
                 checkPageSpace(12);
                 doc.setFont('times', 'bold');
-                doc.setFontSize(9);
+                doc.setFontSize(9.5);
                 doc.setTextColor(0, 0, 0);
-                const ghLabel = "GitHub: ";
-                doc.text(ghLabel, marginX, currentY);
+                
+                // Light blue chain link icon matching original PDF
+                drawLinkChain(marginX + 2, currentY);
+                const ghLabel = " GitHub: ";
+                doc.text(ghLabel, marginX + 8, currentY);
                 
                 const labelW = doc.getTextWidth(ghLabel);
                 doc.setFont('times', 'normal');
                 doc.setTextColor(30, 30, 30);
-                drawClickableLink(project.links.github, project.links.github, marginX + labelW, currentY);
-                currentY += 12;
+                const linkW = drawClickableLink(project.links.github, project.links.github, marginX + 8 + labelW, currentY);
+                
+                // Trailing light blue chain link icon matching original PDF
+                drawLinkChain(marginX + 8 + labelW + linkW + 3, currentY);
+                currentY += 13;
             }
-            currentY += 4;
+            currentY += 6;
         });
 
         // --- CERTIFICATIONS & TRAINING ---
@@ -3325,20 +3372,20 @@ document.addEventListener('click', e => {
         drawBulletPoint("Data Analytics & Web Dev Internship – Accolade Tech Solutions (2024)");
         drawBulletPoint("Cybersecurity & AI Training – Mangalore University (2024)");
         drawBulletPoint("NCC 'A' Certificate");
-        currentY += 4;
+        currentY += 6;
 
         // --- ACHIEVEMENTS ---
         drawSectionHeader("ACHIEVEMENTS");
         drawBulletPoint("Best Cadet Award – National Cadet Corps (NCC)");
         drawBulletPoint("Served as Head Cadet leading school NCC unit");
         drawBulletPoint("District-level player in Cricket and Volleyball");
-        currentY += 4;
+        currentY += 6;
 
         // --- LANGUAGES ---
         drawSectionHeader("LANGUAGES");
         checkPageSpace(13);
         doc.setFont('times', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(9.5);
         doc.setTextColor(20, 20, 20);
         doc.text("English, Hindi, Kannada, Tulu", marginX, currentY);
         currentY += 12;
@@ -3346,39 +3393,39 @@ document.addEventListener('click', e => {
         // Helper: Section Divider Line
         function drawSectionHeader(title) {
             checkPageSpace(26);
-            currentY += 6;
+            currentY += 10;
             doc.setFont('times', 'bold');
             doc.setFontSize(10.5);
             doc.setTextColor(0, 0, 0);
             doc.text(title, marginX, currentY);
             
-            currentY += 3;
+            currentY += 4;
             doc.setLineWidth(0.75);
             doc.setDrawColor(0, 0, 0);
             doc.line(marginX, currentY, pageWidth - marginX, currentY);
-            currentY += 13;
+            currentY += 14;
         }
 
         // Helper: Bullet point wrapper
         function drawBulletPoint(text) {
             doc.setFont('times', 'normal');
-            doc.setFontSize(9);
+            doc.setFontSize(9.5);
             doc.setTextColor(20, 20, 20);
             
             const bulletSymbol = "•";
-            const indent = 12;
+            const indent = 10;
             const wrappedLines = doc.splitTextToSize(text, printableWidth - indent);
-            const lineHeight = 11.5;
+            const lineHeight = 12.5;
             const heightNeeded = wrappedLines.length * lineHeight;
             
             checkPageSpace(heightNeeded);
-            doc.text(bulletSymbol, marginX + 3, currentY);
+            doc.text(bulletSymbol, marginX + 2, currentY);
             
             wrappedLines.forEach((line, index) => {
                 doc.text(line, marginX + indent, currentY + (index * lineHeight));
             });
             
-            currentY += heightNeeded + 2;
+            currentY += heightNeeded + 2.5;
         }
 
         // Clean filename safely: keep alphanumeric & spaces, remove dots/symbols, then join with underscores
@@ -3457,6 +3504,35 @@ document.addEventListener('click', e => {
 
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
         if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
+
+        const copyLatexBtn = document.getElementById("copyLatexBtn");
+        if (copyLatexBtn) {
+            copyLatexBtn.addEventListener("click", async () => {
+                const jdText = jdInput.value.trim();
+                const keywords = extractKeywords(jdText);
+                const sourceData = await loadResumeData();
+                if (!sourceData) return alert("Resume data unavailable.");
+                
+                const finalData = matchResumeData(sourceData, keywords);
+                
+                try {
+                    const res = await fetch('./api/latex', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ data: finalData, jobDescription: jdText })
+                    });
+                    if (res.ok) {
+                        const json = await res.json();
+                        if (json.latex) {
+                            await navigator.clipboard.writeText(json.latex);
+                            alert("✅ Tailored LaTeX code copied to clipboard! You can paste it directly into Overleaf or LaTeX Base.");
+                        }
+                    }
+                } catch (e) {
+                    console.error("LaTeX copy failed:", e);
+                }
+            });
+        }
 
         // Loading Overlay steps animation controller
         function showStep(stepNum) {
@@ -3541,10 +3617,38 @@ document.addEventListener('click', e => {
                     }
                 }
 
-                // Step 4: Render PDF
+                // Step 4: Render PDF via Server LaTeX Compiler
                 showStep(4);
-                await new Promise(r => setTimeout(r, 400));
-                generatePdfResume(finalData, roleTitle);
+                let latexPdfDownloaded = false;
+                try {
+                    const latexResponse = await fetch('./api/latex', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ data: finalData, jobDescription: jdText })
+                    });
+                    
+                    if (latexResponse.ok && latexResponse.headers.get('content-type')?.includes('application/pdf')) {
+                        const pdfBlob = await latexResponse.blob();
+                        const blobUrl = URL.createObjectURL(pdfBlob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = blobUrl;
+                        a.download = 'Charan_Kumar_Resume.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(() => {
+                            URL.revokeObjectURL(blobUrl);
+                            if (document.body.contains(a)) document.body.removeChild(a);
+                        }, 1000);
+                        latexPdfDownloaded = true;
+                    }
+                } catch (latexErr) {
+                    console.warn("Server LaTeX PDF compilation failed, falling back to jsPDF:", latexErr);
+                }
+
+                if (!latexPdfDownloaded) {
+                    generatePdfResume(finalData, roleTitle);
+                }
 
                 // Step 5: Complete & Download
                 showStep(5);

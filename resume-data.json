@@ -40,7 +40,10 @@
       "React",
       "Bootstrap 5",
       "Flask",
-      "Chart.js"
+      "Chart.js",
+      "Mozilla PDF.js",
+      "JSZip",
+      "jsPDF"
     ],
     "databases": [
       "PostgreSQL",
@@ -48,7 +51,8 @@
       "Oracle Database",
       "SQL Server",
       "SQLite",
-      "Redis"
+      "Redis",
+      "IndexedDB"
     ],
     "tools": [
       "Azure DevOps",
@@ -67,6 +71,8 @@
       "localStorage",
       "Web Speech API",
       "HTML5 Canvas",
+      "PWA (Service Worker)",
+      "Web Share API",
       "REST APIs",
       "Microservices Architecture",
       "Clean Architecture",
@@ -148,7 +154,7 @@
     },
     {
       "role": ".NET Developer",
-      "company": "Net Tech Services India Private Limited (NTSIPL)",
+      "company": "Net Tech Services India Pvt Ltd",
       "location": "Onsite",
       "dates": "Dec 2025 – Jun 2026",
       "bullets": [
@@ -227,7 +233,7 @@
     },
     {
       "role": "Trainee Developer",
-      "company": "Net Tech Services India Private Limited (NTSIPL)",
+      "company": "Net Tech Services India Pvt Ltd",
       "location": "Onsite",
       "dates": "Sep 2025 – Dec 2025",
       "bullets": [
@@ -431,54 +437,52 @@
       ]
     },
     {
-      "name": "DueZy – Premium Bill & EMI Reminder Mobile App",
-      "description": "Premium mobile application to track and remind users of education loans, EMIs, and bills.",
+      "name": "Vaulta – Personal & Official Document Manager",
+      "description": "Modern, privacy-first, offline-capable Progressive Web Application (PWA) designed to securely store, organize, preview, and share personal and official documents locally on device.",
       "techStack": [
-        "Flutter",
-        "Dart",
-        "Firebase Firestore",
-        "Firebase Auth",
-        "Local Notifications",
-        "SharedPreferences"
+        "JavaScript (ES6+)",
+        "IndexedDB",
+        "Mozilla PDF.js",
+        "Service Worker (PWA)",
+        "Web Share API",
+        "JSZip",
+        "jsPDF"
       ],
       "links": {
-        "github": "https://github.com/charan-kumar99/DueZy"
+        "github": "https://github.com/charan-kumar99/Vaulta"
       },
       "bullets": [
         {
-          "text": "Developed a premium, highly aesthetic mobile application to track and remind users of education loans, EMIs, and bills, ensuring zero missed payments.",
+          "text": "Built a modern, privacy-first offline Progressive Web Application (PWA) to securely store, organize, preview, and share personal and official documents completely on-device.",
           "tags": [
-            "flutter",
-            "dart",
-            "mobile app",
-            "finance"
+            "javascript",
+            "pwa",
+            "indexeddb",
+            "privacy"
           ]
         },
         {
-          "text": "Implemented a sleek, responsive glassmorphic dashboard showcasing real-time visual summaries of total due, paid, and pending cycles.",
+          "text": "Engineered 100% private zero-cloud storage utilizing browser IndexedDB (DocDB) and offline Service Worker (sw.js) asset pre-caching.",
           "tags": [
-            "flutter",
-            "dart",
-            "dashboard",
-            "glassmorphism"
+            "indexeddb",
+            "service worker",
+            "offline"
           ]
         },
         {
-          "text": "Integrated real-time database synchronization and offline resilience with Firebase Firestore, SharedPreferences caching, and secure anonymous authentication.",
+          "text": "Integrated Mozilla PDF.js v3.11.174 HTML5 canvas rendering engine with custom zoom, fit-to-screen, and page-by-page touch control toolbars.",
           "tags": [
-            "firebase",
-            "firestore",
-            "sharedpreferences",
-            "caching",
-            "authentication"
+            "pdf.js",
+            "canvas",
+            "document viewer"
           ]
         },
         {
-          "text": "Configured local scheduling workflows for proactive push alerts using local notifications to notify users before payment deadlines.",
+          "text": "Implemented dual-vault architecture (Personal & Official), native Web Share API integration, image-to-PDF conversion with jsPDF, and bulk ZIP export via JSZip.",
           "tags": [
-            "local notifications",
-            "push alerts",
-            "scheduling"
+            "web share api",
+            "jszip",
+            "jspdf"
           ]
         }
       ]
