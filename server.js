@@ -601,11 +601,173 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
                 }
 
                 res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-                res.end(JSON.stringify({ error: 'All 6 AI providers (Groq, Gemini, OpenRouter, Cohere, HuggingFace, Mistral) unavailable.' }));
+                res.end(JSON.stringify({ error: 'All 6 AI providers unavailable.' }));
             } catch (error) {
                 console.error('❌ Polish Error:', error);
                 res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
                 res.end(JSON.stringify({ error: 'Internal server error', details: error.message }));
+            }
+        });
+        return;
+    }
+
+    // New Endpoint: /api/latex (Generates exact LaTeX code tailored to JD)
+    if (req.url === '/api/latex' && req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => { body += chunk.toString(); });
+        req.on('end', async () => {
+            try {
+                const { data, jobDescription } = JSON.parse(body || '{}');
+                const latexCode = `\\documentclass[10pt,letterpaper]{article}
+\\usepackage[top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]{geometry}
+\\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\\usepackage{amsmath,amssymb}
+\\usepackage{graphicx}
+\\usepackage{hyperref}
+\\usepackage{fontawesome5}
+\\usepackage{titlesec}
+\\usepackage{parskip}
+
+\\hypersetup{
+    colorlinks=true,
+    urlcolor=black,
+    pdfauthor={Charan Kumar},
+    pdftitle={Charan Kumar - Resume}
+}
+
+\\setlength{\\parindent}{0pt}
+\\pagestyle{empty}
+
+\\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
+\\titlespacing*{\\section}{0pt}{12pt}{6pt}
+
+\\begin{document}
+
+\\begin{center}
+    {\\Huge \\textbf{CHARAN KUMAR}}\\\\[6pt]
+    {\\large \\textit{Developer}}\\\\[8pt]
+    \\small
+    \\faEnvelope\\ \\href{mailto:charansuvarna99@gmail.com}{charansuvarna99@gmail.com} \\quad
+    \\faPhone\\ +91 9380455922 \\quad
+    \\faMapMarker*[-0.5pt]\\ Udupi, Karnataka, India \\quad
+    \\faLinkedin\\ \\href{https://www.linkedin.com/in/charan-kumar-9b20a8378}{LinkedIn}\\\\[4pt]
+    \\faGithub\\ \\href{https://github.com/charan-kumar99}{GitHub} \\quad
+    \\faGlobe\\ \\href{https://charan-kumar99.github.io}{Portfolio}
+\\end{center}
+
+\\vspace{-4pt}
+
+\\section{PROFESSIONAL SUMMARY}
+${data?.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time."}
+
+\\section{KEY HIGHLIGHTS}
+\\vspace{-2pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+${(data?.tailoredHighlights || [
+    "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
+    "Built microservices-based applications serving multiple banks",
+    "Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics",
+    "Strong full-stack expertise in ASP.NET Core, React, and SQL"
+]).map(h => `    \\item ${h}`).join('\n')}
+\\end{itemize}
+
+\\section{WORK EXPERIENCE}
+${(data?.experience || []).map(job => `
+\\vspace{2pt}
+\\noindent
+\\textbf{${job.role}} \\hfill \\textbf{${job.dates || ''}} \\\\
+\\textit{${job.company}}
+\\vspace{-4pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+${(job.bullets || []).map(b => `    \\item ${b.text}`).join('\n')}
+\\end{itemize}`).join('\n')}
+
+\\section{EDUCATION}
+
+\\vspace{2pt}
+\\noindent
+\\textbf{Master of Computer Applications (MCA)} \\hfill \\textbf{Nov 2025 -- Present} \\\\
+MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.
+
+\\vspace{6pt}
+\\noindent
+\\textbf{Bachelor of Computer Applications (BCA)} \\hfill \\textbf{Sep 2022 -- Jun 2025} \\\\
+Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[3pt]
+\\textbf{Add-on Courses:} Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
+
+\\section{SKILLS}
+\\vspace{2pt}
+\\noindent \\textbf{Languages:} ${(data?.skills?.languages || ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Python"]).join(", ")} \\\\
+\\textbf{Frameworks:} ${(data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flask"]).join(", ")} \\\\
+\\textbf{Databases:} ${(data?.skills?.databases || ["PostgreSQL", "MySQL", "Oracle", "SQL Server"]).join(", ")} \\\\
+\\textbf{Tools:} ${(data?.skills?.tools || ["Azure DevOps", "GitHub", "Postman", "DBeaver"]).join(", ")} \\\\
+\\textbf{Concepts:} Microservices, REST APIs, API Versioning, System Design
+
+\\section{PROJECTS}
+${(data?.projects || []).slice(0, 3).map(proj => `
+\\vspace{2pt}
+\\noindent
+\\textbf{${proj.name}} \\\\
+\\textbf{Tech:} ${proj.techStack ? proj.techStack.join(", ") : ""}
+\\vspace{-4pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+${(proj.bullets || []).map(b => `    \\item ${b.text}`).join('\n')}
+\\end{itemize}
+${proj.links?.github ? `\\vspace{-2pt}\n\\small \\faLink\\ \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n')}
+
+\\section{CERTIFICATIONS \\& TRAINING}
+\\vspace{-2pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+    \\item Data Analytics \\& Web Dev Internship -- Accolade Tech Solutions (2024)
+    \\item Cybersecurity \\& AI Training -- Mangalore University (2024)
+    \\item NCC 'A' Certificate
+\\end{itemize}
+
+\\section{ACHIEVEMENTS}
+\\vspace{-2pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+    \\item Best Cadet Award -- National Cadet Corps (NCC)
+    \\item Served as Head Cadet leading school NCC unit
+    \\item District-level player in Cricket and Volleyball
+\\end{itemize}
+
+\\section{LANGUAGES}
+\\vspace{2pt}
+English, Hindi, Kannada, Tulu
+
+\\end{document}`;
+
+                // Call LaTeX compiler service to compile code directly into a PDF
+                try {
+                    const compileRes = await fetch(`https://latexonline.cc/compile?text=${encodeURIComponent(latexCode)}`);
+                    if (compileRes.ok) {
+                        const pdfBuffer = await compileRes.arrayBuffer();
+                        res.writeHead(200, {
+                            'Content-Type': 'application/pdf',
+                            'Content-Disposition': 'attachment; filename="Charan_Kumar_Resume.pdf"',
+                            'Access-Control-Allow-Origin': '*'
+                        });
+                        return res.end(Buffer.from(pdfBuffer));
+                    }
+                } catch (compileErr) {
+                    console.warn("LaTeX online compiler service failed, returning JSON fallback:", compileErr);
+                }
+
+                res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                res.end(JSON.stringify({ latex: latexCode }));
+            } catch (err) {
+                res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                res.end(JSON.stringify({ error: err.message }));
             }
         });
         return;
