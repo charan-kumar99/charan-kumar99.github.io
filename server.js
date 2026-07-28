@@ -650,7 +650,7 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
     \\faEnvelope\\ \\href{mailto:charansuvarna99@gmail.com}{charansuvarna99@gmail.com} \\quad
     \\faPhone\\ +91 9380455922 \\quad
     \\faMapMarker*[-0.5pt]\\ Udupi, Karnataka, India \\quad
-    \\faLinkedin\\ \\href{https://www.linkedin.com/in/charan-kumar-9b20a8378}{LinkedIn}\\\\[4pt]
+    \\faLinkedin\\ \\href{https://www.linkedin.com/in/charan-kumar99}{LinkedIn}\\\\[4pt]
     \\faGithub\\ \\href{https://github.com/charan-kumar99}{GitHub} \\quad
     \\faGlobe\\ \\href{https://charan-kumar99.github.io}{Portfolio}
 \\end{center}

@@ -224,7 +224,7 @@ Role : Software Developer | .NET Developer | Full-Stack Developer
 Phone : +91 9380455922
 Email : charansuvarna99@gmail.com
 Location : Udupi, Karnataka, India
-LinkedIn : https://www.linkedin.com/in/charan-kumar-9b20a8378
+LinkedIn : https://www.linkedin.com/in/charan-kumar99
 GitHub : https://github.com/charan-kumar99
 Portfolio : https://charan-kumar99.github.io/
 Languages spoken: English, Hindi, Kannada, Tulu (mother tongue is Tulu)
@@ -514,8 +514,8 @@ const CONTACT_CARDS_DATA = [
     {
         keywords: ['linkedin', 'linkedin profile'],
         title: 'LinkedIn',
-        val: 'charan-kumar-9b20a8378',
-        link: 'https://www.linkedin.com/in/charan-kumar-9b20a8378',
+        val: 'charan-kumar99',
+        link: 'https://www.linkedin.com/in/charan-kumar99',
         icon: '🔗',
         btnText: 'Connect on LinkedIn'
     },
@@ -2569,7 +2569,7 @@ document.addEventListener('click', e => {
   - Phone:      +91 9380455922
   - Location:   Udupi, Karnataka, India
   - GitHub:     https://github.com/charan-kumar99
-  - LinkedIn:   https://www.linkedin.com/in/charan-kumar-9b20a8378
+  - LinkedIn:   https://www.linkedin.com/in/charan-kumar99
   - Advanced Portfolio: https://advanced-portfolio-sandy.vercel.app/`
     };
 
@@ -3157,7 +3157,7 @@ document.addEventListener('click', e => {
 
         // LinkedIn
         drawLinkedInBox(startX1, currentY);
-        drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar-9b20a8378", startX1 + iconGap, currentY);
+        drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar99", startX1 + iconGap, currentY);
         currentY += 16;
 
         // Contact info row 2: GitHub, Portfolio
