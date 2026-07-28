@@ -18,7 +18,7 @@
   "summaryVariants": {
     "default": "Versatile .NET Developer currently building scalable property management APIs at AGREMATE using Clean Architecture and Docker. Previously developed critical RTGS/NEFT banking microservices at NTSIPL. Experienced in ASP.NET Core, EF Core, SQL Server, PostgreSQL, Redis, and REST APIs. Fast learner and team player pursuing MCA alongside full-time work.",
     "short": ".NET & Full-Stack Developer with experience building scalable REST APIs, microservices, and web applications using ASP.NET Core, SQL Server, and Clean Architecture.",
-    "long": "I'm a versatile .NET Developer currently building scalable backend APIs at AGREMATE Private Limited — India's smart property management platform. Working with ASP.NET Core, Clean Architecture, Docker, and Swagger to power digital rental agreements, automated payments, and community management for properties across India. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks and vendors. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, REST API development, API versioning, globalization, and .NET version migration. Passionate about building secure, scalable solutions and continuously expanding technical knowledge while pursuing an MCA alongside full-time employment.",
+    "long": "I'm a versatile .NET Developer currently building scalable backend APIs at AGREMATE Private Limited — India's smart property management platform. Working with ASP.NET Core, Clean Architecture, Docker, and Swagger to power digital rental agreements, automated payments, and community management for properties across India. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks and vendors. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, and REST API development. Passionate about building secure, scalable solutions and continuously expanding technical knowledge while pursuing an MCA alongside full-time employment.",
     "tagline": "Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture & Docker | Previously built critical RTGS/NEFT banking systems using Microservices Architecture | ASP.NET Core, Entity Framework & SQL Server | MCA Student with a passion for continuous learning"
   },
   "skills": {
@@ -75,10 +75,7 @@
       "Web Share API",
       "REST APIs",
       "Microservices Architecture",
-      "Clean Architecture",
-      "API Versioning",
-      "API Globalization",
-      ".NET Migration (6→8)"
+      "Clean Architecture"
     ],
     "softSkills": [
       "Analytical Thinking",
@@ -209,13 +206,10 @@
           ]
         },
         {
-          "text": "Developed and maintained REST APIs and CRUD operations; API globalization and version migration from .NET 6 to .NET 8.",
+          "text": "Developed and maintained REST APIs and CRUD operations.",
           "tags": [
             "rest api",
-            "crud",
-            "globalization",
-            ".net migration",
-            "api versioning"
+            "crud"
           ]
         },
         {
@@ -449,7 +443,8 @@
         "jsPDF"
       ],
       "links": {
-        "github": "https://github.com/charan-kumar99/Vaulta"
+        "github": "https://github.com/charan-kumar99/Vaulta",
+        "demo": "https://charan-kumar99.github.io/Vaulta/"
       },
       "bullets": [
         {

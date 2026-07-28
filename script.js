@@ -230,7 +230,7 @@ Portfolio : https://charan-kumar99.github.io/
 Languages spoken: English, Hindi, Kannada, Tulu (mother tongue is Tulu)
 
 PROFESSIONAL SUMMARY
-Versatile .NET Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, Redis cache, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, SQL Server, and Redis, REST API development, Docker containerization, API versioning, globalization, and .NET version migration.
+Versatile .NET Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, Redis cache, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, SQL Server, and Redis, REST API development, and Docker containerization.
 
 EDUCATION
 - **MCA** — MIT, Jaipur (Online) — **Nov 2025 – Present**
@@ -253,7 +253,7 @@ WORK EXPERIENCE
   Working with microservices-based architecture for building scalable, independently deployable banking services with service-to-service communication and API gateway patterns.
   Contributed to CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems.
   Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, and SQL Server.
-  REST APIs, CRUD operations, API globalization, .NET version migration (6→8).
+  REST APIs, CRUD operations.
   Testing, debugging, Azure DevOps CI/CD deployment. Tools: Visual Studio 2022, Postman, DBeaver, FTP/SFTP.
 - **Trainee Developer (Onsite)** — NTSIPL (**Sep 2025 – Dec 2025**)
   Gained hands-on experience in ASP.NET Core enterprise development in the financial domain.
@@ -261,10 +261,10 @@ WORK EXPERIENCE
 
 SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
-- Frameworks  : **ASP.NET Core (.NET 6 & .NET 8)**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**, **Mozilla PDF.js**, **JSZip**, **jsPDF**
+- Frameworks  : **ASP.NET Core**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**, **Mozilla PDF.js**, **JSZip**, **jsPDF**
 - Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**, **IndexedDB**
 - Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**, **PWA (Service Worker)**, **Web Share API**
-- API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**, API Versioning, API Globalization, .NET Migration (6→8)
+- API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
 PROJECTS (in order)
@@ -278,6 +278,7 @@ PROJECTS (in order)
    GitHub: https://github.com/charan-kumar99/Orion
 5. **Vaulta** — Personal & Official Document Manager (JavaScript ES6+, IndexedDB, Mozilla PDF.js, PWA Service Worker, Web Share API, JSZip, jsPDF) — Modern, 100% private offline PWA for storing, previewing, converting, and sharing documents.
    GitHub: https://github.com/charan-kumar99/Vaulta
+   Live: https://charan-kumar99.github.io/Vaulta/
 6. **Advanced Developer Portfolio** — Immersive Next.js/React portfolio featuring 3D visuals (Three.js, React Three Fiber), GSAP, WakaTime metrics, and GROQ/Gemini AI chat assistant.
    GitHub: https://github.com/charan-kumar99/Advanced-Portfolio
    Live: https://advanced-portfolio-sandy.vercel.app/
@@ -633,7 +634,7 @@ const SUGGESTION_SETS = [
     ],
     [
         { icon: '🌐', text: 'What languages does he speak?' },
-        { icon: '🔄', text: 'What is .NET version migration?' },
+        { icon: '🏢', text: 'What is AGREMATE?' },
         { icon: '🏛️', text: 'What is CTS in banking?' },
         { icon: '🧠', text: 'What are his soft skills?' }
     ],
@@ -641,7 +642,7 @@ const SUGGESTION_SETS = [
         { icon: '📱', text: 'Does he know Dart or Flutter?' },
         { icon: '🛡️', text: 'Has he done cybersecurity training?' },
         { icon: '🎓', text: 'Where did he study for BCA?' },
-        { icon: '⚡', text: 'What is API versioning?' }
+        { icon: '🏛️', text: 'What is Clean Architecture?' }
     ],
     [
         { icon: '🏫', text: 'Is he pursuing MCA?' },
@@ -1244,7 +1245,7 @@ function autoResizeInput(el) {
             icon: '💻',
             title: 'Technical Agility',
             value: '85%',
-            desc: 'Proven ability to work fluidly across diverse databases (PostgreSQL, SQL Server, MySQL, Oracle) and migrate platforms from .NET 6 to .NET 8, adapting quickly to new architectural requirements.'
+            desc: 'Proven ability to work fluidly across diverse databases (PostgreSQL, SQL Server, MySQL, Oracle), adapting quickly to new architectural requirements.'
         }
     };
 
@@ -1477,9 +1478,6 @@ document.addEventListener('click', e => {
         'REST APIs': '#00D4FF',
         'Microservices Architecture': '#00D4FF',
         'Clean Architecture': '#10B981',
-        'API Versioning': '#00D4FF',
-        'API Globalization': '#FFB800',
-        '.NET Migration (6→8)': '#512BD4',
         'Analytical Thinking': '#FF6B6B',
         'Active Listening': '#4ECDC4',
         'Team Leadership': '#FFE66D',
@@ -2812,7 +2810,7 @@ document.addEventListener('click', e => {
             "azure", "multi-tenant", "database", "banking", "rtgs", "neft", "microservices", "payment processing", 
             "service-to-service", "api gateway", "scalability", "cts", "aml", "user management", "blazor", 
             "razor pages", "fullstack", "web applications", "postgresql", "mysql", "oracle database", 
-            "query optimization", "rest api", "crud", "globalization", ".net migration", "api versioning", 
+            "query optimization", "rest api", "crud", 
             "ci/cd", "azure devops", "git", "version control", "enterprise application", "financial", 
             "feature development", "bug fixing", "collaboration", "best practices", "security", "react", 
             "sqlite", "metrics", "gemini api", "ai", "google gemini", "d3.js", "recharts", "visualization", 
@@ -3299,7 +3297,7 @@ document.addEventListener('click', e => {
             { label: "Frameworks:", list: data.skills && data.skills.frameworks ? data.skills.frameworks.join(", ") : "ASP.NET Core, Flutter, Blazor, React, Flask" },
             { label: "Databases:", list: data.skills && data.skills.databases ? data.skills.databases.join(", ") : "PostgreSQL, MySQL, Oracle, SQL Server, Firebase" },
             { label: "Tools:", list: data.skills && data.skills.tools ? data.skills.tools.slice(0, 10).join(", ") : "Azure DevOps, GitHub, Postman, DBeaver" },
-            { label: "Concepts:", list: "Microservices, REST APIs, API Versioning, System Design" }
+            { label: "Concepts:", list: "Microservices, REST APIs, System Design" }
         ];
 
         skillsFormat.forEach(skillLine => {
