@@ -617,14 +617,71 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
         req.on('data', chunk => { body += chunk.toString(); });
         req.on('end', async () => {
             try {
-                const { data, jobDescription } = JSON.parse(body || '{}');
+                const { data, format } = JSON.parse(body || '{}');
+
+                function escapeLatex(str) {
+                    if (!str) return '';
+                    return String(str)
+                        .replace(/\\/g, '\\textbackslash{}')
+                        .replace(/&/g, '\\&')
+                        .replace(/%/g, '\\%')
+                        .replace(/\$/g, '\\$')
+                        .replace(/#/g, '\\#')
+                        .replace(/_/g, '\\_')
+                        .replace(/~/g, '\\textasciitilde{}')
+                        .replace(/\^/g, '\\textasciicircum{}');
+                }
+
+                const summary = escapeLatex(data?.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.");
+
+                const defaultHighlights = [
+                    "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
+                    "Built microservices-based applications serving multiple banks",
+                    "Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics",
+                    "Strong full-stack expertise in ASP.NET Core, React, and SQL"
+                ];
+                const highlights = data?.tailoredHighlights || defaultHighlights;
+                const highlightsTex = highlights.map(h => `    \\item ${escapeLatex(h)}`).join('\n');
+
+                const expTex = (data?.experience || []).map(job => `
+\\vspace{1pt}
+\\noindent
+\\textbf{${escapeLatex(job.role)}} \\hfill \\textbf{${escapeLatex(job.dates || '')}} \\\\
+\\textit{${escapeLatex(job.company)}}
+\\vspace{-4pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{-2pt}
+    \\setlength{\\parskip}{0pt}
+    \\setlength{\\parsep}{0pt}
+${(job.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+\\end{itemize}`).join('\n');
+
+                const lang = (data?.skills?.languages || ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Python"]).map(escapeLatex).join(", ");
+                const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flask"]).map(escapeLatex).join(", ");
+                const db = (data?.skills?.databases || ["PostgreSQL", "MySQL", "Oracle", "SQL Server"]).map(escapeLatex).join(", ");
+                const tools = (data?.skills?.tools || ["Azure DevOps", "GitHub", "Postman", "DBeaver"]).map(escapeLatex).join(", ");
+
+                const projTex = (data?.projects || []).slice(0, 3).map(proj => `
+\\vspace{1pt}
+\\noindent
+\\textbf{${escapeLatex(proj.name)}} \\\\
+\\textbf{Tech:} ${proj.techStack ? proj.techStack.map(escapeLatex).join(", ") : ""}
+\\vspace{-4pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{-2pt}
+    \\setlength{\\parskip}{0pt}
+    \\setlength{\\parsep}{0pt}
+${(proj.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+\\end{itemize}
+${proj.links?.github ? `\\vspace{-4pt}\n\\small \\faLink\\ \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n');
+
                 const latexCode = `\\documentclass[10pt,letterpaper]{article}
-\\usepackage[top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]{geometry}
+\\usepackage[top=0.35in,bottom=0.35in,left=0.4in,right=0.4in]{geometry}
 \\usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \\usepackage{amsmath,amssymb}
 \\usepackage{graphicx}
 \\usepackage{hyperref}
-\\usepackage{fontawesome5}
+\\usepackage{fontawesome}
 \\usepackage{titlesec}
 \\usepackage{parskip}
 
@@ -639,113 +696,95 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
 \\pagestyle{empty}
 
 \\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
-\\titlespacing*{\\section}{0pt}{12pt}{6pt}
+\\titlespacing*{\\section}{0pt}{4pt}{1pt}
 
 \\begin{document}
 
 \\begin{center}
-    {\\Huge \\textbf{CHARAN KUMAR}}\\\\[6pt]
-    {\\large \\textit{Developer}}\\\\[8pt]
+    {\\Huge \\textbf{CHARAN KUMAR}}\\\\[2pt]
+    {\\large \\textit{Developer}}\\\\[4pt]
     \\small
     \\faEnvelope\\ \\href{mailto:charansuvarna99@gmail.com}{charansuvarna99@gmail.com} \\quad
     \\faPhone\\ +91 9380455922 \\quad
-    \\faMapMarker*[-0.5pt]\\ Udupi, Karnataka, India \\quad
-    \\faLinkedin\\ \\href{https://www.linkedin.com/in/charan-kumar99}{LinkedIn}\\\\[4pt]
+    \\faMapMarker\\ Udupi, Karnataka, India \\quad
+    \\faLinkedin\\ \\href{https://www.linkedin.com/in/charan-kumar99}{LinkedIn}\\\\[2pt]
     \\faGithub\\ \\href{https://github.com/charan-kumar99}{GitHub} \\quad
     \\faGlobe\\ \\href{https://charan-kumar99.github.io}{Portfolio}
 \\end{center}
 
-\\vspace{-4pt}
+\\vspace{-8pt}
 
 \\section{PROFESSIONAL SUMMARY}
-${data?.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time."}
+${summary}
 
 \\section{KEY HIGHLIGHTS}
-\\vspace{-2pt}
+\\vspace{-4pt}
 \\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
-${(data?.tailoredHighlights || [
-    "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
-    "Built microservices-based applications serving multiple banks",
-    "Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics",
-    "Strong full-stack expertise in ASP.NET Core, React, and SQL"
-]).map(h => `    \\item ${h}`).join('\n')}
+    \\setlength{\\parsep}{0pt}
+${highlightsTex}
 \\end{itemize}
 
 \\section{WORK EXPERIENCE}
-${(data?.experience || []).map(job => `
-\\vspace{2pt}
-\\noindent
-\\textbf{${job.role}} \\hfill \\textbf{${job.dates || ''}} \\\\
-\\textit{${job.company}}
-\\vspace{-4pt}
-\\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
-    \\setlength{\\parskip}{0pt}
-${(job.bullets || []).map(b => `    \\item ${b.text}`).join('\n')}
-\\end{itemize}`).join('\n')}
+${expTex}
 
 \\section{EDUCATION}
 
-\\vspace{2pt}
+\\vspace{1pt}
 \\noindent
 \\textbf{Master of Computer Applications (MCA)} \\hfill \\textbf{Nov 2025 -- Present} \\\\
 MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.
 
-\\vspace{6pt}
+\\vspace{2pt}
 \\noindent
 \\textbf{Bachelor of Computer Applications (BCA)} \\hfill \\textbf{Sep 2022 -- Jun 2025} \\\\
-Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[3pt]
+Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[1pt]
 \\textbf{Add-on Courses:} Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
 
 \\section{SKILLS}
-\\vspace{2pt}
-\\noindent \\textbf{Languages:} ${(data?.skills?.languages || ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Python"]).join(", ")} \\\\
-\\textbf{Frameworks:} ${(data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flask"]).join(", ")} \\\\
-\\textbf{Databases:} ${(data?.skills?.databases || ["PostgreSQL", "MySQL", "Oracle", "SQL Server"]).join(", ")} \\\\
-\\textbf{Tools:} ${(data?.skills?.tools || ["Azure DevOps", "GitHub", "Postman", "DBeaver"]).join(", ")} \\\\
+\\vspace{1pt}
+\\noindent \\textbf{Languages:} ${lang} \\\\
+\\textbf{Frameworks:} ${fw} \\\\
+\\textbf{Databases:} ${db} \\\\
+\\textbf{Tools:} ${tools} \\\\
 \\textbf{Concepts:} Microservices, REST APIs, API Versioning, System Design
 
 \\section{PROJECTS}
-${(data?.projects || []).slice(0, 3).map(proj => `
-\\vspace{2pt}
-\\noindent
-\\textbf{${proj.name}} \\\\
-\\textbf{Tech:} ${proj.techStack ? proj.techStack.join(", ") : ""}
-\\vspace{-4pt}
-\\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
-    \\setlength{\\parskip}{0pt}
-${(proj.bullets || []).map(b => `    \\item ${b.text}`).join('\n')}
-\\end{itemize}
-${proj.links?.github ? `\\vspace{-2pt}\n\\small \\faLink\\ \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n')}
+${projTex}
 
 \\section{CERTIFICATIONS \\& TRAINING}
-\\vspace{-2pt}
+\\vspace{-4pt}
 \\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
+    \\setlength{\\parsep}{0pt}
     \\item Data Analytics \\& Web Dev Internship -- Accolade Tech Solutions (2024)
     \\item Cybersecurity \\& AI Training -- Mangalore University (2024)
     \\item NCC 'A' Certificate
 \\end{itemize}
 
 \\section{ACHIEVEMENTS}
-\\vspace{-2pt}
+\\vspace{-4pt}
 \\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
+    \\setlength{\\parsep}{0pt}
     \\item Best Cadet Award -- National Cadet Corps (NCC)
     \\item Served as Head Cadet leading school NCC unit
     \\item District-level player in Cricket and Volleyball
 \\end{itemize}
 
 \\section{LANGUAGES}
-\\vspace{2pt}
+\\vspace{1pt}
 English, Hindi, Kannada, Tulu
 
 \\end{document}`;
+
+                if (format === 'json' || req.headers.accept?.includes('application/json')) {
+                    res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+                    return res.end(JSON.stringify({ latex: latexCode }));
+                }
 
                 // Call LaTeX compiler service to compile code directly into a PDF
                 try {

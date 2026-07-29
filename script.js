@@ -2994,6 +2994,164 @@ document.addEventListener('click', e => {
         return result;
     }
 
+    function escapeLatex(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/\\/g, '\\textbackslash{}')
+            .replace(/&/g, '\\&')
+            .replace(/%/g, '\\%')
+            .replace(/\$/g, '\\$')
+            .replace(/#/g, '\\#')
+            .replace(/_/g, '\\_')
+            .replace(/~/g, '\\textasciitilde{}')
+            .replace(/\^/g, '\\textasciicircum{}');
+    }
+
+    function buildLatexCode(data) {
+        const summary = escapeLatex(data?.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.");
+
+        const defaultHighlights = [
+            "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
+            "Built microservices-based applications serving multiple banks",
+            "Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics",
+            "Strong full-stack expertise in ASP.NET Core, React, and SQL"
+        ];
+        const highlights = data?.tailoredHighlights || defaultHighlights;
+        const highlightsTex = highlights.map(h => `    \\item ${escapeLatex(h)}`).join('\n');
+
+        const expTex = (data?.experience || []).map(job => `
+\\vspace{2pt}
+\\noindent
+\\textbf{${escapeLatex(job.role)}} \\hfill \\textbf{${escapeLatex(job.dates || '')}} \\\\
+\\textit{${escapeLatex(job.company)}}
+\\vspace{-4pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+${(job.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+\\end{itemize}`).join('\n');
+
+        const lang = (data?.skills?.languages || ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Python"]).map(escapeLatex).join(", ");
+        const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flask"]).map(escapeLatex).join(", ");
+        const db = (data?.skills?.databases || ["PostgreSQL", "MySQL", "Oracle", "SQL Server"]).map(escapeLatex).join(", ");
+        const tools = (data?.skills?.tools || ["Azure DevOps", "GitHub", "Postman", "DBeaver"]).map(escapeLatex).join(", ");
+
+        const projTex = (data?.projects || []).slice(0, 3).map(proj => `
+\\vspace{2pt}
+\\noindent
+\\textbf{${escapeLatex(proj.name)}} \\\\
+\\textbf{Tech:} ${proj.techStack ? proj.techStack.map(escapeLatex).join(", ") : ""}
+\\vspace{-4pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+${(proj.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+\\end{itemize}
+${proj.links?.github ? `\\vspace{-2pt}\n\\small \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n');
+
+        return `\\documentclass[10pt,letterpaper]{article}
+\\usepackage[top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]{geometry}
+\\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\\usepackage{amsmath,amssymb}
+\\usepackage{graphicx}
+\\usepackage{hyperref}
+\\usepackage{titlesec}
+\\usepackage{parskip}
+
+\\hypersetup{
+    colorlinks=true,
+    urlcolor=black,
+    pdfauthor={Charan Kumar},
+    pdftitle={Charan Kumar - Resume}
+}
+
+\\setlength{\\parindent}{0pt}
+\\pagestyle{empty}
+
+\\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
+\\titlespacing*{\\section}{0pt}{12pt}{6pt}
+
+\\begin{document}
+
+\\begin{center}
+    {\\Huge \\textbf{CHARAN KUMAR}}\\\\[6pt]
+    {\\large \\textit{Developer}}\\\\[8pt]
+    \\small
+    \\href{mailto:charansuvarna99@gmail.com}{charansuvarna99@gmail.com} \\quad $|$ \\quad
+    +91 9380455922 \\quad $|$ \\quad
+    Udupi, Karnataka, India\\\\[4pt]
+    \\href{https://www.linkedin.com/in/charan-kumar99}{LinkedIn} \\quad $|$ \\quad
+    \\href{https://github.com/charan-kumar99}{GitHub} \\quad $|$ \\quad
+    \\href{https://charan-kumar99.github.io}{Portfolio}
+\\end{center}
+
+\\vspace{-4pt}
+
+\\section{PROFESSIONAL SUMMARY}
+${summary}
+
+\\section{KEY HIGHLIGHTS}
+\\vspace{-2pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+${highlightsTex}
+\\end{itemize}
+
+\\section{WORK EXPERIENCE}
+${expTex}
+
+\\section{EDUCATION}
+
+\\vspace{2pt}
+\\noindent
+\\textbf{Master of Computer Applications (MCA)} \\hfill \\textbf{Nov 2025 -- Present} \\\\
+MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.
+
+\\vspace{6pt}
+\\noindent
+\\textbf{Bachelor of Computer Applications (BCA)} \\hfill \\textbf{Sep 2022 -- Jun 2025} \\\\
+Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[3pt]
+\\textbf{Add-on Courses:} Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
+
+\\section{SKILLS}
+\\vspace{2pt}
+\\noindent \\textbf{Languages:} ${lang} \\\\
+\\textbf{Frameworks:} ${fw} \\\\
+\\textbf{Databases:} ${db} \\\\
+\\textbf{Tools:} ${tools} \\\\
+\\textbf{Concepts:} Microservices, REST APIs, API Versioning, System Design
+
+\\section{PROJECTS}
+${projTex}
+
+\\section{CERTIFICATIONS \\& TRAINING}
+\\vspace{-2pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+    \\item Data Analytics \\& Web Dev Internship -- Accolade Tech Solutions (2024)
+    \\item Cybersecurity \\& AI Training -- Mangalore University (2024)
+    \\item NCC 'A' Certificate
+\\end{itemize}
+
+\\section{ACHIEVEMENTS}
+\\vspace{-2pt}
+\\begin{itemize}
+    \\setlength{\\itemsep}{0pt}
+    \\setlength{\\parskip}{0pt}
+    \\item Best Cadet Award -- National Cadet Corps (NCC)
+    \\item Served as Head Cadet leading school NCC unit
+    \\item District-level player in Cricket and Volleyball
+\\end{itemize}
+
+\\section{LANGUAGES}
+\\vspace{2pt}
+English, Hindi, Kannada, Tulu
+
+\\end{document}`;
+    }
+
     // 7. Client-Side jsPDF Generator (Matches User's Exact Serif Template with Clickable Links)
     function generatePdfResume(data, filenameRole) {
         // Create document: portrait, points, Letter (612pt x 792pt) - LaTeX geometry [top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]
@@ -3113,7 +3271,7 @@ document.addEventListener('click', e => {
             doc.ellipse(x + 4, y - 3.5, 1.4, 3);
         }
 
-        // Contact info row 1: email, phone, location, LinkedIn
+        // Contact info row 1: email, phone, location
         doc.setFont('times', 'normal');
         doc.setFontSize(9.5);
         doc.setTextColor(0, 0, 0);
@@ -3121,62 +3279,53 @@ document.addEventListener('click', e => {
         const emailStr = "charansuvarna99@gmail.com";
         const phoneStr = "+91 9380455922";
         const locStr = "Udupi, Karnataka, India";
-        const liStr = "LinkedIn";
-        const sep = "   ";
-        const iconGap = 13;
+        const pipeSep = "  |  ";
 
-        const w1 = iconGap + doc.getTextWidth(emailStr);
-        const w2 = iconGap + doc.getTextWidth(phoneStr);
-        const w3 = iconGap + doc.getTextWidth(locStr);
-        const w4 = iconGap + doc.getTextWidth(liStr);
-        const wSep = doc.getTextWidth(sep);
+        const wEmail = doc.getTextWidth(emailStr);
+        const wPhone = doc.getTextWidth(phoneStr);
+        const wLoc = doc.getTextWidth(locStr);
+        const wPipe = doc.getTextWidth(pipeSep);
 
-        const totalRow1W = w1 + wSep + w2 + wSep + w3 + wSep + w4;
+        const totalRow1W = wEmail + wPipe + wPhone + wPipe + wLoc;
         let startX1 = (pageWidth - totalRow1W) / 2;
 
-        // Mail
-        drawEnvelope(startX1, currentY);
-        drawClickableLink(emailStr, "mailto:charansuvarna99@gmail.com", startX1 + iconGap, currentY);
-        startX1 += w1;
-        doc.text(sep, startX1, currentY);
-        startX1 += wSep;
+        drawClickableLink(emailStr, "mailto:charansuvarna99@gmail.com", startX1, currentY);
+        startX1 += wEmail;
+        doc.text(pipeSep, startX1, currentY);
+        startX1 += wPipe;
 
-        // Phone
-        drawPhone(startX1, currentY);
-        drawClickableLink(phoneStr, "tel:+919380455922", startX1 + iconGap, currentY);
-        startX1 += w2;
-        doc.text(sep, startX1, currentY);
-        startX1 += wSep;
+        doc.text(phoneStr, startX1, currentY);
+        startX1 += wPhone;
+        doc.text(pipeSep, startX1, currentY);
+        startX1 += wPipe;
 
-        // Location
-        drawPin(startX1, currentY);
-        doc.text(locStr, startX1 + iconGap, currentY);
-        startX1 += w3;
-        doc.text(sep, startX1, currentY);
-        startX1 += wSep;
+        doc.text(locStr, startX1, currentY);
+        currentY += 15;
 
-        // LinkedIn
-        drawLinkedInBox(startX1, currentY);
-        drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar99", startX1 + iconGap, currentY);
-        currentY += 16;
-
-        // Contact info row 2: GitHub, Portfolio
+        // Contact info row 2: LinkedIn, GitHub, Portfolio
+        const liStr = "LinkedIn";
         const ghStr = "GitHub";
         const portStr = "Portfolio";
-        const wGh = iconGap + doc.getTextWidth(ghStr);
-        const wPort = iconGap + doc.getTextWidth(portStr);
-        const totalRow2W = wGh + wSep + wPort;
+
+        const wLi = doc.getTextWidth(liStr);
+        const wGh = doc.getTextWidth(ghStr);
+        const wPort = doc.getTextWidth(portStr);
+
+        const totalRow2W = wLi + wPipe + wGh + wPipe + wPort;
         let startX2 = (pageWidth - totalRow2W) / 2;
 
-        drawGitIcon(startX2, currentY);
-        drawClickableLink(ghStr, "https://github.com/charan-kumar99", startX2 + iconGap, currentY);
-        startX2 += wGh;
-        doc.text(sep, startX2, currentY);
-        startX2 += wSep;
+        drawClickableLink(liStr, "https://www.linkedin.com/in/charan-kumar99", startX2, currentY);
+        startX2 += wLi;
+        doc.text(pipeSep, startX2, currentY);
+        startX2 += wPipe;
 
-        drawLinkChain(startX2, currentY);
-        drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2 + iconGap, currentY);
-        currentY += 26;
+        drawClickableLink(ghStr, "https://github.com/charan-kumar99", startX2, currentY);
+        startX2 += wGh;
+        doc.text(pipeSep, startX2, currentY);
+        startX2 += wPipe;
+
+        drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2, currentY);
+        currentY += 22;
 
         // --- PROFESSIONAL SUMMARY ---
         drawSectionHeader("PROFESSIONAL SUMMARY");
@@ -3503,35 +3652,6 @@ document.addEventListener('click', e => {
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
         if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
 
-        const copyLatexBtn = document.getElementById("copyLatexBtn");
-        if (copyLatexBtn) {
-            copyLatexBtn.addEventListener("click", async () => {
-                const jdText = jdInput.value.trim();
-                const keywords = extractKeywords(jdText);
-                const sourceData = await loadResumeData();
-                if (!sourceData) return alert("Resume data unavailable.");
-                
-                const finalData = matchResumeData(sourceData, keywords);
-                
-                try {
-                    const res = await fetch('./api/latex', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ data: finalData, jobDescription: jdText })
-                    });
-                    if (res.ok) {
-                        const json = await res.json();
-                        if (json.latex) {
-                            await navigator.clipboard.writeText(json.latex);
-                            alert("✅ Tailored LaTeX code copied to clipboard! You can paste it directly into Overleaf or LaTeX Base.");
-                        }
-                    }
-                } catch (e) {
-                    console.error("LaTeX copy failed:", e);
-                }
-            });
-        }
-
         // Loading Overlay steps animation controller
         function showStep(stepNum) {
             for (let i = 1; i <= 5; i++) {
@@ -3615,9 +3735,11 @@ document.addEventListener('click', e => {
                     }
                 }
 
-                // Step 4: Render PDF via Server LaTeX Compiler
+                // Step 4: Render PDF via LaTeX Compiler / Client Fallback
                 showStep(4);
                 let latexPdfDownloaded = false;
+                
+                // 1) Try server-side / Vercel API
                 try {
                     const latexResponse = await fetch('./api/latex', {
                         method: 'POST',
@@ -3641,9 +3763,35 @@ document.addEventListener('click', e => {
                         latexPdfDownloaded = true;
                     }
                 } catch (latexErr) {
-                    console.warn("Server LaTeX PDF compilation failed, falling back to jsPDF:", latexErr);
+                    console.warn("Server LaTeX PDF compilation failed, trying direct compile:", latexErr);
                 }
 
+                // 2) If server API is 404 or failed (e.g., static GitHub Pages hosting), compile via online service directly
+                if (!latexPdfDownloaded) {
+                    try {
+                        const latexCode = buildLatexCode(finalData);
+                        const compileRes = await fetch(`https://latexonline.cc/compile?text=${encodeURIComponent(latexCode)}`);
+                        if (compileRes.ok && compileRes.headers.get('content-type')?.includes('application/pdf')) {
+                            const pdfBlob = await compileRes.blob();
+                            const blobUrl = URL.createObjectURL(pdfBlob);
+                            const a = document.createElement('a');
+                            a.style.display = 'none';
+                            a.href = blobUrl;
+                            a.download = 'Charan_Kumar_Resume.pdf';
+                            document.body.appendChild(a);
+                            a.click();
+                            setTimeout(() => {
+                                URL.revokeObjectURL(blobUrl);
+                                if (document.body.contains(a)) document.body.removeChild(a);
+                            }, 1000);
+                            latexPdfDownloaded = true;
+                        }
+                    } catch (directErr) {
+                        console.warn("Direct LaTeX compilation failed, falling back to jsPDF:", directErr);
+                    }
+                }
+
+                // 3) Fallback: Client-side jsPDF rendering matching the exact LaTeX layout
                 if (!latexPdfDownloaded) {
                     generatePdfResume(finalData, roleTitle);
                 }
