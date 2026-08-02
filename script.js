@@ -209,13 +209,20 @@ Only decline questions that are completely unrelated to Charan or his tech stack
 Note: If asked about Redis, explicitly state that Charan uses Redis caching at his current company, AGREMATE, and clarify that he did not use it at NTSIPL.
 Note on Azure vs Azure DevOps: Charan exclusively uses Azure DevOps (for CI/CD pipelines, Repos, Boards, Pipelines at NTSIPL). He does NOT use standalone Azure cloud services. If asked whether he uses Azure or Azure DevOps, explicitly state that he only uses Azure DevOps, not general Azure cloud services.
 
+PORTFOLIO FEATURES & HOW TO USE THIS WEBSITE:
+- **Downloading Resume or CV**: Click the floating **"✨ Match & Generate Resume"** pill button at the bottom-left of the page. It opens a modal where visitors can select between a **Resume (Concise 2-Page)** or a **CV (Full Detailed Document)** containing all 9 projects!
+- **AI Phrasing Enhancer Toggle**: When a Job Description is pasted in Resume mode, a toggle switch labeled **"Enhance phrasing with AI"** appears. Visitors can turn this switch OFF (uncheck it) at any time to disable AI bullet rephrasing while still tailoring skills to the job!
+- **Interactive Contact Links**: Phone number (+91 9380455922) opens phone dialer (tel:), location (Udupi, Karnataka, India) opens Google Maps.
+- **Theme Switcher**: Color palette toggle at top-right (Dark, Cyberpunk, Emerald, Minimal).
+- **AI Assistant**: Floating chat bubble at bottom-right (where you are currently chatting!).
+
 FORMATTING RULES — follow strictly:
 - Use **bold** (markdown asterisks) for important words: names, technologies, roles, dates, key facts.
 - Use bullet points (- item) for any list of 2 or more items.
 - Keep answers SHORT and CLEAN — max 5 lines total. No long paragraphs.
 - Lead with the most important fact first.
-- Never repeat the question back to the user.
-- For completely unrelated questions reply exactly: "I'm not sure about that. Please check the portfolio sections for more details."
+- If asked personal questions about the visitor (e.g., "who am I?", "do you know me?"), reply warmly: "I don't know who you are, but I'm Charan's AI Assistant! Feel free to ask me anything you'd like to know about Charan — his projects, skills, experience, or contact details."
+- For completely unrelated topics (e.g. recipes, general trivia, weather), reply politely: "I'm specialized in answering questions about Charan Kumar! Ask me anything about his skills, projects, experience, or contact info."
 
 ABOUT CHARAN KUMAR
 ==================
@@ -254,7 +261,7 @@ WORK EXPERIENCE
   Contributed to CTS (Cheque Truncation System), AML (Anti-Money Laundering), and User Management systems.
   Full-stack with ASP.NET Core, Blazor, Razor Pages. Database management across PostgreSQL, MySQL, Oracle Database, and SQL Server.
   REST APIs, CRUD operations.
-  Testing, debugging, Azure DevOps CI/CD deployment. Tools: Visual Studio 2022, Postman, DBeaver, FTP/SFTP.
+  Testing, debugging, Azure DevOps CI/CD deployment.
 - **Trainee Developer (Onsite)** — NTSIPL (**Sep 2025 – Dec 2025**)
   Gained hands-on experience in ASP.NET Core enterprise development in the financial domain.
   Contributed features, resolved bugs, collaborated with senior developers.
@@ -263,7 +270,7 @@ SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
 - Frameworks  : **ASP.NET Core**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**, **Mozilla PDF.js**, **JSZip**, **jsPDF**
 - Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**, **IndexedDB**
-- Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, Visual Studio 2022, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**, **PWA (Service Worker)**, **Web Share API**
+- Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**, **PWA (Service Worker)**, **Web Share API**
 - API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
@@ -282,9 +289,9 @@ PROJECTS (in order)
 6. **Advanced Developer Portfolio** — Immersive Next.js/React portfolio featuring 3D visuals (Three.js, React Three Fiber), GSAP, WakaTime metrics, and GROQ/Gemini AI chat assistant.
    GitHub: https://github.com/charan-kumar99/Advanced-Portfolio
    Live: https://advanced-portfolio-sandy.vercel.app/
-7. **Migration Master** — High-Performance PostgreSQL Database Migration Tool in C# (.NET 8) featuring bulk binary COPY protocol ('COPY FROM STDIN'), topological dependency sorting with Kahn's Algorithm, full schema/constraint replication, identity sequence syncing, and interactive Spectre.Console CLI.
+7. **Migration Master** — High-Performance PostgreSQL Database Migration Tool in C# featuring bulk binary COPY protocol ('COPY FROM STDIN'), topological dependency sorting with Kahn's Algorithm, full schema/constraint replication, identity sequence syncing, and interactive Spectre.Console CLI.
    GitHub: https://github.com/charan-kumar99/Migration-Master
-8. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET 6 & .NET 8) — Proprietary (built at NTSIPL)
+8. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET) — Proprietary (built at NTSIPL)
 
 CERTIFICATIONS & TRAINING
 - Fast-Track Internship — Data Analytics, Web Development & Python Projects | Accolade Tech Solutions, Mangaluru (August 2024)
@@ -313,7 +320,7 @@ Charan worked extensively with **Microservices Architecture** at NTSIPL.
 - The RTGS/NEFT banking system was built on a **microservices-based architecture** where each banking service (RTGS, NEFT, CTS, AML, User Management) was an independently deployable microservice.
 - He worked with **service-to-service communication**, **API gateway patterns**, and **database-per-service** design.
 - Each microservice had its own database (PostgreSQL, MySQL, or Oracle) enabling independent scaling and deployment.
-- Microservices were built using **ASP.NET Core (.NET 6 & .NET 8)** with **REST APIs** for inter-service communication.
+- Microservices were built using **ASP.NET Core** with **REST APIs** for inter-service communication.
 - Deployment was managed through **Azure DevOps** CI/CD pipelines for each microservice independently.
 
 CURRENT FOCUS: Building **scalable property management APIs** at **AGREMATE** using **Clean Architecture**, **Docker**, and **Redis** caching while pursuing **MCA**.
@@ -489,7 +496,7 @@ const PROJECT_CARDS_DATA = [
         title: 'Migration Master',
         sub: 'PostgreSQL Migration Tool in C#',
         github: 'https://github.com/charan-kumar99/Migration-Master',
-        tags: ['C#', '.NET 8', 'PostgreSQL', 'Binary COPY', 'Spectre.Console'],
+        tags: ['C#', '.NET', 'PostgreSQL', 'Binary COPY', 'Spectre.Console'],
         icon: '🚀'
     },
     {
@@ -696,20 +703,27 @@ function renderWelcome() {
 
 function toggleChat() {
     isChatOpen = !isChatOpen;
-    chatWindowEl.classList.toggle('open', isChatOpen);
-    chatBubbleEl.classList.toggle('is-open', isChatOpen);
+    const win = chatWindowEl || document.getElementById('chatWindow');
+    const bubble = chatBubbleEl || document.getElementById('chatBubble');
+    const msgs = chatMessages || document.getElementById('chatMessages');
+    const input = chatInputEl || document.getElementById('chatInput');
+
+    if (win) {
+        win.classList.toggle('active', isChatOpen);
+        win.classList.toggle('open', isChatOpen);
+    }
+    if (bubble) bubble.classList.toggle('is-open', isChatOpen);
 
     if (!isChatOpen && window.speechSynthesis) {
         window.speechSynthesis.cancel();
     }
 
     if (isChatOpen) {
-        
-        if (chatMessages.children.length === 0) {
+        if (msgs && msgs.children.length === 0) {
             renderSuggestions();
             renderWelcome();
         }
-        setTimeout(() => chatInputEl.focus(), 300);
+        if (input) setTimeout(() => input.focus(), 300);
     }
 }
 
@@ -727,34 +741,16 @@ function newChat() {
 }
 
 function saveChatHistory() {
-    localStorage.setItem('chat_history', JSON.stringify(chatHistory));
+    // Chat history persistence disabled as requested — chats reset on page refresh
+    localStorage.removeItem('chat_history');
 }
 
 function loadChatHistory() {
-    const saved = localStorage.getItem('chat_history');
-    if (saved) {
-        try {
-            chatHistory = JSON.parse(saved);
-            chatMessages.innerHTML = '';
-            if (chatHistory.length === 0) {
-                renderSuggestions();
-                renderWelcome();
-            } else {
-                chatSuggEl.style.display = 'none'; // Hide suggestions if history exists
-                chatHistory.forEach(msg => {
-                    appendMessage(msg.role === 'assistant' ? 'bot' : 'user', msg.content);
-                });
-            }
-        } catch (e) {
-            console.error('Failed to parse chat history:', e);
-            chatHistory = [];
-            renderSuggestions();
-            renderWelcome();
-        }
-    } else {
-        renderSuggestions();
-        renderWelcome();
-    }
+    localStorage.removeItem('chat_history');
+    chatHistory = [];
+    chatMessages.innerHTML = '';
+    renderSuggestions();
+    renderWelcome();
 }
 
 function escapeHtml(str) {
@@ -1446,7 +1442,7 @@ document.addEventListener('click', e => {
         'CSS3': '#1572B6',
         'Dart': '#0175C2',
         'Python': '#3776AB',
-        'ASP.NET Core (.NET 6 & .NET 8)': '#512BD4',
+        'ASP.NET Core': '#512BD4',
         'Blazor': '#512BD4',
         'Razor Pages': '#512BD4',
         'React': '#61DAFB',
@@ -1462,11 +1458,8 @@ document.addEventListener('click', e => {
         'Azure DevOps': '#0078D7',
         'CI/CD Pipelines': '#00F5FF',
         'GitHub': '#6e7681',
-        'Visual Studio 2022': '#5C2D91',
         'VS Code': '#007ACC',
         'Postman': '#FF6C37',
-        'DBeaver': '#8A6B4D',
-        'FTP / SFTP': '#00D4FF',
         'Docker': '#2496ED',
         'Swagger': '#85EA2D',
         'Firebase': '#FFCA28',
@@ -2561,7 +2554,7 @@ document.addEventListener('click', e => {
   4. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS Speech API)
   5. Vaulta - Personal & Official Document Manager (Offline PWA, IndexedDB, PDF.js)
   6. Advanced Developer Portfolio - Immersive Next.js/React portfolio with 3D elements
-  7. Migration Master - PostgreSQL Binary COPY Migration Tool (C#, .NET 8, Spectre.Console)
+  7. Migration Master - PostgreSQL Binary COPY Migration Tool (C#, .NET, Spectre.Console)
   8. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
 
         contact: `Contact Details:
@@ -2735,7 +2728,7 @@ document.addEventListener('click', e => {
         "dotnet": ["dotnet", ".net", "asp.net", "c#", "csharp"],
         "c#": ["c#", "csharp", "dotnet", ".net"],
         "csharp": ["c#", "csharp", "dotnet", ".net"],
-        "asp.net": ["asp.net", "dotnet", ".net", "c#", "csharp", "blazor", "razor pages"],
+        "asp.net": ["asp.net", "asp.net core", "dotnet", ".net"],
         "sql server": ["sql server", "mssql", "microsoft sql server", "sqlserver"],
         "mssql": ["sql server", "mssql", "microsoft sql server", "sqlserver"],
         "react": ["react", "react.js", "reactjs"],
@@ -2899,26 +2892,38 @@ document.addEventListener('click', e => {
     }
 
     // 5. Skills Reordering & Filtering
-    function filterAndReorderSkills(skillsList, foundKeywords, maxCount = 6) {
+    function filterAndReorderSkills(skillsList, foundKeywords, jdText = '', maxCount = 5) {
+        const jdLower = (jdText || '').toLowerCase();
+        
         // Find skills that match found keywords
         const matched = skillsList.filter(s => isSkillMatched(s, foundKeywords));
         const nonMatched = skillsList.filter(s => !isSkillMatched(s, foundKeywords));
         
-        // Combine matched first, then fill up with non-matched up to maxCount
+        // Sort matched skills by their first appearance position in the JD text
+        matched.sort((a, b) => {
+            const posA = jdLower.indexOf(a.toLowerCase());
+            const posB = jdLower.indexOf(b.toLowerCase());
+            if (posA !== -1 && posB !== -1) return posA - posB;
+            if (posA !== -1) return -1;
+            if (posB !== -1) return 1;
+            return 0;
+        });
+        
         const combined = [...matched, ...nonMatched];
-        return combined.slice(0, Math.max(matched.length, maxCount));
+        return combined.slice(0, maxCount);
     }
 
     // 6. Match JD against Resume Data
-    function matchResumeData(data, foundKeywords) {
+    function matchResumeData(data, foundKeywords, jdText) {
         const result = JSON.parse(JSON.stringify(data)); // Deep clone
 
-        // Tailor Skills: keep matched skills + top relevant up to limit (e.g. 5-6 tools instead of 10+)
+        // Tailor Skills: keep matched skills + top relevant up to limit
         if (result.skills) {
-            result.skills.languages = filterAndReorderSkills(result.skills.languages || [], foundKeywords, 6);
-            result.skills.frameworks = filterAndReorderSkills(result.skills.frameworks || [], foundKeywords, 5);
-            result.skills.databases = filterAndReorderSkills(result.skills.databases || [], foundKeywords, 4);
-            result.skills.tools = filterAndReorderSkills(result.skills.tools || [], foundKeywords, 5);
+            result.skills.languages = filterAndReorderSkills(result.skills.languages || [], foundKeywords, jdText, 5);
+            result.skills.frameworks = filterAndReorderSkills(result.skills.frameworks || [], foundKeywords, jdText, 5);
+            result.skills.databases = filterAndReorderSkills(result.skills.databases || [], foundKeywords, jdText, 4);
+            result.skills.tools = filterAndReorderSkills(result.skills.tools || [], foundKeywords, jdText, 5);
+            result.skills.architecture = filterAndReorderSkills(result.skills.architecture || ["Microservices Architecture", "Clean Architecture", "REST APIs", "System Design"], foundKeywords, jdText, 4);
         }
 
         // Score and filter work experience bullets
@@ -2940,8 +2945,8 @@ document.addEventListener('click', e => {
                 return a.originalIndex - b.originalIndex;
             });
 
-            // Select top 3-4 bullets
-            const limit = 4;
+            // Select top 3 bullets
+            const limit = 3;
             const selectedScored = scoredBullets.slice(0, limit);
 
             // Re-sort selected back to original index order
@@ -2977,19 +2982,22 @@ document.addEventListener('click', e => {
         selectedScoredProjects.sort((a, b) => a.originalIndex - b.originalIndex);
         result.projects = selectedScoredProjects.map(sp => sp.project);
 
-        // Dynamically tailor summary & key highlights if keywords found
-        const topKeywordsArr = Array.from(foundKeywords).slice(0, 5);
-        if (topKeywordsArr.length > 0) {
-            const kwString = topKeywordsArr.join(", ");
-            result.tailoredSummary = `.NET Developer with hands-on experience building enterprise-grade applications, microservices, and REST APIs using ASP.NET Core, SQL Server, and Azure DevOps. Demonstrated expertise in ${kwString}. Proven track record delivering scalable, secure solutions across banking and property management domains while pursuing MCA full-time.`;
-            
-            result.tailoredHighlights = [
-                `1+ year experience building enterprise systems with ${topKeywordsArr.slice(0, 3).join(", ")}`,
-                `Built microservices-based applications serving multiple enterprise clients`,
-                `Developed AI-powered GitHub analyzer (DevLens) and scalable cloud backends`,
-                `Strong full-stack expertise in ASP.NET Core, React, and SQL database management`
-            ];
+        // Dynamically tailor summary & key highlights using AI
+        // Deduplicate synonym variants: pick only the canonical (first) form per synonym group
+        const deduplicatedKeywords = [];
+        const seenSynonymGroups = new Set();
+        for (const kw of foundKeywords) {
+            const groupKey = SYNONYMS[kw] ? SYNONYMS[kw].sort().join('|') : kw;
+            if (!seenSynonymGroups.has(groupKey)) {
+                seenSynonymGroups.add(groupKey);
+                deduplicatedKeywords.push(kw);
+            }
         }
+        const topKeywordsArr = deduplicatedKeywords.slice(0, 5);
+
+        // Store keywords on result for later AI summary generation (done in generateBtn handler)
+        result._topKeywords = topKeywordsArr;
+        result._jdText = jdText;
 
         return result;
     }
@@ -3007,8 +3015,9 @@ document.addEventListener('click', e => {
             .replace(/\^/g, '\\textasciicircum{}');
     }
 
-    function buildLatexCode(data) {
-        const summary = escapeLatex(data?.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.");
+    function buildLatexCode(data, docType = 'resume') {
+        const isCV = docType === 'cv';
+        const summary = escapeLatex(data?.tailoredSummary || "Software Developer & .NET / Full-Stack Engineer with hands-on experience building enterprise-grade web applications, REST APIs, and microservices using C#, ASP.NET Core, React, and database systems across PostgreSQL, SQL Server, and Redis. Proven track record in clean architecture and automated CI/CD deployments. Currently pursuing MCA while working full-time.");
 
         const defaultHighlights = [
             "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
@@ -3028,15 +3037,16 @@ document.addEventListener('click', e => {
 \\begin{itemize}
     \\setlength{\\itemsep}{0pt}
     \\setlength{\\parskip}{0pt}
-${(job.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+${(isCV ? (job.bullets || []) : (job.bullets || []).slice(0, 3)).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
 \\end{itemize}`).join('\n');
 
-        const lang = (data?.skills?.languages || ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Python"]).map(escapeLatex).join(", ");
-        const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flask"]).map(escapeLatex).join(", ");
-        const db = (data?.skills?.databases || ["PostgreSQL", "MySQL", "Oracle", "SQL Server"]).map(escapeLatex).join(", ");
-        const tools = (data?.skills?.tools || ["Azure DevOps", "GitHub", "Postman", "DBeaver"]).map(escapeLatex).join(", ");
+        const lang = (data?.skills?.languages || ["C#", "JavaScript", "Java", "C", "Python"]).map(escapeLatex).join(", ");
+        const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flutter", "Razor Pages"]).map(escapeLatex).join(", ");
+        const db = (data?.skills?.databases || ["PostgreSQL", "SQL Server", "MySQL", "Redis"]).map(escapeLatex).join(", ");
+        const tools = (data?.skills?.tools || ["Azure DevOps", "Docker", "GitHub", "CI/CD Pipelines", "Firebase"]).map(escapeLatex).join(", ");
+        const arch = (data?.skills?.architecture || ["Clean Architecture", "Microservices Architecture", "REST APIs", "System Design"]).map(escapeLatex).join(", ");
 
-        const projTex = (data?.projects || []).slice(0, 3).map(proj => `
+        const projTex = (isCV ? (data?.projects || []) : (data?.projects || []).slice(0, 3)).map(proj => `
 \\vspace{2pt}
 \\noindent
 \\textbf{${escapeLatex(proj.name)}} \\\\
@@ -3045,12 +3055,13 @@ ${(job.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
 \\begin{itemize}
     \\setlength{\\itemsep}{0pt}
     \\setlength{\\parskip}{0pt}
-${(proj.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+${(isCV ? (proj.bullets || []) : (proj.bullets || []).slice(0, 3)).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
 \\end{itemize}
 ${proj.links?.github ? `\\vspace{-2pt}\n\\small \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n');
 
         return `\\documentclass[10pt,letterpaper]{article}
-\\usepackage[top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]{geometry}
+\\usepackage[top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+\\usepackage{ebgaramond}
 \\usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \\usepackage{amsmath,amssymb}
 \\usepackage{graphicx}
@@ -3069,17 +3080,17 @@ ${proj.links?.github ? `\\vspace{-2pt}\n\\small \\textbf{GitHub:} \\url{${proj.l
 \\pagestyle{empty}
 
 \\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
-\\titlespacing*{\\section}{0pt}{12pt}{6pt}
+\\titlespacing*{\\section}{0pt}{10pt}{4pt}
 
 \\begin{document}
 
 \\begin{center}
-    {\\Huge \\textbf{CHARAN KUMAR}}\\\\[6pt]
-    {\\large \\textit{Developer}}\\\\[8pt]
+    {\\Huge \\textbf{CHARAN KUMAR}}\\\\[4pt]
+    {\\large \\textit{Software Developer}}\\\\[6pt]
     \\small
     \\href{mailto:charansuvarna99@gmail.com}{charansuvarna99@gmail.com} \\quad $|$ \\quad
-    +91 9380455922 \\quad $|$ \\quad
-    Udupi, Karnataka, India\\\\[4pt]
+    \\href{tel:+919380455922}{+91 9380455922} \\quad $|$ \\quad
+    \\href{https://maps.google.com/?q=Udupi,+Karnataka,+India}{Udupi, Karnataka, India}\\\\[3pt]
     \\href{https://www.linkedin.com/in/charan-kumar99}{LinkedIn} \\quad $|$ \\quad
     \\href{https://github.com/charan-kumar99}{GitHub} \\quad $|$ \\quad
     \\href{https://charan-kumar99.github.io}{Portfolio}
@@ -3090,79 +3101,58 @@ ${proj.links?.github ? `\\vspace{-2pt}\n\\small \\textbf{GitHub:} \\url{${proj.l
 \\section{PROFESSIONAL SUMMARY}
 ${summary}
 
-\\section{KEY HIGHLIGHTS}
-\\vspace{-2pt}
-\\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
-    \\setlength{\\parskip}{0pt}
-${highlightsTex}
-\\end{itemize}
-
-\\section{WORK EXPERIENCE}
-${expTex}
-
-\\section{EDUCATION}
-
-\\vspace{2pt}
-\\noindent
-\\textbf{Master of Computer Applications (MCA)} \\hfill \\textbf{Nov 2025 -- Present} \\\\
-MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.
-
-\\vspace{6pt}
-\\noindent
-\\textbf{Bachelor of Computer Applications (BCA)} \\hfill \\textbf{Sep 2022 -- Jun 2025} \\\\
-Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[3pt]
-\\textbf{Add-on Courses:} Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
-
-\\section{SKILLS}
+\\section{TECHNICAL SKILLS}
 \\vspace{2pt}
 \\noindent \\textbf{Languages:} ${lang} \\\\
 \\textbf{Frameworks:} ${fw} \\\\
 \\textbf{Databases:} ${db} \\\\
 \\textbf{Tools:} ${tools} \\\\
-\\textbf{Concepts:} Microservices, REST APIs, API Versioning, System Design
+\\textbf{Architecture \\& Concepts:} ${arch}
+
+\\section{PROFESSIONAL EXPERIENCE}
+${expTex}
 
 \\section{PROJECTS}
 ${projTex}
 
-\\section{CERTIFICATIONS \\& TRAINING}
+\\section{EDUCATION}
+\\vspace{2pt}
+\\noindent
+\\textbf{Master of Computer Applications (MCA)} \\hfill \\textbf{Nov 2025 -- Present} \\\\
+MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.
+
+\\vspace{4pt}
+\\noindent
+\\textbf{Bachelor of Computer Applications (BCA)} \\hfill \\textbf{Sep 2022 -- Jun 2025} \\\\
+Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2pt]
+\\textbf{Add-on Courses:}~Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
+
+\\section{CERTIFICATIONS}
 \\vspace{-2pt}
 \\begin{itemize}
     \\setlength{\\itemsep}{0pt}
     \\setlength{\\parskip}{0pt}
     \\item Data Analytics \\& Web Dev Internship -- Accolade Tech Solutions (2024)
     \\item Cybersecurity \\& AI Training -- Mangalore University (2024)
-    \\item NCC 'A' Certificate
-\\end{itemize}
-
-\\section{ACHIEVEMENTS}
-\\vspace{-2pt}
-\\begin{itemize}
-    \\setlength{\\itemsep}{0pt}
-    \\setlength{\\parskip}{0pt}
-    \\item Best Cadet Award -- National Cadet Corps (NCC)
-    \\item Served as Head Cadet leading school NCC unit
+    \\item NCC 'A' Certificate | Best Cadet Award -- National Cadet Corps (NCC)
     \\item District-level player in Cricket and Volleyball
 \\end{itemize}
-
-\\section{LANGUAGES}
-\\vspace{2pt}
-English, Hindi, Kannada, Tulu
 
 \\end{document}`;
     }
 
     // 7. Client-Side jsPDF Generator (Matches User's Exact Serif Template with Clickable Links)
-    function generatePdfResume(data, filenameRole) {
+    function generatePdfResume(data, filenameRole, docType = 'resume') {
+        const isCV = docType === 'cv';
         // Create document: portrait, points, Letter (612pt x 792pt) - LaTeX geometry [top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]
         const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
         
-        const marginX = 43.2; // 0.6 in = 43.2 pt
-        const marginTop = 43.2; // 0.6 in = 43.2 pt
-        let currentY = marginTop + 18; // \begin{center} top offset
+        const marginX = 54; // 0.75 in = 54 pt
+        const marginTop = 54; // 0.75 in = 54 pt
+        let currentY = marginTop + 14; // Top offset aligned with top margin
         const pageWidth = 612;
         const pageHeight = 792;
-        const printableWidth = 525.6; // 612 - 86.4
+        const printableWidth = 504; // 612 - (54 * 2)
 
         function checkPageSpace(heightNeeded) {
             if (currentY + heightNeeded > pageHeight - marginTop) {
@@ -3188,17 +3178,17 @@ English, Hindi, Kannada, Tulu
         // --- TITLE / HEADER BLOCK (LaTeX \begin{center}) ---
         // {\Huge \textbf{CHARAN KUMAR}}
         doc.setFont('times', 'bold');
-        doc.setFontSize(22);
+        doc.setFontSize(21);
         doc.setTextColor(0, 0, 0);
         doc.text("CHARAN KUMAR", pageWidth / 2, currentY, { align: 'center' });
-        currentY += 18;
+        currentY += 22;
 
         // {\large \textit{Developer}}
         doc.setFont('times', 'italic');
-        doc.setFontSize(11.5);
+        doc.setFontSize(13);
         doc.setTextColor(40, 40, 40);
-        doc.text("Developer", pageWidth / 2, currentY, { align: 'center' });
-        currentY += 18;
+        doc.text("Software Developer", pageWidth / 2, currentY, { align: 'center' });
+        currentY += 20;
 
         // Vector Icon Drawing Helpers (FontAwesome 5 LaTeX Icons)
         function drawEnvelope(x, y) {
@@ -3263,17 +3253,16 @@ English, Hindi, Kannada, Tulu
         }
 
         function drawLinkChain(x, y) {
-            // \faGlobe (FontAwesome globe/link icon)
+            // 2 interlocked chain rings (🔗 icon)
             doc.setDrawColor(0, 0, 0);
-            doc.setLineWidth(1.1);
-            doc.circle(x + 4, y - 3.5, 3);
-            doc.line(x + 1, y - 3.5, x + 7, y - 3.5);
-            doc.ellipse(x + 4, y - 3.5, 1.4, 3);
+            doc.setLineWidth(0.85);
+            doc.ellipse(x + 2.5, y - 3.5, 2.2, 1.25, 'S');
+            doc.ellipse(x + 5.5, y - 3.5, 2.2, 1.25, 'S');
         }
 
         // Contact info row 1: email, phone, location
         doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
+        doc.setFontSize(10);
         doc.setTextColor(0, 0, 0);
 
         const emailStr = "charansuvarna99@gmail.com";
@@ -3294,13 +3283,13 @@ English, Hindi, Kannada, Tulu
         doc.text(pipeSep, startX1, currentY);
         startX1 += wPipe;
 
-        doc.text(phoneStr, startX1, currentY);
+        drawClickableLink(phoneStr, "tel:+919380455922", startX1, currentY);
         startX1 += wPhone;
         doc.text(pipeSep, startX1, currentY);
         startX1 += wPipe;
 
-        doc.text(locStr, startX1, currentY);
-        currentY += 15;
+        drawClickableLink(locStr, "https://maps.google.com/?q=Udupi,+Karnataka,+India", startX1, currentY);
+        currentY += 17;
 
         // Contact info row 2: LinkedIn, GitHub, Portfolio
         const liStr = "LinkedIn";
@@ -3325,134 +3314,39 @@ English, Hindi, Kannada, Tulu
         startX2 += wPipe;
 
         drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2, currentY);
-        currentY += 22;
+        currentY += 24;
 
         // --- PROFESSIONAL SUMMARY ---
         drawSectionHeader("PROFESSIONAL SUMMARY");
 
         doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
+        doc.setFontSize(10);
         doc.setTextColor(20, 20, 20);
         
-        const summaryText = data.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.";
+        const summaryText = data.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.";
         const wrappedSummary = doc.splitTextToSize(summaryText, printableWidth);
         wrappedSummary.forEach(line => {
-            checkPageSpace(12.5);
+            checkPageSpace(13);
             doc.text(line, marginX, currentY);
-            currentY += 12.5;
-        });
-        currentY += 6;
-
-        // --- KEY HIGHLIGHTS ---
-        drawSectionHeader("KEY HIGHLIGHTS");
-        const highlightsList = data.tailoredHighlights || [
-            "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
-            "Built microservices-based applications serving multiple banks",
-            "Developed AI-powered GitHub analyzer (DevLens) with 40+ metrics",
-            "Strong full-stack expertise in ASP.NET Core, React, and SQL"
-        ];
-        highlightsList.forEach(hl => drawBulletPoint(hl));
-        currentY += 6;
-
-        // --- WORK EXPERIENCE ---
-        drawSectionHeader("WORK EXPERIENCE");
-
-        data.experience.forEach(job => {
-            checkPageSpace(28);
-            doc.setFont('times', 'bold');
-            doc.setFontSize(10);
-            doc.setTextColor(0, 0, 0);
-            doc.text(job.role, marginX, currentY);
-            
-            doc.setFont('times', 'normal');
-            doc.setFontSize(9.5);
-            doc.setTextColor(50, 50, 50);
-            const dateStr = job.dates || "";
-            const rightWidth = doc.getTextWidth(dateStr);
-            doc.text(dateStr, pageWidth - marginX - rightWidth, currentY);
             currentY += 13;
-
-            doc.setFont('times', 'bold');
-            doc.setFontSize(9.5);
-            doc.setTextColor(0, 0, 0);
-            doc.text(job.company, marginX, currentY);
-            currentY += 13;
-
-            job.bullets.forEach(bullet => {
-                drawBulletPoint(bullet.text);
-            });
-            currentY += 6;
         });
-
-        // --- EDUCATION ---
-        drawSectionHeader("EDUCATION");
-
-        // MCA
-        checkPageSpace(24);
-        doc.setFont('times', 'bold');
-        doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-        doc.text("Master of Computer Applications (MCA)", marginX, currentY);
-        
-        doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
-        doc.setTextColor(50, 50, 50);
-        const mcaDate = "Nov 2025 – Present";
-        doc.text(mcaDate, pageWidth - marginX - doc.getTextWidth(mcaDate), currentY);
-        currentY += 13;
-
-        doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
-        doc.setTextColor(30, 30, 30);
-        doc.text("MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.", marginX, currentY);
-        currentY += 16;
-
-        // BCA
-        checkPageSpace(32);
-        doc.setFont('times', 'bold');
-        doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-        doc.text("Bachelor of Computer Applications (BCA)", marginX, currentY);
-        
-        doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
-        doc.setTextColor(50, 50, 50);
-        const bcaDate = "Sep 2022 – Jun 2025";
-        doc.text(bcaDate, pageWidth - marginX - doc.getTextWidth(bcaDate), currentY);
-        currentY += 13;
-
-        doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
-        doc.setTextColor(30, 30, 30);
-        doc.text("Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |", marginX, currentY);
-        currentY += 13;
-
-        doc.setFont('times', 'bold');
-        doc.setFontSize(9.5);
-        doc.setTextColor(0, 0, 0);
-        const labelAddon = "Add-on Courses: ";
-        doc.text(labelAddon, marginX, currentY);
-
-        doc.setFont('times', 'normal');
-        doc.setTextColor(30, 30, 30);
-        doc.text("Cybersecurity, Artificial Intelligence & Big Data Analytics.", marginX + doc.getTextWidth(labelAddon), currentY);
         currentY += 8;
 
-        // --- SKILLS ---
-        drawSectionHeader("SKILLS");
+        // --- TECHNICAL SKILLS ---
+        drawSectionHeader("TECHNICAL SKILLS");
 
         const skillsFormat = [
-            { label: "Languages:", list: data.skills && data.skills.languages ? data.skills.languages.join(", ") : "C#, Java, JavaScript, C, HTML5, CSS3, Dart, Python" },
-            { label: "Frameworks:", list: data.skills && data.skills.frameworks ? data.skills.frameworks.join(", ") : "ASP.NET Core, Flutter, Blazor, React, Flask" },
-            { label: "Databases:", list: data.skills && data.skills.databases ? data.skills.databases.join(", ") : "PostgreSQL, MySQL, Oracle, SQL Server, Firebase" },
-            { label: "Tools:", list: data.skills && data.skills.tools ? data.skills.tools.slice(0, 10).join(", ") : "Azure DevOps, GitHub, Postman, DBeaver" },
-            { label: "Concepts:", list: "Microservices, REST APIs, System Design" }
+            { label: "Languages:", list: data.skills && data.skills.languages ? (isCV ? data.skills.languages.join(", ") : data.skills.languages.slice(0, 5).join(", ")) : "C#, JavaScript, Java, C, Python" },
+            { label: "Frameworks:", list: data.skills && data.skills.frameworks ? (isCV ? data.skills.frameworks.join(", ") : data.skills.frameworks.slice(0, 5).join(", ")) : "ASP.NET Core, Blazor, React, Flutter, Razor Pages" },
+            { label: "Databases:", list: data.skills && data.skills.databases ? (isCV ? data.skills.databases.join(", ") : data.skills.databases.slice(0, 4).join(", ")) : "PostgreSQL, SQL Server, MySQL, Redis" },
+            { label: "Tools:", list: data.skills && data.skills.tools ? (isCV ? data.skills.tools.join(", ") : data.skills.tools.slice(0, 5).join(", ")) : "Azure DevOps, Docker, GitHub, CI/CD Pipelines, Firebase" },
+            { label: "Architecture & Concepts:", list: data.skills && data.skills.architecture ? (isCV ? data.skills.architecture.join(", ") : data.skills.architecture.slice(0, 4).join(", ")) : "Clean Architecture, Microservices Architecture, REST APIs, System Design" }
         ];
 
         skillsFormat.forEach(skillLine => {
-            checkPageSpace(13);
+            checkPageSpace(14);
             doc.setFont('times', 'bold');
-            doc.setFontSize(9.5);
+            doc.setFontSize(10);
             doc.setTextColor(0, 0, 0);
             const labelText = skillLine.label + " ";
             doc.text(labelText, marginX, currentY);
@@ -3461,108 +3355,231 @@ English, Hindi, Kannada, Tulu
             doc.setFont('times', 'normal');
             doc.setTextColor(30, 30, 30);
             doc.text(skillLine.list, marginX + labelW, currentY);
-            currentY += 13;
+            currentY += 14;
         });
-        currentY += 4;
+        currentY += 6;
+
+        // --- PROFESSIONAL EXPERIENCE ---
+        drawSectionHeader("PROFESSIONAL EXPERIENCE");
+
+        data.experience.forEach(job => {
+            checkPageSpace(28);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10.5);
+            doc.setTextColor(0, 0, 0);
+            doc.text(job.role, marginX, currentY);
+            
+            doc.setFont('times', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(50, 50, 50);
+            const dateStr = job.dates || "";
+            const rightWidth = doc.getTextWidth(dateStr);
+            doc.text(dateStr, pageWidth - marginX - rightWidth, currentY);
+            currentY += 14;
+
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(job.company, marginX, currentY);
+            currentY += 14;
+
+            (isCV ? job.bullets : job.bullets.slice(0, 3)).forEach(bullet => {
+                drawBulletPoint(bullet.text);
+            });
+            currentY += 8;
+        });
 
         // --- PROJECTS ---
         drawSectionHeader("PROJECTS");
 
-        data.projects.slice(0, 3).forEach(project => {
+        (isCV ? data.projects : data.projects.slice(0, 3)).forEach(project => {
             checkPageSpace(26);
             doc.setFont('times', 'bold');
-            doc.setFontSize(10);
+            doc.setFontSize(10.5);
             doc.setTextColor(0, 0, 0);
             doc.text(project.name, marginX, currentY);
-            currentY += 13;
+            currentY += 14;
             
             doc.setFont('times', 'bold');
-            doc.setFontSize(9.5);
+            doc.setFontSize(10);
             const techLabel = "Tech: ";
             doc.text(techLabel, marginX, currentY);
+            const techLabelW = doc.getTextWidth(techLabel);
             
             doc.setFont('times', 'normal');
             doc.setTextColor(40, 40, 40);
             const techText = project.techStack.join(", ");
-            doc.text(techText, marginX + doc.getTextWidth(techLabel), currentY);
-            currentY += 13;
+            const techWrapped = doc.splitTextToSize(techText, printableWidth - techLabelW);
+            techWrapped.forEach((line, idx) => {
+                doc.text(line, marginX + (idx === 0 ? techLabelW : 0), currentY);
+                if (idx < techWrapped.length - 1) currentY += 13;
+            });
+            currentY += 14;
 
-            project.bullets.forEach(bullet => {
+            (isCV ? project.bullets : project.bullets.slice(0, 3)).forEach(bullet => {
                 drawBulletPoint(bullet.text);
             });
 
             if (project.links && project.links.github) {
                 checkPageSpace(12);
                 doc.setFont('times', 'bold');
-                doc.setFontSize(9.5);
+                doc.setFontSize(10);
                 doc.setTextColor(0, 0, 0);
                 
-                // Light blue chain link icon matching original PDF
-                drawLinkChain(marginX + 2, currentY);
-                const ghLabel = " GitHub: ";
-                doc.text(ghLabel, marginX + 8, currentY);
+                const ghLabel = "GitHub: ";
+                doc.text(ghLabel, marginX, currentY);
                 
                 const labelW = doc.getTextWidth(ghLabel);
                 doc.setFont('times', 'normal');
                 doc.setTextColor(30, 30, 30);
-                const linkW = drawClickableLink(project.links.github, project.links.github, marginX + 8 + labelW, currentY);
-                
-                // Trailing light blue chain link icon matching original PDF
-                drawLinkChain(marginX + 8 + labelW + linkW + 3, currentY);
-                currentY += 13;
+                drawClickableLink(project.links.github, project.links.github, marginX + labelW, currentY);
+                currentY += 14;
             }
-            currentY += 6;
+            currentY += 8;
         });
 
-        // --- CERTIFICATIONS & TRAINING ---
-        drawSectionHeader("CERTIFICATIONS & TRAINING");
-        drawBulletPoint("Data Analytics & Web Dev Internship – Accolade Tech Solutions (2024)");
-        drawBulletPoint("Cybersecurity & AI Training – Mangalore University (2024)");
-        drawBulletPoint("NCC 'A' Certificate");
-        currentY += 6;
+        // --- EDUCATION ---
+        drawSectionHeader("EDUCATION");
 
-        // --- ACHIEVEMENTS ---
-        drawSectionHeader("ACHIEVEMENTS");
-        drawBulletPoint("Best Cadet Award – National Cadet Corps (NCC)");
-        drawBulletPoint("Served as Head Cadet leading school NCC unit");
-        drawBulletPoint("District-level player in Cricket and Volleyball");
-        currentY += 6;
-
-        // --- LANGUAGES ---
-        drawSectionHeader("LANGUAGES");
-        checkPageSpace(13);
+        // MCA
+        checkPageSpace(24);
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10.5);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Master of Computer Applications (MCA)", marginX, currentY);
+        
         doc.setFont('times', 'normal');
-        doc.setFontSize(9.5);
-        doc.setTextColor(20, 20, 20);
-        doc.text("English, Hindi, Kannada, Tulu", marginX, currentY);
-        currentY += 12;
+        doc.setFontSize(10);
+        doc.setTextColor(50, 50, 50);
+        const mcaDate = "Nov 2025 – Present";
+        doc.text(mcaDate, pageWidth - marginX - doc.getTextWidth(mcaDate), currentY);
+        currentY += 14;
 
-        // Helper: Section Divider Line
-        function drawSectionHeader(title) {
-            checkPageSpace(26);
-            currentY += 10;
+        doc.setFont('times', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(30, 30, 30);
+        doc.text("MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.", marginX, currentY);
+        currentY += 18;
+
+        // BCA
+        checkPageSpace(32);
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10.5);
+        doc.setTextColor(0, 0, 0);
+        doc.text("Bachelor of Computer Applications (BCA)", marginX, currentY);
+        
+        doc.setFont('times', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(50, 50, 50);
+        const bcaDate = "Sep 2022 – Jun 2025";
+        doc.text(bcaDate, pageWidth - marginX - doc.getTextWidth(bcaDate), currentY);
+        currentY += 14;
+
+        doc.setFont('times', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(30, 30, 30);
+        doc.text("Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |", marginX, currentY);
+        currentY += 14;
+
+        doc.setFont('times', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        const labelAddon = "Add-on Courses: ";
+        const addonW = doc.getTextWidth(labelAddon);
+        doc.text(labelAddon, marginX, currentY);
+
+        doc.setFont('times', 'normal');
+        doc.setTextColor(30, 30, 30);
+        doc.text("Cybersecurity, Artificial Intelligence & Big Data Analytics.", marginX + addonW, currentY);
+        currentY += 14;
+
+        if (isCV) {
+            // Pre-University (12th)
+            checkPageSpace(24);
             doc.setFont('times', 'bold');
             doc.setFontSize(10.5);
             doc.setTextColor(0, 0, 0);
+            doc.text("Pre-University (12th)", marginX, currentY);
+            
+            doc.setFont('times', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(50, 50, 50);
+            const puDate = "Jul 2020 – Apr 2022";
+            doc.text(puDate, pageWidth - marginX - doc.getTextWidth(puDate), currentY);
+            currentY += 14;
+
+            doc.setFont('times', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(30, 30, 30);
+            doc.text("St Cecily's Composite PU College, Udupi | Percentage: 67.71%", marginX, currentY);
+            currentY += 18;
+
+            // 10th SSLC
+            checkPageSpace(24);
+            doc.setFont('times', 'bold');
+            doc.setFontSize(10.5);
+            doc.setTextColor(0, 0, 0);
+            doc.text("10th Standard (SSLC)", marginX, currentY);
+            
+            doc.setFont('times', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(50, 50, 50);
+            const sslcDate = "Apr 2019 – Jun 2020";
+            doc.text(sslcDate, pageWidth - marginX - doc.getTextWidth(sslcDate), currentY);
+            currentY += 14;
+
+            doc.setFont('times', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(30, 30, 30);
+            doc.text("Volakadu Government High School, Udupi | Percentage: 68%", marginX, currentY);
+            currentY += 18;
+        }
+
+        // --- CERTIFICATIONS & TRAINING ---
+        drawSectionHeader("CERTIFICATIONS & TRAINING");
+        drawBulletPoint("Fast-Track Internship – Data Analytics, Web Development & Python Projects | Accolade Tech Solutions (2024)");
+        drawBulletPoint("Cybersecurity & AI Training – Mangalore University (2024)");
+        drawBulletPoint("AI, Big Data Analytics & Cybersecurity Training – Mangalore University (2024)");
+        drawBulletPoint("Skill Development & Entrepreneurship Program – Udupi Grameena Buntara Sangha (2024)");
+        drawBulletPoint("NCC 'A' Certificate | National Cadet Corps (Ministry of Defence, India)");
+        currentY += 4;
+
+        if (isCV) {
+            // --- ACTIVITIES & INTERESTS ---
+            drawSectionHeader("ACTIVITIES & INTERESTS");
+            drawBulletPoint("NCC Cadet Lead: Served as Head Cadet; recipient of Best Cadet Award; completed 10-day intensive training camp with Indian Navy & Army Officers.");
+            drawBulletPoint("Cricket: Competitive player & team captain; led teams to victories in district-level tournaments.");
+            drawBulletPoint("Volleyball: District-level player & college team captain; won inter-institution championships.");
+            drawBulletPoint("Kabaddi & Chess: Participated in district-level kabaddi tournaments; regular chess player.");
+            currentY += 4;
+        }
+
+        // Helper: Section Divider Line
+        function drawSectionHeader(title) {
+            checkPageSpace(28);
+            currentY += 12;
+            doc.setFont('times', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
             doc.text(title, marginX, currentY);
             
-            currentY += 4;
-            doc.setLineWidth(0.75);
+            currentY += 5;
+            doc.setLineWidth(1.2);
             doc.setDrawColor(0, 0, 0);
             doc.line(marginX, currentY, pageWidth - marginX, currentY);
-            currentY += 14;
+            currentY += 15;
         }
 
         // Helper: Bullet point wrapper
         function drawBulletPoint(text) {
             doc.setFont('times', 'normal');
-            doc.setFontSize(9.5);
+            doc.setFontSize(10);
             doc.setTextColor(20, 20, 20);
             
             const bulletSymbol = "•";
             const indent = 10;
             const wrappedLines = doc.splitTextToSize(text, printableWidth - indent);
-            const lineHeight = 12.5;
+            const lineHeight = 13;
             const heightNeeded = wrappedLines.length * lineHeight;
             
             checkPageSpace(heightNeeded);
@@ -3572,7 +3589,7 @@ English, Hindi, Kannada, Tulu
                 doc.text(line, marginX + indent, currentY + (index * lineHeight));
             });
             
-            currentY += heightNeeded + 2.5;
+            currentY += heightNeeded + 3;
         }
 
         // Clean filename safely: keep alphanumeric & spaces, remove dots/symbols, then join with underscores
@@ -3586,7 +3603,7 @@ English, Hindi, Kannada, Tulu
             sanitizedRole = "NET_Developer";
         }
 
-        const filename = "Charan_Kumar_Resume.pdf";
+        const filename = isCV ? "Charan_Kumar_CV.pdf" : "Charan_Kumar_Resume.pdf";
 
         // Save file using jsPDF built-in save (bypasses Chrome's Blob URL UUID naming bug)
         try {
@@ -3654,20 +3671,114 @@ English, Hindi, Kannada, Tulu
 
         // Loading Overlay steps animation controller
         function showStep(stepNum) {
+            const isCV = selectedDocType === 'cv';
+            const stepTexts = isCV ? {
+                1: "📋 Preparing Complete Curriculum Vitae...",
+                2: "📊 Loading all 9 projects & full experience...",
+                3: "🧠 Preparing CV content...",
+                4: "📄 Rendering Full Detailed CV PDF...",
+                5: "⬇️ Downloading Charan's CV..."
+            } : {
+                1: "🔍 Analyzing Job Description...",
+                2: "🎯 Matching keywords & experiences...",
+                3: "🧠 Rephrasing bullets with AI...",
+                4: "📄 Rendering ATS-friendly PDF...",
+                5: "⬇️ Downloading Resume..."
+            };
+
             for (let i = 1; i <= 5; i++) {
                 const el = document.getElementById(`loadingStep${i}`);
-                if (el) el.style.display = i === stepNum ? "block" : "none";
+                if (el) {
+                    el.style.display = i === stepNum ? "block" : "none";
+                    if (i === stepNum && stepTexts[i]) {
+                        el.textContent = stepTexts[i];
+                    }
+                }
             }
         }
+
+        // Document Type selection handler (Resume vs CV)
+        const pillResume = document.getElementById("pillResume");
+        const pillCV = document.getElementById("pillCV");
+        const jdInputGroup = document.getElementById("jdInputGroup");
+        const aiToggleWrapper = document.getElementById("aiToggleWrapper");
+        let selectedDocType = 'resume';
+
+        function updateDocTypeUI(type) {
+            selectedDocType = type;
+            const isCV = type === 'cv';
+            
+            if (pillResume && pillCV) {
+                if (isCV) {
+                    pillCV.classList.add("active");
+                    pillResume.classList.remove("active");
+                    const cvRadio = pillCV.querySelector("input");
+                    if (cvRadio) cvRadio.checked = true;
+                    if (jdInputGroup) jdInputGroup.style.display = "none";
+                } else {
+                    pillResume.classList.add("active");
+                    pillCV.classList.remove("active");
+                    const resumeRadio = pillResume.querySelector("input");
+                    if (resumeRadio) resumeRadio.checked = true;
+                    if (jdInputGroup) jdInputGroup.style.display = "block";
+                }
+            }
+            updateModalBtnLabel();
+        }
+
+        if (pillResume) pillResume.addEventListener("click", () => updateDocTypeUI('resume'));
+        if (pillCV) pillCV.addEventListener("click", () => updateDocTypeUI('cv'));
+
+        // Ask AI Assistant about Resume vs CV button
+        const askAiModalBtn = document.getElementById("askAiModalBtn");
+        if (askAiModalBtn) {
+            askAiModalBtn.addEventListener("click", () => {
+                closeModal();
+                if (typeof toggleChat === 'function') {
+                    const chatWin = document.getElementById("chatWindow");
+                    if (!chatWin || !chatWin.classList.contains("active")) {
+                        toggleChat();
+                    }
+                }
+                const chatInput = document.getElementById("chatInput");
+                if (chatInput) {
+                    chatInput.value = "What is the difference between Charan's Resume and CV?";
+                    chatInput.focus();
+                    if (typeof sendMessage === 'function') {
+                        setTimeout(() => {
+                            sendMessage();
+                        }, 300);
+                    }
+                }
+            });
+        }
+
+        // Dynamic button label & AI toggle visibility based on input and docType
+        function updateModalBtnLabel() {
+            const btnSpan = generateBtn.querySelector("span");
+            const isCV = selectedDocType === 'cv';
+            const hasJDText = Boolean(jdInput.value.trim());
+
+            // Only show AI enhancement toggle when Resume is selected AND JD text is entered
+            if (aiToggleWrapper) {
+                aiToggleWrapper.style.display = (!isCV && hasJDText) ? "flex" : "none";
+            }
+
+            if (!btnSpan) return;
+            if (isCV) {
+                btnSpan.textContent = "⚡ Download Full CV";
+            } else if (hasJDText) {
+                btnSpan.textContent = "⚡ Generate Tailored Resume";
+            } else {
+                btnSpan.textContent = "⚡ Download Primary Resume";
+            }
+        }
+        jdInput.addEventListener("input", updateModalBtnLabel);
+        updateModalBtnLabel();
 
         // Generate Resume Action handler
         generateBtn.addEventListener("click", async () => {
             const jdText = jdInput.value.trim();
-            if (!jdText) {
-                alert("Please paste a job description first.");
-                jdInput.focus();
-                return;
-            }
 
             // Step 1: Active Loading
             loadingOverlay.classList.add("active");
@@ -3679,18 +3790,90 @@ English, Hindi, Kannada, Tulu
                 
                 // Step 2: Extract keywords and match
                 showStep(2);
-                const keywords = extractKeywords(jdText);
-                const roleTitle = guessRoleTitle(jdText);
+                const keywords = jdText ? extractKeywords(jdText) : new Set();
+                const roleTitle = jdText ? guessRoleTitle(jdText) : "Software Developer";
                 const sourceData = await loadResumeData();
                 
                 if (!sourceData) {
                     throw new Error("Could not load source resume data.");
                 }
 
-                let finalData = matchResumeData(sourceData, keywords);
+                let finalData = matchResumeData(sourceData, keywords, jdText);
+
+                // Preserve ALL 9 projects and full skills matrix for CV
+                if (selectedDocType === 'cv') {
+                    finalData.projects = sourceData.projects;
+                    finalData.skills = sourceData.skills;
+                }
+
+                // Set Primary General Summary if no JD provided
+                if (!jdText) {
+                    finalData.tailoredSummary = "Software Developer & .NET / Full-Stack Engineer with hands-on experience building enterprise-grade web applications, REST APIs, and microservices using C#, ASP.NET Core, React, and database systems across PostgreSQL, SQL Server, and Redis. Proven track record in clean architecture and automated CI/CD deployments. Currently pursuing MCA while working full-time.";
+                }
                 
-                // Step 3: LLM Polish (if toggled)
-                if (aiToggle.checked) {
+                // Step 3: AI-powered summary & highlights + LLM Polish (if toggled and JD present)
+                if (jdText && aiToggle.checked) {
+                    showStep(3);
+
+                    // Generate AI summary & highlights via /api/chat
+                    try {
+                        const experienceSummary = finalData.experience.map(j => `${j.role} at ${j.company} (${j.dates})`).join('; ');
+                        const skillsList = [
+                            ...(finalData.skills?.languages || []),
+                            ...(finalData.skills?.frameworks || []),
+                            ...(finalData.skills?.databases || [])
+                        ].join(', ');
+
+                        const summaryPrompt = `You are an expert resume writer. Based on the job description and the candidate's actual background below, generate a professional summary and key highlights.
+
+STRICT FACTUAL & IDENTITY RULES:
+1. CANDIDATE ROLE TITLE: Always refer to the candidate as a "Software Developer" or "Full-Stack Developer".
+2. ACCURATE PROJECT AUTHORSHIP: For the DevLens project, state that the candidate "designed and built DevLens from scratch as sole developer" or "created DevLens as sole author". NEVER write "contributed to DevLens"—the candidate created the entire application independently.
+3. SKILLS & KNOWLEDGE: The candidate has learned skills in Flutter, Dart, React, C#, Java, Python, ASP.NET Core, REST APIs, and databases. Mention Flutter or Dart naturally if the JD asks for them, but do NOT invent fake past work roles (e.g. do not call past employment "Flutter Developer").
+4. Summary format: Write exactly 3-4 concise lines (around 40-50 words total). Use standard professional resume style starting naturally (e.g., "Software Developer with experience..."). Do NOT exceed 4 lines. Keep it tight and impactful. Avoid repeating "The Software Developer" or "The candidate" unnaturally.
+5. Return ONLY valid JSON in this exact structure:
+{"summary": "..."}
+
+Job Description:
+"""
+${jdText.substring(0, 1500)}
+"""
+
+Candidate Actual Background:
+- Role Identity: Software Developer / Full-Stack Developer
+- Experience: ${experienceSummary}
+- Actual Core Skills: ${skillsList}
+- Education: MCA (pursuing), BCA (completed)
+- Key Projects: DevLens (AI GitHub Analyzer - Sole Creator), Money Mate (Finance App), RTGS/NEFT Banking System`;
+
+                        const chatResponse = await fetch('./api/chat', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                messages: [
+                                    { role: 'system', content: 'You are an expert resume writer. Return ONLY valid JSON, no markdown, no code fences.' },
+                                    { role: 'user', content: summaryPrompt }
+                                ]
+                            })
+                        });
+
+                        if (chatResponse.ok) {
+                            const chatData = await chatResponse.json();
+                            let aiText = chatData.choices?.[0]?.message?.content || '';
+                            // Strip markdown code fences if present
+                            aiText = aiText.replace(/```json\s*/gi, '').replace(/```\s*/gi, '').trim();
+                            try {
+                                const parsed = JSON.parse(aiText);
+                                if (parsed.summary && typeof parsed.summary === 'string') {
+                                    finalData.tailoredSummary = parsed.summary;
+                                }
+                            } catch (parseErr) {
+                                console.warn('AI summary JSON parse failed, using default summary:', parseErr);
+                            }
+                        }
+                    } catch (summaryErr) {
+                        console.warn('AI summary generation failed, using default summary:', summaryErr);
+                    }
                     showStep(3);
                     try {
                         const polishResponse = await fetch('./api/polish', {
@@ -3744,7 +3927,7 @@ English, Hindi, Kannada, Tulu
                     const latexResponse = await fetch('./api/latex', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ data: finalData, jobDescription: jdText })
+                        body: JSON.stringify({ data: finalData, jobDescription: jdText, docType: selectedDocType })
                     });
                     
                     if (latexResponse.ok && latexResponse.headers.get('content-type')?.includes('application/pdf')) {
@@ -3753,7 +3936,7 @@ English, Hindi, Kannada, Tulu
                         const a = document.createElement('a');
                         a.style.display = 'none';
                         a.href = blobUrl;
-                        a.download = 'Charan_Kumar_Resume.pdf';
+                        a.download = selectedDocType === 'cv' ? 'Charan_Kumar_CV.pdf' : 'Charan_Kumar_Resume.pdf';
                         document.body.appendChild(a);
                         a.click();
                         setTimeout(() => {
@@ -3769,7 +3952,7 @@ English, Hindi, Kannada, Tulu
                 // 2) If server API is 404 or failed (e.g., static GitHub Pages hosting), compile via online service directly
                 if (!latexPdfDownloaded) {
                     try {
-                        const latexCode = buildLatexCode(finalData);
+                        const latexCode = buildLatexCode(finalData, selectedDocType);
                         const compileRes = await fetch(`https://latexonline.cc/compile?text=${encodeURIComponent(latexCode)}`);
                         if (compileRes.ok && compileRes.headers.get('content-type')?.includes('application/pdf')) {
                             const pdfBlob = await compileRes.blob();
@@ -3777,7 +3960,7 @@ English, Hindi, Kannada, Tulu
                             const a = document.createElement('a');
                             a.style.display = 'none';
                             a.href = blobUrl;
-                            a.download = 'Charan_Kumar_Resume.pdf';
+                            a.download = selectedDocType === 'cv' ? 'Charan_Kumar_CV.pdf' : 'Charan_Kumar_Resume.pdf';
                             document.body.appendChild(a);
                             a.click();
                             setTimeout(() => {
@@ -3793,7 +3976,7 @@ English, Hindi, Kannada, Tulu
 
                 // 3) Fallback: Client-side jsPDF rendering matching the exact LaTeX layout
                 if (!latexPdfDownloaded) {
-                    generatePdfResume(finalData, roleTitle);
+                    generatePdfResume(finalData, roleTitle, selectedDocType);
                 }
 
                 // Step 5: Complete & Download

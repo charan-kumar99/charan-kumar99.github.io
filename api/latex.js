@@ -11,8 +11,9 @@ function escapeLatex(str) {
         .replace(/\^/g, '\\textasciicircum{}');
 }
 
-export function generateLatexCode(data) {
-    const summary = escapeLatex(data?.tailoredSummary || ".NET Developer with hands-on experience building enterprise-grade banking applications (RTGS/NEFT, CTS, AML) using ASP.NET Core (.NET 6 & .NET 8) and Microservices Architecture. Skilled in full-stack development, REST APIs, and database management across PostgreSQL, MySQL, Oracle, and SQL Server. Proven ability to deliver scalable, secure systems while managing end-to-end development and deployments via Azure DevOps. Currently pursuing MCA while working full-time.");
+export function generateLatexCode(data, docType = 'resume') {
+    const isCV = docType === 'cv';
+    const summary = escapeLatex(data?.tailoredSummary || "Software Developer & .NET / Full-Stack Engineer with hands-on experience building enterprise-grade web applications, REST APIs, and microservices using C#, ASP.NET Core, React, and database systems across PostgreSQL, SQL Server, and Redis. Proven track record in clean architecture and automated CI/CD deployments. Currently pursuing MCA while working full-time.");
 
     const defaultHighlights = [
         "1+ year experience in enterprise banking systems (RTGS/NEFT, CTS, AML)",
@@ -33,15 +34,16 @@ export function generateLatexCode(data) {
     \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
     \\setlength{\\parsep}{0pt}
-${(job.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+${(isCV ? (job.bullets || []) : (job.bullets || []).slice(0, 3)).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
 \\end{itemize}`).join('\n');
 
-    const lang = (data?.skills?.languages || ["C#", "Java", "JavaScript", "C", "HTML5", "CSS3", "Python"]).map(escapeLatex).join(", ");
-    const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flask"]).map(escapeLatex).join(", ");
-    const db = (data?.skills?.databases || ["PostgreSQL", "MySQL", "Oracle", "SQL Server"]).map(escapeLatex).join(", ");
-    const tools = (data?.skills?.tools || ["Azure DevOps", "GitHub", "Postman", "DBeaver"]).map(escapeLatex).join(", ");
+    const lang = (data?.skills?.languages || ["C#", "JavaScript", "Java", "C", "Python"]).map(escapeLatex).join(", ");
+    const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flutter", "Razor Pages"]).map(escapeLatex).join(", ");
+    const db = (data?.skills?.databases || ["PostgreSQL", "SQL Server", "MySQL", "Redis"]).map(escapeLatex).join(", ");
+    const tools = (data?.skills?.tools || ["Azure DevOps", "Docker", "GitHub", "CI/CD Pipelines", "Firebase"]).map(escapeLatex).join(", ");
+    const arch = (data?.skills?.architecture || ["Clean Architecture", "Microservices Architecture", "REST APIs", "System Design"]).map(escapeLatex).join(", ");
 
-    const projTex = (data?.projects || []).slice(0, 3).map(proj => `
+    const projTex = (isCV ? (data?.projects || []) : (data?.projects || []).slice(0, 3)).map(proj => `
 \\vspace{1pt}
 \\noindent
 \\textbf{${escapeLatex(proj.name)}} \\\\
@@ -51,12 +53,13 @@ ${(job.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
     \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
     \\setlength{\\parsep}{0pt}
-${(proj.bullets || []).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
+${(isCV ? (proj.bullets || []) : (proj.bullets || []).slice(0, 3)).map(b => `    \\item ${escapeLatex(b.text)}`).join('\n')}
 \\end{itemize}
-${proj.links?.github ? `\\vspace{-4pt}\n\\small \\faLink\\ \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n');
+${proj.links?.github ? `\\vspace{-4pt}\n\\small \\textbf{GitHub:} \\url{${proj.links.github}}` : ''}`).join('\n');
 
     return `\\documentclass[10pt,letterpaper]{article}
 \\usepackage[top=0.35in,bottom=0.35in,left=0.4in,right=0.4in]{geometry}
+\\usepackage{ebgaramond}
 \\usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \\usepackage{amsmath,amssymb}
 \\usepackage{graphicx}
@@ -82,11 +85,11 @@ ${proj.links?.github ? `\\vspace{-4pt}\n\\small \\faLink\\ \\textbf{GitHub:} \\u
 
 \\begin{center}
     {\\Huge \\textbf{CHARAN KUMAR}}\\\\[2pt]
-    {\\large \\textit{Developer}}\\\\[4pt]
+    {\\large \\textit{Software Developer}}\\\\[4pt]
     \\small
     \\faEnvelope\\ \\href{mailto:charansuvarna99@gmail.com}{charansuvarna99@gmail.com} \\quad
-    \\faPhone\\ +91 9380455922 \\quad
-    \\faMapMarker\\ Udupi, Karnataka, India \\quad
+    \\faPhone\\ \\href{tel:+919380455922}{+91 9380455922} \\quad
+    \\faMapMarker\\ \\href{https://maps.google.com/?q=Udupi,+Karnataka,+India}{Udupi, Karnataka, India} \\quad
     \\faLinkedin\\ \\href{https://www.linkedin.com/in/charan-kumar99}{LinkedIn}\\\\[2pt]
     \\faGithub\\ \\href{https://github.com/charan-kumar99}{GitHub} \\quad
     \\faGlobe\\ \\href{https://charan-kumar99.github.io}{Portfolio}
@@ -97,20 +100,21 @@ ${proj.links?.github ? `\\vspace{-4pt}\n\\small \\faLink\\ \\textbf{GitHub:} \\u
 \\section{PROFESSIONAL SUMMARY}
 ${summary}
 
-\\section{KEY HIGHLIGHTS}
-\\vspace{-4pt}
-\\begin{itemize}
-    \\setlength{\\itemsep}{-2pt}
-    \\setlength{\\parskip}{0pt}
-    \\setlength{\\parsep}{0pt}
-${highlightsTex}
-\\end{itemize}
+\\section{TECHNICAL SKILLS}
+\\vspace{1pt}
+\\noindent \\textbf{Languages:} ${lang} \\\\
+\\textbf{Frameworks:} ${fw} \\\\
+\\textbf{Databases:} ${db} \\\\
+\\textbf{Tools:} ${tools} \\\\
+\\textbf{Architecture \& Concepts:} ${arch}
 
-\\section{WORK EXPERIENCE}
+\\section{PROFESSIONAL EXPERIENCE}
 ${expTex}
 
-\\section{EDUCATION}
+\\section{PROJECTS}
+${projTex}
 
+\\section{EDUCATION}
 \\vspace{1pt}
 \\noindent
 \\textbf{Master of Computer Applications (MCA)} \\hfill \\textbf{Nov 2025 -- Present} \\\\
@@ -120,18 +124,17 @@ MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.
 \\noindent
 \\textbf{Bachelor of Computer Applications (BCA)} \\hfill \\textbf{Sep 2022 -- Jun 2025} \\\\
 Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[1pt]
-\\textbf{Add-on Courses:} Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
+\\textbf{Add-on Courses:}~Cybersecurity, Artificial Intelligence \\& Big Data Analytics.
+${isCV ? `
+\\vspace{2pt}
+\\noindent
+\\textbf{Pre-University (12th)} \\hfill \\textbf{Jul 2020 -- Apr 2022} \\\\
+St Cecily's Composite PU College, Udupi | Percentage: 67.71\\%
 
-\\section{SKILLS}
-\\vspace{1pt}
-\\noindent \\textbf{Languages:} ${lang} \\\\
-\\textbf{Frameworks:} ${fw} \\\\
-\\textbf{Databases:} ${db} \\\\
-\\textbf{Tools:} ${tools} \\\\
-\\textbf{Concepts:} Microservices, REST APIs, API Versioning, System Design
-
-\\section{PROJECTS}
-${projTex}
+\\vspace{2pt}
+\\noindent
+\\textbf{10th Standard (SSLC)} \\hfill \\textbf{Apr 2019 -- Jun 2020} \\\\
+Volakadu Government High School, Udupi | Percentage: 68\\%` : ''}
 
 \\section{CERTIFICATIONS \\& TRAINING}
 \\vspace{-4pt}
@@ -139,25 +142,24 @@ ${projTex}
     \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
     \\setlength{\\parsep}{0pt}
-    \\item Data Analytics \\& Web Dev Internship -- Accolade Tech Solutions (2024)
-    \\item Cybersecurity \\& AI Training -- Mangalore University (2024)
-    \\item NCC 'A' Certificate
+    \\item Fast-Track Internship -- Data Analytics, Web Development \\& Python Projects | Accolade Tech Solutions (2024)
+    \\item Cybersecurity \\& AI Training | Mangalore University (2024)
+    \\item AI, Big Data Analytics \\& Cybersecurity Training | Mangalore University (2024)
+    \\item Skill Development \\& Entrepreneurship Program | Udupi Grameena Buntara Sangha (2024)
+    \\item NCC 'A' Certificate | National Cadet Corps (Ministry of Defence, India)
 \\end{itemize}
-
-\\section{ACHIEVEMENTS}
+${isCV ? `
+\\section{ACTIVITIES \\& INTERESTS}
 \\vspace{-4pt}
 \\begin{itemize}
     \\setlength{\\itemsep}{-2pt}
     \\setlength{\\parskip}{0pt}
     \\setlength{\\parsep}{0pt}
-    \\item Best Cadet Award -- National Cadet Corps (NCC)
-    \\item Served as Head Cadet leading school NCC unit
-    \\item District-level player in Cricket and Volleyball
-\\end{itemize}
-
-\\section{LANGUAGES}
-\\vspace{1pt}
-English, Hindi, Kannada, Tulu
+    \\item \\textbf{NCC Cadet Lead:} Served as Head Cadet; recipient of \\textbf{Best Cadet Award}; completed 10-day intensive training camp with Indian Navy \\& Army Officers.
+    \\item \\textbf{Cricket:} Competitive player \\& team captain; led teams to victories in district-level tournaments.
+    \\item \\textbf{Volleyball:} District-level player \\& college team captain; won inter-institution championships.
+    \\item \\textbf{Kabaddi \\& Chess:} Participated in district-level kabaddi tournaments; regular chess player.
+\\end{itemize}` : ''}
 
 \\end{document}`;
 }
@@ -176,8 +178,9 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { data, format } = req.body || {};
-        const latexCode = generateLatexCode(data);
+        const { data, format, docType } = req.body || {};
+        const isCV = docType === 'cv';
+        const latexCode = generateLatexCode(data, docType);
 
         if (format === 'json' || req.headers.accept?.includes('application/json')) {
             return res.status(200).json({ latex: latexCode });
@@ -188,7 +191,7 @@ export default async function handler(req, res) {
             if (compileRes.ok) {
                 const pdfBuffer = await compileRes.arrayBuffer();
                 res.setHeader('Content-Type', 'application/pdf');
-                res.setHeader('Content-Disposition', 'attachment; filename="Charan_Kumar_Resume.pdf"');
+                res.setHeader('Content-Disposition', `attachment; filename="${isCV ? 'Charan_Kumar_CV.pdf' : 'Charan_Kumar_Resume.pdf'}"`);
                 return res.status(200).send(Buffer.from(pdfBuffer));
             }
         } catch (compileErr) {

@@ -24,16 +24,16 @@
   "skills": {
     "languages": [
       "C#",
-      "Java",
       "JavaScript",
+      "Java",
       "C",
-      "HTML5",
-      "CSS3",
+      "Python",
       "Dart",
-      "Python"
+      "HTML5",
+      "CSS3"
     ],
     "frameworks": [
-      "ASP.NET Core (.NET 6 & .NET 8)",
+      "ASP.NET Core",
       "Flutter",
       "Blazor",
       "Razor Pages",
@@ -58,24 +58,15 @@
       "Azure DevOps",
       "CI/CD Pipelines",
       "GitHub",
-      "Visual Studio 2022",
-      "VS Code",
-      "Postman",
-      "DBeaver",
-      "FTP / SFTP",
       "Docker",
-      "Swagger",
       "Firebase",
-      "Razorpay",
-      "Vercel Serverless",
-      "localStorage",
-      "Web Speech API",
-      "HTML5 Canvas",
-      "PWA (Service Worker)",
-      "Web Share API",
-      "REST APIs",
+      "Razorpay"
+    ],
+    "architecture": [
       "Microservices Architecture",
-      "Clean Architecture"
+      "Clean Architecture",
+      "REST APIs",
+      "System Design"
     ],
     "softSkills": [
       "Analytical Thinking",
@@ -279,7 +270,7 @@
       },
       "bullets": [
         {
-          "text": "Built a full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.",
+          "text": "Designed, architected, and independently built DevLens from scratch as sole author, continuously delivering feature updates and AI analytics.",
           "tags": [
             "fullstack",
             "ai",
@@ -545,7 +536,7 @@
       "techStack": [
         "C#",
         "ASP.NET Core",
-        ".NET 6 / 8",
+        ".NET",
         "Microservices",
         "EF Core",
         "PostgreSQL",
@@ -565,7 +556,7 @@
       },
       "bullets": [
         {
-          "text": "Enterprise banking payment processing system built on Microservices Architecture (.NET 6 & .NET 8), serving multiple banks and vendors; handles RTGS and NEFT services with Blazor and Razor Pages.",
+          "text": "Enterprise banking payment processing system built on Microservices Architecture, serving multiple banks and vendors; handles RTGS and NEFT services with Blazor and Razor Pages.",
           "tags": [
             "c#",
             "asp.net core",
@@ -617,7 +608,7 @@
       "techStack": [
         "C#",
         "ASP.NET Core",
-        ".NET 8",
+        ".NET",
         "EF Core",
         "PostgreSQL",
         "SQL Server",
@@ -632,7 +623,7 @@
       },
       "bullets": [
         {
-          "text": "Developed scalable backend REST APIs (.NET 8) and automated property workflows (digital rental agreements, billing) for India's smart property management platform.",
+          "text": "Developed scalable backend REST APIs and automated property workflows (digital rental agreements, billing) for India's smart property management platform.",
           "tags": [
             "c#",
             "asp.net core",
@@ -673,10 +664,10 @@
     },
     {
       "name": "Migration Master – High-Performance PostgreSQL Migration Tool",
-      "description": "High-performance database migration tool in C# (.NET 8) featuring native bulk binary COPY protocol and interactive CLI UI.",
+      "description": "High-performance database migration tool in C# featuring native bulk binary COPY protocol and interactive CLI UI.",
       "techStack": [
         "C#",
-        "ASP.NET Core / .NET 8",
+        "ASP.NET Core",
         "PostgreSQL",
         "Npgsql",
         "Spectre.Console",
@@ -687,10 +678,10 @@
       },
       "bullets": [
         {
-          "text": "Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# (.NET 8) using PostgreSQL's native Binary COPY protocol (COPY FROM STDIN via Npgsql) for ultra-fast data transfer.",
+          "text": "Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (COPY FROM STDIN via Npgsql) for ultra-fast data transfer.",
           "tags": [
             "c#",
-            ".net 8",
+            ".net",
             "postgresql",
             "npgsql",
             "binary copy",
