@@ -23,7 +23,6 @@ export default async function handler(req, res) {
     const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY;
     const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
 
-    // 1. Primary Attempt: Groq API (Lightning Fast LLaMA 3.3 70B)
     if (GROQ_API_KEY) {
         try {
             const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -57,7 +56,6 @@ export default async function handler(req, res) {
         }
     }
 
-    // 2. Secondary Attempt: Google Gemini API (Gemini 2.5 Flash)
     if (GEMINI_API_KEY) {
         try {
             const systemMessage = messages.find(m => m.role === 'system');
@@ -110,7 +108,6 @@ export default async function handler(req, res) {
         }
     }
 
-    // 3. Tertiary Attempt: OpenRouter API
     if (OPENROUTER_API_KEY) {
         try {
             const openRouterResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -146,7 +143,6 @@ export default async function handler(req, res) {
         }
     }
 
-    // 4. Quaternary Attempt: Cohere API (Command-R+)
     if (COHERE_API_KEY) {
         try {
             const cohereMessages = messages.map(m => ({
@@ -184,7 +180,6 @@ export default async function handler(req, res) {
         }
     }
 
-    // 5. Quinary Attempt: Hugging Face Inference API
     if (HUGGINGFACE_API_KEY) {
         try {
             const hfResponse = await fetch('https://router.huggingface.co/hf-inference/v1/chat/completions', {
@@ -217,7 +212,6 @@ export default async function handler(req, res) {
         }
     }
 
-    // 6. Senary Attempt: Mistral AI API
     if (MISTRAL_API_KEY) {
         try {
             const mistralResponse = await fetch('https://api.mistral.ai/v1/chat/completions', {

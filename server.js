@@ -4,7 +4,6 @@ const path = require('path');
 
 const PORT = 8000;
 
-// Load local .env file securely if present
 try {
     const dotenvPath = path.join(__dirname, '.env');
     if (fs.existsSync(dotenvPath)) {
@@ -53,7 +52,6 @@ const server = http.createServer(async (req, res) => {
                 
                 console.log('📤 Processing AI Chat Request (Messages:', messages.length, ')...');
                 
-                // 1. Primary Attempt: Groq API
                 if (GROQ_API_KEY) {
                     try {
                         console.log('⚡ Calling Groq API (llama-3.3-70b-versatile)...');
@@ -90,7 +88,6 @@ const server = http.createServer(async (req, res) => {
                     }
                 }
 
-                // 2. Secondary Attempt: Google Gemini API
                 if (GEMINI_API_KEY) {
                     try {
                         console.log('🤖 Calling Gemini API fallback (gemini-2.5-flash)...');
@@ -141,7 +138,6 @@ const server = http.createServer(async (req, res) => {
                     }
                 }
 
-                // 3. Tertiary Attempt: OpenRouter API
                 if (OPENROUTER_API_KEY) {
                     try {
                         console.log('🌐 Calling OpenRouter API fallback...');
@@ -180,7 +176,6 @@ const server = http.createServer(async (req, res) => {
                     }
                 }
 
-                // 4. Quaternary Attempt: Cohere API
                 if (COHERE_API_KEY) {
                     try {
                         console.log('🎯 Calling Cohere API fallback (command-r-plus)...');
@@ -221,7 +216,6 @@ const server = http.createServer(async (req, res) => {
                     }
                 }
 
-                // 5. Quinary Attempt: Hugging Face Inference API
                 if (HUGGINGFACE_API_KEY) {
                     try {
                         console.log('🤗 Calling Hugging Face API fallback (Mistral-7B-Instruct)...');
@@ -257,7 +251,6 @@ const server = http.createServer(async (req, res) => {
                     }
                 }
 
-                // 6. Senary Attempt: Mistral AI API
                 if (MISTRAL_API_KEY) {
                     try {
                         console.log('🌪️ Calling Mistral AI API fallback (mistral-small-latest)...');
@@ -345,7 +338,6 @@ ${JSON.stringify(experience, null, 2)}
 
 Please rephrase the bullets strictly according to the rules and return JSON.`;
 
-                // 1. Primary Attempt: Groq API
                 if (GROQ_API_KEY) {
                     try {
                         console.log('⚡ Calling Groq Polish API (llama-3.3-70b-versatile)...');
@@ -383,7 +375,6 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
                     }
                 }
 
-                // 2. Secondary Attempt: Gemini API
                 if (GEMINI_API_KEY) {
                     try {
                         console.log('🤖 Calling Gemini Polish API fallback...');
@@ -425,7 +416,6 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
                     }
                 }
 
-                // 3. Tertiary Attempt: OpenRouter API
                 if (OPENROUTER_API_KEY) {
                     try {
                         console.log('🌐 Calling OpenRouter Polish API fallback...');
@@ -471,7 +461,6 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
                     }
                 }
 
-                // 4. Quaternary Attempt: Cohere API
                 if (COHERE_API_KEY) {
                     try {
                         console.log('🎯 Calling Cohere Polish API fallback (command-r-plus)...');
@@ -515,7 +504,6 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
                     }
                 }
 
-                // 5. Quinary Attempt: Hugging Face API
                 if (HUGGINGFACE_API_KEY) {
                     try {
                         console.log('🤗 Calling Hugging Face Polish API fallback (Mistral-7B-Instruct)...');
@@ -558,7 +546,6 @@ Please rephrase the bullets strictly according to the rules and return JSON.`;
                     }
                 }
 
-                // 6. Senary Attempt: Mistral AI API
                 if (MISTRAL_API_KEY) {
                     try {
                         console.log('🌪️ Calling Mistral Polish API fallback (mistral-small-latest)...');

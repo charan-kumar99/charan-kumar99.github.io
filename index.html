@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
-    <!-- JSON-LD Structured Data Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -31,7 +30,6 @@
 
 <body>
 
-    <!-- Scroll Progress Bar -->
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
     <canvas id="particles-canvas"></canvas>
@@ -114,7 +112,6 @@
         </div>
         <div class="scroll-indicator"></div>
     </section>
-
 
     <section id="about">
         <h2 class="section-title">About Me</h2>
@@ -732,14 +729,13 @@
         </div>
     </section>
 
-    <!-- Projects Workflow Simulator Section -->
     <section id="simulator" class="simulator-section">
         <div class="container">
             <h2 class="section-title">&#9881; Interactive Project Simulator</h2>
             <p class="section-subtitle">Select a project below to visualize the step-by-step logic, API interactions, and data flows of my applications</p>
             
             <div class="simulator-wrapper">
-                <!-- Tabs -->
+                
                 <div class="simulator-tabs">
                     <button class="sim-tab active" data-flow="devlens">
                         <span class="sim-tab-icon">🔍</span>
@@ -793,28 +789,24 @@
                 </div>
                 
                 <div class="simulator-grid">
-                    <!-- Map / Visualizer -->
+                    
                     <div class="simulator-visualizer">
                         <div class="simulator-map-container" id="simulatorMapContainer">
-                            <!-- SVG lines drawn dynamically by JS -->
+                            
                             <svg class="simulator-svg" id="simulatorSvg"></svg>
                             
-                            <!-- Nodes Container -->
                             <div class="simulator-nodes-container" id="simulatorNodes">
-                                <!-- Nodes injected by JS -->
+                                
                             </div>
                             
-                            <!-- Moving Glow Packet -->
                             <div class="simulator-packet" id="simulatorPacket"></div>
                         </div>
                         
-                        <!-- Visualizer Tip -->
                         <div class="simulator-tip">
                             <span>💡</span> Click nodes to inspect steps directly, or use the controls below to animate.
                         </div>
                     </div>
                     
-                    <!-- Sidebar Details & Logs -->
                     <div class="simulator-sidebar">
                         <div class="simulator-panel">
                             <h3 class="sim-panel-title">Flow Control</h3>
@@ -1200,39 +1192,33 @@
                         </filter>
                     </defs>
 
-                    <!-- Grid rings (5 levels) -->
                     <polygon class="radar-ring" points="200,40 352,150 310,330 90,330 48,150" />
                     <polygon class="radar-ring" points="200,72 321,158 288,302 112,302 79,158" />
                     <polygon class="radar-ring" points="200,104 290,166 266,274 134,274 110,166" />
                     <polygon class="radar-ring" points="200,136 259,174 244,246 156,246 141,174" />
                     <polygon class="radar-ring" points="200,168 228,182 222,218 178,218 172,182" />
 
-                    <!-- Axis lines from center -->
                     <line class="radar-axis" x1="200" y1="200" x2="200" y2="40" />
                     <line class="radar-axis" x1="200" y1="200" x2="352" y2="150" />
                     <line class="radar-axis" x1="200" y1="200" x2="310" y2="330" />
                     <line class="radar-axis" x1="200" y1="200" x2="90" y2="330" />
                     <line class="radar-axis" x1="200" y1="200" x2="48" y2="150" />
 
-                    <!-- Data polygon: Leadership=95, Strategy=80, Teamwork=90, Endurance=88, Technical Agility=85 -->
                     <polygon class="radar-data" points="200,48 341,155 298,317 100,322 58,155"
                         filter="url(#radarGlow)" />
 
-                    <!-- Data dots -->
                     <circle class="radar-dot" cx="200" cy="48" r="5" data-label="Leadership" data-value="95" />
                     <circle class="radar-dot" cx="341" cy="155" r="5" data-label="Strategy" data-value="80" />
                     <circle class="radar-dot" cx="298" cy="317" r="5" data-label="Teamwork" data-value="90" />
                     <circle class="radar-dot" cx="100" cy="322" r="5" data-label="Endurance" data-value="88" />
                     <circle class="radar-dot" cx="58" cy="155" r="5" data-label="Technical Agility" data-value="85" />
 
-                    <!-- Axis labels -->
                     <text class="radar-label" x="200" y="22" text-anchor="middle">Leadership</text>
                     <text class="radar-label" x="368" y="148" text-anchor="start">Strategy</text>
                     <text class="radar-label" x="320" y="358" text-anchor="middle">Teamwork</text>
                     <text class="radar-label" x="78" y="358" text-anchor="middle">Endurance</text>
                     <text class="radar-label" x="32" y="148" text-anchor="end">Technical Agility</text>
 
-                    <!-- Value labels (hidden until hover) -->
                     <text class="radar-value" x="200" y="38" text-anchor="middle">95%</text>
                     <text class="radar-value" x="358" y="164" text-anchor="start">80%</text>
                     <text class="radar-value" x="320" y="342" text-anchor="middle">90%</text>
@@ -1483,7 +1469,6 @@
 
     </div>
 
-    <!-- Developer CLI Terminal Drawer -->
     <div id="terminalDrawer" class="terminal-drawer">
         <div class="terminal-drawer-header">
             <div class="terminal-header-left">
@@ -1510,13 +1495,11 @@
         </div>
     </div>
 
-    <!-- Floating Resume Generator Circular Pill -->
     <button class="floating-resume-pill" id="floatingResumeBtn" aria-label="Generate Resume" title="Generate Resume">
         <span class="pill-icon">✨</span>
         <span class="pill-text">Generate Resume</span>
     </button>
 
-    <!-- Tailored Resume Modal -->
     <div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle">
         <div class="resume-modal-container">
             <button class="resume-modal-close" id="closeResumeModal" aria-label="Close modal">&times;</button>
@@ -1526,7 +1509,7 @@
             <p class="resume-modal-subtitle">Paste a job description for a tailored document — or leave blank to download Charan's primary generalist document.</p>
             
             <div class="resume-modal-body">
-                <!-- Document Type Selector (Resume vs CV) -->
+                
                 <div class="doc-type-selector">
                     <label class="input-label">Document Type</label>
                     <div class="doc-type-pills">
@@ -1564,7 +1547,6 @@
                 </button>
             </div>
 
-            <!-- Loading Overlay -->
             <div class="resume-loading-overlay" id="resumeLoadingOverlay">
                 <div class="resume-spinner-wrapper">
                     <div class="resume-spinner"></div>
@@ -1580,7 +1562,6 @@
         </div>
     </div>
 
-    <!-- jsPDF CDN Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>

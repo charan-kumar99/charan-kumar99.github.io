@@ -1,5 +1,4 @@
 
-
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -156,7 +155,6 @@ setTimeout(() => {
 
 const API_ENDPOINT = 'https://charan-kumar99-github-io.vercel.app/api/chat';
 
-// Palette / Theme handling: supports 4 palettes with localStorage persistence
 const PALETTES = {
     dark:      { name: 'Neo-Cyan',  icon: '🌊' },
     cyberpunk: { name: 'Cyberpunk', icon: '🌆' },
@@ -171,7 +169,7 @@ function applyPalette(name) {
     if (icon && PALETTES[name]) {
         icon.textContent = PALETTES[name].icon;
     }
-    // Update active swatch
+    
     document.querySelectorAll('.palette-swatch').forEach(s => {
         s.classList.toggle('active', s.dataset.palette === name);
     });
@@ -188,14 +186,12 @@ function closePalettePanel() {
     if (panel) panel.classList.remove('open');
 }
 
-// Close palette panel on outside click
 document.addEventListener('click', (e) => {
     const wrapper = document.getElementById('paletteWrapper');
     if (wrapper && !wrapper.contains(e.target)) {
         closePalettePanel();
     }
 });
-
 
 (function initTheme() {
     const saved = localStorage.getItem('theme') || 'dark';
@@ -335,7 +331,6 @@ let chatHistory = [];
 let isChatOpen = false;
 let isLoading = false;
 
-// Voice API & Speech variables
 let isTtsEnabled = localStorage.getItem('chat_tts') === 'true';
 let isRecording = false;
 let recognition = null;
@@ -994,7 +989,6 @@ function sendSuggestion(text) {
 function askAiQuestion(text) {
     if (isLoading) return;
 
-    // Scroll down to the chat bubble if viewport width matches mobile (< 768px)
     if (window.innerWidth < 768) {
         const chatBubble = document.getElementById('chatBubble');
         if (chatBubble) {
@@ -1002,16 +996,13 @@ function askAiQuestion(text) {
         }
     }
 
-    // Open chat window if not already open
     if (!isChatOpen) {
         toggleChat();
     }
 
-    // Populate the question in the text area
     chatInputEl.value = text;
     autoResizeInput(chatInputEl);
 
-    // Briefly delay sending to allow the open animation/focus to complete
     setTimeout(() => {
         sendMessage();
     }, 150);
@@ -1031,11 +1022,6 @@ function autoResizeInput(el) {
     el.style.overflowY = sh > 110 ? 'auto' : 'hidden';
 }
 
-
-// ===================================================================
-// FEATURE: PROJECT TAG FILTERING
-// ===================================================================
-
 (function initProjectFilters() {
     const filtersContainer = document.getElementById('projectFilters');
     if (!filtersContainer) return;
@@ -1047,7 +1033,6 @@ function autoResizeInput(el) {
         const pill = e.target.closest('.filter-pill');
         if (!pill) return;
 
-        // Update active pill
         pills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
 
@@ -1057,28 +1042,22 @@ function autoResizeInput(el) {
             const tags = card.dataset.tags || '';
             const show = filter === 'all' || tags.split(',').includes(filter);
 
-            // Stagger the animation
             card.style.transitionDelay = show ? `${i * 0.06}s` : '0s';
 
             if (show) {
                 card.classList.remove('filter-hidden');
-                // Ensure fade-in visible state is preserved
+                
                 card.classList.add('visible');
             } else {
                 card.classList.add('filter-hidden');
             }
         });
 
-        // Clear delays after animation
         setTimeout(() => {
             cards.forEach(card => card.style.transitionDelay = '');
         }, 500);
     });
 })();
-
-// ===================================================================
-// FEATURE: SKILLS SEARCH & HIGHLIGHT
-// ===================================================================
 
 (function initSkillsSearch() {
     const searchInput = document.getElementById('skillsSearch');
@@ -1089,7 +1068,6 @@ function autoResizeInput(el) {
     const categories = document.querySelectorAll('.skills-category');
     const skillsSection = document.getElementById('skills');
 
-    // Create results count element
     const resultsDiv = document.createElement('div');
     resultsDiv.className = 'skills-search-results-count';
     resultsDiv.style.display = 'none';
@@ -1101,11 +1079,10 @@ function autoResizeInput(el) {
     function performSearch(query) {
         const q = query.toLowerCase().trim();
 
-        // Show/hide clear button
         clearBtn.classList.toggle('visible', q.length > 0);
 
         if (!q) {
-            // Reset all
+            
             skillCards.forEach(card => {
                 card.classList.remove('skill-match', 'skill-dim');
             });
@@ -1118,7 +1095,6 @@ function autoResizeInput(el) {
 
         let matchCount = 0;
 
-        // Check each category
         categories.forEach(category => {
             const cardsInCategory = category.querySelectorAll('.skill-card');
             let categoryHasMatch = false;
@@ -1137,16 +1113,13 @@ function autoResizeInput(el) {
                 }
             });
 
-            // Hide empty categories
             category.classList.toggle('category-hidden', !categoryHasMatch);
         });
 
-        // Update results count
         resultsDiv.innerHTML = `Found <span>${matchCount}</span> skill${matchCount !== 1 ? 's' : ''} matching "<span>${escapeHtml(q).replace(/<br>/g, '')}</span>"`;
         resultsDiv.style.display = 'block';
     }
 
-    // Debounced search
     let searchTimeout;
     searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
@@ -1162,10 +1135,6 @@ function autoResizeInput(el) {
     });
 })();
 
-// ===================================================================
-// FEATURE: RADAR CHART TOOLTIP
-// ===================================================================
-
 (function initRadarInteractive() {
     const container = document.getElementById('radarChartContainer');
     if (!container) return;
@@ -1176,7 +1145,6 @@ function autoResizeInput(el) {
     const labels = container.querySelectorAll('.radar-label');
     const traitCard = document.getElementById('radarTraitCard');
 
-    // Tooltip creation
     const tooltip = document.createElement('div');
     tooltip.className = 'radar-tooltip';
     tooltip.style.cssText = `
@@ -1200,18 +1168,16 @@ function autoResizeInput(el) {
     container.style.position = 'relative';
     container.appendChild(tooltip);
 
-    // Target coordinates
     const targetPoints = [
-        { x: 200, y: 48 },   // Leadership
-        { x: 341, y: 155 },  // Strategy
-        { x: 298, y: 317 },  // Teamwork
-        { x: 100, y: 322 },  // Endurance
-        { x: 58, y: 155 }    // Technical Agility
+        { x: 200, y: 48 },   
+        { x: 341, y: 155 },  
+        { x: 298, y: 317 },  
+        { x: 100, y: 322 },  
+        { x: 58, y: 155 }    
     ];
 
     const centerPoint = { x: 200, y: 200 };
 
-    // Trait narratives
     const narratives = {
         'leadership': {
             icon: '👑',
@@ -1245,7 +1211,6 @@ function autoResizeInput(el) {
         }
     };
 
-    // Set initial layout at center
     function setRadarCoordinates(progress) {
         const currentPoints = targetPoints.map(target => {
             const x = centerPoint.x + (target.x - centerPoint.x) * progress;
@@ -1253,21 +1218,17 @@ function autoResizeInput(el) {
             return { x, y };
         });
 
-        // Update Polygon points
         const pointsStr = currentPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
         dataPoly.setAttribute('points', pointsStr);
 
-        // Update Dots position
         dots.forEach((dot, idx) => {
             dot.setAttribute('cx', currentPoints[idx].x.toFixed(1));
             dot.setAttribute('cy', currentPoints[idx].y.toFixed(1));
         });
     }
 
-    // Initialize at center
     setRadarCoordinates(0);
 
-    // Scroll trigger observer
     let hasAnimated = false;
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1281,14 +1242,13 @@ function autoResizeInput(el) {
     observer.observe(container);
 
     function animateRadar() {
-        const duration = 1200; // ms
+        const duration = 1200; 
         const startTime = performance.now();
 
         function step(now) {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
             
-            // Ease out cubic
             const easeProgress = 1 - Math.pow(1 - progress, 3);
             
             setRadarCoordinates(easeProgress);
@@ -1300,18 +1260,15 @@ function autoResizeInput(el) {
         requestAnimationFrame(step);
     }
 
-    // Update trait card text
     function selectTrait(labelName) {
         const key = labelName.toLowerCase().trim();
         const data = narratives[key];
         if (!data || !traitCard) return;
 
-        // Visual flash animation
         traitCard.classList.remove('active-pulse');
-        void traitCard.offsetWidth; // Reflow
+        void traitCard.offsetWidth; 
         traitCard.classList.add('active-pulse');
 
-        // Update content
         const iconEl = traitCard.querySelector('.radar-trait-icon');
         const titleEl = traitCard.querySelector('.radar-trait-title');
         const valueEl = traitCard.querySelector('.radar-trait-value');
@@ -1322,7 +1279,6 @@ function autoResizeInput(el) {
         if (valueEl) valueEl.textContent = data.value;
         if (descEl) descEl.textContent = data.desc;
 
-        // Set active classes on SVG elements
         dots.forEach(dot => {
             const isMatch = dot.getAttribute('data-label').toLowerCase().trim() === key;
             dot.classList.toggle('active', isMatch);
@@ -1334,14 +1290,12 @@ function autoResizeInput(el) {
         });
     }
 
-    // Attach click handlers
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             const label = dot.getAttribute('data-label');
             selectTrait(label);
         });
 
-        // Hover Tooltip positions
         dot.addEventListener('mouseenter', () => {
             const label = dot.getAttribute('data-label');
             const value = dot.getAttribute('data-value');
@@ -1381,7 +1335,6 @@ function autoResizeInput(el) {
         });
     });
 
-    // Also support clicking text labels
     labels.forEach(label => {
         label.style.cursor = 'pointer';
         label.addEventListener('click', () => {
@@ -1401,10 +1354,6 @@ document.addEventListener('click', e => {
         toggleChat();
     }
 });
-
-// ===================================================================
-// FEATURE: GLASSMORPHIC AVATAR 3D TILT
-// ===================================================================
 
 (function initAvatarTilt() {
     const avatar = document.getElementById('aboutAvatar');
@@ -1427,10 +1376,6 @@ document.addEventListener('click', e => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     });
 })();
-
-// ===================================================================
-// FEATURE: SKILL CARD BRAND GLOW COLORS
-// ===================================================================
 
 (function initSkillGlows() {
     const glowMap = {
@@ -1490,10 +1435,6 @@ document.addEventListener('click', e => {
     });
 })();
 
-// ===================================================================
-// FEATURE: INTERACTIVE WORK EXPERIENCE DRAWERS & BADGES
-// ===================================================================
-
 (function initTimelineDrawers() {
     const toggleButtons = document.querySelectorAll('.timeline-toggle-btn');
     toggleButtons.forEach(btn => {
@@ -1540,7 +1481,7 @@ document.addEventListener('click', e => {
 
                 setTimeout(() => {
                     matchedCard.classList.remove('skill-highlight-active');
-                    void matchedCard.offsetWidth; // Reflow
+                    void matchedCard.offsetWidth; 
                     matchedCard.classList.add('skill-highlight-active');
                     
                     setTimeout(() => {
@@ -1551,10 +1492,6 @@ document.addEventListener('click', e => {
         });
     });
 })();
-
-// ===================================================================
-// FEATURE: PROJECTS WORKFLOW SIMULATOR
-// ===================================================================
 
 (function initProjectsSimulator() {
     const flowMetadata = {
@@ -2072,7 +2009,7 @@ document.addEventListener('click', e => {
     };
 
     let activeFlow = 'devlens';
-    let currentStep = -1; // -1 means initial idle state
+    let currentStep = -1; 
     let isPlaying = false;
     let playInterval = null;
 
@@ -2089,7 +2026,6 @@ document.addEventListener('click', e => {
 
     if (!nodesContainer || !svg || !packet) return;
 
-    // Helper to log in terminal
     function addTerminalLog(message, type = 'info') {
         const timestamp = new Date().toLocaleTimeString();
         const logLine = document.createElement('div');
@@ -2099,7 +2035,6 @@ document.addEventListener('click', e => {
         terminalEl.scrollTop = terminalEl.scrollHeight;
     }
 
-    // Render nodes based on selected flow
     function renderNodes() {
         nodesContainer.innerHTML = '';
         const data = flowMetadata[activeFlow];
@@ -2124,11 +2059,9 @@ document.addEventListener('click', e => {
             nodesContainer.appendChild(nodeEl);
         });
 
-        // Re-draw lines
         setTimeout(drawSimulatorLines, 60);
     }
 
-    // Draw lines connecting nodes
     function drawSimulatorLines() {
         const container = document.getElementById('simulatorMapContainer');
         if (!container || !svg) return;
@@ -2157,18 +2090,18 @@ document.addEventListener('click', e => {
             
             let d = '';
             if (isMobile) {
-                // Vertical straight lines
+                
                 d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
             } else {
-                // Desktop snake flow curved connecting lines
+                
                 if (i === 3) {
-                    // Turn downwards from node 3 to node 4
+                    
                     d = `M ${start.x} ${start.y} C ${start.x + 40} ${start.y}, ${end.x + 40} ${end.y}, ${end.x} ${end.y}`;
                 } else if (i >= 4) {
-                    // Leftwards lines (Row 2)
+                    
                     d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
                 } else {
-                    // Rightwards lines (Row 1)
+                    
                     d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
                 }
             }
@@ -2181,7 +2114,6 @@ document.addEventListener('click', e => {
         }
     }
 
-    // Position packet glow
     function positionPacket(nodeIdx, animate = true) {
         const nodes = nodesContainer.querySelectorAll('.sim-node');
         const container = document.getElementById('simulatorMapContainer');
@@ -2203,7 +2135,6 @@ document.addEventListener('click', e => {
         packet.style.top = `${y}px`;
     }
 
-    // Shoot animated glowing particle along a curved SVG path
     function shootPathParticle(fromIdx) {
         const path = svg.querySelector(`.path-seg-${fromIdx}`);
         if (!path) return;
@@ -2211,19 +2142,16 @@ document.addEventListener('click', e => {
         const pathId = path.getAttribute('id');
         if (!pathId) return;
 
-        // Create particle element (SVG circle)
         const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         particle.setAttribute('r', '6');
         particle.setAttribute('fill', 'var(--accent)');
         particle.setAttribute('style', 'filter: drop-shadow(0 0 6px var(--accent)); pointer-events: none;');
 
-        // Create animateMotion
         const anim = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
         anim.setAttribute('dur', '0.75s');
         anim.setAttribute('repeatCount', '1');
         anim.setAttribute('fill', 'freeze');
 
-        // Create mpath child targeting the path ID
         const mpath = document.createElementNS('http://www.w3.org/2000/svg', 'mpath');
         mpath.setAttribute('href', `#${pathId}`);
         mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `#${pathId}`);
@@ -2232,19 +2160,17 @@ document.addEventListener('click', e => {
         particle.appendChild(anim);
         svg.appendChild(particle);
 
-        // Auto-remove particle after animation ends
         setTimeout(() => {
             particle.remove();
         }, 800);
     }
 
-    // Execute step
     function runStep() {
         const data = flowMetadata[activeFlow];
         const totalSteps = data.steps.length;
 
         if (currentStep >= totalSteps - 1) {
-            // End reached, reset
+            
             resetSimulation();
             return;
         }
@@ -2255,7 +2181,6 @@ document.addEventListener('click', e => {
         const stepData = data.steps[currentStep];
         const nodes = nodesContainer.querySelectorAll('.sim-node');
 
-        // Update active class on nodes
         nodes.forEach((node, idx) => {
             node.classList.remove('active');
             if (idx === currentStep) {
@@ -2268,13 +2193,11 @@ document.addEventListener('click', e => {
             }
         });
 
-        // Update active segment classes in SVG
         const paths = svg.querySelectorAll('.sim-svg-path');
         paths.forEach((path, idx) => {
             path.classList.toggle('active', idx < currentStep);
         });
 
-        // Position & Animate packet
         if (prevStep === -1) {
             positionPacket(0, false);
         } else {
@@ -2282,11 +2205,9 @@ document.addEventListener('click', e => {
             shootPathParticle(prevStep);
         }
 
-        // Update Panel details
         if (activeNodeNameEl) activeNodeNameEl.textContent = `${currentStep + 1}. ${stepData.nodeName}`;
         if (activeNodeDescEl) activeNodeDescEl.textContent = stepData.desc;
 
-        // Print Logs with tiny stagger
         stepData.logs.forEach((log, idx) => {
             setTimeout(() => {
                 let logType = 'info';
@@ -2299,7 +2220,6 @@ document.addEventListener('click', e => {
             }, idx * 180);
         });
 
-        // Stop auto play if we reached the final step
         if (currentStep === totalSteps - 1) {
             if (isPlaying) {
                 setTimeout(pauseSimulation, 1500);
@@ -2309,7 +2229,7 @@ document.addEventListener('click', e => {
 
     function jumpToStep(idx) {
         pauseSimulation();
-        resetSimulation(false); // reset classes and packet
+        resetSimulation(false); 
         
         const data = flowMetadata[activeFlow];
         const nodes = nodesContainer.querySelectorAll('.sim-node');
@@ -2354,7 +2274,6 @@ document.addEventListener('click', e => {
 
         addTerminalLog("Auto-simulation started.", "system");
 
-        // Run first step instantly
         runStep();
 
         playInterval = setInterval(() => {
@@ -2368,7 +2287,6 @@ document.addEventListener('click', e => {
         }, 2200);
     }
 
-    // Pause
     function pauseSimulation() {
         if (!isPlaying) return;
         isPlaying = false;
@@ -2382,7 +2300,6 @@ document.addEventListener('click', e => {
         addTerminalLog("Simulation paused.", "system");
     }
 
-    // Reset
     function resetSimulation(clearLogs = true) {
         clearInterval(playInterval);
         isPlaying = false;
@@ -2414,7 +2331,6 @@ document.addEventListener('click', e => {
         }
     }
 
-    // Attach controllers listeners
     playBtn.addEventListener('click', () => {
         if (isPlaying) {
             pauseSimulation();
@@ -2432,7 +2348,6 @@ document.addEventListener('click', e => {
         resetSimulation();
     });
 
-    // Handle Tabs
     const tabs = document.querySelectorAll('.sim-tab');
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -2447,7 +2362,6 @@ document.addEventListener('click', e => {
         });
     });
 
-    // Handle Resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
@@ -2459,14 +2373,9 @@ document.addEventListener('click', e => {
         }, 150);
     });
 
-    // Initialize layout
     renderNodes();
 })();
 
-
-// ===================================================================
-// FEATURE: DEVELOPER TERMINAL CLI DRAWER
-// ===================================================================
 (function initTerminalCLI() {
     const terminalDrawer = document.getElementById('terminalDrawer');
     const toggleBtn = document.getElementById('terminalToggleBtn');
@@ -2479,7 +2388,6 @@ document.addEventListener('click', e => {
 
     if (!terminalDrawer || !actualInput || !dummyInput || !outputLog) return;
 
-    // Toggle drawer
     function toggleTerminalDrawer() {
         terminalDrawer.classList.toggle('open');
         if (terminalDrawer.classList.contains('open')) {
@@ -2497,33 +2405,29 @@ document.addEventListener('click', e => {
         dotCloseBtn.addEventListener('click', toggleTerminalDrawer);
     }
 
-    // Toggle with hotkeys
     window.addEventListener('keydown', (e) => {
-        // Toggle with backtick (`) key
+        
         if (e.key === '`') {
             e.preventDefault();
             toggleTerminalDrawer();
         }
-        // Toggle with Ctrl+Shift+T
+        
         if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
             e.preventDefault();
             toggleTerminalDrawer();
         }
     });
 
-    // Mirror input into custom styled dummy text
     actualInput.addEventListener('input', () => {
         dummyInput.textContent = actualInput.value;
     });
 
-    // Refocus input on click inside the body
     if (drawerBody) {
         drawerBody.addEventListener('click', () => {
             actualInput.focus();
         });
     }
 
-    // Command responses
     const commandResponses = {
         help: `Available commands:
   help         - Show this list of available commands
@@ -2566,25 +2470,23 @@ document.addEventListener('click', e => {
   - Advanced Portfolio: https://advanced-portfolio-sandy.vercel.app/`
     };
 
-    // Print helper
     function appendTerminalLine(text, type = '') {
         const line = document.createElement('div');
         line.className = `terminal-line ${type}`;
         line.textContent = text;
         outputLog.appendChild(line);
-        // Scroll to bottom
+        
         if (drawerBody) {
             drawerBody.scrollTop = drawerBody.scrollHeight;
         }
     }
 
-    // CLI History, Tab Autocomplete and Custom Command Handler
     const commandHistory = [];
     let historyIndex = -1;
     const availableCommands = ['help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'];
 
     actualInput.addEventListener('keydown', (e) => {
-        // Tab Auto-completion
+        
         if (e.key === 'Tab') {
             e.preventDefault();
             const inputVal = actualInput.value.trim().toLowerCase();
@@ -2596,7 +2498,6 @@ document.addEventListener('click', e => {
             }
         }
         
-        // Command History: Up Arrow
         else if (e.key === 'ArrowUp') {
             e.preventDefault();
             if (commandHistory.length > 0 && historyIndex > 0) {
@@ -2606,7 +2507,6 @@ document.addEventListener('click', e => {
             }
         }
         
-        // Command History: Down Arrow
         else if (e.key === 'ArrowDown') {
             e.preventDefault();
             if (historyIndex < commandHistory.length - 1) {
@@ -2620,7 +2520,6 @@ document.addEventListener('click', e => {
             }
         }
         
-        // Command Execution
         else if (e.key === 'Enter') {
             const rawVal = actualInput.value;
             const command = rawVal.trim();
@@ -2628,14 +2527,12 @@ document.addEventListener('click', e => {
             actualInput.value = '';
             dummyInput.textContent = '';
 
-            // Echo input in terminal
             appendTerminalLine(`guest@charankumar:~$ ${rawVal}`, 'input-echo');
 
             if (command === '') {
                 return;
             }
 
-            // Save to history
             commandHistory.push(rawVal);
             historyIndex = commandHistory.length;
 
@@ -2649,7 +2546,6 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            // Theme custom command handler
             if (lowerCommand.startsWith('theme')) {
                 const parts = command.split(/\s+/);
                 if (parts.length < 2) {
@@ -2672,7 +2568,6 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            // Neofetch custom command handler
             if (lowerCommand === 'neofetch') {
                 const uptimeSeconds = Math.floor(performance.now() / 1000);
                 const mins = Math.floor(uptimeSeconds / 60);
@@ -2704,24 +2599,19 @@ document.addEventListener('click', e => {
                 appendTerminalLine(`Command not found: '${command}'. Type 'help' for available commands.`, 'system');
             }
 
-            // Stagger empty spacer
             appendTerminalLine('', 'spacer');
         }
     });
 })();
 
-// Initialize chat history persistence on load
 (function() {
     if (typeof loadChatHistory === 'function') {
         loadChatHistory();
     }
 })();
 
-// ==========================================================================
-// TAILORED RESUME GENERATOR INTEGRATION (Step 2, 3, 4, 5)
-// ==========================================================================
 (function() {
-    // 1. Synonym Definitions
+    
     const SYNONYMS = {
         "postgres": ["postgresql", "postgres", "pg", "postgre sql"],
         "postgresql": ["postgresql", "postgres", "pg", "postgre sql"],
@@ -2756,7 +2646,6 @@ document.addEventListener('click', e => {
         "entity framework": ["ef core", "entity framework", "entity framework core", "orm"]
     };
 
-    // 2. Load resume-data.json
     let resumeData = null;
     async function loadResumeData() {
         if (resumeData) return resumeData;
@@ -2772,7 +2661,6 @@ document.addEventListener('click', e => {
         }
     }
 
-    // Helper: Match a tag within the JD text
     function matchTag(text, tag) {
         const term = tag.toLowerCase();
         
@@ -2783,19 +2671,16 @@ document.addEventListener('click', e => {
             return text.includes(".net") || text.includes("dotnet");
         }
         
-        // Escape characters except spaces
         const escaped = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-        // Word boundaries check matching characters
+        
         const regex = new RegExp(`(?:^|[^a-zA-Z0-9_#\\.\\-+])` + escaped + `(?:$|[^a-zA-Z0-9_#\\.\\-+])`, 'i');
         return regex.test(text);
     }
 
-    // 3. Extract keywords based on tags & synonyms
     function extractKeywords(jdText) {
         const jdLower = jdText.toLowerCase();
         const foundKeywords = new Set();
         
-        // All known tags in resume
         const allTags = [
             "asp.net core", ".net", "backend", "api", "property management", "automation", "workflow", "c#", 
             "clean architecture", "design patterns", "docker", "containerization", "deployment", "devops", 
@@ -2824,7 +2709,6 @@ document.addEventListener('click', e => {
             }
         }
         
-        // Scan other synonym keys
         for (const key in SYNONYMS) {
             if (matchTag(jdLower, key)) {
                 SYNONYMS[key].forEach(s => foundKeywords.add(s));
@@ -2834,7 +2718,6 @@ document.addEventListener('click', e => {
         return foundKeywords;
     }
 
-    // 4. Role Title Guesser
     function guessRoleTitle(jdText) {
         const lines = jdText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
         const patterns = [
@@ -2882,7 +2765,6 @@ document.addEventListener('click', e => {
             .trim();
     }
 
-    // Helper to check skill overlap
     function isSkillMatched(skill, foundKeywords) {
         const lower = skill.toLowerCase();
         if (foundKeywords.has(lower)) return true;
@@ -2891,15 +2773,12 @@ document.addEventListener('click', e => {
         return false;
     }
 
-    // 5. Skills Reordering & Filtering
     function filterAndReorderSkills(skillsList, foundKeywords, jdText = '', maxCount = 5) {
         const jdLower = (jdText || '').toLowerCase();
         
-        // Find skills that match found keywords
         const matched = skillsList.filter(s => isSkillMatched(s, foundKeywords));
         const nonMatched = skillsList.filter(s => !isSkillMatched(s, foundKeywords));
         
-        // Sort matched skills by their first appearance position in the JD text
         matched.sort((a, b) => {
             const posA = jdLower.indexOf(a.toLowerCase());
             const posB = jdLower.indexOf(b.toLowerCase());
@@ -2913,11 +2792,9 @@ document.addEventListener('click', e => {
         return combined.slice(0, maxCount);
     }
 
-    // 6. Match JD against Resume Data
     function matchResumeData(data, foundKeywords, jdText) {
-        const result = JSON.parse(JSON.stringify(data)); // Deep clone
+        const result = JSON.parse(JSON.stringify(data)); 
 
-        // Tailor Skills: keep matched skills + top relevant up to limit
         if (result.skills) {
             result.skills.languages = filterAndReorderSkills(result.skills.languages || [], foundKeywords, jdText, 5);
             result.skills.frameworks = filterAndReorderSkills(result.skills.frameworks || [], foundKeywords, jdText, 5);
@@ -2926,9 +2803,8 @@ document.addEventListener('click', e => {
             result.skills.architecture = filterAndReorderSkills(result.skills.architecture || ["Microservices Architecture", "Clean Architecture", "REST APIs", "System Design"], foundKeywords, jdText, 4);
         }
 
-        // Score and filter work experience bullets
         result.experience = result.experience.map(job => {
-            // Score each bullet
+            
             const scoredBullets = job.bullets.map((b, index) => {
                 let score = 0;
                 b.tags.forEach(t => {
@@ -2939,17 +2815,14 @@ document.addEventListener('click', e => {
                 return { bullet: b, score, originalIndex: index };
             });
 
-            // Sort by score desc, keeping high match at top
             scoredBullets.sort((a, b) => {
                 if (b.score !== a.score) return b.score - a.score;
                 return a.originalIndex - b.originalIndex;
             });
 
-            // Select top 3 bullets
             const limit = 3;
             const selectedScored = scoredBullets.slice(0, limit);
 
-            // Re-sort selected back to original index order
             selectedScored.sort((a, b) => a.originalIndex - b.originalIndex);
 
             return {
@@ -2958,7 +2831,6 @@ document.addEventListener('click', e => {
             };
         });
 
-        // Score and filter projects (select TOP 3 most relevant projects)
         const scoredProjects = result.projects.map((proj, index) => {
             let score = 0;
             proj.techStack.forEach(t => {
@@ -2977,13 +2849,10 @@ document.addEventListener('click', e => {
             return a.originalIndex - b.originalIndex;
         });
 
-        // Strictly take top 3 projects matching job description
         const selectedScoredProjects = scoredProjects.slice(0, 3);
         selectedScoredProjects.sort((a, b) => a.originalIndex - b.originalIndex);
         result.projects = selectedScoredProjects.map(sp => sp.project);
 
-        // Dynamically tailor summary & key highlights using AI
-        // Deduplicate synonym variants: pick only the canonical (first) form per synonym group
         const deduplicatedKeywords = [];
         const seenSynonymGroups = new Set();
         for (const kw of foundKeywords) {
@@ -2995,7 +2864,6 @@ document.addEventListener('click', e => {
         }
         const topKeywordsArr = deduplicatedKeywords.slice(0, 5);
 
-        // Store keywords on result for later AI summary generation (done in generateBtn handler)
         result._topKeywords = topKeywordsArr;
         result._jdText = jdText;
 
@@ -3141,18 +3009,17 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
 \\end{document}`;
     }
 
-    // 7. Client-Side jsPDF Generator (Matches User's Exact Serif Template with Clickable Links)
     function generatePdfResume(data, filenameRole, docType = 'resume') {
         const isCV = docType === 'cv';
-        // Create document: portrait, points, Letter (612pt x 792pt) - LaTeX geometry [top=0.6in,bottom=0.6in,left=0.6in,right=0.6in]
+        
         const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'letter' });
         
-        const marginX = 54; // 0.75 in = 54 pt
-        const marginTop = 54; // 0.75 in = 54 pt
-        let currentY = marginTop + 14; // Top offset aligned with top margin
+        const marginX = 54; 
+        const marginTop = 54; 
+        let currentY = marginTop + 14; 
         const pageWidth = 612;
         const pageHeight = 792;
-        const printableWidth = 504; // 612 - (54 * 2)
+        const printableWidth = 504; 
 
         function checkPageSpace(heightNeeded) {
             if (currentY + heightNeeded > pageHeight - marginTop) {
@@ -3175,24 +3042,20 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             return textWidth;
         }
 
-        // --- TITLE / HEADER BLOCK (LaTeX \begin{center}) ---
-        // {\Huge \textbf{CHARAN KUMAR}}
         doc.setFont('times', 'bold');
         doc.setFontSize(21);
         doc.setTextColor(0, 0, 0);
         doc.text("CHARAN KUMAR", pageWidth / 2, currentY, { align: 'center' });
         currentY += 22;
 
-        // {\large \textit{Developer}}
         doc.setFont('times', 'italic');
         doc.setFontSize(13);
         doc.setTextColor(40, 40, 40);
         doc.text("Software Developer", pageWidth / 2, currentY, { align: 'center' });
         currentY += 20;
 
-        // Vector Icon Drawing Helpers (FontAwesome 5 LaTeX Icons)
         function drawEnvelope(x, y) {
-            // \faEnvelope (solid envelope outline)
+            
             doc.setDrawColor(0, 0, 0);
             doc.setFillColor(0, 0, 0);
             doc.setLineWidth(0.6);
@@ -3205,7 +3068,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         }
 
         function drawPhone(x, y) {
-            // \faPhone (FontAwesome phone handset silhouette)
+            
             doc.setFillColor(0, 0, 0);
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(1.2);
@@ -3219,7 +3082,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         }
 
         function drawPin(x, y) {
-            // \faMapMarker*[-0.5pt] (FontAwesome solid map marker pin)
+            
             doc.setFillColor(0, 0, 0);
             doc.setDrawColor(0, 0, 0);
             doc.circle(x + 3.5, y - 4.5, 2.5, 'F');
@@ -3229,7 +3092,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         }
 
         function drawLinkedInBox(x, y) {
-            // \faLinkedin (FontAwesome LinkedIn square logo)
+            
             doc.setFillColor(0, 0, 0);
             doc.roundedRect(x, y - 7, 7.5, 7.5, 1, 1, 'F');
             doc.setFont('times', 'bold');
@@ -3242,7 +3105,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         }
 
         function drawGitIcon(x, y) {
-            // \faGithub (FontAwesome GitHub Octocat logo)
+            
             doc.setFillColor(0, 0, 0);
             doc.setDrawColor(0, 0, 0);
             doc.circle(x + 4, y - 3.8, 3.2, 'F');
@@ -3253,14 +3116,13 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         }
 
         function drawLinkChain(x, y) {
-            // 2 interlocked chain rings (🔗 icon)
+            
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.85);
             doc.ellipse(x + 2.5, y - 3.5, 2.2, 1.25, 'S');
             doc.ellipse(x + 5.5, y - 3.5, 2.2, 1.25, 'S');
         }
 
-        // Contact info row 1: email, phone, location
         doc.setFont('times', 'normal');
         doc.setFontSize(10);
         doc.setTextColor(0, 0, 0);
@@ -3291,7 +3153,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         drawClickableLink(locStr, "https://maps.google.com/?q=Udupi,+Karnataka,+India", startX1, currentY);
         currentY += 17;
 
-        // Contact info row 2: LinkedIn, GitHub, Portfolio
         const liStr = "LinkedIn";
         const ghStr = "GitHub";
         const portStr = "Portfolio";
@@ -3316,7 +3177,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         drawClickableLink(portStr, "https://charan-kumar99.github.io", startX2, currentY);
         currentY += 24;
 
-        // --- PROFESSIONAL SUMMARY ---
         drawSectionHeader("PROFESSIONAL SUMMARY");
 
         doc.setFont('times', 'normal');
@@ -3332,7 +3192,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         });
         currentY += 8;
 
-        // --- TECHNICAL SKILLS ---
         drawSectionHeader("TECHNICAL SKILLS");
 
         const skillsFormat = [
@@ -3359,7 +3218,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         });
         currentY += 6;
 
-        // --- PROFESSIONAL EXPERIENCE ---
         drawSectionHeader("PROFESSIONAL EXPERIENCE");
 
         data.experience.forEach(job => {
@@ -3389,7 +3247,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             currentY += 8;
         });
 
-        // --- PROJECTS ---
         drawSectionHeader("PROJECTS");
 
         (isCV ? data.projects : data.projects.slice(0, 3)).forEach(project => {
@@ -3438,10 +3295,8 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             currentY += 8;
         });
 
-        // --- EDUCATION ---
         drawSectionHeader("EDUCATION");
 
-        // MCA
         checkPageSpace(24);
         doc.setFont('times', 'bold');
         doc.setFontSize(10.5);
@@ -3461,7 +3316,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         doc.text("MIT, Jaipur (Online) | Currently pursuing MCA while working full-time.", marginX, currentY);
         currentY += 18;
 
-        // BCA
         checkPageSpace(32);
         doc.setFont('times', 'bold');
         doc.setFontSize(10.5);
@@ -3494,7 +3348,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         currentY += 14;
 
         if (isCV) {
-            // Pre-University (12th)
+            
             checkPageSpace(24);
             doc.setFont('times', 'bold');
             doc.setFontSize(10.5);
@@ -3514,7 +3368,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             doc.text("St Cecily's Composite PU College, Udupi | Percentage: 67.71%", marginX, currentY);
             currentY += 18;
 
-            // 10th SSLC
             checkPageSpace(24);
             doc.setFont('times', 'bold');
             doc.setFontSize(10.5);
@@ -3535,7 +3388,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             currentY += 18;
         }
 
-        // --- CERTIFICATIONS & TRAINING ---
         drawSectionHeader("CERTIFICATIONS & TRAINING");
         drawBulletPoint("Fast-Track Internship – Data Analytics, Web Development & Python Projects | Accolade Tech Solutions (2024)");
         drawBulletPoint("Cybersecurity & AI Training – Mangalore University (2024)");
@@ -3545,7 +3397,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         currentY += 4;
 
         if (isCV) {
-            // --- ACTIVITIES & INTERESTS ---
+            
             drawSectionHeader("ACTIVITIES & INTERESTS");
             drawBulletPoint("NCC Cadet Lead: Served as Head Cadet; recipient of Best Cadet Award; completed 10-day intensive training camp with Indian Navy & Army Officers.");
             drawBulletPoint("Cricket: Competitive player & team captain; led teams to victories in district-level tournaments.");
@@ -3554,7 +3406,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             currentY += 4;
         }
 
-        // Helper: Section Divider Line
         function drawSectionHeader(title) {
             checkPageSpace(28);
             currentY += 12;
@@ -3570,7 +3421,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             currentY += 15;
         }
 
-        // Helper: Bullet point wrapper
         function drawBulletPoint(text) {
             doc.setFont('times', 'normal');
             doc.setFontSize(10);
@@ -3592,7 +3442,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             currentY += heightNeeded + 3;
         }
 
-        // Clean filename safely: keep alphanumeric & spaces, remove dots/symbols, then join with underscores
         let sanitizedRole = filenameRole
             .replace(/[^a-zA-Z0-9\s]/g, '')
             .trim()
@@ -3605,7 +3454,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
 
         const filename = isCV ? "Charan_Kumar_CV.pdf" : "Charan_Kumar_Resume.pdf";
 
-        // Save file using jsPDF built-in save (bypasses Chrome's Blob URL UUID naming bug)
         try {
             doc.save(filename);
         } catch (e) {
@@ -3625,7 +3473,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         }
     }
 
-    // 8. Event Bindings & Modal Functionality
     document.addEventListener("DOMContentLoaded", () => {
         const resumeModal = document.getElementById("resumeModal");
         const floatingBtn = document.getElementById("floatingResumeBtn");
@@ -3638,12 +3485,10 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         const aiToggle = document.getElementById("aiEnhanceToggle");
         const loadingOverlay = document.getElementById("resumeLoadingOverlay");
 
-        // Clear any legacy cooldown timestamp from previous runs
         try {
             localStorage.removeItem("resume_cooldown_timestamp");
         } catch (e) {}
 
-        // Open modal
         const openModal = async (e) => {
             e.preventDefault();
             generateBtn.disabled = false;
@@ -3652,7 +3497,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             resumeModal.classList.add("open");
             jdInput.focus();
             
-            // Pre-fetch resume data
             await loadResumeData();
         };
 
@@ -3660,7 +3504,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         if (navBtn) navBtn.addEventListener("click", openModal);
         if (heroBtn) heroBtn.addEventListener("click", openModal);
 
-        // Close modal
         const closeModal = () => {
             resumeModal.classList.remove("open");
             jdInput.value = "";
@@ -3669,7 +3512,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
         if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
 
-        // Loading Overlay steps animation controller
         function showStep(stepNum) {
             const isCV = selectedDocType === 'cv';
             const stepTexts = isCV ? {
@@ -3697,7 +3539,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             }
         }
 
-        // Document Type selection handler (Resume vs CV)
         const pillResume = document.getElementById("pillResume");
         const pillCV = document.getElementById("pillCV");
         const jdInputGroup = document.getElementById("jdInputGroup");
@@ -3729,7 +3570,6 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         if (pillResume) pillResume.addEventListener("click", () => updateDocTypeUI('resume'));
         if (pillCV) pillCV.addEventListener("click", () => updateDocTypeUI('cv'));
 
-        // Ask AI Assistant about Resume vs CV button
         const askAiModalBtn = document.getElementById("askAiModalBtn");
         if (askAiModalBtn) {
             askAiModalBtn.addEventListener("click", () => {
@@ -3753,13 +3593,11 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             });
         }
 
-        // Dynamic button label & AI toggle visibility based on input and docType
         function updateModalBtnLabel() {
             const btnSpan = generateBtn.querySelector("span");
             const isCV = selectedDocType === 'cv';
             const hasJDText = Boolean(jdInput.value.trim());
 
-            // Only show AI enhancement toggle when Resume is selected AND JD text is entered
             if (aiToggleWrapper) {
                 aiToggleWrapper.style.display = (!isCV && hasJDText) ? "flex" : "none";
             }
@@ -3776,19 +3614,16 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         jdInput.addEventListener("input", updateModalBtnLabel);
         updateModalBtnLabel();
 
-        // Generate Resume Action handler
         generateBtn.addEventListener("click", async () => {
             const jdText = jdInput.value.trim();
 
-            // Step 1: Active Loading
             loadingOverlay.classList.add("active");
             showStep(1);
 
             try {
-                // Wait briefly for smooth loader transitions
+                
                 await new Promise(r => setTimeout(r, 600));
                 
-                // Step 2: Extract keywords and match
                 showStep(2);
                 const keywords = jdText ? extractKeywords(jdText) : new Set();
                 const roleTitle = jdText ? guessRoleTitle(jdText) : "Software Developer";
@@ -3800,22 +3635,18 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
 
                 let finalData = matchResumeData(sourceData, keywords, jdText);
 
-                // Preserve ALL 9 projects and full skills matrix for CV
                 if (selectedDocType === 'cv') {
                     finalData.projects = sourceData.projects;
                     finalData.skills = sourceData.skills;
                 }
 
-                // Set Primary General Summary if no JD provided
                 if (!jdText) {
                     finalData.tailoredSummary = "Software Developer & .NET / Full-Stack Engineer with hands-on experience building enterprise-grade web applications, REST APIs, and microservices using C#, ASP.NET Core, React, and database systems across PostgreSQL, SQL Server, and Redis. Proven track record in clean architecture and automated CI/CD deployments. Currently pursuing MCA while working full-time.";
                 }
                 
-                // Step 3: AI-powered summary & highlights + LLM Polish (if toggled and JD present)
                 if (jdText && aiToggle.checked) {
                     showStep(3);
 
-                    // Generate AI summary & highlights via /api/chat
                     try {
                         const experienceSummary = finalData.experience.map(j => `${j.role} at ${j.company} (${j.dates})`).join('; ');
                         const skillsList = [
@@ -3860,7 +3691,7 @@ Candidate Actual Background:
                         if (chatResponse.ok) {
                             const chatData = await chatResponse.json();
                             let aiText = chatData.choices?.[0]?.message?.content || '';
-                            // Strip markdown code fences if present
+                            
                             aiText = aiText.replace(/```json\s*/gi, '').replace(/```\s*/gi, '').trim();
                             try {
                                 const parsed = JSON.parse(aiText);
@@ -3892,7 +3723,7 @@ Candidate Actual Background:
                         if (polishResponse.ok) {
                             const polishedJson = await polishResponse.json();
                             if (polishedJson && polishedJson.experience) {
-                                // Overwrite experience bullets in matched data with rephrased bullets
+                                
                                 finalData.experience = finalData.experience.map(originalJob => {
                                     const polishedJob = polishedJson.experience.find(pj => pj.company === originalJob.company);
                                     if (polishedJob && polishedJob.bullets) {
@@ -3918,11 +3749,9 @@ Candidate Actual Background:
                     }
                 }
 
-                // Step 4: Render PDF via LaTeX Compiler / Client Fallback
                 showStep(4);
                 let latexPdfDownloaded = false;
                 
-                // 1) Try server-side / Vercel API
                 try {
                     const latexResponse = await fetch('./api/latex', {
                         method: 'POST',
@@ -3949,7 +3778,6 @@ Candidate Actual Background:
                     console.warn("Server LaTeX PDF compilation failed, trying direct compile:", latexErr);
                 }
 
-                // 2) If server API is 404 or failed (e.g., static GitHub Pages hosting), compile via online service directly
                 if (!latexPdfDownloaded) {
                     try {
                         const latexCode = buildLatexCode(finalData, selectedDocType);
@@ -3974,16 +3802,13 @@ Candidate Actual Background:
                     }
                 }
 
-                // 3) Fallback: Client-side jsPDF rendering matching the exact LaTeX layout
                 if (!latexPdfDownloaded) {
                     generatePdfResume(finalData, roleTitle, selectedDocType);
                 }
 
-                // Step 5: Complete & Download
                 showStep(5);
                 await new Promise(r => setTimeout(r, 400));
                 
-                // Close modal
                 loadingOverlay.classList.remove("active");
                 closeModal();
             } catch (error) {
@@ -3994,6 +3819,4 @@ Candidate Actual Background:
         });
     });
 })();
-
-
 

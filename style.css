@@ -26,7 +26,6 @@ body {
     line-height: 1.6;
 }
 
-/* Light theme overrides when data-theme="light" is set on <html> */
 html[data-theme="light"] {
     --primary: #0077cc;
     --secondary: #0099ee;
@@ -40,7 +39,6 @@ html[data-theme="light"] {
     --nav-bg: rgba(255, 255, 255, 0.92);
 }
 
-/* Cyberpunk Neon theme */
 html[data-theme="cyberpunk"] {
     --primary: #ff007f;
     --secondary: #d600ff;
@@ -54,7 +52,6 @@ html[data-theme="cyberpunk"] {
     --nav-bg: rgba(8, 8, 16, 0.95);
 }
 
-/* Emerald Minimalist theme */
 html[data-theme="emerald"] {
     --primary: #10b981;
     --secondary: #059669;
@@ -152,7 +149,6 @@ nav .container {
     cursor: pointer;
 }
 
-/* Theme toggle button — invisible container, just the icon */
 #themeToggle {
     display: inline-flex;
     align-items: center;
@@ -187,7 +183,6 @@ nav .container {
     outline: none;
 }
 
-/* Light theme — same invisible style, just adjust hover glow */
 html[data-theme="light"] #themeToggle {
     color: var(--gray);
 }
@@ -471,8 +466,6 @@ section {
     perspective: 1000px;
 }
 
-
-/* Glassmorphic Avatar Card */
 .avatar-glass-card {
     width: 100%;
     height: 100%;
@@ -490,7 +483,6 @@ section {
     box-shadow: 0 30px 80px rgba(var(--primary-rgb), 0.35);
 }
 
-/* Ambient floating blobs */
 .avatar-ambient-blob {
     position: absolute;
     border-radius: 50%;
@@ -546,7 +538,6 @@ section {
     75% { transform: translate(-45%, -55%) scale(1.1); }
 }
 
-/* Glass panel content */
 .avatar-glass-panel {
     position: relative;
     z-index: 2;
@@ -617,7 +608,6 @@ section {
     text-transform: uppercase;
 }
 
-/* Glass shine overlay */
 .avatar-glass-shine {
     position: absolute;
     top: 0;
@@ -946,7 +936,6 @@ html[data-theme="light"] .avatar-ambient-blob {
     box-shadow: 0 4px 10px rgba(var(--accent-rgb), 0.2);
 }
 
-
 .timeline-description {
     color: var(--gray);
     line-height: 1.6;
@@ -973,7 +962,6 @@ html[data-theme="light"] .avatar-ambient-blob {
     margin-bottom: 0;
 }
 
-/* Timeline collapsing details and tech stack badges */
 .timeline-toggle-btn {
     display: inline-flex;
     align-items: center;
@@ -1084,7 +1072,6 @@ html[data-theme="light"] .avatar-ambient-blob {
     transform: translateY(-2px) scale(1.05);
 }
 
-/* Light theme timeline overrides */
 html[data-theme="light"] .timeline-toggle-btn {
     border-color: rgba(var(--primary-rgb), 0.3);
 }
@@ -1099,7 +1086,6 @@ html[data-theme="light"] .timeline-badge:hover {
     color: #fff;
 }
 
-/* Skill card dynamic highlight pulse */
 @keyframes skillHighlightPulse {
     0%, 100% {
         transform: translateY(0) scale(1);
@@ -1372,14 +1358,12 @@ footer {
         display: flex;
     }
 
-    /* Adjust theme toggle on small screens */
     #themeToggle {
         width: 28px;
         height: 28px;
         font-size: 16px;
     }
 
-    /* Align header to sides on small screens */
     nav .container {
         display: flex;
         justify-content: space-between;
@@ -1393,7 +1377,7 @@ footer {
     html[data-theme="light"] .nav-links.active { background: rgba(255,255,255,0.98); box-shadow: 0 10px 40px rgba(0,0,0,0.12); }
 
     #hero {
-        padding-top: 100px; /* Offset the fixed navbar height on small screens */
+        padding-top: 100px; 
         padding-bottom: 40px;
         min-height: calc(100vh - 70px);
         box-sizing: border-box;
@@ -2004,7 +1988,6 @@ footer {
     }
 }
 
-/* Rich Cards inside Chat Window */
 .rich-cards-container {
     display: flex;
     flex-direction: column;
@@ -2206,11 +2189,6 @@ footer {
     }
 }
 
-
-/* ===================================================================
-   FEATURE: PROJECT TAG FILTERING
-   =================================================================== */
-
 .project-filters {
     display: flex;
     flex-wrap: wrap;
@@ -2270,7 +2248,6 @@ footer {
     box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
 }
 
-/* Project card hide/show transitions */
 .project-card {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2285,10 +2262,6 @@ footer {
     border: none;
     pointer-events: none;
 }
-
-/* ===================================================================
-   FEATURE: SKILLS SEARCH & HIGHLIGHT
-   =================================================================== */
 
 .skills-search-wrapper {
     display: flex;
@@ -2367,7 +2340,6 @@ footer {
     color: #ff6b6b;
 }
 
-/* Skill card glow/dim states */
 .skill-card.skill-match {
     border-color: var(--primary);
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 40px rgba(0, 212, 255, 0.1);
@@ -2412,10 +2384,6 @@ footer {
     color: var(--primary);
     font-weight: 600;
 }
-
-/* ===================================================================
-   FEATURE: SVG RADAR CHART
-   =================================================================== */
 
 .radar-chart-section {
     margin-top: 4rem;
@@ -2532,7 +2500,6 @@ footer {
     opacity: 1;
 }
 
-/* Radar chart interactive details card */
 .radar-trait-card {
     max-width: 480px;
     margin: 1.5rem auto 0 auto;
@@ -2586,7 +2553,6 @@ footer {
     margin: 0;
 }
 
-/* Radar dot active clicked state */
 .radar-dot.active {
     r: 8;
     fill: var(--accent) !important;
@@ -2598,13 +2564,11 @@ footer {
     fill: var(--primary) !important;
 }
 
-/* Light mode overrides for radar trait card */
 html[data-theme="light"] .radar-trait-card {
     background: rgba(255, 255, 255, 0.8);
     border-color: rgba(var(--primary-rgb), 0.15);
 }
 
-/* Responsive adjustments for new features */
 @media (max-width: 768px) {
     .project-filters {
         gap: 0.5rem;
@@ -2624,11 +2588,6 @@ html[data-theme="light"] .radar-trait-card {
     }
 }
 
-/* ===================================================================
-   COMPREHENSIVE LIGHT THEME OVERRIDES
-   =================================================================== */
-
-/* Scrollbar */
 html[data-theme="light"] ::-webkit-scrollbar-track {
     background: #f0f4f8;
 }
@@ -2636,13 +2595,10 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb {
     background: #0077cc;
 }
 
-/* Particles — fade them in light mode so they don't clash */
-/* Particles — subtle connection network animation in light theme */
 html[data-theme="light"] #particles-canvas {
     opacity: 0.65;
 }
 
-/* Cards — skill, project, education, certification, activity, contact */
 html[data-theme="light"] .skill-card,
 html[data-theme="light"] .project-card,
 html[data-theme="light"] .education-card,
@@ -2667,25 +2623,21 @@ html[data-theme="light"] .contact-card:hover {
     border-color: var(--primary);
 }
 
-/* Project header */
 html[data-theme="light"] .project-header {
     background: linear-gradient(135deg, rgba(0, 119, 204, 0.05), rgba(0, 153, 238, 0.05));
     border-bottom: 1px solid rgba(0, 119, 204, 0.08);
 }
 
-/* Tech tags */
 html[data-theme="light"] .tech-tag {
     background: rgba(0, 119, 204, 0.06);
     border-color: rgba(0, 119, 204, 0.15);
     color: var(--primary);
 }
 
-/* Skills category divider */
 html[data-theme="light"] .skills-category-title {
     border-bottom-color: rgba(0, 119, 204, 0.12);
 }
 
-/* Timeline */
 html[data-theme="light"] .timeline-content {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(8px);
@@ -2703,12 +2655,10 @@ html[data-theme="light"] .timeline-dot {
     box-shadow: 0 0 14px rgba(0, 119, 204, 0.3);
 }
 
-/* Contact section */
 html[data-theme="light"] #contact {
     background: linear-gradient(135deg, rgba(0, 119, 204, 0.04), rgba(0, 153, 238, 0.04));
 }
 
-/* Footer */
 html[data-theme="light"] footer {
     background: #f0f4f8;
 }
@@ -2719,7 +2669,6 @@ html[data-theme="light"] .social-link.github:hover {
     color: var(--primary);
 }
 
-/* Buttons — ensure primary button text stays white in light mode */
 html[data-theme="light"] .btn-primary {
     box-shadow: 0 5px 20px rgba(0, 119, 204, 0.25);
 }
@@ -2733,7 +2682,6 @@ html[data-theme="light"] .btn-secondary:hover {
     box-shadow: 0 8px 24px rgba(0, 119, 204, 0.3);
 }
 
-/* Chat window in light mode */
 html[data-theme="light"] .chat-window {
     background: rgba(255, 255, 255, 0.97);
     border-color: rgba(0, 119, 204, 0.18);
@@ -2840,26 +2788,20 @@ html[data-theme="light"] .chat-messages::-webkit-scrollbar-thumb {
     background: rgba(0, 119, 204, 0.2);
 }
 
-/* About image — glassmorphic card has its own light mode styles */
-
-/* Education card radial glow */
 html[data-theme="light"] .education-card::before {
     opacity: 0.1;
 }
 
-/* Add-on course boxes */
 html[data-theme="light"] .addon-year {
     background: rgba(0, 119, 204, 0.04) !important;
     border-color: rgba(0, 119, 204, 0.12) !important;
 }
 
-/* Proprietary project banner */
 html[data-theme="light"] .project-card div[style*="rgba(255,170,0"] {
     background: rgba(204, 136, 0, 0.08) !important;
     border-color: rgba(204, 136, 0, 0.2) !important;
 }
 
-/* Light theme: project filter pills */
 html[data-theme="light"] .filter-pill {
     background: #ffffff;
     border-color: rgba(0, 119, 204, 0.15);
@@ -2878,7 +2820,6 @@ html[data-theme="light"] .filter-pill.active {
     box-shadow: 0 4px 20px rgba(0, 119, 204, 0.25);
 }
 
-/* Light theme: skills search */
 html[data-theme="light"] .skills-search-box {
     background: #ffffff;
     border-color: rgba(0, 119, 204, 0.15);
@@ -2901,7 +2842,6 @@ html[data-theme="light"] .skill-card.skill-match {
     box-shadow: 0 0 20px rgba(0, 119, 204, 0.2), 0 0 40px rgba(0, 119, 204, 0.08);
 }
 
-/* Light theme: radar chart */
 html[data-theme="light"] .radar-chart-container {
     background: #ffffff;
     border-color: rgba(0, 119, 204, 0.12);
@@ -2921,7 +2861,6 @@ html[data-theme="light"] .radar-dot {
     stroke: #ffffff;
 }
 
-/* Transition for theme switching — smooth color change */
 html, body, nav, .skill-card, .project-card, .education-card,
 .certification-card, .activity-card, .contact-card,
 .timeline-content, .chat-window, footer,
@@ -2931,9 +2870,6 @@ html, body, nav, .skill-card, .project-card, .education-card,
     transition: background 0.35s ease, color 0.35s ease,
                 border-color 0.35s ease, box-shadow 0.35s ease;
 }
-/* ===================================================================
-   FEATURE: PALETTE SELECTOR
-   =================================================================== */
 
 .palette-wrapper {
     position: relative;
@@ -3036,7 +2972,6 @@ html[data-theme="light"] .palette-panel {
     color: var(--primary);
 }
 
-/* Mobile nav dropdown theme overrides for cyberpunk/emerald */
 @media (max-width: 768px) {
     html[data-theme="cyberpunk"] .nav-links.active {
         background: rgba(8, 8, 16, 0.98);
@@ -3049,7 +2984,6 @@ html[data-theme="light"] .palette-panel {
     }
 }
 
-/* Cyberpunk theme: Chat window overrides */
 html[data-theme="cyberpunk"] .chat-window {
     background: rgba(8, 8, 16, 0.97);
     border-color: rgba(var(--primary-rgb), 0.25);
@@ -3062,7 +2996,6 @@ html[data-theme="cyberpunk"] .chat-avatar-status {
     border-color: rgba(8, 8, 16, 0.97);
 }
 
-/* Emerald theme: Chat window overrides */
 html[data-theme="emerald"] .chat-window {
     background: rgba(15, 23, 42, 0.97);
     border-color: rgba(var(--primary-rgb), 0.25);
@@ -3074,10 +3007,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     background: var(--accent);
     border-color: rgba(15, 23, 42, 0.97);
 }
-
-/* ===================================================================
-   FEATURE: PROJECTS WORKFLOW SIMULATOR
-   =================================================================== */
 
 .simulator-section {
     padding: 6rem 0;
@@ -3092,7 +3021,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     gap: 2rem;
 }
 
-/* Tabs Styling */
 .simulator-tabs {
     display: flex;
     flex-wrap: wrap;
@@ -3151,7 +3079,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     margin-top: 0.1rem;
 }
 
-/* Grid layout */
 .simulator-grid {
     display: grid;
     grid-template-columns: 1.8fr 1fr;
@@ -3159,7 +3086,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     align-items: stretch;
 }
 
-/* Visualizer Map */
 .simulator-visualizer {
     display: flex;
     flex-direction: column;
@@ -3180,7 +3106,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     backdrop-filter: blur(15px);
 }
 
-/* SVG Connection Lines */
 .simulator-svg {
     position: absolute;
     top: 0;
@@ -3213,7 +3138,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     }
 }
 
-/* Nodes Styling */
 .simulator-nodes-container {
     position: relative;
     width: 100%;
@@ -3258,7 +3182,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.15);
 }
 
-/* Placement coordinates for desktop snake grid */
 .node-pos-0 { grid-column: 1; grid-row: 1; }
 .node-pos-1 { grid-column: 2; grid-row: 1; }
 .node-pos-2 { grid-column: 3; grid-row: 1; }
@@ -3305,7 +3228,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     margin-top: 0.2rem;
 }
 
-/* Glow Packet */
 .simulator-packet {
     position: absolute;
     width: 14px;
@@ -3334,7 +3256,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     text-align: center;
 }
 
-/* Sidebar Details Panel */
 .simulator-sidebar {
     display: flex;
     flex-direction: column;
@@ -3420,7 +3341,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     line-height: 1.5;
 }
 
-/* Terminal Styling */
 .terminal-panel {
     padding: 0;
     overflow: hidden;
@@ -3465,7 +3385,6 @@ html[data-theme="emerald"] .chat-avatar-status {
     text-align: left;
 }
 
-/* Custom Scrollbar for Terminal */
 .terminal-body::-webkit-scrollbar {
     width: 6px;
 }
@@ -3488,7 +3407,6 @@ html[data-theme="emerald"] .chat-avatar-status {
 .log-line.success { color: var(--accent); }
 .log-line.error { color: #ff5f56; }
 
-/* Light Theme Overrides */
 html[data-theme="light"] .simulator-section {
     background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
 }
@@ -3528,7 +3446,6 @@ html[data-theme="light"] .sim-tab.active {
     border-color: var(--primary);
 }
 
-/* Responsive Grid stack */
 @media (max-width: 992px) {
     .simulator-grid {
         grid-template-columns: 1fr;
@@ -3551,7 +3468,7 @@ html[data-theme="light"] .sim-tab.active {
         grid-template-rows: auto;
         gap: 1.5rem;
     }
-    /* Reset pos for mobile vertical stacking */
+    
     .node-pos-0, .node-pos-1, .node-pos-2, .node-pos-3, 
     .node-pos-4, .node-pos-5, .node-pos-6 {
         grid-column: auto;
@@ -3562,10 +3479,6 @@ html[data-theme="light"] .sim-tab.active {
     }
 }
 
-
-/* ===================================================================
-   FEATURE: DEVELOPER TERMINAL CLI DRAWER
-   =================================================================== */
 .terminal-nav-btn {
     background: transparent;
     border: none;
@@ -3660,7 +3573,7 @@ html[data-theme="light"] .sim-tab.active {
     padding: 1rem 1.5rem;
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
     font-size: 0.82rem;
-    color: #39ff14; /* Matrix Green */
+    color: #39ff14; 
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -3668,7 +3581,6 @@ html[data-theme="light"] .sim-tab.active {
     text-shadow: 0 0 4px rgba(57, 255, 20, 0.3);
 }
 
-/* Custom Scrollbar for Terminal CLI Drawer */
 .terminal-drawer-body::-webkit-scrollbar {
     width: 8px;
 }
@@ -3757,9 +3669,6 @@ html[data-theme="light"] .sim-tab.active {
     z-index: 5;
 }
 
-/* AI Chatbot Upgrades */
-
-/* "Ask AI" Suggestion Chips in Hero */
 .hero-chips {
     display: flex;
     gap: 1rem;
@@ -3816,7 +3725,6 @@ html[data-theme="light"] .sim-tab.active {
     }
 }
 
-/* Audio Waveform Visualizer for Mic Button */
 .mic-visualizer {
     display: none;
     align-items: center;
@@ -3871,7 +3779,7 @@ html[data-theme="light"] .sim-tab.active {
         transform: scaleY(3);
     }
 }
-/* Scroll Progress Bar */
+
 .scroll-progress-bar {
     position: fixed;
     top: 0;
@@ -3883,7 +3791,6 @@ html[data-theme="light"] .sim-tab.active {
     transition: width 0.1s ease-out;
 }
 
-/* Code block styling with copy button */
 .code-block-wrapper {
     position: relative;
     margin: 0.8rem 0;
@@ -3916,7 +3823,6 @@ html[data-theme="light"] .sim-tab.active {
     box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.25);
 }
 
-/* Light mode overrides */
 html[data-theme="light"] .code-copy-btn {
     background: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.12);
@@ -3927,10 +3833,6 @@ html[data-theme="light"] .code-copy-btn:hover {
     border-color: var(--primary);
     color: var(--primary);
 }
-
-/* ==========================================================================
-   TAILORED RESUME GENERATOR MODAL STYLING
-   ========================================================================== */
 
 .resume-modal {
     position: fixed;
@@ -4074,7 +3976,6 @@ html[data-theme="light"] .code-copy-btn:hover {
     border-radius: 10px;
 }
 
-/* Custom switch toggle */
 .ai-toggle-wrapper {
     display: flex;
     align-items: center;
@@ -4193,7 +4094,6 @@ html[data-theme="light"] .code-copy-btn:hover {
     box-shadow: 0 12px 25px rgba(var(--primary-rgb, 0, 212, 255), 0.45);
 }
 
-/* Loading Overlay */
 .resume-loading-overlay {
     position: absolute;
     top: 0;
@@ -4260,7 +4160,6 @@ html[data-theme="light"] .code-copy-btn:hover {
     50% { opacity: 1; }
 }
 
-/* Light Theme Overrides */
 html[data-theme="light"] .resume-modal-container {
     background: rgba(255, 255, 255, 0.94);
     border-color: rgba(0, 119, 204, 0.15);
@@ -4303,7 +4202,6 @@ html[data-theme="light"] .resume-loading-step {
     color: #1d1d1f;
 }
 
-/* Cyberpunk Theme Overrides */
 html[data-theme="cyberpunk"] .resume-modal-container {
     background: rgba(26, 17, 43, 0.85);
     border-color: var(--primary);
@@ -4314,7 +4212,6 @@ html[data-theme="cyberpunk"] .resume-textarea:focus {
     box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
 }
 
-/* Emerald Theme Overrides */
 html[data-theme="emerald"] .resume-modal-container {
     background: rgba(10, 25, 20, 0.85);
     border-color: var(--primary);
@@ -4325,7 +4222,6 @@ html[data-theme="emerald"] .resume-textarea:focus {
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
 }
 
-/* Floating Resume Pill (Circular expandable button on Bottom-Left) */
 .floating-resume-pill {
     position: fixed;
     bottom: 2rem;
@@ -4374,7 +4270,6 @@ html[data-theme="emerald"] .resume-textarea:focus {
     overflow: hidden;
 }
 
-/* Hover & Focus state: Expand width to the right */
 .floating-resume-pill:hover,
 .floating-resume-pill:focus-visible {
     width: 190px;
@@ -4405,7 +4300,6 @@ html[data-theme="emerald"] .resume-textarea:focus {
     }
 }
 
-/* Light Theme Overrides */
 html[data-theme="light"] .floating-resume-pill {
     background: rgba(255, 255, 255, 0.9);
     color: #1d1d1f;
@@ -4419,7 +4313,6 @@ html[data-theme="light"] .floating-resume-pill:hover {
     box-shadow: 0 12px 30px rgba(0, 119, 204, 0.25);
 }
 
-/* Document Type Selector (Resume vs CV) */
 .doc-type-selector {
     margin-bottom: 0.6rem;
 }
