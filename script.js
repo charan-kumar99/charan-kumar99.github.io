@@ -898,6 +898,42 @@ function scrollBottom() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+function getCurrentUserSection() {
+    const resumeModal = document.getElementById('resumeModal');
+    if (resumeModal && (resumeModal.classList.contains('open') || resumeModal.classList.contains('active'))) {
+        return "Match & Generate Resume Modal (where visitors can download Charan's Resume or CV)";
+    }
+    const terminalDrawer = document.getElementById('terminalDrawer') || document.getElementById('matrixTerminal');
+    if (terminalDrawer && (terminalDrawer.classList.contains('open') || terminalDrawer.classList.contains('active') || terminalDrawer.classList.contains('show'))) {
+        return "Developer CLI Terminal Drawer (Matrix-style interactive command-line interface)";
+    }
+
+    const sections = [
+        { id: 'home', name: 'Hero / Introduction Section' },
+        { id: 'about', name: 'About Me Section' },
+        { id: 'skills', name: 'Technical Skills & Competencies Section' },
+        { id: 'projects', name: 'Projects Showcase Section' },
+        { id: 'simulator', name: 'Interactive Project Workflow Simulator Section' },
+        { id: 'experience', name: 'Professional Experience & Career Timeline Section' },
+        { id: 'education', name: 'Education & Academic Journey Section' },
+        { id: 'certifications', name: 'Certifications & Achievements Section' },
+        { id: 'contact', name: 'Contact Me & Location Section' }
+    ];
+
+    const scrollPos = window.scrollY + (window.innerHeight / 3);
+    for (const sec of sections) {
+        const el = document.getElementById(sec.id);
+        if (el) {
+            const top = el.offsetTop;
+            const height = el.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+                return sec.name;
+            }
+        }
+    }
+    return "Portfolio Home Page";
+}
+
 async function sendMessage() {
     const text = chatInputEl.value.trim();
     if (!text || isLoading) return;
@@ -923,8 +959,9 @@ async function sendMessage() {
     try {
         console.log('Sending request to Backend API');
 
+        const activeSection = getCurrentUserSection();
         const messagesToSend = [
-            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'system', content: SYSTEM_PROMPT + `\n\nCURRENT VISITOR SCREEN LOCATION: The visitor is currently looking at the "${activeSection}". If they ask "where am I?", "which section am I in?", "what am I viewing?", "what section is this?", or reference their current location, tell them clearly that they are currently viewing the ${activeSection}.` },
             ...chatHistory.map(msg => ({ role: msg.role === 'assistant' ? 'assistant' : 'user', content: msg.content }))
         ];
 
