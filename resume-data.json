@@ -1,7 +1,7 @@
 {
   "personal": {
     "name": "Charan Kumar",
-    "title": "Software Developer | .NET Developer | Full-Stack Developer",
+    "title": "Software Developer",
     "email": "charansuvarna99@gmail.com",
     "phone": "+91 9380455922",
     "location": "Udupi, Karnataka, India",
@@ -16,10 +16,10 @@
     ]
   },
   "summaryVariants": {
-    "default": "Versatile .NET Developer currently building scalable property management APIs at AGREMATE using Clean Architecture and Docker. Previously developed critical RTGS/NEFT banking microservices at NTSIPL. Experienced in ASP.NET Core, EF Core, SQL Server, PostgreSQL, Redis, and REST APIs. Fast learner and team player pursuing MCA alongside full-time work.",
-    "short": ".NET & Full-Stack Developer with experience building scalable REST APIs, microservices, and web applications using ASP.NET Core, SQL Server, and Clean Architecture.",
-    "long": "I'm a versatile .NET Developer currently building scalable backend APIs at AGREMATE Private Limited — India's smart property management platform. Working with ASP.NET Core, Clean Architecture, Docker, and Swagger to power digital rental agreements, automated payments, and community management for properties across India. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks and vendors. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, and REST API development. Passionate about building secure, scalable solutions and continuously expanding technical knowledge while pursuing an MCA alongside full-time employment.",
-    "tagline": "Versatile .NET Developer building scalable property management APIs at AGREMATE using Clean Architecture & Docker | Previously built critical RTGS/NEFT banking systems using Microservices Architecture | ASP.NET Core, Entity Framework & SQL Server | MCA Student with a passion for continuous learning"
+    "default": "Versatile Software Developer currently building scalable property management APIs at AGREMATE using Clean Architecture and Docker. Previously developed critical RTGS/NEFT banking microservices at NTSIPL. Experienced in ASP.NET Core, EF Core, SQL Server, PostgreSQL, Redis, and REST APIs. Fast learner and team player pursuing MCA alongside full-time work.",
+    "short": "Software Developer with experience building scalable REST APIs, microservices, and web applications using ASP.NET Core, SQL Server, and Clean Architecture.",
+    "long": "I'm a versatile Software Developer currently building scalable backend APIs at AGREMATE Private Limited — India's smart property management platform. Working with ASP.NET Core, Clean Architecture, Docker, and Swagger to power digital rental agreements, automated payments, and community management for properties across India. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks and vendors. Proven expertise in full-stack development, database management across PostgreSQL, MySQL, Oracle Database, and SQL Server, and REST API development. Passionate about building secure, scalable solutions and continuously expanding technical knowledge while pursuing an MCA alongside full-time employment.",
+    "tagline": "Versatile Software Developer building scalable property management APIs at AGREMATE using Clean Architecture & Docker | Previously built critical RTGS/NEFT banking systems using Microservices Architecture | ASP.NET Core, Entity Framework & SQL Server | MCA Student with a passion for continuous learning"
   },
   "skills": {
     "languages": [

@@ -223,7 +223,7 @@ FORMATTING RULES — follow strictly:
 ABOUT CHARAN KUMAR
 ==================
 Name : Charan Kumar
-Role : Software Developer | .NET Developer | Full-Stack Developer
+Role : Software Developer
 Phone : +91 9380455922
 Email : charansuvarna99@gmail.com
 Location : Udupi, Karnataka, India
@@ -233,7 +233,7 @@ Portfolio : https://charan-kumar99.github.io/
 Languages spoken: English, Hindi, Kannada, Tulu (mother tongue is Tulu)
 
 PROFESSIONAL SUMMARY
-Versatile .NET Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, Redis cache, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, SQL Server, and Redis, REST API development, and Docker containerization.
+Versatile Software Developer currently building scalable property management APIs at AGREMATE Private Limited using Clean Architecture, Docker, Redis cache, and Swagger. Previously developed critical RTGS/NEFT payment processing systems using Microservices Architecture at NTSIPL, serving multiple banks. Proven expertise in full-stack development, Clean Architecture, microservices-based application design, database management across PostgreSQL, MySQL, Oracle Database, SQL Server, and Redis, REST API development, and Docker containerization.
 
 EDUCATION
 - **MCA** — MIT, Jaipur (Online) — **Nov 2025 – Present**
