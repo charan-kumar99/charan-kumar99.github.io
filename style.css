@@ -2253,11 +2253,12 @@ footer {
 }
 
 .project-card.filter-hidden {
+    display: none !important;
     opacity: 0;
     transform: scale(0.92) translateY(15px);
     max-height: 0;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow: hidden;
     border: none;
     pointer-events: none;

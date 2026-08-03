@@ -40,10 +40,7 @@
       "React",
       "Bootstrap 5",
       "Flask",
-      "Chart.js",
-      "Mozilla PDF.js",
-      "JSZip",
-      "jsPDF"
+      "Chart.js"
     ],
     "databases": [
       "PostgreSQL",
@@ -51,8 +48,7 @@
       "Oracle Database",
       "SQL Server",
       "SQLite",
-      "Redis",
-      "IndexedDB"
+      "Redis"
     ],
     "tools": [
       "Azure DevOps",
@@ -60,7 +56,9 @@
       "GitHub",
       "Docker",
       "Firebase",
-      "Razorpay"
+      "Supabase",
+      "Razorpay",
+      "Vercel"
     ],
     "architecture": [
       "Microservices Architecture",
@@ -252,176 +250,6 @@
   ],
   "projects": [
     {
-      "name": "DevLens – AI-Powered GitHub Repository Analyzer",
-      "description": "Full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.",
-      "techStack": [
-        "C#",
-        "ASP.NET Core",
-        "React",
-        "GitHub API",
-        "Google Gemini API",
-        "SQLite",
-        "D3.js",
-        "Recharts"
-      ],
-      "links": {
-        "github": "https://github.com/charan-kumar99/DevLens",
-        "demo": "https://devlens-nine.vercel.app/"
-      },
-      "bullets": [
-        {
-          "text": "Designed, architected, and independently built DevLens from scratch as sole author, continuously delivering feature updates and AI analytics.",
-          "tags": [
-            "fullstack",
-            "ai",
-            "github api",
-            "react",
-            "sqlite"
-          ]
-        },
-        {
-          "text": "Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub API.",
-          "tags": [
-            "github api",
-            "rest api",
-            "metrics"
-          ]
-        },
-        {
-          "text": "Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and automated README scoring.",
-          "tags": [
-            "gemini api",
-            "ai",
-            "google gemini"
-          ]
-        },
-        {
-          "text": "Designed interactive data visualizations using D3.js and Recharts with an intelligent caching system for performance.",
-          "tags": [
-            "d3.js",
-            "recharts",
-            "visualization",
-            "caching",
-            "performance"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Money Mate – Personal Finance Management Web Application",
-      "description": "Flask-based personal finance management web application.",
-      "techStack": [
-        "Python",
-        "Flask",
-        "SQLite",
-        "SQLAlchemy",
-        "Chart.js",
-        "Bootstrap 5"
-      ],
-      "links": {
-        "github": "https://github.com/charan-kumar99/Money_Mate",
-        "demo": "https://money-mate-e33v.onrender.com/login"
-      },
-      "bullets": [
-        {
-          "text": "Built a Flask-based web application to track expenses, income, budgets, savings goals, and recurring subscriptions with interactive Chart.js visualizations.",
-          "tags": [
-            "python",
-            "flask",
-            "sqlite",
-            "chart.js",
-            "finance"
-          ]
-        },
-        {
-          "text": "Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.",
-          "tags": [
-            "security",
-            "sqlalchemy",
-            "csv",
-            "sql injection"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Cricket Performance Analyzer – BCA Final Project (Enhanced)",
-      "description": "Browser-based cricket analytics tool with custom metric engine.",
-      "techStack": [
-        "HTML5",
-        "CSS3",
-        "JavaScript (ES6+)",
-        "Chart.js",
-        "LocalStorage"
-      ],
-      "links": {
-        "github": "https://github.com/charan-kumar99/Cricket-Performance-Analyzer",
-        "demo": "https://charan-kumar99.github.io/Cricket-Performance-Analyzer/"
-      },
-      "bullets": [
-        {
-          "text": "Designed a browser-based cricket analytics tool with automatic strike rate calculations, input validation, and interactive Chart.js performance charts.",
-          "tags": [
-            "javascript",
-            "chart.js",
-            "cricket",
-            "analytics"
-          ]
-        },
-        {
-          "text": "Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural language query interface for performance insights.",
-          "tags": [
-            "localstorage",
-            "csv",
-            "natural language"
-          ]
-        },
-        {
-          "text": "Originally developed as the BCA final project and add-on course project; subsequently improved with additional features.",
-          "tags": [
-            "academic",
-            "final project"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Orion – AI-Powered Personal Voice Assistant",
-      "description": "Voice and text-controlled assistant with speech recognition and Google TTS.",
-      "techStack": [
-        "Python",
-        "Flask",
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "Google TTS",
-        "Speech Recognition"
-      ],
-      "links": {
-        "github": "https://github.com/charan-kumar99/Orion",
-        "demo": "https://charan-kumar99.github.io/Orion/"
-      },
-      "bullets": [
-        {
-          "text": "Developed a voice and text-controlled personal assistant with speech recognition input and text-to-speech responses via Google TTS.",
-          "tags": [
-            "python",
-            "speech recognition",
-            "voice assistant",
-            "tts"
-          ]
-        },
-        {
-          "text": "Built a Flask-based web interface supporting website navigation, music playback, Google search queries, and basic task automation.",
-          "tags": [
-            "flask",
-            "web interface",
-            "automation"
-          ]
-        }
-      ]
-    },
-    {
       "name": "Vaulta – Personal & Official Document Manager",
       "description": "Modern, privacy-first, offline-capable Progressive Web Application (PWA) designed to securely store, organize, preview, and share personal and official documents locally on device.",
       "techStack": [
@@ -471,7 +299,66 @@
             "jspdf"
           ]
         }
-      ]
+      ],
+      "dates": "Jul 2026"
+    },
+    {
+      "name": "Migration Master – High-Performance PostgreSQL Migration Tool",
+      "description": "High-performance database migration tool in C# featuring native bulk binary COPY protocol and interactive CLI UI.",
+      "techStack": [
+        "C#",
+        "ASP.NET Core",
+        "PostgreSQL",
+        "Npgsql",
+        "Spectre.Console",
+        "Clean Architecture"
+      ],
+      "links": {
+        "github": "https://github.com/charan-kumar99/Migration-Master"
+      },
+      "bullets": [
+        {
+          "text": "Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (COPY FROM STDIN via Npgsql) for ultra-fast data transfer.",
+          "tags": [
+            "c#",
+            ".net",
+            "postgresql",
+            "npgsql",
+            "binary copy",
+            "database migration"
+          ]
+        },
+        {
+          "text": "Implemented topological dependency sorting using Kahn's Algorithm to automatically resolve table creation and insertion order based on foreign key relationships.",
+          "tags": [
+            "kahns algorithm",
+            "topological sort",
+            "dependency resolution",
+            "foreign keys"
+          ]
+        },
+        {
+          "text": "Engineered full schema and data replication supporting automated primary/foreign key creation, unique/check constraints, custom indexes, identity sequence syncing, and smart staging copy with ON CONFLICT DO NOTHING.",
+          "tags": [
+            "schema replication",
+            "constraints",
+            "indexes",
+            "sequence syncing",
+            "staging copy"
+          ]
+        },
+        {
+          "text": "Designed a modern interactive terminal UI with Spectre.Console featuring connection status checks, table row estimation grids, real-time progress bars, and execution statistics.",
+          "tags": [
+            "spectre.console",
+            "cli",
+            "terminal ui",
+            "interactive",
+            "progress tracking"
+          ]
+        }
+      ],
+      "dates": "Jul 2026"
     },
     {
       "name": "Advanced Developer Portfolio",
@@ -528,7 +415,243 @@
             "github api"
           ]
         }
-      ]
+      ],
+      "dates": "Jun 2026"
+    },
+    {
+      "name": "DevLens – AI-Powered GitHub Repository Analyzer",
+      "description": "Full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.",
+      "techStack": [
+        "C#",
+        "ASP.NET Core",
+        "React",
+        "GitHub API",
+        "Google Gemini API",
+        "SQLite",
+        "D3.js",
+        "Recharts"
+      ],
+      "links": {
+        "github": "https://github.com/charan-kumar99/DevLens",
+        "demo": "https://devlens-nine.vercel.app/"
+      },
+      "bullets": [
+        {
+          "text": "Designed, architected, and independently built DevLens from scratch as sole author, continuously delivering feature updates and AI analytics.",
+          "tags": [
+            "fullstack",
+            "ai",
+            "github api",
+            "react",
+            "sqlite"
+          ]
+        },
+        {
+          "text": "Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub API.",
+          "tags": [
+            "github api",
+            "rest api",
+            "metrics"
+          ]
+        },
+        {
+          "text": "Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and automated README scoring.",
+          "tags": [
+            "gemini api",
+            "ai",
+            "google gemini"
+          ]
+        },
+        {
+          "text": "Designed interactive data visualizations using D3.js and Recharts with an intelligent caching system for performance.",
+          "tags": [
+            "d3.js",
+            "recharts",
+            "visualization",
+            "caching",
+            "performance"
+          ]
+        }
+      ],
+      "dates": "Mar 2026"
+    },
+    {
+      "name": "Orion – AI-Powered Personal Voice Assistant",
+      "description": "Voice and text-controlled assistant with speech recognition and Google TTS.",
+      "techStack": [
+        "Python",
+        "Flask",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Google TTS",
+        "Speech Recognition"
+      ],
+      "links": {
+        "github": "https://github.com/charan-kumar99/Orion",
+        "demo": "https://charan-kumar99.github.io/Orion/"
+      },
+      "bullets": [
+        {
+          "text": "Developed a voice and text-controlled personal assistant with speech recognition input and text-to-speech responses via Google TTS.",
+          "tags": [
+            "python",
+            "speech recognition",
+            "voice assistant",
+            "tts"
+          ]
+        },
+        {
+          "text": "Built a Flask-based web interface supporting website navigation, music playback, Google search queries, and basic task automation.",
+          "tags": [
+            "flask",
+            "web interface",
+            "automation"
+          ]
+        }
+      ],
+      "dates": "Aug 2025"
+    },
+    {
+      "name": "Money Mate – Personal Finance Management Web Application",
+      "description": "Flask-based personal finance management web application.",
+      "techStack": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "SQLAlchemy",
+        "Chart.js",
+        "Bootstrap 5"
+      ],
+      "links": {
+        "github": "https://github.com/charan-kumar99/Money_Mate",
+        "demo": "https://money-mate-e33v.onrender.com/login"
+      },
+      "bullets": [
+        {
+          "text": "Built a Flask-based web application to track expenses, income, budgets, savings goals, and recurring subscriptions with interactive Chart.js visualizations.",
+          "tags": [
+            "python",
+            "flask",
+            "sqlite",
+            "chart.js",
+            "finance"
+          ]
+        },
+        {
+          "text": "Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.",
+          "tags": [
+            "security",
+            "sqlalchemy",
+            "csv",
+            "sql injection"
+          ]
+        }
+      ],
+      "dates": "Aug 2025"
+    },
+    {
+      "name": "Cricket Performance Analyzer – BCA Final Project (Enhanced)",
+      "description": "Browser-based cricket analytics tool with custom metric engine.",
+      "techStack": [
+        "HTML5",
+        "CSS3",
+        "JavaScript (ES6+)",
+        "Chart.js",
+        "LocalStorage"
+      ],
+      "links": {
+        "github": "https://github.com/charan-kumar99/Cricket-Performance-Analyzer",
+        "demo": "https://charan-kumar99.github.io/Cricket-Performance-Analyzer/"
+      },
+      "bullets": [
+        {
+          "text": "Designed a browser-based cricket analytics tool with automatic strike rate calculations, input validation, and interactive Chart.js performance charts.",
+          "tags": [
+            "javascript",
+            "chart.js",
+            "cricket",
+            "analytics"
+          ]
+        },
+        {
+          "text": "Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural language query interface for performance insights.",
+          "tags": [
+            "localstorage",
+            "csv",
+            "natural language"
+          ]
+        },
+        {
+          "text": "Originally developed as the BCA final project and add-on course project; subsequently improved with additional features.",
+          "tags": [
+            "academic",
+            "final project"
+          ]
+        }
+      ],
+      "dates": "Sep 2025"
+    },
+    {
+      "name": "Agremate – Smart Property Management Platform",
+      "description": "Smart property management platform backend with Clean Architecture.",
+      "techStack": [
+        "C#",
+        "ASP.NET Core",
+        ".NET",
+        "EF Core",
+        "PostgreSQL",
+        "SQL Server",
+        "Razorpay",
+        "Docker",
+        "Redis",
+        "REST APIs",
+        "Clean Architecture"
+      ],
+      "links": {
+        "isProprietary": true
+      },
+      "bullets": [
+        {
+          "text": "Developed scalable backend REST APIs and automated property workflows (digital rental agreements, billing) for India's smart property management platform.",
+          "tags": [
+            "c#",
+            "asp.net core",
+            "rest api",
+            "property management",
+            "automation"
+          ]
+        },
+        {
+          "text": "Implemented Clean Architecture with Entity Framework Core and Unit of Work repository patterns, supporting PostgreSQL and SQL Server backend databases.",
+          "tags": [
+            "clean architecture",
+            "ef core",
+            "postgresql",
+            "sql server",
+            "repository pattern",
+            "unit of work"
+          ]
+        },
+        {
+          "text": "Integrated Razorpay payment gateways for secure rent, PG, and automated landlord-tenant payments.",
+          "tags": [
+            "razorpay",
+            "payment gateway",
+            "integration"
+          ]
+        },
+        {
+          "text": "Containerized application environments using Docker to ensure cross-platform scalability and robust API testing pipelines.",
+          "tags": [
+            "docker",
+            "containerization",
+            "api testing",
+            "scalability"
+          ]
+        }
+      ],
+      "dates": "Jun 2026 – Present"
     },
     {
       "name": "RTGS/NEFT Banking System",
@@ -600,124 +723,8 @@
             "deployment"
           ]
         }
-      ]
-    },
-    {
-      "name": "Agremate – Smart Property Management Platform",
-      "description": "Smart property management platform backend with Clean Architecture.",
-      "techStack": [
-        "C#",
-        "ASP.NET Core",
-        ".NET",
-        "EF Core",
-        "PostgreSQL",
-        "SQL Server",
-        "Razorpay",
-        "Docker",
-        "Redis",
-        "REST APIs",
-        "Clean Architecture"
       ],
-      "links": {
-        "isProprietary": true
-      },
-      "bullets": [
-        {
-          "text": "Developed scalable backend REST APIs and automated property workflows (digital rental agreements, billing) for India's smart property management platform.",
-          "tags": [
-            "c#",
-            "asp.net core",
-            "rest api",
-            "property management",
-            "automation"
-          ]
-        },
-        {
-          "text": "Implemented Clean Architecture with Entity Framework Core and Unit of Work repository patterns, supporting PostgreSQL and SQL Server backend databases.",
-          "tags": [
-            "clean architecture",
-            "ef core",
-            "postgresql",
-            "sql server",
-            "repository pattern",
-            "unit of work"
-          ]
-        },
-        {
-          "text": "Integrated Razorpay payment gateways for secure rent, PG, and automated landlord-tenant payments.",
-          "tags": [
-            "razorpay",
-            "payment gateway",
-            "integration"
-          ]
-        },
-        {
-          "text": "Containerized application environments using Docker to ensure cross-platform scalability and robust API testing pipelines.",
-          "tags": [
-            "docker",
-            "containerization",
-            "api testing",
-            "scalability"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Migration Master – High-Performance PostgreSQL Migration Tool",
-      "description": "High-performance database migration tool in C# featuring native bulk binary COPY protocol and interactive CLI UI.",
-      "techStack": [
-        "C#",
-        "ASP.NET Core",
-        "PostgreSQL",
-        "Npgsql",
-        "Spectre.Console",
-        "Clean Architecture"
-      ],
-      "links": {
-        "github": "https://github.com/charan-kumar99/Migration-Master"
-      },
-      "bullets": [
-        {
-          "text": "Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (COPY FROM STDIN via Npgsql) for ultra-fast data transfer.",
-          "tags": [
-            "c#",
-            ".net",
-            "postgresql",
-            "npgsql",
-            "binary copy",
-            "database migration"
-          ]
-        },
-        {
-          "text": "Implemented topological dependency sorting using Kahn's Algorithm to automatically resolve table creation and insertion order based on foreign key relationships.",
-          "tags": [
-            "kahns algorithm",
-            "topological sort",
-            "dependency resolution",
-            "foreign keys"
-          ]
-        },
-        {
-          "text": "Engineered full schema and data replication supporting automated primary/foreign key creation, unique/check constraints, custom indexes, identity sequence syncing, and smart staging copy with ON CONFLICT DO NOTHING.",
-          "tags": [
-            "schema replication",
-            "constraints",
-            "indexes",
-            "sequence syncing",
-            "staging copy"
-          ]
-        },
-        {
-          "text": "Designed a modern interactive terminal UI with Spectre.Console featuring connection status checks, table row estimation grids, real-time progress bars, and execution statistics.",
-          "tags": [
-            "spectre.console",
-            "cli",
-            "terminal ui",
-            "interactive",
-            "progress tracking"
-          ]
-        }
-      ]
+      "dates": "Dec 2025 – Jun 2026"
     }
   ],
   "education": [

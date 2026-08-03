@@ -264,9 +264,9 @@ WORK EXPERIENCE
 
 SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
-- Frameworks  : **ASP.NET Core**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**, **Mozilla PDF.js**, **JSZip**, **jsPDF**
-- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**, **IndexedDB**
-- Tools       : **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Razorpay**, **Vercel Serverless**, **localStorage**, **Web Speech API**, **HTML5 Canvas**, **PWA (Service Worker)**, **Web Share API**
+- Frameworks  : **ASP.NET Core**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**
+- Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**
+- Tools & Cloud: **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Supabase** (Auth & Cloud Backend Services), **Razorpay**, **Vercel**
 - API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
@@ -653,7 +653,7 @@ const SUGGESTION_SETS = [
         { icon: '🗃️', text: 'Does he work with Oracle?' }
     ],
     [
-        { icon: '🌍', text: 'What is API globalization?' },
+        { icon: '⚡', text: 'Does he work with Supabase?' },
         { icon: '🏏', text: 'Has he captained any sports team?' },
         { icon: '📜', text: 'What internships has he done?' },
         { icon: '🔐', text: 'What is AML in banking?' }
@@ -1074,19 +1074,25 @@ function autoResizeInput(el) {
         pill.classList.add('active');
 
         const filter = pill.dataset.filter;
+        let visibleCount = 0;
 
-        cards.forEach((card, i) => {
+        cards.forEach((card) => {
             const tags = card.dataset.tags || '';
-            const show = filter === 'all' || tags.split(',').includes(filter);
-
-            card.style.transitionDelay = show ? `${i * 0.06}s` : '0s';
+            const show = filter === 'all' || tags.split(',').map(t => t.trim().toLowerCase()).includes(filter.toLowerCase());
 
             if (show) {
+                visibleCount++;
                 card.classList.remove('filter-hidden');
-                
                 card.classList.add('visible');
+                card.style.transitionDelay = `${visibleCount * 0.05}s`;
+                
+                const numElem = card.querySelector('.project-number');
+                if (numElem) {
+                    numElem.textContent = visibleCount < 10 ? `0${visibleCount}` : `${visibleCount}`;
+                }
             } else {
                 card.classList.add('filter-hidden');
+                card.style.transitionDelay = '0s';
             }
         });
 
@@ -2478,25 +2484,26 @@ document.addEventListener('click', e => {
 
         skills: `Charan Kumar's Developer Skill Stack:
   Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
-  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database, Redis, IndexedDB
-  DevOps/Tools: Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Razorpay, Vercel Serverless, PWA (Service Worker), Web Share API, localStorage, Web Speech API, HTML5 Canvas
-  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Chart.js, Mozilla PDF.js, JSZip, jsPDF`,
+  Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database, SQLite, Redis
+  Cloud/Tools:  Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Supabase, Razorpay, Vercel
+  Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Bootstrap 5, Flask, Chart.js`,
 
         experience: `Professional History:
   - Software Developer (Hybrid) @ AGREMATE Private Limited (Jun 2026 - Present)
     Building scalable backend REST APIs and automated property management workflows.
-  - Backend Intern (Onsite) @ NTSIPL (Dec 2025 - May 2026)
+  - .NET Developer (Onsite) @ NTSIPL (Dec 2025 - Jun 2026)
     Contributed to enterprise RTGS/NEFT Microservices payment processing networks.`,
 
-        projects: `Featured Projects:
-  1. DevLens - AI GitHub Repo Analyzer (ASP.NET Core, React, Google Gemini API)
-  2. Money Mate - Personal Finance Manager (Python, Flask, SQLAlchemy, Chart.js)
-  3. Cricket Performance Analyzer - Sports Metrics Web App (ES6 JS, Chart.js)
-  4. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS Speech API)
-  5. Vaulta - Personal & Official Document Manager (Offline PWA, IndexedDB, PDF.js)
-  6. Advanced Developer Portfolio - Immersive Next.js/React portfolio with 3D elements
-  7. Migration Master - PostgreSQL Binary COPY Migration Tool (C#, .NET, Spectre.Console)
-  8. Proprietary Enterprise Projects (Agremate platform, RTGS/NEFT Payment Routing)`,
+        projects: `Featured Projects (Recent First -> Company Projects Last):
+  1. Vaulta - Personal & Official Document Manager (Offline PWA, PDF.js, JSZip) [Jul 2026]
+  2. Migration Master - PostgreSQL Binary COPY Migration Tool (C#, Spectre.Console) [Jul 2026]
+  3. Advanced Developer Portfolio - Immersive Next.js/React portfolio with 3D elements [Jun 2026]
+  4. DevLens - AI GitHub Repo Analyzer (ASP.NET Core, React, Google Gemini API) [Mar 2026]
+  5. Orion Assistant - Speech Recognition & Google TTS Automation (Flask, JS) [Aug 2025]
+  6. Money Mate - Personal Finance Manager (Python, Flask, SQLAlchemy, Chart.js) [Aug 2025]
+  7. Cricket Performance Analyzer - Sports Metrics Web App (ES6 JS, Chart.js) [BCA Project / Sep 2025]
+  8. Proprietary Enterprise: AGREMATE Smart Property Platform (Clean Architecture, Docker) [Jun 2026 - Present]
+  9. Proprietary Enterprise: RTGS/NEFT Banking System (NTSIPL Microservices) [Dec 2025 - Jun 2026]`,
 
         contact: `Contact Details:
   - Email:      charansuvarna99@gmail.com

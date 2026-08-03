@@ -193,9 +193,14 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">
-                        <svg width="32" height="32" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
-                            <path d="M117.5 34L65.5 4a3 3 0 00-3 0L10.5 34a3 3 0 00-1.5 2.6v60.8a3 3 0 001.5 2.6l52 30a3 3 0 003 0l52-30a3 3 0 001.5-2.6V36.6a3 3 0 00-1.5-2.6z" fill="#00599C"/>
-                            <path d="M85.6 42.4a31.4 31.4 0 00-21.6-8.4c-17.4 0-31.5 14.1-31.5 31.5s14.1 31.5 31.5 31.5c8.6 0 16.4-3.4 22.1-9a2 2 0 00.3-2.6l-5.6-7.8a2 2 0 00-2.6-.4 19.3 19.3 0 01-13.7 5.4c-10.7 0-19.3-8.6-19.3-19.3s8.6-19.3 19.3-19.3c5.3 0 10.1 2.1 13.6 5.5a2 2 0 002.7-.2l5.9-7.3a2 2 0 00-.4-2.6z" fill="#FFFFFF"/>
+                        <svg width="58" height="58" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle;">
+                            <defs>
+                                <linearGradient id="cShieldFillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--primary, #00d4ff)" />
+                                    <stop offset="100%" stop-color="var(--accent, #00ffaa)" />
+                                </linearGradient>
+                            </defs>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M64 4L116 34V94L64 124L12 94V34L64 4ZM91 44C84 35.5 74 30 62.5 30C43.7 30 28.5 45.2 28.5 64C28.5 82.8 43.7 98 62.5 98C74 98 84 92.5 91 84L78.5 73.5C74.5 78.5 69 81 62.5 81C53.1 81 45.5 73.4 45.5 64C45.5 54.6 53.1 47 62.5 47C69 47 74.5 49.5 78.5 54.5L91 44Z" fill="url(#cShieldFillGrad)"/>
                         </svg>
                     </div>
                     <div class="skill-name">C</div>
@@ -254,18 +259,6 @@
                     <div class="skill-icon"><i class="devicon-chartjs-plain"></i></div>
                     <div class="skill-name">Chart.js</div>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                    <div class="skill-name">Mozilla PDF.js</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-file-zipper"></i></div>
-                    <div class="skill-name">JSZip</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-file-lines"></i></div>
-                    <div class="skill-name">jsPDF</div>
-                </div>
             </div>
         </div>
 
@@ -295,10 +288,6 @@
                 <div class="skill-card">
                     <div class="skill-icon"><i class="devicon-redis-plain"></i></div>
                     <div class="skill-name">Redis</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-box-archive"></i></div>
-                    <div class="skill-name">IndexedDB</div>
                 </div>
             </div>
         </div>
@@ -338,6 +327,20 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">
+                        <svg viewBox="-3 -2 30 28" xmlns="http://www.w3.org/2000/svg" style="width: 3.5rem; height: 3.5rem; display: block;">
+                            <defs>
+                                <linearGradient id="supabaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--primary)" />
+                                    <stop offset="100%" stop-color="var(--accent)" />
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#supabaseGrad)" d="M13.35 24V14.887h6.666c1.611 0 2.493-1.87.1478-3.085L6.096 0v9.113H.128c-1.611 0-2.493 1.87-.148 3.085L13.35 24z"/>
+                        </svg>
+                    </div>
+                    <div class="skill-name">Supabase</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 3.5rem; height: 3.5rem; display: block;">
                             <defs>
                                 <linearGradient id="razorpayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -352,27 +355,7 @@
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon"><i class="devicon-vercel-original"></i></div>
-                    <div class="skill-name">Vercel Serverless</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
-                    <div class="skill-name">localStorage</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-microphone-lines"></i></div>
-                    <div class="skill-name">Web Speech API</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-palette"></i></div>
-                    <div class="skill-name">HTML5 Canvas</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                    <div class="skill-name">PWA (Service Worker)</div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                    <div class="skill-name">Web Share API</div>
+                    <div class="skill-name">Vercel</div>
                 </div>
             </div>
         </div>
@@ -437,146 +420,16 @@
             <button class="filter-pill" data-filter="javascript">JavaScript</button>
             <button class="filter-pill" data-filter="fullstack">Full Stack</button>
             <button class="filter-pill" data-filter="mobile">Mobile</button>
-            <button class="filter-pill" data-filter="ai">AI / ML</button>
+            <button class="filter-pill" data-filter="ai">AI Powered</button>
         </div>
         <div class="projects-grid">
 
-            <div class="project-card fade-in" data-tags="dotnet,javascript,fullstack,ai">
+            <div class="project-card fade-in" data-tags="javascript,fullstack,pwa,mobile">
                 <div class="project-header">
                     <div class="project-number">01</div>
-                    <h3 class="project-title">DevLens &ndash; AI-Powered GitHub Repository Analyzer</h3>
-                    <ul class="project-description">
-                        <li>Built a full-stack web application providing comprehensive, AI-driven insights into GitHub
-                            repositories.</li>
-                        <li>Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub
-                            API.</li>
-                        <li>Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and
-                            automated README scoring.</li>
-                        <li>Designed interactive data visualizations using D3.js and Recharts with an intelligent
-                            caching system for performance.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">ASP.NET Core</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">GitHub API</span>
-                        <span class="tech-tag">Google Gemini API</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">D3.js</span>
-                        <span class="tech-tag">Recharts</span>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Jul 2026</span>
                     </div>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://github.com/charan-kumar99/DevLens" target="_blank" class="btn btn-primary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>&#128025; View on GitHub</span>
-                        </a>
-                        <a href="https://devlens-nine.vercel.app/" target="_blank" class="btn btn-secondary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>🌐 Live Demo</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-tags="python,fullstack">
-                <div class="project-header">
-                    <div class="project-number">02</div>
-                    <h3 class="project-title">Money Mate &ndash; Personal Finance Management Web Application</h3>
-                    <ul class="project-description">
-                        <li>Built a Flask-based web application to track expenses, income, budgets, savings goals, and
-                            recurring subscriptions with interactive Chart.js visualizations.</li>
-                        <li>Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and
-                            security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.
-                        </li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">SQLAlchemy</span>
-                        <span class="tech-tag">Chart.js</span>
-                        <span class="tech-tag">Bootstrap 5</span>
-                    </div>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://github.com/charan-kumar99/Money_Mate" target="_blank" class="btn btn-primary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>&#128025; View on GitHub</span>
-                        </a>
-                        <a href="https://money-mate-e33v.onrender.com/login" target="_blank" class="btn btn-secondary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>🌐 Live Demo</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-tags="javascript">
-                <div class="project-header">
-                    <div class="project-number">03</div>
-                    <h3 class="project-title">Cricket Performance Analyzer &ndash; BCA Final Project (Enhanced)</h3>
-                    <ul class="project-description">
-                        <li>Designed a browser-based cricket analytics tool with automatic strike rate calculations,
-                            input validation, and interactive Chart.js performance charts.</li>
-                        <li>Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural
-                            language query interface for performance insights.</li>
-                        <li>Originally developed as the BCA final project and add-on course project; subsequently
-                            improved with additional features.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript (ES6+)</span>
-                        <span class="tech-tag">Chart.js</span>
-                        <span class="tech-tag">LocalStorage</span>
-                    </div>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://github.com/charan-kumar99/Cricket-Performance-Analyzer" target="_blank"
-                            class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>&#128025; View on GitHub</span>
-                        </a>
-                        <a href="https://charan-kumar99.github.io/Cricket-Performance-Analyzer/" target="_blank" class="btn btn-secondary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>🌐 Live Demo</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-tags="python,javascript,ai">
-                <div class="project-header">
-                    <div class="project-number">04</div>
-                    <h3 class="project-title">Orion &ndash; AI-Powered Personal Voice Assistant</h3>
-                    <ul class="project-description">
-                        <li>Developed a voice and text-controlled personal assistant with speech recognition input and
-                            text-to-speech responses via Google TTS.</li>
-                        <li>Built a Flask-based web interface supporting website navigation, music playback, Google
-                            search queries, and basic task automation.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Flask</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">Google TTS</span>
-                        <span class="tech-tag">Speech Recognition</span>
-                    </div>
-                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://github.com/charan-kumar99/Orion" target="_blank" class="btn btn-primary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>&#128025; View on GitHub</span>
-                        </a>
-                        <a href="https://charan-kumar99.github.io/Orion/" target="_blank" class="btn btn-secondary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>🌐 Live Demo</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-tags="javascript,fullstack,pwa">
-                <div class="project-header">
-                    <div class="project-number">05</div>
                     <h3 class="project-title">Vaulta &ndash; Personal &amp; Official Document Manager</h3>
                     <ul class="project-description">
                         <li>Built a modern, privacy-first offline Progressive Web Application (PWA) to securely store, organize, preview, and share personal and official documents completely on-device.</li>
@@ -606,9 +459,42 @@
                 </div>
             </div>
 
+            <div class="project-card fade-in" data-tags="dotnet">
+                <div class="project-header">
+                    <div class="project-number">02</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Jul 2026</span>
+                    </div>
+                    <h3 class="project-title">Migration Master &ndash; High-Performance PostgreSQL Migration Tool</h3>
+                    <ul class="project-description">
+                        <li>Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (<code style="color:var(--accent-cyan);">COPY FROM STDIN</code> via Npgsql) for ultra-fast data transfer.</li>
+                        <li>Implemented topological dependency sorting using Kahn's Algorithm to automatically resolve table creation and insertion order based on foreign key relationships.</li>
+                        <li>Engineered full schema &amp; data replication supporting automated primary/foreign key creation, unique/check constraints, custom indexes, identity sequence syncing, and smart staging copy with <code style="color:var(--accent-cyan);">ON CONFLICT DO NOTHING</code>.</li>
+                        <li>Designed a modern interactive terminal UI with Spectre.Console featuring connection status checks, table row estimation grids, real-time progress bars, and execution statistics.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">.NET</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Npgsql</span>
+                        <span class="tech-tag">Spectre.Console</span>
+                        <span class="tech-tag">Clean Architecture</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://github.com/charan-kumar99/Migration-Master" target="_blank" class="btn btn-primary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>&#128025; View on GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="project-card fade-in" data-tags="javascript,fullstack,ai">
                 <div class="project-header">
-                    <div class="project-number">06</div>
+                    <div class="project-number">03</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Jun 2026</span>
+                    </div>
                     <h3 class="project-title">Advanced Developer Portfolio</h3>
                     <ul class="project-description">
                         <li>Developed an immersive, high-performance developer portfolio featuring responsive 3D visual environments, real-time metrics integrations, and an AI chat assistant.</li>
@@ -639,9 +525,178 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in" data-tags="dotnet,fullstack">
+            <div class="project-card fade-in" data-tags="dotnet,javascript,fullstack,ai">
+                <div class="project-header">
+                    <div class="project-number">04</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Mar 2026</span>
+                    </div>
+                    <h3 class="project-title">DevLens &ndash; AI-Powered GitHub Repository Analyzer</h3>
+                    <ul class="project-description">
+                        <li>Built a full-stack web application providing comprehensive, AI-driven insights into GitHub repositories.</li>
+                        <li>Implemented real-time repository analysis covering 40+ metrics via the authenticated GitHub API.</li>
+                        <li>Integrated Google Gemini API for intelligent architectural summaries, risk assessments, and automated README scoring.</li>
+                        <li>Designed interactive data visualizations using D3.js and Recharts with an intelligent caching system for performance.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">ASP.NET Core</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">GitHub API</span>
+                        <span class="tech-tag">Google Gemini API</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Recharts</span>
+                    </div>
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://github.com/charan-kumar99/DevLens" target="_blank" class="btn btn-primary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>&#128025; View on GitHub</span>
+                        </a>
+                        <a href="https://devlens-nine.vercel.app/" target="_blank" class="btn btn-secondary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>🌐 Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-tags="python,javascript,ai">
+                <div class="project-header">
+                    <div class="project-number">05</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Aug 2025</span>
+                    </div>
+                    <h3 class="project-title">Orion &ndash; AI-Powered Personal Voice Assistant</h3>
+                    <ul class="project-description">
+                        <li>Developed a voice and text-controlled personal assistant with speech recognition input and text-to-speech responses via Google TTS.</li>
+                        <li>Built a Flask-based web interface supporting website navigation, music playback, Google search queries, and basic task automation.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">Google TTS</span>
+                        <span class="tech-tag">Speech Recognition</span>
+                    </div>
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://github.com/charan-kumar99/Orion" target="_blank" class="btn btn-primary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>&#128025; View on GitHub</span>
+                        </a>
+                        <a href="https://charan-kumar99.github.io/Orion/" target="_blank" class="btn btn-secondary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>🌐 Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-tags="python,fullstack,ai">
+                <div class="project-header">
+                    <div class="project-number">06</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Aug 2025</span>
+                    </div>
+                    <h3 class="project-title">Money Mate &ndash; Personal Finance Management Web Application</h3>
+                    <ul class="project-description">
+                        <li>Built a Flask-based web application to track expenses, income, budgets, savings goals, and recurring subscriptions with interactive Chart.js visualizations.</li>
+                        <li>Implemented multi-currency support (INR, USD, EUR, GBP, JPY), CSV import/export, and security features including CSRF protection and SQL injection prevention via SQLAlchemy ORM.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">Bootstrap 5</span>
+                    </div>
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://github.com/charan-kumar99/Money_Mate" target="_blank" class="btn btn-primary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>&#128025; View on GitHub</span>
+                        </a>
+                        <a href="https://money-mate-e33v.onrender.com/login" target="_blank" class="btn btn-secondary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>🌐 Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-tags="javascript">
                 <div class="project-header">
                     <div class="project-number">07</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent); background: rgba(0,255,170,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(0,255,170,0.3);">📅 Sep 2025</span>
+                    </div>
+                    <h3 class="project-title">Cricket Performance Analyzer &ndash; BCA Final Project (Enhanced)</h3>
+                    <ul class="project-description">
+                        <li>Designed a browser-based cricket analytics tool with automatic strike rate calculations, input validation, and interactive Chart.js performance charts.</li>
+                        <li>Implemented CSV import/export, LocalStorage-based data persistence, and an AI-style natural language query interface for performance insights.</li>
+                        <li>Originally developed as the BCA final project and add-on course project; subsequently improved with additional features.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript (ES6+)</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">LocalStorage</span>
+                    </div>
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://github.com/charan-kumar99/Cricket-Performance-Analyzer" target="_blank"
+                            class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>&#128025; View on GitHub</span>
+                        </a>
+                        <a href="https://charan-kumar99.github.io/Cricket-Performance-Analyzer/" target="_blank" class="btn btn-secondary"
+                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
+                            <span>🌐 Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-tags="dotnet">
+                <div class="project-header">
+                    <div class="project-number">08</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: #ffaa00; background: rgba(255,170,0,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(255,170,0,0.3);">📅 Jun 2026 – Present (AGREMATE Project)</span>
+                    </div>
+                    <h3 class="project-title">Agremate &ndash; Smart Property Management Platform</h3>
+                    <ul class="project-description">
+                        <li>Developed scalable backend REST APIs and automated property workflows (digital rental agreements, billing) for India's smart property management platform.</li>
+                        <li>Implemented Clean Architecture with Entity Framework Core and Unit of Work repository patterns, supporting PostgreSQL and SQL Server backend databases.</li>
+                        <li>Integrated Razorpay payment gateways for secure rent, PG, and automated landlord-tenant payments.</li>
+                        <li>Containerized application environments using Docker to ensure cross-platform scalability and robust API testing pipelines.</li>
+                    </ul>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">ASP.NET Core</span>
+                        <span class="tech-tag">.NET</span>
+                        <span class="tech-tag">EF Core</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">SQL Server</span>
+                        <span class="tech-tag">Razorpay</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">Clean Architecture</span>
+                    </div>
+                    <div
+                        style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.3); border-radius: 10px; color: #ffaa00; font-size: 0.95rem;">
+                        &#128274; Proprietary Enterprise Project (AGREMATE)
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" data-tags="dotnet,fullstack">
+                <div class="project-header">
+                    <div class="project-number">09</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: #ffaa00; background: rgba(255,170,0,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(255,170,0,0.3);">📅 Dec 2025 – Jun 2026 (NTSIPL Project)</span>
+                    </div>
                     <h3 class="project-title">RTGS/NEFT Banking System</h3>
                     <ul class="project-description">
                         <li>Enterprise banking payment processing system built on Microservices Architecture, serving multiple banks and vendors; handles RTGS and NEFT services with Blazor and Razor Pages.</li>
@@ -669,64 +724,7 @@
                     </div>
                     <div
                         style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.3); border-radius: 10px; color: #ffaa00; font-size: 0.95rem;">
-                        &#128274; Proprietary Enterprise Project
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-tags="dotnet,fullstack">
-                <div class="project-header">
-                    <div class="project-number">08</div>
-                    <h3 class="project-title">Agremate &ndash; Smart Property Management Platform</h3>
-                    <ul class="project-description">
-                        <li>Developed scalable backend REST APIs and automated property workflows (digital rental agreements, billing) for India's smart property management platform.</li>
-                        <li>Implemented Clean Architecture with Entity Framework Core and Unit of Work repository patterns, supporting PostgreSQL and SQL Server backend databases.</li>
-                        <li>Integrated Razorpay payment gateways for secure rent, PG, and automated landlord-tenant payments.</li>
-                        <li>Containerized application environments using Docker to ensure cross-platform scalability and robust API testing pipelines.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">ASP.NET Core</span>
-                        <span class="tech-tag">.NET</span>
-                        <span class="tech-tag">EF Core</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">SQL Server</span>
-                        <span class="tech-tag">Razorpay</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">REST APIs</span>
-                        <span class="tech-tag">Clean Architecture</span>
-                    </div>
-                    <div
-                        style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.3); border-radius: 10px; color: #ffaa00; font-size: 0.95rem;">
-                        &#128274; Proprietary Enterprise Project
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card fade-in" data-tags="dotnet,fullstack">
-                <div class="project-header">
-                    <div class="project-number">09</div>
-                    <h3 class="project-title">Migration Master &ndash; High-Performance PostgreSQL Migration Tool</h3>
-                    <ul class="project-description">
-                        <li>Built a high-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (<code style="color:var(--accent-cyan);">COPY FROM STDIN</code> via Npgsql) for ultra-fast data transfer.</li>
-                        <li>Implemented topological dependency sorting using Kahn's Algorithm to automatically resolve table creation and insertion order based on foreign key relationships.</li>
-                        <li>Engineered full schema &amp; data replication supporting automated primary/foreign key creation, unique/check constraints, custom indexes, identity sequence syncing, and smart staging copy with <code style="color:var(--accent-cyan);">ON CONFLICT DO NOTHING</code>.</li>
-                        <li>Designed a modern interactive terminal UI with Spectre.Console featuring connection status checks, table row estimation grids, real-time progress bars, and execution statistics.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">.NET</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Npgsql</span>
-                        <span class="tech-tag">Spectre.Console</span>
-                        <span class="tech-tag">Clean Architecture</span>
-                    </div>
-                    <div style="margin-top: 1.5rem;">
-                        <a href="https://github.com/charan-kumar99/Migration-Master" target="_blank" class="btn btn-primary"
-                            style="padding: 0.8rem 2rem; font-size: 0.95rem;">
-                            <span>&#128025; View on GitHub</span>
-                        </a>
+                        &#128274; Proprietary Enterprise Project (NTSIPL)
                     </div>
                 </div>
             </div>
@@ -1314,20 +1312,6 @@
                 <div class="contact-label">GitHub</div>
                 <div class="contact-value">
                     <a href="https://github.com/charan-kumar99" target="_blank">charan-kumar99</a>
-                </div>
-            </div>
-
-            <div class="contact-card fade-in">
-                <div class="contact-icon">
-                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
-                            fill="#00D4FF" />
-                    </svg>
-                </div>
-                <div class="contact-label">Advanced Portfolio</div>
-                <div class="contact-value">
-                    <a href="https://advanced-portfolio-sandy.vercel.app/" target="_blank">advanced-portfolio-sandy.vercel.app</a>
                 </div>
             </div>
 
