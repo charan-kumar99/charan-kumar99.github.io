@@ -3912,6 +3912,7 @@ html[data-theme="light"] .code-copy-btn:hover {
 .modal-title-text {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -4171,6 +4172,7 @@ html[data-theme="light"] .resume-modal-container {
 html[data-theme="light"] .modal-title-text {
     background: linear-gradient(135deg, #0077cc 0%, #00a884 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
