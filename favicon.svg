@@ -1,0 +1,16 @@
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CK logo">
+  <defs>
+    <linearGradient id="ckGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#00ffaa"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#ckGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <!-- C -->
+    <path d="M 129.96 81.43 A 60 60 0 1 0 129.96 158.57"/>
+    <!-- K -->
+    <line x1="156" y1="60" x2="156" y2="180"/>
+    <line x1="156" y1="120" x2="216" y2="60"/>
+    <line x1="156" y1="120" x2="216" y2="180"/>
+  </g>
+</svg>
