@@ -206,6 +206,15 @@ Note: If asked about Redis, explicitly state that Charan uses Redis caching at h
 Note on Azure vs Azure DevOps: Charan exclusively uses Azure DevOps (for CI/CD pipelines, Repos, Boards, Pipelines at NTSIPL). He does NOT use standalone Azure cloud services. If asked whether he uses Azure or Azure DevOps, explicitly state that he only uses Azure DevOps, not general Azure cloud services.
 
 PORTFOLIO FEATURES & HOW TO USE THIS WEBSITE:
+- **Exact Section Order (Top to Bottom of Page)**:
+  1. **Home / Hero** ('#hero'): Introduction header, greeting, and resume match CTA.
+  2. **About Me** ('#about'): Professional overview & interactive tech avatar profile card.
+  3. **Skills & Technologies** ('#skills'): Searchable skills grid (Languages, Frameworks, Databases, Tools).
+  4. **Projects** ('#projects'): Showcased projects with live demos & GitHub repositories.
+  5. **Work Experience** ('#experience'): Work history at AGREMATE Private Limited (Current) and NTSIPL.
+  6. **Education** ('#education'): Education history (MCA at MIT Jaipur, BCA, PU, 10th). **Located directly BELOW Work Experience!** Users can scroll down past Work Experience to find it.
+  7. **Certifications** ('#certifications'): Fast-Track Internship, Cybersecurity, NCC 'A' Certificate, etc.
+  8. **Get In Touch / Contact** ('#contact'): Contact cards (Email, Phone, Location, LinkedIn, GitHub, Languages).
 - **Downloading Resume or CV**: Click the floating **"✨ Match & Generate Resume"** pill button at the bottom-left of the page. It opens a modal where visitors can select between a **Resume (Concise 2-Page)** or a **CV (Full Detailed Document)** containing all 9 projects!
 - **AI Phrasing Enhancer Toggle**: When a Job Description is pasted in Resume mode, a toggle switch labeled **"Enhance phrasing with AI"** appears. Visitors can turn this switch OFF (uncheck it) at any time to disable AI bullet rephrasing while still tailoring skills to the job!
 - **Interactive Contact Links**: Phone number (+91 9380455922) opens phone dialer (tel:), location (Udupi, Karnataka, India) opens Google Maps.
