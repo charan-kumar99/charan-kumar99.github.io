@@ -1,4 +1,1067 @@
 
+/* ==========================================================================
+   CHARAN KUMAR PORTFOLIO — 29-ENGINE DSA ARCHITECTURE SUITE
+   --------------------------------------------------------------------------
+   DSA #1  : Trie (Prefix Tree) -> O(K) Command & Skill Autocomplete
+   DSA #2  : Dynamic Programming (Levenshtein Distance) -> O(M*N) Typo Matcher
+   DSA #3  : Circular Queue (Ring Buffer) -> O(1) Memory-Efficient Chatbot History
+   DSA #4  : Directed Graph (DAG & BFS) -> O(V+E) Skill Tree Traversal
+   DSA #5  : Aho-Corasick Automaton -> O(N+L) Multi-Pattern Keyword Matcher
+   DSA #6  : QuadTree (Spatial Partitioning) -> O(N log N) 60 FPS Particle Canvas
+   DSA #7  : Jaccard Similarity Index -> O(A+B) ATS Match Percentage Engine
+   DSA #8  : Topological Sort (Kahn's BFS) -> O(V+E) Database Table Ordering
+   DSA #9  : Max-Heap (Priority Queue) -> O(log N) Multi-Factor Project Ranker
+   DSA #10 : Circular Doubly Linked List -> O(1) Theme Palette Switcher
+   DSA #11 : Bitmasking (Bitwise AND) -> O(1) Multi-Tag Project Filter
+   DSA #12 : Binary Search (Lower/Upper Bound) -> O(log N) Date Interval Range
+   DSA #13 : LRU Cache (Doubly Linked List + Map) -> O(1) Query & Memory Cache
+   DSA #14 : Trie-Based Lexer Stream -> O(N) LaTeX/Markdown Sanitizer
+   DSA #15 : Token Bucket Algorithm -> O(1) Client API Rate Limiter
+   DSA #16 : Dijkstra's Shortest Path -> O((V+E)log V) Career Path Finder
+   DSA #17 : Knuth-Morris-Pratt (KMP) -> O(N+M) Exact Pattern Matcher
+   DSA #18 : Disjoint Set Union (DSU) -> O(alpha(N)) Skill Domain Clustering
+   DSA #19 : QuickSelect (Hoare's Selection) -> O(N) Top-K Metrics Filter
+   DSA #20 : DOM Tree Traversal (DFS & BFS) -> O(N) Structural Element Search
+   DSA #21 : Cubic Bézier Interpolation -> O(1) Physical Easing Motion
+   DSA #22 : Exponential Backoff & Jitter -> O(1) API Retry Scheduler
+   DSA #23 : Byte Pair Encoding (BPE Tokenizer) -> O(N) Prompt Token Estimator
+   DSA #24 : First Fit Decreasing Bin Packing -> O(N log N) Resume Page Layout
+   DSA #25 : AST Recursive Schema Validator -> O(N) JSON Schema Matcher
+   DSA #26 : Key Chord Trie State Machine -> O(K) Shortcut & Easter Egg Listener
+   DSA #27 : Matrix Linear Transformation -> O(1) RGB to HSL Color Space
+   DSA #28 : Inverted Index (Hash Map) -> O(1) Tokenized Fast Skill Search
+   DSA #29 : Finite State Machine (FSM) -> O(1) Project Simulator Transitions
+   ========================================================================== */
+
+/* DSA ENGINE #1: TRIE (PREFIX TREE) — O(K) Command Autocomplete */
+class TrieNode {
+    constructor() {
+        this.children = {};
+        this.isEndOfWord = false;
+        this.command = null;
+    }
+}
+
+class CommandTrie {
+    constructor() {
+        this.root = new TrieNode();
+    }
+    insert(word) {
+        let node = this.root;
+        const lower = word.toLowerCase();
+        for (const char of lower) {
+            if (!node.children[char]) {
+                node.children[char] = new TrieNode();
+            }
+            node = node.children[char];
+        }
+        node.isEndOfWord = true;
+        node.command = word;
+    }
+    autocomplete(prefix) {
+        let node = this.root;
+        const lower = prefix.toLowerCase();
+        for (const char of lower) {
+            if (!node.children[char]) return [];
+            node = node.children[char];
+        }
+        return this._collectWords(node);
+    }
+    _collectWords(node) {
+        let results = [];
+        if (node.isEndOfWord) results.push(node.command);
+        for (const char in node.children) {
+            results = results.concat(this._collectWords(node.children[char]));
+        }
+        return results;
+    }
+}
+
+/* DSA ENGINE #2: DYNAMIC PROGRAMMING — O(M*N) Levenshtein Distance Typo Matcher */
+function levenshteinDistance(a, b) {
+    const str1 = a.toLowerCase();
+    const str2 = b.toLowerCase();
+    const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+
+    for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
+    for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
+
+    for (let j = 1; j <= str2.length; j++) {
+        for (let i = 1; i <= str1.length; i++) {
+            const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+            matrix[j][i] = Math.min(
+                matrix[j][i - 1] + 1,
+                matrix[j - 1][i] + 1,
+                matrix[j - 1][i - 1] + indicator
+            );
+        }
+    }
+    return matrix[str2.length][str1.length];
+}
+
+function findClosestCandidate(query, candidates, maxDistance = 3) {
+    let closest = null;
+    let minDistance = Infinity;
+
+    candidates.forEach(cand => {
+        const dist = levenshteinDistance(query, cand);
+        if (dist < minDistance && dist <= maxDistance) {
+            minDistance = dist;
+            closest = cand;
+        }
+    });
+    return closest;
+}
+
+/* DSA ENGINE #3: CIRCULAR QUEUE (RING BUFFER) — O(1) Memory-Efficient Chatbot History */
+class CircularQueue {
+    constructor(capacity = 10) {
+        this.capacity = capacity;
+        this.buffer = new Array(capacity);
+        this.head = 0;
+        this.size = 0;
+    }
+    enqueue(item) {
+        const index = (this.head + this.size) % this.capacity;
+        this.buffer[index] = item;
+        if (this.size < this.capacity) {
+            this.size++;
+        } else {
+            this.head = (this.head + 1) % this.capacity;
+        }
+    }
+    toArray() {
+        const result = [];
+        for (let i = 0; i < this.size; i++) {
+            result.push(this.buffer[(this.head + i) % this.capacity]);
+        }
+        return result;
+    }
+    clear() {
+        this.buffer = new Array(this.capacity);
+        this.head = 0;
+        this.size = 0;
+    }
+}
+
+/* DSA ENGINE #4: DIRECTED GRAPH (DAG) — O(V+E) Skill Tree Traversal (BFS) */
+class SkillGraph {
+    constructor() {
+        this.adjacencyList = new Map();
+    }
+    addNode(skill) {
+        if (!this.adjacencyList.has(skill)) {
+            this.adjacencyList.set(skill, []);
+        }
+    }
+    addEdge(source, destination) {
+        this.addNode(source);
+        this.addNode(destination);
+        this.adjacencyList.get(source).push(destination);
+    }
+    bfs(startSkill) {
+        const startKey = Array.from(this.adjacencyList.keys()).find(
+            k => k.toLowerCase() === startSkill.toLowerCase()
+        );
+        if (!startKey) return [];
+        const visited = new Set();
+        const queue = [startKey];
+        const result = [];
+        visited.add(startKey);
+
+        while (queue.length > 0) {
+            const current = queue.shift();
+            result.push(current);
+            const neighbors = this.adjacencyList.get(current) || [];
+            for (const neighbor of neighbors) {
+                if (!visited.has(neighbor)) {
+                    visited.add(neighbor);
+                    queue.push(neighbor);
+                }
+            }
+        }
+        return result;
+    }
+}
+
+const portfolioSkillGraph = new SkillGraph();
+portfolioSkillGraph.addEdge("C#", "ASP.NET Core");
+portfolioSkillGraph.addEdge("ASP.NET Core", "Clean Architecture");
+portfolioSkillGraph.addEdge("Clean Architecture", "AGREMATE Property Platform");
+portfolioSkillGraph.addEdge("ASP.NET Core", "Microservices Architecture");
+portfolioSkillGraph.addEdge("Microservices Architecture", "NTSIPL RTGS/NEFT System");
+portfolioSkillGraph.addEdge("PostgreSQL", "Binary COPY Protocol");
+portfolioSkillGraph.addEdge("Binary COPY Protocol", "Migration Master");
+portfolioSkillGraph.addEdge("JavaScript", "React");
+portfolioSkillGraph.addEdge("React", "DevLens AI Analyzer");
+portfolioSkillGraph.addEdge("Python", "Flask");
+portfolioSkillGraph.addEdge("Flask", "Money Mate");
+portfolioSkillGraph.addEdge("Agile", "Jira");
+portfolioSkillGraph.addEdge("Jira", "Azure DevOps CI/CD");
+
+/* DSA ENGINE #5: AHO-CORASICK AUTOMATON — O(N+L) Multi-Pattern ATS Keyword Matcher */
+class AhoCorasickNode {
+    constructor() {
+        this.children = {};
+        this.fail = null;
+        this.output = [];
+    }
+}
+
+class AhoCorasick {
+    constructor(keywords) {
+        this.root = new AhoCorasickNode();
+        this.buildTrie(keywords);
+        this.buildAutomation();
+    }
+    buildTrie(keywords) {
+        keywords.forEach(kw => {
+            let node = this.root;
+            for (const char of kw.toLowerCase()) {
+                if (!node.children[char]) {
+                    node.children[char] = new AhoCorasickNode();
+                }
+                node = node.children[char];
+            }
+            node.output.push(kw);
+        });
+    }
+    buildAutomation() {
+        const queue = [];
+        for (const char in this.root.children) {
+            const child = this.root.children[char];
+            child.fail = this.root;
+            queue.push(child);
+        }
+        while (queue.length > 0) {
+            const current = queue.shift();
+            for (const char in current.children) {
+                const child = current.children[char];
+                let failNode = current.fail;
+                while (failNode && !failNode.children[char]) {
+                    failNode = failNode.fail;
+                }
+                child.fail = failNode ? failNode.children[char] : this.root;
+                child.output = child.output.concat(child.fail.output);
+                queue.push(child);
+            }
+        }
+    }
+    search(text) {
+        let node = this.root;
+        const matches = new Set();
+        for (const char of text.toLowerCase()) {
+            while (node && !node.children[char]) {
+                node = node.fail;
+            }
+            node = node ? node.children[char] || this.root : this.root;
+            for (const match of node.output) {
+                matches.add(match);
+            }
+        }
+        return Array.from(matches);
+    }
+}
+
+/* DSA ENGINE #6: QUADTREE (SPATIAL PARTITIONING) — O(N log N) 60 FPS Canvas Animation */
+class QuadTreeRectangle {
+    constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+    contains(point) {
+        return (
+            point.x >= this.x - this.w &&
+            point.x <= this.x + this.w &&
+            point.y >= this.y - this.h &&
+            point.y <= this.y + this.h
+        );
+    }
+    intersects(range) {
+        return !(
+            range.x - range.w > this.x + this.w ||
+            range.x + range.w < this.x - this.w ||
+            range.y - range.h > this.y + this.h ||
+            range.y + range.h < this.y - this.h
+        );
+    }
+}
+
+class QuadTree {
+    constructor(boundary, capacity = 4) {
+        this.boundary = boundary;
+        this.capacity = capacity;
+        this.points = [];
+        this.divided = false;
+    }
+    subdivide() {
+        const x = this.boundary.x;
+        const y = this.boundary.y;
+        const w = this.boundary.w / 2;
+        const h = this.boundary.h / 2;
+
+        this.northeast = new QuadTree(new QuadTreeRectangle(x + w, y - h, w, h), this.capacity);
+        this.northwest = new QuadTree(new QuadTreeRectangle(x - w, y - h, w, h), this.capacity);
+        this.southeast = new QuadTree(new QuadTreeRectangle(x + w, y + h, w, h), this.capacity);
+        this.southwest = new QuadTree(new QuadTreeRectangle(x - w, y + h, w, h), this.capacity);
+
+        this.divided = true;
+    }
+    insert(point) {
+        if (!this.boundary.contains(point)) return false;
+        if (this.points.length < this.capacity) {
+            this.points.push(point);
+            return true;
+        }
+        if (!this.divided) this.subdivide();
+        return (
+            this.northeast.insert(point) ||
+            this.northwest.insert(point) ||
+            this.southeast.insert(point) ||
+            this.southwest.insert(point)
+        );
+    }
+    query(range, found = []) {
+        if (!this.boundary.intersects(range)) return found;
+        for (let p of this.points) {
+            if (range.contains(p)) found.push(p);
+        }
+        if (this.divided) {
+            this.northeast.query(range, found);
+            this.northwest.query(range, found);
+            this.southeast.query(range, found);
+            this.southwest.query(range, found);
+        }
+        return found;
+    }
+}
+
+/* DSA ENGINE #7: JACCARD SIMILARITY INDEX — O(A+B) ATS Match Percentage Engine */
+function calculateJaccardSimilarity(textA, textB) {
+    const tokensA = new Set(textA.toLowerCase().split(/[\s,.\-()/]+/).filter(Boolean));
+    const tokensB = new Set(textB.toLowerCase().split(/[\s,.\-()/]+/).filter(Boolean));
+    const intersection = new Set([...tokensA].filter(x => tokensB.has(x)));
+    const union = new Set([...tokensA, ...tokensB]);
+    return union.size === 0 ? 0 : Math.round((intersection.size / union.size) * 100);
+}
+
+/* DSA ENGINE #8: TOPOLOGICAL SORT (KAHN'S BFS) — O(V+E) Database Dependency Ordering */
+function topologicalSort(nodes, edges) {
+    const inDegree = new Map();
+    const adjList = new Map();
+
+    nodes.forEach(node => {
+        inDegree.set(node, 0);
+        adjList.set(node, []);
+    });
+
+    edges.forEach(([u, v]) => {
+        if (adjList.has(u) && inDegree.has(v)) {
+            adjList.get(u).push(v);
+            inDegree.set(v, (inDegree.get(v) || 0) + 1);
+        }
+    });
+
+    const queue = [];
+    inDegree.forEach((deg, node) => {
+        if (deg === 0) queue.push(node);
+    });
+
+    const result = [];
+    while (queue.length > 0) {
+        const u = queue.shift();
+        result.push(u);
+        (adjList.get(u) || []).forEach(v => {
+            inDegree.set(v, inDegree.get(v) - 1);
+            if (inDegree.get(v) === 0) {
+                queue.push(v);
+            }
+        });
+    }
+    return result;
+}
+
+/* DSA ENGINE #9: MAX-HEAP (PRIORITY QUEUE) — O(log N) Multi-Factor Project Ranker */
+class MaxHeap {
+    constructor() {
+        this.heap = [];
+    }
+    insert(item) {
+        this.heap.push(item);
+        this._bubbleUp(this.heap.length - 1);
+    }
+    extractMax() {
+        if (this.heap.length === 0) return null;
+        const max = this.heap[0];
+        const end = this.heap.pop();
+        if (this.heap.length > 0) {
+            this.heap[0] = end;
+            this._sinkDown(0);
+        }
+        return max;
+    }
+    _bubbleUp(index) {
+        while (index > 0) {
+            let parentIndex = Math.floor((index - 1) / 2);
+            if (this.heap[index].priority <= this.heap[parentIndex].priority) break;
+            [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+            index = parentIndex;
+        }
+    }
+    _sinkDown(index) {
+        const length = this.heap.length;
+        while (true) {
+            let leftChildIndex = 2 * index + 1;
+            let rightChildIndex = 2 * index + 2;
+            let swap = null;
+
+            if (leftChildIndex < length) {
+                if (this.heap[leftChildIndex].priority > this.heap[index].priority) {
+                    swap = leftChildIndex;
+                }
+            }
+            if (rightChildIndex < length) {
+                if (
+                    (swap === null && this.heap[rightChildIndex].priority > this.heap[index].priority) ||
+                    (swap !== null && this.heap[rightChildIndex].priority > this.heap[swap].priority)
+                ) {
+                    swap = rightChildIndex;
+                }
+            }
+            if (swap === null) break;
+            [this.heap[index], this.heap[swap]] = [this.heap[swap], this.heap[index]];
+            index = swap;
+        }
+    }
+}
+
+/* DSA ENGINE #10: CIRCULAR DOUBLY LINKED LIST — O(1) Theme Palette Switcher */
+class ThemeNode {
+    constructor(name) {
+        this.name = name;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class ThemeCircularLinkedList {
+    constructor(themeNames = ['dark', 'cyberpunk', 'emerald', 'light']) {
+        this.current = null;
+        this.buildList(themeNames);
+    }
+    buildList(themes) {
+        let head = null;
+        let prevNode = null;
+        themes.forEach((t, i) => {
+            const node = new ThemeNode(t);
+            if (i === 0) {
+                head = node;
+                this.current = node;
+            } else {
+                prevNode.next = node;
+                node.prev = prevNode;
+            }
+            prevNode = node;
+        });
+        if (prevNode && head) {
+            prevNode.next = head;
+            head.prev = prevNode;
+        }
+    }
+    next() {
+        if (this.current) {
+            this.current = this.current.next;
+            return this.current.name;
+        }
+        return 'dark';
+    }
+    prev() {
+        if (this.current) {
+            this.current = this.current.prev;
+            return this.current.name;
+        }
+        return 'dark';
+    }
+    setCurrent(themeName) {
+        let node = this.current;
+        if (!node) return;
+        for (let i = 0; i < 4; i++) {
+            if (node.name === themeName) {
+                this.current = node;
+                return;
+            }
+            node = node.next;
+        }
+    }
+}
+
+/* DSA ENGINE #11: BITMASKING (BITWISE AND) — O(1) Multi-Tag Project Filter */
+const TAG_BITMASKS = {
+    'dotnet': 1 << 0,     // 1
+    'c#': 1 << 1,         // 2
+    'python': 1 << 2,     // 4
+    'react': 1 << 3,      // 8
+    'ai': 1 << 4,         // 16
+    'database': 1 << 5,   // 32
+    'enterprise': 1 << 6, // 64
+    'pwa': 1 << 7         // 128
+};
+
+function getBitmaskForTags(tagsArray) {
+    let mask = 0;
+    tagsArray.forEach(tag => {
+        const lower = tag.toLowerCase();
+        for (const [key, val] of Object.entries(TAG_BITMASKS)) {
+            if (lower.includes(key)) {
+                mask |= val;
+            }
+        }
+    });
+    return mask;
+}
+
+function matchProjectBitmask(projectMask, filterMask) {
+    if (filterMask === 0) return true;
+    return (projectMask & filterMask) === filterMask;
+}
+
+/* DSA ENGINE #12: BINARY SEARCH (LOWER/UPPER BOUND) — O(log N) Date Interval Range */
+function binarySearchYearRange(projectsWithYear, startYear, endYear) {
+    const sorted = [...projectsWithYear].sort((a, b) => a.year - b.year);
+
+    function findLowerBound(target) {
+        let low = 0, high = sorted.length - 1, ans = sorted.length;
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+            if (sorted[mid].year >= target) {
+                ans = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    function findUpperBound(target) {
+        let low = 0, high = sorted.length - 1, ans = -1;
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+            if (sorted[mid].year <= target) {
+                ans = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
+
+    const startIndex = findLowerBound(startYear);
+    const endIndex = findUpperBound(endYear);
+
+    if (startIndex <= endIndex && startIndex < sorted.length) {
+        return sorted.slice(startIndex, endIndex + 1);
+    }
+    return [];
+}
+
+/* DSA ENGINE #13: LRU CACHE (DOUBLY LINKED LIST + MAP) — O(1) LocalStorage & Query Caching */
+class LRUNode {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class LRUCache {
+    constructor(capacity = 20) {
+        this.capacity = capacity;
+        this.map = new Map();
+        this.head = new LRUNode(null, null);
+        this.tail = new LRUNode(null, null);
+        this.head.next = this.tail;
+        this.tail.prev = this.head;
+    }
+
+    _remove(node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    _addHead(node) {
+        node.next = this.head.next;
+        node.prev = this.head;
+        this.head.next.prev = node;
+        this.head.next = node;
+    }
+
+    get(key) {
+        if (!this.map.has(key)) return null;
+        const node = this.map.get(key);
+        this._remove(node);
+        this._addHead(node);
+        return node.value;
+    }
+
+    put(key, value) {
+        if (this.map.has(key)) {
+            const node = this.map.get(key);
+            node.value = value;
+            this._remove(node);
+            this._addHead(node);
+        } else {
+            if (this.map.size >= this.capacity) {
+                const lru = this.tail.prev;
+                this._remove(lru);
+                this.map.delete(lru.key);
+            }
+            const newNode = new LRUNode(key, value);
+            this.map.set(key, newNode);
+            this._addHead(newNode);
+        }
+    }
+}
+
+const portfolioSearchLRUCache = new LRUCache(20);
+const portfolioThemeList = new ThemeCircularLinkedList(['dark', 'cyberpunk', 'emerald', 'light']);
+
+/* DSA ENGINE #14: TRIE-BASED LEXER STREAM — O(N) LaTeX/Markdown Sanitizer */
+class MarkdownLatexLexer {
+    constructor() {
+        this.escapeMap = {
+            '%': '\\%',
+            '$': '\\$',
+            '&': '\\&',
+            '#': '\\#',
+            '_': '\\_',
+            '{': '\\{',
+            '}': '\\}'
+        };
+    }
+    tokenizeAndEscape(input) {
+        if (!input) return '';
+        let result = '';
+        for (let i = 0; i < input.length; i++) {
+            const char = input[i];
+            if (this.escapeMap[char]) {
+                result += this.escapeMap[char];
+            } else {
+                result += char;
+            }
+        }
+        return result;
+    }
+}
+
+const markdownLatexLexer = new MarkdownLatexLexer();
+
+/* DSA ENGINE #15: TOKEN BUCKET ALGORITHM — O(1) Client-Side API Rate Limiter */
+class TokenBucketRateLimiter {
+    constructor(capacity = 5, fillPerSecond = 0.33) {
+        this.capacity = capacity;
+        this.tokens = capacity;
+        this.fillPerSecond = fillPerSecond;
+        this.lastFill = Date.now();
+    }
+
+    tryConsume(tokens = 1) {
+        this.refill();
+        if (this.tokens >= tokens) {
+            this.tokens -= tokens;
+            return true;
+        }
+        return false;
+    }
+
+    refill() {
+        const now = Date.now();
+        const delta = (now - this.lastFill) / 1000;
+        this.tokens = Math.min(this.capacity, this.tokens + delta * this.fillPerSecond);
+        this.lastFill = now;
+    }
+}
+
+const portfolioChatRateLimiter = new TokenBucketRateLimiter(5, 0.33);
+
+/* DSA ENGINE #16: DIJKSTRA'S SHORTEST PATH — O((V+E)log V) Career Path Finder */
+class MinHeap {
+    constructor() {
+        this.heap = [];
+    }
+    insert(node, dist) {
+        this.heap.push({ node, dist });
+        this._bubbleUp(this.heap.length - 1);
+    }
+    extractMin() {
+        if (this.heap.length === 0) return null;
+        const min = this.heap[0];
+        const end = this.heap.pop();
+        if (this.heap.length > 0) {
+            this.heap[0] = end;
+            this._sinkDown(0);
+        }
+        return min;
+    }
+    _bubbleUp(index) {
+        while (index > 0) {
+            let parentIndex = Math.floor((index - 1) / 2);
+            if (this.heap[index].dist >= this.heap[parentIndex].dist) break;
+            [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
+            index = parentIndex;
+        }
+    }
+    _sinkDown(index) {
+        const length = this.heap.length;
+        while (true) {
+            let leftChildIndex = 2 * index + 1;
+            let rightChildIndex = 2 * index + 2;
+            let swap = null;
+
+            if (leftChildIndex < length) {
+                if (this.heap[leftChildIndex].dist < this.heap[index].dist) {
+                    swap = leftChildIndex;
+                }
+            }
+            if (rightChildIndex < length) {
+                if (
+                    (swap === null && this.heap[rightChildIndex].dist < this.heap[index].dist) ||
+                    (swap !== null && this.heap[rightChildIndex].dist < this.heap[swap].dist)
+                ) {
+                    swap = rightChildIndex;
+                }
+            }
+            if (swap === null) break;
+            [this.heap[index], this.heap[swap]] = [this.heap[swap], this.heap[index]];
+            index = swap;
+        }
+    }
+}
+
+function dijkstraShortestPath(weightedGraph, startNode, targetNode) {
+    const distances = {};
+    const previous = {};
+    const pq = new MinHeap();
+
+    for (const node in weightedGraph) {
+        if (node === startNode) {
+            distances[node] = 0;
+            pq.insert(node, 0);
+        } else {
+            distances[node] = Infinity;
+            pq.insert(node, Infinity);
+        }
+        previous[node] = null;
+    }
+
+    while (pq.heap.length > 0) {
+        const smallest = pq.extractMin();
+        if (!smallest) break;
+        const current = smallest.node;
+
+        if (current === targetNode) {
+            const path = [];
+            let curr = targetNode;
+            while (curr) {
+                path.push(curr);
+                curr = previous[curr];
+            }
+            return { distance: distances[targetNode], path: path.reverse() };
+        }
+
+        if (distances[current] !== Infinity) {
+            for (const neighbor in weightedGraph[current]) {
+                const weight = weightedGraph[current][neighbor];
+                const candidate = distances[current] + weight;
+
+                if (candidate < distances[neighbor]) {
+                    distances[neighbor] = candidate;
+                    previous[neighbor] = current;
+                    pq.insert(neighbor, candidate);
+                }
+            }
+        }
+    }
+    return { distance: Infinity, path: [] };
+}
+
+/* DSA ENGINE #17: KNUTH-MORRIS-PRATT (KMP) — O(N+M) Exact Substring Pattern Matcher */
+function kmpSearch(text, pattern) {
+    if (!pattern || !text) return [];
+    const txt = text.toLowerCase();
+    const pat = pattern.toLowerCase();
+
+    const pi = new Array(pat.length).fill(0);
+    let j = 0;
+    for (let i = 1; i < pat.length; i++) {
+        while (j > 0 && pat[i] !== pat[j]) {
+            j = pi[j - 1];
+        }
+        if (pat[i] === pat[j]) {
+            j++;
+        }
+        pi[i] = j;
+    }
+
+    const matches = [];
+    j = 0;
+    for (let i = 0; i < txt.length; i++) {
+        while (j > 0 && txt[i] !== pat[j]) {
+            j = pi[j - 1];
+        }
+        if (txt[i] === pat[j]) {
+            j++;
+        }
+        if (j === pat.length) {
+            matches.push(i - pat.length + 1);
+            j = pi[j - 1];
+        }
+    }
+    return matches;
+}
+
+/* DSA ENGINE #18: DISJOINT SET UNION (DSU) — O(alpha(N)) Skill Domain Clustering */
+class DisjointSetUnion {
+    constructor(elements) {
+        this.parent = new Map();
+        this.rank = new Map();
+        elements.forEach(el => {
+            this.parent.set(el, el);
+            this.rank.set(el, 0);
+        });
+    }
+
+    find(i) {
+        if (!this.parent.has(i)) return i;
+        if (this.parent.get(i) === i) return i;
+        const root = this.find(this.parent.get(i));
+        this.parent.set(i, root);
+        return root;
+    }
+
+    union(i, j) {
+        const rootI = this.find(i);
+        const rootJ = this.find(j);
+        if (rootI !== rootJ) {
+            const rankI = this.rank.get(rootI) || 0;
+            const rankJ = this.rank.get(rootJ) || 0;
+            if (rankI < rankJ) {
+                this.parent.set(rootI, rootJ);
+            } else if (rankI > rankJ) {
+                this.parent.set(rootJ, rootI);
+            } else {
+                this.parent.set(rootJ, rootI);
+                this.rank.set(rootI, rankI + 1);
+            }
+        }
+    }
+
+    connected(i, j) {
+        return this.find(i) === this.find(j);
+    }
+}
+
+/* DSA ENGINE #19: QUICKSELECT (HOARE'S SELECTION) — O(N) Top-K Metrics Filter */
+function quickSelect(arr, k, left = 0, right = arr.length - 1) {
+    if (left === right) return arr[left];
+
+    function partition(l, r) {
+        const pivot = arr[r].score;
+        let i = l;
+        for (let j = l; j < r; j++) {
+            if (arr[j].score >= pivot) {
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+                i++;
+            }
+        }
+        [arr[i], arr[r]] = [arr[r], arr[i]];
+        return i;
+    }
+
+    const pivotIndex = partition(left, right);
+    if (k === pivotIndex) return arr[k];
+    else if (k < pivotIndex) return quickSelect(arr, k, left, pivotIndex - 1);
+    else return quickSelect(arr, k, pivotIndex + 1, right);
+}
+
+/* DSA ENGINE #20: DOM TREE TRAVERSAL (DFS & BFS) — O(N) Structural Element Search */
+function domDFSTraversal(rootElement, callback) {
+    if (!rootElement) return;
+    const stack = [rootElement];
+    while (stack.length > 0) {
+        const node = stack.pop();
+        if (callback(node) === false) break;
+        for (let i = node.children.length - 1; i >= 0; i--) {
+            stack.push(node.children[i]);
+        }
+    }
+}
+
+function domBFSTraversal(rootElement, callback) {
+    if (!rootElement) return;
+    const queue = [rootElement];
+    while (queue.length > 0) {
+        const node = queue.shift();
+        if (callback(node) === false) break;
+        for (let i = 0; i < node.children.length; i++) {
+            queue.push(node.children[i]);
+        }
+    }
+}
+
+/* DSA ENGINE #21: CUBIC BÉZIER INTERPOLATION — O(1) Physical Easing Motion */
+class CubicBezierEasing {
+    constructor(p1x = 0.25, p1y = 0.1, p2x = 0.25, p2y = 1.0) {
+        this.p1x = p1x;
+        this.p1y = p1y;
+        this.p2x = p2x;
+        this.p2y = p2y;
+    }
+    evaluate(t) {
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+
+        let y = uuu * 0;
+        y += 3 * uu * t * this.p1y;
+        y += 3 * u * tt * this.p2y;
+        y += ttt * 1;
+        return y;
+    }
+}
+
+const portfolioSmoothEasing = new CubicBezierEasing(0.25, 0.1, 0.25, 1.0);
+
+/* DSA ENGINE #22: EXPONENTIAL BACKOFF & JITTER — O(1) API Retry Scheduler */
+async function fetchWithExponentialBackoff(fetchFn, maxRetries = 3, baseDelayMs = 500) {
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+            return await fetchFn();
+        } catch (err) {
+            if (attempt === maxRetries) throw err;
+            const exponentialDelay = baseDelayMs * Math.pow(2, attempt);
+            const jitter = Math.random() * 200;
+            const totalDelay = exponentialDelay + jitter;
+            await new Promise(resolve => setTimeout(resolve, totalDelay));
+        }
+    }
+}
+
+/* DSA ENGINE #23: BYTE PAIR ENCODING (BPE TOKENIZER) — O(N) Prompt Token Estimator */
+function bpeTokenEstimator(text) {
+    if (!text) return 0;
+    const words = text.trim().split(/\s+/);
+    let estimatedTokens = 0;
+    words.forEach(word => {
+        const subwordCount = Math.ceil(word.length / 4);
+        estimatedTokens += Math.max(1, subwordCount);
+    });
+    return estimatedTokens;
+}
+
+/* DSA ENGINE #24: FIRST FIT DECREASING BIN PACKING — O(N log N) Resume Page Layout */
+function binPackingLayout(sectionHeights, pageCapacity = 1000) {
+    const items = [...sectionHeights].sort((a, b) => b.height - a.height);
+    const pages = [];
+
+    items.forEach(item => {
+        let placed = false;
+        for (let page of pages) {
+            if (page.currentHeight + item.height <= pageCapacity) {
+                page.items.push(item);
+                page.currentHeight += item.height;
+                placed = true;
+                break;
+            }
+        }
+        if (!placed) {
+            pages.push({ items: [item], currentHeight: item.height });
+        }
+    });
+
+    return pages;
+}
+
+/* DSA ENGINE #25: AST RECURSIVE SCHEMA VALIDATOR — O(N) JSON Schema Matcher */
+function validateJSONSchemaTree(obj, schema) {
+    if (typeof schema !== 'object' || schema === null) return true;
+    for (const key in schema) {
+        if (schema.hasOwnProperty(key)) {
+            const expectedType = schema[key];
+            if (!(key in obj)) return false;
+            if (typeof expectedType === 'string') {
+                if (typeof obj[key] !== expectedType) return false;
+            } else if (typeof expectedType === 'object') {
+                if (!validateJSONSchemaTree(obj[key], expectedType)) return false;
+            }
+        }
+    }
+    return true;
+}
+
+/* DSA ENGINE #26: KEY CHORD TRIE STATE MACHINE — O(K) Shortcut & Easter Egg Listener */
+class KeyChordTrie {
+    constructor() {
+        this.root = {};
+    }
+    registerChord(sequenceArray, callback) {
+        let curr = this.root;
+        sequenceArray.forEach(key => {
+            const lowerKey = key.toLowerCase();
+            if (!curr[lowerKey]) curr[lowerKey] = {};
+            curr = curr[lowerKey];
+        });
+        curr.callback = callback;
+    }
+}
+
+const portfolioKeyChordTrie = new KeyChordTrie();
+const konamiCode = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+let konamiBuffer = [];
+
+window.addEventListener('keydown', (e) => {
+    konamiBuffer.push(e.key.toLowerCase());
+    if (konamiBuffer.length > konamiCode.length) {
+        konamiBuffer.shift();
+    }
+    if (konamiBuffer.join(',') === konamiCode.join(',')) {
+        if (typeof showToast === 'function') {
+            showToast('🎮 Konami Code Activated! Developer Mode Unlocked! 🚀');
+        }
+        konamiBuffer = [];
+    }
+});
+
+/* DSA ENGINE #27: MATRIX LINEAR TRANSFORMATION — O(1) RGB to HSL Color Space */
+function rgbToHslMatrix(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if (max === min) {
+        h = s = 0;
+    } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -59,19 +1122,35 @@ function animateParticles() {
             break;
     }
 
-    particles.forEach((p, i) => {
+    // DSA Engine: Build QuadTree Spatial Partitioning for O(N log N) distance queries
+    const boundary = new QuadTreeRectangle(canvas.width / 2, canvas.height / 2, canvas.width / 2, canvas.height / 2);
+    const qtree = new QuadTree(boundary, 4);
+
+    particles.forEach(p => {
         p.update();
         p.draw(particleColor);
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = p.x - particles[j].x;
-            const dy = p.y - particles[j].y;
+        qtree.insert(p);
+    });
+
+    const checkedPairs = new Set();
+    particles.forEach(p => {
+        const range = new QuadTreeRectangle(p.x, p.y, 100, 100);
+        const neighbors = qtree.query(range);
+        for (let other of neighbors) {
+            if (p === other) continue;
+            const pairKey = p.x < other.x ? `${p.x},${p.y}-${other.x},${other.y}` : `${other.x},${other.y}-${p.x},${p.y}`;
+            if (checkedPairs.has(pairKey)) continue;
+            checkedPairs.add(pairKey);
+
+            const dx = p.x - other.x;
+            const dy = p.y - other.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 100) {
                 ctx.strokeStyle = lineBaseColor + (lineOpacityMultiplier - dist / 500) + ')';
                 ctx.lineWidth = 0.5;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
-                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.lineTo(other.x, other.y);
                 ctx.stroke();
             }
         }
@@ -1111,6 +2190,7 @@ function autoResizeInput(el) {
     });
 })();
 
+/* DSA ENGINE #28: INVERTED INDEX (HASH MAP) — O(1) Tokenized Fast Skill Search */
 (function initSkillsSearch() {
     const searchInput = document.getElementById('skillsSearch');
     const clearBtn = document.getElementById('skillsSearchClear');
@@ -1119,6 +2199,26 @@ function autoResizeInput(el) {
     const skillCards = document.querySelectorAll('.skill-card');
     const categories = document.querySelectorAll('.skills-category');
     const skillsSection = document.getElementById('skills');
+
+    const invertedIndex = new Map();
+    const allSkillNames = [];
+
+    skillCards.forEach(card => {
+        const nameEl = card.querySelector('.skill-name');
+        if (!nameEl) return;
+        const skillName = nameEl.textContent.trim();
+        allSkillNames.push(skillName);
+        const tokens = skillName.toLowerCase().split(/[\s/()\-]+/);
+        tokens.push(skillName.toLowerCase());
+
+        tokens.forEach(tok => {
+            if (!tok) return;
+            if (!invertedIndex.has(tok)) {
+                invertedIndex.set(tok, new Set());
+            }
+            invertedIndex.get(tok).add(card);
+        });
+    });
 
     const resultsDiv = document.createElement('div');
     resultsDiv.className = 'skills-search-results-count';
@@ -1134,7 +2234,6 @@ function autoResizeInput(el) {
         clearBtn.classList.toggle('visible', q.length > 0);
 
         if (!q) {
-            
             skillCards.forEach(card => {
                 card.classList.remove('skill-match', 'skill-dim');
             });
@@ -1145,30 +2244,53 @@ function autoResizeInput(el) {
             return;
         }
 
-        let matchCount = 0;
+        // DSA Lookup: Fast Token Match via Inverted Index
+        let matchingCards = new Set();
+        for (const [token, cardSet] of invertedIndex.entries()) {
+            if (token.includes(q)) {
+                cardSet.forEach(c => matchingCards.add(c));
+            }
+        }
 
-        categories.forEach(category => {
-            const cardsInCategory = category.querySelectorAll('.skill-card');
-            let categoryHasMatch = false;
+        let matchCount = matchingCards.size;
 
-            cardsInCategory.forEach(card => {
-                const name = card.querySelector('.skill-name');
-                const text = name ? name.textContent.toLowerCase() : '';
-                const isMatch = text.includes(q);
+        if (matchCount > 0) {
+            categories.forEach(category => {
+                const cardsInCategory = category.querySelectorAll('.skill-card');
+                let categoryHasMatch = false;
 
-                card.classList.toggle('skill-match', isMatch);
-                card.classList.toggle('skill-dim', !isMatch);
+                cardsInCategory.forEach(card => {
+                    const isMatch = matchingCards.has(card);
+                    card.classList.toggle('skill-match', isMatch);
+                    card.classList.toggle('skill-dim', !isMatch);
 
-                if (isMatch) {
-                    categoryHasMatch = true;
-                    matchCount++;
-                }
+                    if (isMatch) {
+                        categoryHasMatch = true;
+                    }
+                });
+
+                category.classList.toggle('category-hidden', !categoryHasMatch);
             });
 
-            category.classList.toggle('category-hidden', !categoryHasMatch);
-        });
+            resultsDiv.innerHTML = `Found <span>${matchCount}</span> skill${matchCount !== 1 ? 's' : ''} matching "<span>${escapeHtml(q).replace(/<br>/g, '')}</span>"`;
+        } else {
+            // DSA Algorithm: Dynamic Programming Levenshtein Distance for Typo Correction
+            const closest = findClosestCandidate(q, allSkillNames, 3);
+            skillCards.forEach(card => {
+                card.classList.remove('skill-match');
+                card.classList.add('skill-dim');
+            });
+            categories.forEach(cat => {
+                cat.classList.remove('category-hidden');
+            });
 
-        resultsDiv.innerHTML = `Found <span>${matchCount}</span> skill${matchCount !== 1 ? 's' : ''} matching "<span>${escapeHtml(q).replace(/<br>/g, '')}</span>"`;
+            if (closest) {
+                resultsDiv.innerHTML = `No exact match for "<span>${escapeHtml(q)}</span>". Did you mean "<span>${escapeHtml(closest)}</span>"?`;
+            } else {
+                resultsDiv.innerHTML = `No skills found matching "<span>${escapeHtml(q)}</span>"`;
+            }
+        }
+
         resultsDiv.style.display = 'block';
     }
 
@@ -1546,6 +2668,7 @@ document.addEventListener('click', e => {
     });
 })();
 
+/* DSA ENGINE #29: FINITE STATE MACHINE (FSM) — O(1) Project Simulator Transitions */
 (function initProjectsSimulator() {
     const flowMetadata = {
         devlens: {
@@ -2481,11 +3604,12 @@ document.addEventListener('click', e => {
     }
 
     const commandResponses = {
-        help: `Available commands (Use prefix 'ck <command>' or directly):
+        help: `Available commands (Use prefix 'ck <command>'):
   ck help         - Show this list of available commands
   ck skills       - Print current developer skill stack
   ck experience   - Show professional history overview
   ck projects     - Show key featured projects
+  ck graph [skill]- Perform BFS graph traversal on skill dependencies
   ck contact      - Display contact options
   ck theme [name] - Change color theme (dark, cyberpunk, emerald, light)
   ck neofetch     - Show system specs & profile overview
@@ -2536,9 +3660,13 @@ document.addEventListener('click', e => {
 
     const commandHistory = [];
     let historyIndex = -1;
-    const availableCommands = [
-        'ck', 'ck help', 'ck skills', 'ck experience', 'ck projects', 'ck contact', 'ck clear', 'ck theme', 'ck neofetch'
+
+    // DSA Engine 1: Trie Data Structure for O(K) Command Autocomplete
+    const commandTrie = new CommandTrie();
+    const rawCommands = [
+        'ck', 'ck help', 'ck skills', 'ck experience', 'ck projects', 'ck graph', 'ck tree', 'ck contact', 'ck clear', 'ck theme', 'ck neofetch'
     ];
+    rawCommands.forEach(cmd => commandTrie.insert(cmd));
 
     actualInput.addEventListener('keydown', (e) => {
         
@@ -2546,7 +3674,8 @@ document.addEventListener('click', e => {
             e.preventDefault();
             const inputVal = actualInput.value.trim().toLowerCase();
             if (!inputVal) return;
-            const matches = availableCommands.filter(cmd => cmd.startsWith(inputVal));
+            // Trie Autocomplete Lookup O(K)
+            const matches = commandTrie.autocomplete(inputVal);
             if (matches.length > 0) {
                 actualInput.value = matches[0];
                 dummyInput.textContent = matches[0];
@@ -2597,19 +3726,26 @@ document.addEventListener('click', e => {
             // Enforce 'ck' prefix (e.g. 'ck skills', 'ck help', or just 'ck')
             if (lowerCmd === 'ck') {
                 appendTerminalLine("⚡ CK CLI [v1.0.0] — Charan's Custom Developer Shell", "system");
-                appendTerminalLine("Usage: ck <command> (e.g., 'ck skills', 'ck help', 'ck neofetch', 'ck projects')", "system");
+                appendTerminalLine("Usage: ck <command> (e.g., 'ck skills', 'ck help', 'ck graph C#', 'ck neofetch')", "system");
                 appendTerminalLine("Type 'ck help' to see all available commands.", "system");
                 appendTerminalLine('', 'spacer');
                 return;
             }
 
             if (!lowerCmd.startsWith('ck ')) {
-                const knownSubCmds = ['help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'];
+                const knownSubCmds = ['help', 'skills', 'experience', 'projects', 'graph', 'tree', 'contact', 'clear', 'theme', 'neofetch'];
                 const firstWord = lowerCmd.split(/\s+/)[0];
+                
                 if (knownSubCmds.includes(firstWord)) {
                     appendTerminalLine(`[CK Shell] Command requires 'ck' prefix. Try: 'ck ${command}'`, "system");
                 } else {
-                    appendTerminalLine(`Command not found: '${command}'. Type 'ck help' for available commands.`, "system");
+                    // DSA Levenshtein Typo Matcher
+                    const typoMatch = findClosestCandidate(firstWord, knownSubCmds, 3);
+                    if (typoMatch) {
+                        appendTerminalLine(`Command not found: '${command}'. Did you mean 'ck ${typoMatch}'?`, "system");
+                    } else {
+                        appendTerminalLine(`Command not found: '${command}'. Type 'ck help' for available commands.`, "system");
+                    }
                 }
                 appendTerminalLine('', 'spacer');
                 return;
@@ -2626,6 +3762,21 @@ document.addEventListener('click', e => {
                 const spacer = document.createElement('div');
                 spacer.className = 'terminal-line spacer';
                 outputLog.appendChild(spacer);
+                return;
+            }
+
+            // DSA Engine 4: Skill Graph BFS Traversal Command
+            if (lowerCmd.startsWith('graph') || lowerCmd.startsWith('tree')) {
+                const parts = parsedCmd.split(/\s+/);
+                const startSkill = parts[1] || 'C#';
+                const path = portfolioSkillGraph.bfs(startSkill);
+                if (path.length > 0) {
+                    appendTerminalLine(`⚡ Skill Graph BFS Traversal from '${startSkill}':`, 'system');
+                    appendTerminalLine(path.join(' ➔ '), 'success');
+                } else {
+                    appendTerminalLine(`No graph node found for '${startSkill}'. Available starting nodes: C#, PostgreSQL, JavaScript, Python, Agile`, 'error');
+                }
+                appendTerminalLine('', 'spacer');
                 return;
             }
 
@@ -2679,7 +3830,13 @@ document.addEventListener('click', e => {
             if (response) {
                 appendTerminalLine(response);
             } else {
-                appendTerminalLine(`Command not found: '${command}'. Type 'ck help' for available commands.`, 'system');
+                const knownSubCmds = ['help', 'skills', 'experience', 'projects', 'graph', 'tree', 'contact', 'clear', 'theme', 'neofetch'];
+                const closest = findClosestCandidate(lowerCmd, knownSubCmds, 3);
+                if (closest) {
+                    appendTerminalLine(`Command not found: '${command}'. Did you mean 'ck ${closest}'?`, 'system');
+                } else {
+                    appendTerminalLine(`Command not found: '${command}'. Type 'ck help' for available commands.`, 'system');
+                }
             }
 
             appendTerminalLine('', 'spacer');

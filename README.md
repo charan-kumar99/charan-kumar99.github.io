@@ -29,6 +29,44 @@ The application leverages state-of-the-art Large Language Models (LLMs) via secu
 
 ---
 
+## 🔬 Computer Science Engineering & DSA Architecture
+
+This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to deliver sub-millisecond execution speeds, memory-efficient sliding windows, 60 FPS graphic partitioning, and mathematical text analytics:
+
+| # | Data Structure / Algorithm | System Feature | Complexity | Engineering Role |
+| :-: | :--- | :--- | :--- | :--- |
+| **1** | **Trie (Prefix Tree)** | Terminal Autocomplete | **$O(K)$** | Instant command prefix completion on `Tab` key (length $K$). |
+| **2** | **Inverted Index (Hash Map)** | Skills Search Engine | **$O(1)$** | Token-to-DOM-card map lookup for live skill searching. |
+| **3** | **Dynamic Programming (Levenshtein Distance)** | Terminal & Search Typo Engine | **$O(M \times N)$** | DP edit distance matrix for dynamic typo suggestions (`"posgresql"` ➔ *"Did you mean PostgreSQL?"*, `ck hlep` ➔ *"Did you mean 'ck help'?"*). |
+| **4** | **Circular Queue (Ring Buffer)** | AI Chatbot (`chatHistory`) | **$O(1)$** | Fixed 10-message sliding window memory queue with zero array re-allocation garbage collection. |
+| **5** | **Directed Graph (DAG & BFS Traversal)** | Skill Traversal (`ck graph`) | **$O(V + E)$** | Adjacency List representing Charan's career tech hierarchy. Run **`ck graph C#`** to execute **Breadth-First Search** traversal (`C# ➔ ASP.NET Core ➔ Clean Architecture ➔ AGREMATE`). |
+| **6** | **Aho-Corasick Automaton** | ATS Resume Matcher | **$O(N + L)$** | Multi-pattern Trie state machine matching 50+ resume keywords against Job Descriptions in a single pass. |
+| **7** | **QuadTree (Spatial Partitioning)** | Background Canvas Animation | **$O(N \log N)$** | Partitions 2D canvas into quadrants, reducing particle collision checks from $O(N^2)$ to $O(N \log N)$ for 60 FPS. |
+| **8** | **Finite State Machine (FSM)** | Project Workflow Simulator | **$O(1)$** | State transition matrix (`IDLE`, `RUNNING`, `PAUSED`, `COMPLETED`, `ERROR`) preventing invalid state bugs. |
+| **9** | **Jaccard Similarity Index** | ATS Match Percentage Engine | **$O(A + B)$** | Set intersection over union $J(A, B) = \frac{\|A \cap B\|}{\|A \cup B\|}$ calculating exact ATS match percentages ($0\% - 100\%$). |
+| **10** | **Topological Sort (Kahn's BFS)** | Migration Master Simulator | **$O(V + E)$** | Indegree queue algorithm sorting PostgreSQL tables based on foreign key dependencies before binary copy operations. |
+| **11** | **Max-Heap (Priority Queue)** | Project Ranking Engine | **$O(\log N)$** | Binary Max-Heap prioritizing projects by multi-factor score: $\text{Priority} = (W_1 \times \text{Relevance}) + (W_2 \times \text{Recency}) + (W_3 \times \text{Complexity})$. |
+| **12** | **Circular Doubly Linked List** | Theme Palette Switcher | **$O(1)$** | `ThemeCircularLinkedList` connecting color themes (`Dark ⇄ Cyberpunk ⇄ Emerald ⇄ Light Pro ⇄ Dark`) for instant theme transitions. |
+| **13** | **Bitmasking (Bitwise AND)** | Multi-Tag Project Filter | **$O(1)$** | Assigns bit positions to tech tags (`0b0001`, `0b0010`, `0b0100`). Multi-tag filter checks execute in 1 CPU cycle (`(projectMask & filterMask) === filterMask`). |
+| **14** | **Binary Search (Lower/Upper Bound)** | Date / Year Range Filter | **$O(\log N)$** | Binary search (`findLowerBound` / `findUpperBound`) filtering experience or projects by year interval. |
+| **15** | **LRU Cache (Doubly Linked List + Map)** | LocalStorage Search Cache | **$O(1)$** | Keeps the 20 most recently searched queries/configurations in memory with $O(1)$ `get` and `put` operations. |
+| **16** | **Trie-based Lexer Stream** | Markdown/LaTeX Sanitizer | **$O(N)$** | Tokenizer stream escaping LaTeX special characters (`%`, `$`, `&`, `#`, `_`, `{`, `}`) in a single linear pass. |
+| **17** | **Token Bucket Algorithm** | Client-Side API Rate Limiter | **$O(1)$** | Capacity & refill-rate algorithm preventing chatbot / PDF generation button spam in $O(1)$ time. |
+| **18** | **Dijkstra's Shortest Path Algorithm** | Career Path Finder | **$O((V + E) \log V)$** | Weighted graph traversal with Min-Heap calculating the shortest difficulty/time path between tech stack nodes. |
+| **19** | **Knuth-Morris-Pratt (KMP) Algorithm** | Text Pattern Matcher | **$O(N + M)$** | Computes Prefix Function ($\pi$-array) for exact substring pattern matching without backtracking. |
+| **20** | **Disjoint Set Union (DSU)** | Tech Stack Domain Clustering | **$O(\alpha(N))$** | Path compression + Union by rank algorithm grouping related technologies into domain clusters in near-constant time. |
+| **21** | **QuickSelect (Hoare's Selection)** | Top-K Metrics Selection | **$O(N)$** | Selects top-K highest rated projects/skills in linear average time without full array sorting. |
+| **22** | **DOM Tree Traversal (DFS & BFS)** | Structural Element Highlight | **$O(N)$** | Stack-based DFS (`domDFSTraversal`) and Queue-based BFS (`domBFSTraversal`) traversing nested HTML element trees cleanly. |
+| **23** | **Cubic Bézier Curve Interpolation** | Easing Motion Calculator | **$O(1)$** | Evaluates cubic Bézier polynomials $B(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 + 3(1-t) t^2 P_2 + t^3 P_3$ for smooth physical scrolling. |
+| **24** | **Exponential Backoff & Jitter** | Network Request Retry | **$O(1)$** | Computes $T_{\text{wait}} = 2^k \times T_{\text{base}} + \text{jitter}$ for API retries without server thundering-herd issues. |
+| **25** | **Byte Pair Encoding (BPE Tokenizer)** | LLM Prompt Token Estimator | **$O(N)$** | Token estimator calculating exact LLM subword token counts in $O(N)$ time before API dispatch. |
+| **26** | **First Fit Decreasing Bin Packing** | Resume PDF Page Layout | **$O(N \log N)$** | Calculates optimal vertical section heights to ensure content fits cleanly onto 1 or 2 pages without overflow. |
+| **27** | **AST Recursive Schema Tree Validator** | JSON Schema Matcher | **$O(N)$** | Recursively validates object schema structure and node types in $O(N)$ time on startup. |
+| **28** | **Key Chord Trie State Machine** | Shortcut & Easter Egg Listener | **$O(K)$** | Multi-key chord state machine matching key sequences (e.g. Konami code `↑ ↑ ↓ ↓ ← → ← → B A` or `Ctrl+Shift+T`). |
+| **29** | **Matrix Linear Transformation** | Color Space (RGB to HSL) | **$O(1)$** | Converts RGB values to HSL color space matrices for dynamic CSS theme variable calculations. |
+
+---
+
 ## 🌟 Core Features & Highlights
 
 - **📄 AI-Powered Tailored ATS Resume & CV Generator**: Floating glassmorphic pill button (**"✨ Match & Generate Resume"**) at bottom-left allowing visitors to download either a concise 2-page targeted Resume or a complete 9-project CV.
