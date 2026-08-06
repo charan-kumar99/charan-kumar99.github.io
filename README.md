@@ -37,7 +37,7 @@ The application leverages state-of-the-art Large Language Models (LLMs) via secu
 - **💻 Interactive Project Workflow Simulator**: Step-by-step visual map and terminal log simulator showcasing data flows, API gateways, and database execution logic for projects including **DevLens**, **Migration Master**, **Money Mate**, **Orion**, **Vaulta**, and **Advanced Portfolio**.
 - **🤖 High-Z-Index AI Chatbot**: Floating chat bubble at bottom-right positioned at `z-index: 1000001` so it stays crisp and fully usable anywhere on the page—even while modal windows are open.
 - **🚀 Featured Projects Portfolio**: Showcases 9 major projects across C#, .NET, ASP.NET Core, Python, Flask, React, Flutter, PostgreSQL, and SQL Server — including open-source tools like **Migration Master** and proprietary systems at **AGREMATE** and **NTSIPL**.
-- **🎮 Developer CLI Drawer**: Matrix-style interactive terminal (` key or 💻 navbar icon) supporting commands like `help`, `skills`, `experience`, `projects`, `contact`, `theme`, and `neofetch`.
+- **🎮 Developer CLI Shell**: Matrix-style interactive terminal drawer (` key or 💻 navbar icon) enforcing custom `ck` prefix commands (`ck help`, `ck skills`, `ck experience`, `ck projects`, `ck contact`, `ck theme`, `ck neofetch`, and `ck clear`).
 - **🎨 Dynamic Theme Palette**: Switch color themes instantly (Dark, Cyberpunk, Emerald, Neo-Cyan, Light Pro) with persistent state.
 
 ---
@@ -46,6 +46,7 @@ The application leverages state-of-the-art Large Language Models (LLMs) via secu
 
 - **Frontend**: HTML5, Vanilla CSS3 (CSS Variables, Glassmorphic UI, Animations), Modern ES6+ JavaScript, Chart.js, jsPDF, D3.js.
 - **Backend / APIs**: Node.js, Vercel Serverless Functions (`/api/chat`, `/api/polish`, `/api/latex`), Google Gemini 2.5 Flash, Groq LLaMA 3.3 70B.
+- **Tools & DevOps**: Jira (Agile & Issue Tracking), Azure DevOps, Docker, GitHub, CI/CD Pipelines, Postman, Swagger.
 - **Data Source**: `resume-data.json` single-source-of-truth for experience, skills, certifications, and project metadata.
 
 ---

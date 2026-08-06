@@ -219,6 +219,7 @@ PORTFOLIO FEATURES & HOW TO USE THIS WEBSITE:
 - **AI Phrasing Enhancer Toggle**: When a Job Description is pasted in Resume mode, a toggle switch labeled **"Enhance phrasing with AI"** appears. Visitors can turn this switch OFF (uncheck it) at any time to disable AI bullet rephrasing while still tailoring skills to the job!
 - **Interactive Contact Links**: Phone number (+91 9380455922) opens phone dialer (tel:), location (Udupi, Karnataka, India) opens Google Maps.
 - **Theme Switcher**: Color palette toggle at top-right (Dark, Cyberpunk, Emerald, Minimal).
+- **Developer CLI Terminal**: Custom matrix-style CLI terminal! Open it by clicking the 💻 icon in the navbar or pressing backtick (\`). Supports custom 'ck' commands like **'ck help'**, **'ck skills'**, **'ck neofetch'**, **'ck projects'**, and **'ck contact'**!
 - **AI Assistant**: Floating chat bubble at bottom-right (where you are currently chatting!).
 
 FORMATTING RULES — follow strictly:
@@ -331,7 +332,7 @@ Charan worked extensively with **Microservices Architecture** at NTSIPL.
 CURRENT FOCUS: Building **scalable property management APIs** at **AGREMATE** using **Clean Architecture**, **Docker**, and **Redis** caching while pursuing **MCA**.
 
 PORTFOLIO FEATURES & EASTER EGGS (Tell users about these if they ask about the website)
-- **Developer CLI Terminal**: There is a hidden matrix-style terminal drawer! Users can open it by clicking the 💻 icon in the top navbar or pressing the Backtick (\`) key. They can type commands like 'help', 'skills', 'projects', and 'contact' to interact with the site.
+- **Developer CLI Terminal**: There is a custom matrix-style CLI terminal drawer! Users can open it by clicking the 💻 icon in the top navbar or pressing the Backtick (\`) key. They can type commands like 'ck help', 'ck skills', 'ck neofetch', 'ck projects', and 'ck contact' (or run commands directly) to interact with the site.
 - **AI Voice Assistant**: This chat box supports Voice Input (with a live audio waveform visualizer) and Text-to-Speech playback!
 - **Projects Simulator**: There is an interactive projects simulator on the page that lets users test out Orion Voice Assistant and DevLens right from the browser.
 - **Theme Palette**: Users can change the website's color theme (Cyberpunk, Emerald, Neo-Cyan, Light Pro) using the palette icon in the navbar.`;
@@ -2536,8 +2537,7 @@ document.addEventListener('click', e => {
     const commandHistory = [];
     let historyIndex = -1;
     const availableCommands = [
-        'ck', 'ck help', 'ck skills', 'ck experience', 'ck projects', 'ck contact', 'ck clear', 'ck theme', 'ck neofetch',
-        'help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'
+        'ck', 'ck help', 'ck skills', 'ck experience', 'ck projects', 'ck contact', 'ck clear', 'ck theme', 'ck neofetch'
     ];
 
     actualInput.addEventListener('keydown', (e) => {
@@ -2594,7 +2594,7 @@ document.addEventListener('click', e => {
             let parsedCmd = command;
             let lowerCmd = lowerCommand;
 
-            // Handle 'ck' prefix commands (e.g., 'ck skills', 'ck help', or just 'ck')
+            // Enforce 'ck' prefix (e.g. 'ck skills', 'ck help', or just 'ck')
             if (lowerCmd === 'ck') {
                 appendTerminalLine("⚡ CK CLI [v1.0.0] — Charan's Custom Developer Shell", "system");
                 appendTerminalLine("Usage: ck <command> (e.g., 'ck skills', 'ck help', 'ck neofetch', 'ck projects')", "system");
@@ -2603,10 +2603,21 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            if (lowerCmd.startsWith('ck ')) {
-                parsedCmd = command.substring(3).trim();
-                lowerCmd = parsedCmd.toLowerCase();
+            if (!lowerCmd.startsWith('ck ')) {
+                const knownSubCmds = ['help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'];
+                const firstWord = lowerCmd.split(/\s+/)[0];
+                if (knownSubCmds.includes(firstWord)) {
+                    appendTerminalLine(`[CK Shell] Command requires 'ck' prefix. Try: 'ck ${command}'`, "system");
+                } else {
+                    appendTerminalLine(`Command not found: '${command}'. Type 'ck help' for available commands.`, "system");
+                }
+                appendTerminalLine('', 'spacer');
+                return;
             }
+
+            // Strip 'ck ' prefix
+            parsedCmd = command.substring(3).trim();
+            lowerCmd = parsedCmd.toLowerCase();
 
             if (lowerCmd === 'clear') {
                 outputLog.innerHTML = '';
