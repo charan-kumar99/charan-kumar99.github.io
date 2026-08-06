@@ -198,7 +198,7 @@ document.addEventListener('click', (e) => {
     applyPalette(saved);
 })();
 
-const SYSTEM_PROMPT = `You are a friendly AI assistant embedded in Charan Kumar's portfolio website.
+const SYSTEM_PROMPT = `You are CK-Buddy, a friendly AI assistant embedded in Charan Kumar's portfolio website.
 You answer questions about Charan Kumar — his skills, projects, experience, education, and contact info.
 IMPORTANT: When someone asks about a technology, framework, or concept (e.g. "what is microservices?", "what is Blazor?", "what is REST API?"), ALWAYS start with how Charan specifically uses it in his work, then give a brief technical explanation. The context must be Charan's experience first, not a generic definition.
 Only decline questions that are completely unrelated to Charan or his tech stack (e.g. cooking recipes, politics, etc).
@@ -226,7 +226,7 @@ FORMATTING RULES — follow strictly:
 - Use bullet points (- item) for any list of 2 or more items.
 - Keep answers SHORT and CLEAN — max 5 lines total. No long paragraphs.
 - Lead with the most important fact first.
-- If asked personal questions about the visitor (e.g., "who am I?", "do you know me?"), reply warmly: "I don't know who you are, but I'm Charan's AI Assistant! Feel free to ask me anything you'd like to know about Charan — his projects, skills, experience, or contact details."
+- If asked personal questions about the visitor (e.g., "who am I?", "do you know me?"), reply warmly: "I don't know who you are, but I'm CK-Buddy! Feel free to ask me anything you'd like to know about Charan — his projects, skills, experience, or contact details."
 - For completely unrelated topics (e.g. recipes, general trivia, weather), reply politely: "I'm specialized in answering questions about Charan Kumar! Ask me anything about his skills, projects, experience, or contact info."
 
 ABOUT CHARAN KUMAR
@@ -699,9 +699,9 @@ function renderSuggestions() {
 function renderWelcome() {
     chatMessages.innerHTML =
         '<div class="chat-welcome">' +
-        '<div class="chat-welcome-emoji">👋</div>' +
-        '<div class="chat-welcome-title">Hi! I\'m Charan\'s AI Assistant</div>' +
-        '<div class="chat-welcome-sub">Ask me anything about Charan — his skills,<br>projects, experience, or how to reach him!</div>' +
+        '  <div class="chat-welcome-tag">✨ AI PORTFOLIO ASSISTANT</div>' +
+        '  <h4 class="chat-welcome-title">Hi! I\'m <span class="welcome-highlight">CK-Buddy</span></h4>' +
+        '  <p class="chat-welcome-sub">Ask me anything about Charan\'s <span class="welcome-pill">Skills</span> <span class="welcome-pill">Projects</span> <span class="welcome-pill">Experience</span> or how to reach him!</p>' +
         '</div>';
 }
 
@@ -871,13 +871,15 @@ function appendMessage(role, text, isError = false) {
     const wrap = document.createElement('div');
     wrap.className = 'chat-msg ' + role;
 
-    const initials = role === 'bot' ? 'CK' : 'You';
     const errClass = isError ? ' error' : '';
-    
     const content = role === 'bot' ? formatBotMessage(text) : escapeHtml(text);
 
+    const avatarHtml = role === 'bot'
+        ? '<div class="msg-avatar bot-avatar"><img src="logo.svg" alt="CK Logo" class="msg-avatar-logo"></div>'
+        : '<div class="msg-avatar user-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>';
+
     wrap.innerHTML =
-        '<div class="msg-avatar">' + initials + '</div>' +
+        avatarHtml +
         '<div class="msg-bubble' + errClass + '">' + content + '</div>';
 
     chatMessages.appendChild(wrap);
@@ -890,10 +892,7 @@ function showTyping() {
     typingEl = document.createElement('div');
     typingEl.className = 'typing-indicator';
     typingEl.innerHTML =
-        '<div class="msg-avatar" style="width:28px;height:28px;border-radius:50%;' +
-        'background:linear-gradient(135deg,var(--primary),var(--accent));color:var(--darker);' +
-        'display:flex;align-items:center;justify-content:center;font-size:0.65rem;' +
-        'font-weight:700;flex-shrink:0;margin-top:2px;">CK</div>' +
+        '<div class="msg-avatar bot-avatar"><img src="logo.svg" alt="CK Logo" class="msg-avatar-logo"></div>' +
         '<div class="typing-dots"><span></span><span></span><span></span></div>';
     chatMessages.appendChild(typingEl);
     scrollBottom();
