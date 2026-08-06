@@ -2458,7 +2458,6 @@ document.addEventListener('click', e => {
     }
 
     window.addEventListener('keydown', (e) => {
-        
         if (e.key === '`') {
             e.preventDefault();
             toggleTerminalDrawer();
@@ -2481,15 +2480,15 @@ document.addEventListener('click', e => {
     }
 
     const commandResponses = {
-        help: `Available commands:
-  help         - Show this list of available commands
-  skills       - Print my current developer skill stack
-  experience   - Show professional history overview
-  projects     - Show key featured projects
-  contact      - Display contact options
-  theme [name] - Change color theme (dark, cyberpunk, emerald, light)
-  neofetch     - Show system specs & profile overview
-  clear        - Clear terminal lines`,
+        help: `Available commands (Use prefix 'ck <command>' or directly):
+  ck help         - Show this list of available commands
+  ck skills       - Print current developer skill stack
+  ck experience   - Show professional history overview
+  ck projects     - Show key featured projects
+  ck contact      - Display contact options
+  ck theme [name] - Change color theme (dark, cyberpunk, emerald, light)
+  ck neofetch     - Show system specs & profile overview
+  ck clear        - Clear terminal screen`,
 
         skills: `Charan Kumar's Developer Skill Stack:
   Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
@@ -2536,7 +2535,10 @@ document.addEventListener('click', e => {
 
     const commandHistory = [];
     let historyIndex = -1;
-    const availableCommands = ['help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'];
+    const availableCommands = [
+        'ck', 'ck help', 'ck skills', 'ck experience', 'ck projects', 'ck contact', 'ck clear', 'ck theme', 'ck neofetch',
+        'help', 'skills', 'experience', 'projects', 'contact', 'clear', 'theme', 'neofetch'
+    ];
 
     actualInput.addEventListener('keydown', (e) => {
         
@@ -2589,20 +2591,37 @@ document.addEventListener('click', e => {
             commandHistory.push(rawVal);
             historyIndex = commandHistory.length;
 
-            if (lowerCommand === 'clear') {
+            let parsedCmd = command;
+            let lowerCmd = lowerCommand;
+
+            // Handle 'ck' prefix commands (e.g., 'ck skills', 'ck help', or just 'ck')
+            if (lowerCmd === 'ck') {
+                appendTerminalLine("⚡ CK CLI [v1.0.0] — Charan's Custom Developer Shell", "system");
+                appendTerminalLine("Usage: ck <command> (e.g., 'ck skills', 'ck help', 'ck neofetch', 'ck projects')", "system");
+                appendTerminalLine("Type 'ck help' to see all available commands.", "system");
+                appendTerminalLine('', 'spacer');
+                return;
+            }
+
+            if (lowerCmd.startsWith('ck ')) {
+                parsedCmd = command.substring(3).trim();
+                lowerCmd = parsedCmd.toLowerCase();
+            }
+
+            if (lowerCmd === 'clear') {
                 outputLog.innerHTML = '';
                 appendTerminalLine("Welcome to Charan's Interactive CLI! [v1.0.0]", "system");
-                appendTerminalLine("Type 'help' to see all available commands. Press ` (backtick) or click the nav button to toggle.", "system");
+                appendTerminalLine("Type 'ck help' to see all available commands. Press ` (backtick) or click the nav button to toggle.", "system");
                 const spacer = document.createElement('div');
                 spacer.className = 'terminal-line spacer';
                 outputLog.appendChild(spacer);
                 return;
             }
 
-            if (lowerCommand.startsWith('theme')) {
-                const parts = command.split(/\s+/);
+            if (lowerCmd.startsWith('theme')) {
+                const parts = parsedCmd.split(/\s+/);
                 if (parts.length < 2) {
-                    appendTerminalLine("Usage: theme [name]");
+                    appendTerminalLine("Usage: ck theme [name]");
                     appendTerminalLine("Available themes: dark (Neo-Cyan), cyberpunk, emerald, light (Light Pro)");
                 } else {
                     const themeName = parts[1].toLowerCase();
@@ -2621,7 +2640,7 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            if (lowerCommand === 'neofetch') {
+            if (lowerCmd === 'neofetch') {
                 const uptimeSeconds = Math.floor(performance.now() / 1000);
                 const mins = Math.floor(uptimeSeconds / 60);
                 const secs = uptimeSeconds % 60;
@@ -2629,11 +2648,11 @@ document.addEventListener('click', e => {
 
                 const neofetchText = `         .----.         charan@portfolio
        .'      '.       ----------------
-      /          \\      OS: Portfolio Web CLI v1.0.0
+      /          \\      OS: Portfolio Web CLI v1.0.0 (CK Shell)
      |   .----.   |     Host: charan-kumar99.github.io
     |   /      \\   |    Kernel: Vanilla JS / HTML5 / CSS3
     |  |   .NET |  |    Uptime: ${uptimeStr}
-    |   \\      /   |    Shell: Charan's Custom JS CLI
+    |   \\      /   |    Shell: CK Custom JS CLI (ck <cmd>)
      |   '----'   |     Education: MCA Student @ MIT Jaipur
       \\          /      Role: Software Developer | .NET & Full-Stack Developer
        '.      .'       Backend: C# / ASP.NET Core / EF Core
@@ -2645,11 +2664,11 @@ document.addEventListener('click', e => {
                 return;
             }
 
-            const response = commandResponses[lowerCommand];
+            const response = commandResponses[lowerCmd];
             if (response) {
                 appendTerminalLine(response);
             } else {
-                appendTerminalLine(`Command not found: '${command}'. Type 'help' for available commands.`, 'system');
+                appendTerminalLine(`Command not found: '${command}'. Type 'ck help' for available commands.`, 'system');
             }
 
             appendTerminalLine('', 'spacer');
