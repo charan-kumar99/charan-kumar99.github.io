@@ -1453,16 +1453,17 @@ footer {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border: none;
+    background: rgba(10, 14, 30, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(0, 212, 255, 0.4);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    
     z-index: 1000001;
-    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 212, 255, 0.25);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
     color: #fff;
     padding: 0;
     line-height: 1;
@@ -1470,7 +1471,9 @@ footer {
 
 .chat-bubble:hover {
     transform: scale(1.12);
-    box-shadow: 0 12px 40px rgba(0, 212, 255, 0.7);
+    border-color: rgba(0, 255, 170, 0.8);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 170, 0.4);
+    background: rgba(15, 23, 42, 0.95);
 }
 
 .chat-bubble:active {
@@ -1584,16 +1587,14 @@ footer {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: rgba(10, 14, 30, 0.95) !important;
+    border: 1.5px solid rgba(0, 212, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    font-size: 0.82rem;
-    color: var(--darker);
     position: relative;
     flex-shrink: 0;
-    letter-spacing: 0.5px;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
 }
 
 .chat-avatar-status {
@@ -1731,14 +1732,27 @@ footer {
     margin-top: 2px;
 }
 
-.chat-msg.bot .msg-avatar {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: var(--darker);
+.chat-msg.bot .msg-avatar,
+.msg-avatar.bot-avatar {
+    background: rgba(10, 14, 30, 0.95) !important;
+    border: 1.5px solid rgba(0, 212, 255, 0.4) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+    color: inherit !important;
 }
 
-.chat-msg.user .msg-avatar {
-    background: linear-gradient(135deg, #6c63ff, #a78bfa);
-    color: #fff;
+.msg-avatar-logo {
+    width: 16px !important;
+    height: 16px !important;
+    display: block !important;
+    filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.6));
+}
+
+.chat-msg.user .msg-avatar,
+.msg-avatar.user-avatar {
+    background: rgba(0, 212, 255, 0.15) !important;
+    border: 1.5px solid rgba(0, 212, 255, 0.5) !important;
+    color: var(--primary, #00d4ff) !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2) !important;
 }
 
 .msg-bubble {
@@ -1840,25 +1854,116 @@ footer {
 
 .chat-welcome {
     text-align: center;
-    padding: 1.2rem 1rem 0.4rem;
+    padding: 1.1rem 1rem;
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.08) 0%, rgba(10, 14, 30, 0.4) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    margin-bottom: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-.chat-welcome-emoji {
-    font-size: 2.2rem;
+.chat-welcome::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+}
+
+.chat-welcome-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+}
+
+.welcome-logo-wrapper {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(10, 14, 30, 0.9);
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.35);
+    animation: welcomeFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes welcomeFloat {
+    0% { transform: translateY(0); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+    100% { transform: translateY(-4px); box-shadow: 0 0 25px rgba(0, 255, 170, 0.5); }
+}
+
+.welcome-logo-img {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.7));
+}
+
+.welcome-sparkle-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: var(--accent, #00ffaa);
+    border-radius: 50%;
+    border: 2px solid #0a0e27;
+    box-shadow: 0 0 8px var(--accent, #00ffaa);
+}
+
+.chat-welcome-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--primary, #00d4ff);
+    text-transform: uppercase;
     margin-bottom: 0.4rem;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 212, 255, 0.25);
 }
 
 .chat-welcome-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--light);
-    margin-bottom: 0.3rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.2px;
+}
+
+.welcome-highlight {
+    background: linear-gradient(135deg, #00d4ff, #00ffaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .chat-welcome-sub {
-    font-size: 0.8rem;
-    color: var(--gray);
-    line-height: 1.5;
+    font-size: 0.82rem;
+    color: var(--gray, #a0aec0);
+    line-height: 1.6;
+}
+
+.welcome-pill {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 6px;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    color: var(--primary, #00d4ff);
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 .typing-indicator {
@@ -4374,4 +4479,34 @@ html[data-theme="light"] .floating-resume-pill:hover {
     font-weight: 600;
     box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
 }
+
+/* CK Floating Logo Styles */
+.chat-bubble-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-logo-img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chat-bubble:hover .chat-logo-img {
+    transform: scale(1.12) rotate(-5deg);
+    filter: drop-shadow(0 0 12px rgba(0, 255, 170, 0.8));
+}
+
+.chat-avatar-logo {
+    display: block;
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.5));
+}
+
+
 
