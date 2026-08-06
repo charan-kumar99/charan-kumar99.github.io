@@ -51,6 +51,7 @@
       "Redis"
     ],
     "tools": [
+      "Jira",
       "Azure DevOps",
       "CI/CD Pipelines",
       "GitHub",

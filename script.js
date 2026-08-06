@@ -275,7 +275,7 @@ SKILLS
 - Languages   : **C#**, **Java**, **JavaScript**, **C**, **Python**, HTML5, CSS3, Dart
 - Frameworks  : **ASP.NET Core**, **Blazor**, **Razor Pages**, React, **Flutter**, Bootstrap 5, **Flask**, Chart.js, **Entity Framework Core**
 - Databases   : **PostgreSQL**, **MySQL**, **Oracle Database**, **SQL Server**, SQLite, **Redis**
-- Tools & Cloud: **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Supabase** (Auth & Cloud Backend Services), **Razorpay**, **Vercel**
+- Tools & Cloud: **Jira**, **Azure DevOps** (including Repos, Boards, Pipelines), GitHub, VS Code, Postman, DBeaver, **Docker**, **Swagger**, **Firebase**, **Supabase** (Auth & Cloud Backend Services), **Razorpay**, **Vercel**
 - API & Arch  : **REST APIs**, **Clean Architecture**, **Microservices Architecture**, **CI/CD Pipelines**
 - Soft Skills : Analytical Thinking, Active Listening, Team Leadership, Fast Learner, Detail-Oriented, Collaborative
 
@@ -1451,6 +1451,7 @@ document.addEventListener('click', e => {
         'SQL Server': '#CC2927',
         'SQLite': '#44A8D6',
         'Redis': '#DC382D',
+        'Jira': '#0052CC',
         'Azure DevOps': '#0078D7',
         'CI/CD Pipelines': '#00F5FF',
         'GitHub': '#6e7681',
@@ -2493,7 +2494,7 @@ document.addEventListener('click', e => {
         skills: `Charan Kumar's Developer Skill Stack:
   Backend:      C#, ASP.NET Core, EF Core, Microservices Architecture, Clean Architecture, REST APIs
   Databases:    SQL Server, PostgreSQL, MySQL, Oracle Database, SQLite, Redis
-  Cloud/Tools:  Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Supabase, Razorpay, Vercel
+  Cloud/Tools:  Jira, Docker, Azure DevOps, CI/CD Pipelines, Git, Postman, Swagger, Firebase, Supabase, Razorpay, Vercel
   Frontend:     HTML5, CSS3, JavaScript (ES6+), React, Flutter, Bootstrap 5, Flask, Chart.js`,
 
         experience: `Professional History:
@@ -2684,6 +2685,7 @@ document.addEventListener('click', e => {
         "js": ["javascript", "js", "es6"],
         "typescript": ["typescript", "ts"],
         "ts": ["typescript", "ts"],
+        "jira": ["jira", "atlassian", "agile", "scrum", "issue tracking", "ticket management", "sprint"],
         "azure devops": ["azure devops", "azure", "devops", "ci/cd", "ci-cd"],
         "ci/cd": ["ci/cd", "ci-cd", "pipelines", "pipeline", "github actions", "devops"],
         "pipelines": ["ci/cd", "ci-cd", "pipelines", "pipeline", "github actions", "devops"],
@@ -2963,7 +2965,7 @@ ${(isCV ? (job.bullets || []) : (job.bullets || []).slice(0, 3)).map(b => `    \
         const lang = (data?.skills?.languages || ["C#", "JavaScript", "Java", "C", "Python"]).map(escapeLatex).join(", ");
         const fw = (data?.skills?.frameworks || ["ASP.NET Core", "Blazor", "React", "Flutter", "Razor Pages"]).map(escapeLatex).join(", ");
         const db = (data?.skills?.databases || ["PostgreSQL", "SQL Server", "MySQL", "Redis"]).map(escapeLatex).join(", ");
-        const tools = (data?.skills?.tools || ["Azure DevOps", "Docker", "GitHub", "CI/CD Pipelines", "Firebase"]).map(escapeLatex).join(", ");
+        const tools = (data?.skills?.tools || ["Jira", "Azure DevOps", "Docker", "GitHub", "CI/CD Pipelines", "Firebase"]).map(escapeLatex).join(", ");
         const arch = (data?.skills?.architecture || ["Clean Architecture", "Microservices Architecture", "REST APIs", "System Design"]).map(escapeLatex).join(", ");
 
         const projTex = (isCV ? (data?.projects || []) : (data?.projects || []).slice(0, 3)).map(proj => `
@@ -3250,7 +3252,7 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
             { label: "Languages:", list: data.skills && data.skills.languages ? (isCV ? data.skills.languages.join(", ") : data.skills.languages.slice(0, 5).join(", ")) : "C#, JavaScript, Java, C, Python" },
             { label: "Frameworks:", list: data.skills && data.skills.frameworks ? (isCV ? data.skills.frameworks.join(", ") : data.skills.frameworks.slice(0, 5).join(", ")) : "ASP.NET Core, Blazor, React, Flutter, Razor Pages" },
             { label: "Databases:", list: data.skills && data.skills.databases ? (isCV ? data.skills.databases.join(", ") : data.skills.databases.slice(0, 4).join(", ")) : "PostgreSQL, SQL Server, MySQL, Redis" },
-            { label: "Tools:", list: data.skills && data.skills.tools ? (isCV ? data.skills.tools.join(", ") : data.skills.tools.slice(0, 5).join(", ")) : "Azure DevOps, Docker, GitHub, CI/CD Pipelines, Firebase" },
+            { label: "Tools:", list: data.skills && data.skills.tools ? (isCV ? data.skills.tools.join(", ") : data.skills.tools.slice(0, 5).join(", ")) : "Jira, Azure DevOps, Docker, GitHub, CI/CD Pipelines" },
             { label: "Architecture & Concepts:", list: data.skills && data.skills.architecture ? (isCV ? data.skills.architecture.join(", ") : data.skills.architecture.slice(0, 4).join(", ")) : "Clean Architecture, Microservices Architecture, REST APIs, System Design" }
         ];
 
