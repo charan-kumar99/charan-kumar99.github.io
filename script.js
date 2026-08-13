@@ -1362,12 +1362,16 @@ SKILLS
 PROJECTS (in order)
 1. **DevLens** — AI-Powered GitHub Repository Analyzer (C#, ASP.NET Core, React, GitHub API, Google Gemini API, SQLite, D3.js, Recharts)
    GitHub: https://github.com/charan-kumar99/DevLens
+   Live: https://devlens-nine.vercel.app/
 2. **Money Mate** — Personal Finance Management (Python, Flask, SQLite, SQLAlchemy, Chart.js, Bootstrap 5)
    GitHub: https://github.com/charan-kumar99/Money_Mate
+   Live: https://money-mate-e33v.onrender.com/login
 3. **Cricket Performance Analyzer** — BCA Final Project Enhanced (HTML5, CSS3, JS ES6+, Chart.js, LocalStorage)
    GitHub: https://github.com/charan-kumar99/Cricket-Performance-Analyzer
+   Live: https://charan-kumar99.github.io/Cricket-Performance-Analyzer/
 4. **Orion** — AI-Powered Personal Voice Assistant (Python, Flask, JS, Google TTS, Speech Recognition)
    GitHub: https://github.com/charan-kumar99/Orion
+   Live: https://orion-assistant-bfwt.onrender.com/
 5. **Vaulta** — Personal & Official Document Manager (JavaScript ES6+, IndexedDB, Mozilla PDF.js, PWA Service Worker, Web Share API, JSZip, jsPDF) — Modern, 100% private offline PWA for storing, previewing, converting, and sharing documents.
    GitHub: https://github.com/charan-kumar99/Vaulta
    Live: https://charan-kumar99.github.io/Vaulta/
@@ -1377,6 +1381,7 @@ PROJECTS (in order)
 7. **Migration Master** — High-Performance PostgreSQL Database Migration Tool in C# featuring bulk binary COPY protocol ('COPY FROM STDIN'), topological dependency sorting with Kahn's Algorithm, full schema/constraint replication, identity sequence syncing, and interactive Spectre.Console CLI.
    GitHub: https://github.com/charan-kumar99/Migration-Master
 8. **RTGS/NEFT Banking System** — Enterprise payment system built on Microservices Architecture (ASP.NET Core, Microservices, PostgreSQL, MySQL, Oracle Database, Azure DevOps, REST APIs, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET) — Proprietary (built at NTSIPL)
+9. **Agremate** — Smart Property Management Platform Backend (C#, ASP.NET Core, Clean Architecture, Docker, Swagger, SQL Server, Redis caching, Razorpay) — Proprietary (built at AGREMATE)
 
 CERTIFICATIONS & TRAINING
 - Fast-Track Internship — Data Analytics, Web Development & Python Projects | Accolade Tech Solutions, Mangaluru (August 2024)

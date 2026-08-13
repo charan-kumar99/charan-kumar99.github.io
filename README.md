@@ -1,23 +1,48 @@
 # charan-kumar99.github.io 🚀
 
 Personal portfolio & resume website for **Charan Kumar** — Software Developer | .NET Developer | Full-Stack Developer.  
-Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring a 6-Tier AI-Powered Tailored ATS Resume & CV Generator, an interactive Project Workflow Simulator, a Developer CLI Terminal, and a Groq/Gemini-backed AI Support Assistant.
+Built with high-performance HTML5, Vanilla CSS, and JavaScript — featuring a 6-Tier AI-Powered Tailored ATS Resume & CV Generator, an interactive Project Workflow Simulator, a Developer CLI Terminal, and a 6-Tier Multi-LLM AI Support Assistant.
 
 ---
 
-## 🤖 AI Models & Integration Architecture
+## 🤖 6-Tier AI Provider & Integration Architecture
 
-The application leverages state-of-the-art Large Language Models (LLMs) via secure serverless proxy endpoints to power both interactive candidate Q&A and instant ATS resume & CV tailoring:
+The application leverages a robust **6-Tier Large Language Model (LLM) Failover Pipeline** via secure serverless proxy endpoints (`/api/chat.js` and `/api/polish.js`) to guarantee 99.9% uptime, zero rate-limit downtime, and instant ATS resume & CV tailoring:
+
+```
+[User Request] 
+      │
+      ▼
+ 1️⃣ Groq LLaMA 3.3 70B (Primary - Sub-second LPU inference)
+      │ (on rate limit / failure)
+      ▼
+ 2️⃣ Google Gemini 2.5 Flash (Secondary - High-intelligence multimodal)
+      │ (on rate limit / failure)
+      ▼
+ 3️⃣ OpenRouter Free Tier (Tertiary - Distributed open-source routing)
+      │ (on rate limit / failure)
+      ▼
+ 4️⃣ Cohere Command R+ (Quaternary - Enterprise conversational intelligence)
+      │ (on rate limit / failure)
+      ▼
+ 5️⃣ Hugging Face Inference API (Quinary - Serverless open-source router)
+      │ (on rate limit / failure)
+      ▼
+ 6️⃣ Mistral AI (Senary - Fast European foundation model)
+```
 
 ### 1. 💬 AI Support Chatbot & Voice Assistant (`/api/chat.js`)
-- **Primary AI Engine**: **Groq LLaMA 3.3 70B Versatile** (`llama-3.3-70b-versatile`) — Delivers sub-second inference speeds for real-time candidate Q&A.
-- **Secondary / Fallback Engine**: **Google Gemini 2.5 Flash** (`gemini-2.5-flash`) — Activates seamlessly if primary rate limits or network limits are met.
-- **Resilience Strategy**: 6-Tier provider fallback chain (Groq, Google Gemini, OpenRouter, Cohere, HuggingFace, Mistral) ensuring 99.9% uptime.
+- **Tier 1 (Primary Engine)**: **Groq LLaMA 3.3 70B Versatile** (`llama-3.3-70b-versatile` / `GROQ_API_KEY`) — Delivers ultra-fast, sub-second inference for real-time candidate Q&A.
+- **Tier 2 (Secondary Fallback)**: **Google Gemini 2.5 Flash** (`gemini-2.5-flash` / `GEMINI_API_KEY`) — Multimodal powerhouse handling complex contextual queries seamlessly if primary quotas are met.
+- **Tier 3 (Tertiary Failover)**: **OpenRouter Free Tier** (`meta-llama/llama-3.3-70b-instruct:free` / `OPENROUTER_API_KEY`) — Distributed open-source LLM router.
+- **Tier 4 (Quaternary Failover)**: **Cohere Command R+** (`command-r-plus-08-2024` / `COHERE_API_KEY`) — Enterprise-grade conversational AI.
+- **Tier 5 (Quinary Failover)**: **Hugging Face Inference** (`meta-llama/Llama-3.3-70B-Instruct` / `HUGGINGFACE_API_KEY`) — Serverless inference pipeline.
+- **Tier 6 (Senary Failover)**: **Mistral AI** (`mistral-small-latest` / `MISTRAL_API_KEY`) — High-efficiency European AI engine completing the zero-downtime chain.
 - **Features**:
   - Voice input with live CSS audio waveform visualizer via Web Speech API.
   - Text-to-Speech (TTS) natural voice output.
-  - Context-trained prompt engineering based on `resume-data.json` with knowledge of portfolio features, interactive contact links, and visitor Q&A fallbacks.
-  - Smart chips and 12 randomized prompt sets.
+  - Context-trained prompt engineering based on `resume-data.json` with knowledge of portfolio features, live demo links, interactive contact links, and visitor Q&A fallbacks.
+  - Smart suggestion chips and 12 randomized prompt sets.
 
 ### 2. 📄 Dual-Mode Resume & CV Generator (`/api/polish.js` & `/api/latex.js`)
 - **Document Type Selection**:
@@ -73,7 +98,7 @@ This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to delive
 - **⚡ AI Phrasing Enhancer Toggle**: Switch labeled **"Enhance phrasing with AI"** allows visitors to disable AI bullet rephrasing while still matching job keywords.
 - **📞 Interactive Contact Links**: Direct dialer link (`tel:+919380455922`) for phone number and Google Maps link for location (`Udupi, Karnataka, India`).
 - **💻 Interactive Project Workflow Simulator**: Step-by-step visual map and terminal log simulator showcasing data flows, API gateways, and database execution logic for projects including **DevLens**, **Migration Master**, **Money Mate**, **Orion**, **Vaulta**, and **Advanced Portfolio**.
-- **🤖 High-Z-Index AI Chatbot**: Floating chat bubble at bottom-right positioned at `z-index: 1000001` so it stays crisp and fully usable anywhere on the page—even while modal windows are open.
+- **🤖 High-Z-Index AI Chatbot**: Floating chat bubble at bottom-right positioned at `z-index: 1000001` with 6-Tier AI fallback resilience so it stays responsive and available anywhere on the page.
 - **🚀 Featured Projects Portfolio**: Showcases 9 major projects across C#, .NET, ASP.NET Core, Python, Flask, React, Flutter, PostgreSQL, and SQL Server — including open-source tools like **Migration Master** and proprietary systems at **AGREMATE** and **NTSIPL**.
 - **🎮 Developer CLI Shell**: Matrix-style interactive terminal drawer (` key or 💻 navbar icon) enforcing custom `ck` prefix commands (`ck help`, `ck skills`, `ck experience`, `ck projects`, `ck contact`, `ck theme`, `ck neofetch`, and `ck clear`).
 - **🎨 Dynamic Theme Palette**: Switch color themes instantly (Dark, Cyberpunk, Emerald, Neo-Cyan, Light Pro) with persistent state.
@@ -83,7 +108,7 @@ This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to delive
 ## 🛠️ Tech Stack & Architecture
 
 - **Frontend**: HTML5, Vanilla CSS3 (CSS Variables, Glassmorphic UI, Animations), Modern ES6+ JavaScript, Chart.js, jsPDF, D3.js.
-- **Backend / APIs**: Node.js, Vercel Serverless Functions (`/api/chat`, `/api/polish`, `/api/latex`), Google Gemini 2.5 Flash, Groq LLaMA 3.3 70B.
+- **Backend / APIs**: Node.js, Vercel Serverless Functions (`/api/chat`, `/api/polish`, `/api/latex`), 6-Tier AI Proxy Architecture (Groq LLaMA 3.3 70B, Google Gemini 2.5 Flash, OpenRouter, Cohere Command R+, Hugging Face, Mistral).
 - **Tools & DevOps**: Jira (Agile & Issue Tracking), Azure DevOps, Docker, GitHub, CI/CD Pipelines, Postman, Swagger.
 - **Data Source**: `resume-data.json` single-source-of-truth for experience, skills, certifications, and project metadata.
 
@@ -91,15 +116,39 @@ This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to delive
 
 ## 🗂️ Featured Projects List (All 9 Included in CV)
 
-1. **DevLens**: Full-stack AI repository analyzer using C#, ASP.NET Core, React, GitHub REST API, and Google Gemini API with D3.js/Recharts visual analytics.
-2. **Money Mate**: Flask & SQLite personal finance manager with multi-currency tracking and Chart.js analytics.
-3. **Cricket Performance Analyzer**: ES6 JavaScript analytics tool with custom metric engine and Chart.js visualizations.
-4. **Orion**: AI voice assistant with Speech Recognition and Google TTS automation.
-5. **Vaulta**: Personal & Official Document Manager — Modern, privacy-first, offline PWA with IndexedDB storage, Mozilla PDF.js viewer, Web Share API, and JSZip/jsPDF backup utilities.
-6. **Advanced Portfolio**: Next.js 15, React 19, Three.js 3D environment, Framer Motion, and GSAP animations.
-7. **RTGS/NEFT Banking System**: Enterprise payment processing services built on Microservices Architecture, serving major banks and vendors.
-8. **Agremate**: Smart property management backend REST APIs built with ASP.NET Core, Clean Architecture, Docker, Swagger, SQL Server, and Redis caching.
-9. **Migration Master**: High-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (`COPY FROM STDIN`), Kahn's Algorithm topological dependency resolution, full schema replication, sequence syncing, and Spectre.Console interactive CLI.
+1. **DevLens** — *AI-Powered GitHub Repository Analyzer*  
+   Full-stack web application providing comprehensive, AI-driven insights into GitHub repositories using C#, ASP.NET Core, React, GitHub REST API, and Google Gemini API with D3.js/Recharts visual analytics.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/DevLens) &nbsp;|&nbsp; 🌐 [Live Demo](https://devlens-nine.vercel.app/)
+
+2. **Money Mate** — *Personal Finance Management Web Application*  
+   Flask & SQLite personal finance management application with multi-currency tracking (INR, USD, EUR, GBP, JPY), CSV import/export, SQLAlchemy ORM security, and interactive Chart.js analytics.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/Money_Mate) &nbsp;|&nbsp; 🌐 [Live Demo](https://money-mate-e33v.onrender.com/login)
+
+3. **Cricket Performance Analyzer** — *Sports Analytics Engine (BCA Final Project Enhanced)*  
+   Browser-based cricket analytics tool with custom metric engine, automatic strike rate calculations, CSV import/export, and interactive Chart.js visualizations.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/Cricket-Performance-Analyzer) &nbsp;|&nbsp; 🌐 [Live Demo](https://charan-kumar99.github.io/Cricket-Performance-Analyzer/)
+
+4. **Orion** — *AI-Powered Personal Voice Assistant*  
+   Voice and text-controlled personal assistant with speech recognition input and text-to-speech responses via Google TTS, website navigation, and web automation built with Python, Flask, and JavaScript.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/Orion) &nbsp;|&nbsp; 🌐 [Live Demo](https://orion-assistant-bfwt.onrender.com/)
+
+5. **Vaulta** — *Personal & Official Document Manager*  
+   Modern, privacy-first, 100% offline Progressive Web Application (PWA) designed to securely store, organize, preview, and share personal and official documents locally on device using IndexedDB, Mozilla PDF.js, Web Share API, and JSZip/jsPDF backup utilities.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/Vaulta) &nbsp;|&nbsp; 🌐 [Live Demo](https://charan-kumar99.github.io/Vaulta/)
+
+6. **Advanced Developer Portfolio** — *3D Visual Experience & Metric Hub*  
+   Immersive developer portfolio built with Next.js 15, React 19, Three.js / React Three Fiber 3D environments, Framer Motion, GSAP animations, WakaTime metrics, and AI chat assistant.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/Advanced-Portfolio) &nbsp;|&nbsp; 🌐 [Live Demo](https://advanced-portfolio-sandy.vercel.app/)
+
+7. **Migration Master** — *High-Performance PostgreSQL Migration Tool in C#*  
+   High-performance PostgreSQL-to-PostgreSQL database migration tool in C# using PostgreSQL's native Binary COPY protocol (`COPY FROM STDIN` via Npgsql), Kahn's Algorithm topological dependency resolution, full schema & constraint replication, sequence syncing, and Spectre.Console interactive CLI.  
+   🔗 [GitHub Repository](https://github.com/charan-kumar99/Migration-Master)
+
+8. **RTGS/NEFT Banking System** — *Enterprise Payment Processing Microservices*  
+   Enterprise banking payment processing system built on Microservices Architecture (ASP.NET Core, PostgreSQL, MySQL, Oracle Database, Azure DevOps, SFTP/FTP, IIS Hosting, Blazor, Razor Pages, .NET), serving major banks and financial vendors. *(Proprietary — NTSIPL)*
+
+9. **Agremate** — *Smart Property Management Platform Backend*  
+   Scalable backend REST APIs and automated property workflows (digital rental agreements, billing, Razorpay payments) for India's smart property management platform built with ASP.NET Core, Clean Architecture, Docker, Swagger, SQL Server, and Redis caching. *(Proprietary — AGREMATE)*
 
 ---
 
@@ -110,10 +159,10 @@ This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to delive
 ├── style.css         — CSS design system, glassmorphism, themes, terminal & simulator styles
 ├── script.js         — Main client-side logic, AI chatbot client, simulator engine & PDF generator
 ├── resume-data.json  — Centralized JSON data source for resume, experience, and project details
-├── server.js         — Node.js development server with local API proxies & LaTeX compiler
+├── server.js         — Node.js development server with local 6-tier AI proxies & LaTeX compiler
 ├── api/
-│   ├── chat.js       — Serverless endpoint for AI support chatbot (Groq LLaMA 3.3 + Gemini 2.5 Flash fallback)
-│   ├── polish.js     — Serverless endpoint for AI resume polishing and ATS tailoring
+│   ├── chat.js       — Serverless endpoint for AI support chatbot (6-tier fallback: Groq, Gemini, OpenRouter, Cohere, HuggingFace, Mistral)
+│   ├── polish.js     — Serverless endpoint for AI resume polishing and ATS tailoring (6-tier fallback)
 │   └── latex.js      — Serverless endpoint for LaTeX PDF compilation (EB Garamond styling)
 ├── vercel.json       — Vercel deployment & routing configuration
 └── README.md         — Portfolio documentation
@@ -123,18 +172,48 @@ This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to delive
 
 ## ⚙️ Run Locally
 
-1. Clone the repository:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/charan-kumar99/charan-kumar99.github.io.git
    cd charan-kumar99.github.io
    ```
 
-2. Set your AI API keys as environment variables and launch the local server:
-   ```powershell
-   $env:GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"; $env:GROQ_API_KEY="YOUR_GROQ_API_KEY_HERE"; node server.js
-   ```
+2. **Configure AI API Keys**:
+   The application features a 6-Tier AI provider fallback chain. You can set all 6 keys or any subset (at least 1 key is required for AI features to be active):
 
-3. Open your browser at:
+   - **PowerShell (Windows)**:
+     ```powershell
+     $env:GROQ_API_KEY="YOUR_GROQ_KEY"; `
+     $env:GEMINI_API_KEY="YOUR_GEMINI_KEY"; `
+     $env:OPENROUTER_API_KEY="YOUR_OPENROUTER_KEY"; `
+     $env:COHERE_API_KEY="YOUR_COHERE_KEY"; `
+     $env:HUGGINGFACE_API_KEY="YOUR_HF_KEY"; `
+     $env:MISTRAL_API_KEY="YOUR_MISTRAL_KEY"; `
+     node server.js
+     ```
+
+   - **Bash / Linux / macOS**:
+     ```bash
+     export GROQ_API_KEY="YOUR_GROQ_KEY"
+     export GEMINI_API_KEY="YOUR_GEMINI_KEY"
+     export OPENROUTER_API_KEY="YOUR_OPENROUTER_KEY"
+     export COHERE_API_KEY="YOUR_COHERE_KEY"
+     export HUGGINGFACE_API_KEY="YOUR_HF_KEY"
+     export MISTRAL_API_KEY="YOUR_MISTRAL_KEY"
+     node server.js
+     ```
+
+   - **Or via `.env` file** in the project root:
+     ```env
+     GROQ_API_KEY=your_groq_api_key
+     GEMINI_API_KEY=your_gemini_api_key
+     OPENROUTER_API_KEY=your_openrouter_api_key
+     COHERE_API_KEY=your_cohere_api_key
+     HUGGINGFACE_API_KEY=your_huggingface_api_key
+     MISTRAL_API_KEY=your_mistral_api_key
+     ```
+
+3. **Open your browser at**:
    ```
    http://localhost:8000/
    ```
@@ -144,7 +223,7 @@ This portfolio is built upon **29 Data Structures & Algorithms (DSA)** to delive
 ## 🌐 Deployment
 
 - **GitHub Pages**: Serves `index.html` as the static frontend directly from the `main` branch.
-- **Vercel Serverless Functions**: Serves backend AI endpoints (`/api/chat` and `/api/polish`).
+- **Vercel Serverless Functions**: Serves backend 6-tier AI endpoints (`/api/chat` and `/api/polish`) and LaTeX compiler (`/api/latex`).
 - **Live URL**: [https://charan-kumar99.github.io](https://charan-kumar99.github.io)
 
 ---
