@@ -4750,9 +4750,153 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
         if (navBtn) navBtn.addEventListener("click", openModal);
         if (heroBtn) heroBtn.addEventListener("click", openModal);
 
+        const atsScoreCard = document.getElementById("atsScoreCard");
+        const atsGaugeProgress = document.getElementById("atsGaugeProgress");
+        const atsScorePercent = document.getElementById("atsScorePercent");
+        let atsDebounceTimer = null;
+
+        const CANONICAL_SKILLS_MAP = {
+            // .NET & C#
+            "c#": "ASP.NET Core / C#",
+            "csharp": "ASP.NET Core / C#",
+            ".net": "ASP.NET Core / C#",
+            "dotnet": "ASP.NET Core / C#",
+            "asp.net": "ASP.NET Core / C#",
+            "asp.net core": "ASP.NET Core / C#",
+            "blazor": "Blazor",
+            "razor pages": "Razor Pages",
+
+            // SQL & Databases
+            "sql server": "SQL Server",
+            "mssql": "SQL Server",
+            "microsoft sql server": "SQL Server",
+            "ms sql": "SQL Server",
+            "t-sql": "SQL Server",
+            "postgresql": "PostgreSQL",
+            "postgres": "PostgreSQL",
+            "psql": "PostgreSQL",
+            "mysql": "MySQL",
+            "oracle": "Oracle Database",
+            "oracle database": "Oracle Database",
+            "sqlite": "SQLite",
+            "redis": "Redis Caching",
+            "caching": "Redis Caching",
+
+            // Architecture & Concepts
+            "clean architecture": "Clean Architecture",
+            "onion architecture": "Clean Architecture",
+            "layered architecture": "Clean Architecture",
+            "microservices": "Microservices",
+            "microservices architecture": "Microservices",
+            "rest api": "REST APIs",
+            "rest apis": "REST APIs",
+            "api": "REST APIs",
+            "backend": "Backend APIs",
+            "system design": "System Design",
+            "design patterns": "Design Patterns",
+
+            // Tools & Cloud
+            "docker": "Docker",
+            "containerization": "Docker",
+            "azure": "Azure DevOps / Cloud",
+            "azure devops": "Azure DevOps / CI/CD",
+            "ci/cd": "Azure DevOps / CI/CD",
+            "git": "Git / GitHub",
+            "github": "Git / GitHub",
+            "swagger": "Swagger / OpenAPI",
+            "openapi": "Swagger / OpenAPI",
+            "ef core": "EF Core",
+            "entity framework": "EF Core",
+
+            // Frontend & Fullstack
+            "react": "React",
+            "react.js": "React",
+            "reactjs": "React",
+            "javascript": "JavaScript",
+            "flutter": "Flutter (Mobile)",
+            "dart": "Flutter (Mobile)",
+            "mobile app": "Flutter (Mobile)",
+            "mobile app developer": "Flutter (Mobile)",
+            "python": "Python / Flask",
+            "flask": "Python / Flask",
+
+            // Enterprise Domains
+            "banking": "FinTech / Banking (RTGS/NEFT)",
+            "rtgs": "FinTech / Banking (RTGS/NEFT)",
+            "neft": "FinTech / Banking (RTGS/NEFT)",
+            "payment processing": "Payment Systems",
+            "property management": "Property Management",
+            "gemini api": "Gemini AI API",
+            "ai": "Multi-LLM AI"
+        };
+
+        function updateAtsMatchScore() {
+            const jdText = jdInput.value.trim();
+            const isCV = selectedDocType === 'cv';
+
+            if (!atsScoreCard) return;
+
+            if (isCV || !jdText || jdText.length < 8) {
+                atsScoreCard.style.display = "none";
+                return;
+            }
+
+            const keywords = extractKeywords(jdText);
+            const canonicalMatched = new Set();
+
+            keywords.forEach(kw => {
+                const lower = kw.toLowerCase();
+                if (CANONICAL_SKILLS_MAP[lower]) {
+                    canonicalMatched.add(CANONICAL_SKILLS_MAP[lower]);
+                }
+            });
+
+            // Also check all canonical keys against raw JD text directly
+            const jdLower = jdText.toLowerCase();
+            for (const key in CANONICAL_SKILLS_MAP) {
+                if (jdLower.includes(key)) {
+                    canonicalMatched.add(CANONICAL_SKILLS_MAP[key]);
+                }
+            }
+
+            const matchedArray = Array.from(canonicalMatched);
+            const matchedCount = matchedArray.length;
+
+            let scorePct = 0;
+            if (matchedCount === 0) {
+                scorePct = Math.min(30, Math.max(15, Math.round(jdText.split(/\s+/).length * 1.5)));
+            } else {
+                scorePct = Math.min(100, Math.max(40, Math.round(40 + (matchedCount * 9))));
+            }
+
+            // Apply Dynamic Color Scheme based on Score Percentage
+            atsScoreCard.classList.remove('score-green', 'score-cyan', 'score-yellow', 'score-orange', 'score-red');
+
+            if (scorePct >= 85) {
+                atsScoreCard.classList.add('score-green'); // Green for 85%+
+            } else if (scorePct >= 70) {
+                atsScoreCard.classList.add('score-cyan'); // Cyan for 70%-84%
+            } else if (scorePct >= 55) {
+                atsScoreCard.classList.add('score-yellow'); // Yellow for 55%-69%
+            } else if (scorePct >= 40) {
+                atsScoreCard.classList.add('score-orange'); // Orange for 40%-54%
+            } else {
+                atsScoreCard.classList.add('score-red'); // Red for <40%
+            }
+
+            atsScoreCard.style.display = "inline-flex";
+            if (atsScorePercent) {
+                atsScorePercent.textContent = `${scorePct}%`;
+            }
+            if (atsGaugeProgress) {
+                atsGaugeProgress.setAttribute("stroke-dasharray", `${scorePct}, 100`);
+            }
+        }
+
         const closeModal = () => {
             resumeModal.classList.remove("open");
             jdInput.value = "";
+            if (atsScoreCard) atsScoreCard.style.display = "none";
         };
 
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
@@ -4802,12 +4946,14 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
                     const cvRadio = pillCV.querySelector("input");
                     if (cvRadio) cvRadio.checked = true;
                     if (jdInputGroup) jdInputGroup.style.display = "none";
+                    if (atsScoreCard) atsScoreCard.style.display = "none";
                 } else {
                     pillResume.classList.add("active");
                     pillCV.classList.remove("active");
                     const resumeRadio = pillResume.querySelector("input");
                     if (resumeRadio) resumeRadio.checked = true;
                     if (jdInputGroup) jdInputGroup.style.display = "block";
+                    updateAtsMatchScore();
                 }
             }
             updateModalBtnLabel();
@@ -4857,7 +5003,11 @@ Udupi College of Professional Studies, Mangalore University | CGPA: 6.17 |\\\\[2
                 btnSpan.textContent = "⚡ Download Primary Resume";
             }
         }
-        jdInput.addEventListener("input", updateModalBtnLabel);
+        jdInput.addEventListener("input", () => {
+            clearTimeout(atsDebounceTimer);
+            atsDebounceTimer = setTimeout(updateAtsMatchScore, 180);
+            updateModalBtnLabel();
+        });
         updateModalBtnLabel();
 
         generateBtn.addEventListener("click", async () => {
@@ -5065,4 +5215,308 @@ Candidate Actual Background:
         });
     });
 })();
+
+/* ==========================================================================
+   GLOBAL TOAST NOTIFICATIONS & 1-CLICK CLIPBOARD HANDLERS
+   ========================================================================== */
+window.showToast = function(msg, icon = '✅') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-msg">${msg}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => {
+        if (container.contains(toast)) {
+            container.removeChild(toast);
+        }
+    }, 3100);
+};
+
+window.copyEmailToClipboard = function() {
+    const email = 'charansuvarna99@gmail.com';
+    navigator.clipboard.writeText(email).then(() => {
+        showToast('Email copied to clipboard! (charansuvarna99@gmail.com)', '📋');
+    }).catch(() => {
+        showToast('charansuvarna99@gmail.com', '✉️');
+    });
+};
+
+window.copyPhoneToClipboard = function() {
+    const phone = '+91 9380455922';
+    navigator.clipboard.writeText(phone).then(() => {
+        showToast('Phone copied to clipboard! (+91 9380455922)', '📞');
+    }).catch(() => {
+        showToast('+91 9380455922', '📞');
+    });
+};
+
+/* ==========================================================================
+   GLOBAL COMMAND PALETTE (Ctrl + K / ⌘K)
+   ========================================================================== */
+(function initCommandPalette() {
+    const backdrop = document.getElementById('cmdPaletteBackdrop');
+    const input = document.getElementById('cmdPaletteInput');
+    const resultsContainer = document.getElementById('cmdPaletteResults');
+    const triggerBtn = document.getElementById('cmdKBtn');
+
+    if (!backdrop || !input || !resultsContainer) return;
+
+    let selectedIndex = 0;
+    let filteredCommands = [];
+
+    const COMMANDS_REGISTRY = [
+        // Navigation
+        { category: 'Navigation', title: 'Home', desc: 'Jump to Hero greeting & intro', icon: '🏠', action: () => scrollToSection('#hero') },
+        { category: 'Navigation', title: 'About Me', desc: 'Read bio, background & core competencies', icon: '👤', action: () => scrollToSection('#about') },
+        { category: 'Navigation', title: 'Skills & Technologies', desc: 'Search 30+ tools, databases & frameworks', icon: '⚡', action: () => scrollToSection('#skills') },
+        { category: 'Navigation', title: 'Featured Projects', desc: 'Explore 9 production & enterprise apps', icon: '🚀', action: () => scrollToSection('#projects') },
+        { category: 'Navigation', title: 'Project Simulator', desc: 'Step-by-step interactive workflow map & logs', icon: '⚙️', action: () => scrollToSection('#simulator') },
+        { category: 'Navigation', title: 'Work Experience', desc: 'AGREMATE & NTSIPL career journey', icon: '💼', action: () => scrollToSection('#experience') },
+        { category: 'Navigation', title: 'Education & Add-ons', desc: 'MCA MIT Jaipur & Mangalore University BCA', icon: '🎓', action: () => scrollToSection('#education') },
+        { category: 'Navigation', title: 'Certifications', desc: 'Accolade Tech, University training & NCC', icon: '📜', action: () => scrollToSection('#certifications') },
+        { category: 'Navigation', title: 'Get In Touch', desc: 'Email, LinkedIn, Phone & GitHub contact links', icon: '📬', action: () => scrollToSection('#contact') },
+
+        // Quick Actions
+        { category: 'Quick Actions', title: 'Match & Generate Tailored Resume', desc: 'Open dual-mode ATS resume / CV compiler', icon: '✨', action: () => triggerResumeModal('resume') },
+        { category: 'Quick Actions', title: 'Download Full Detailed CV', desc: 'Complete 9-project curriculum vitae', icon: '📄', action: () => triggerResumeModal('cv') },
+        { category: 'Quick Actions', title: 'Open Developer CLI Matrix Terminal', desc: 'Run custom ck commands in interactive shell', icon: '💻', action: () => toggleTerminal() },
+        { category: 'Quick Actions', title: 'Ask AI Chatbot (CK-Buddy)', desc: '6-Tier multi-LLM candidate Q&A assistant', icon: '🤖', action: () => toggleChat() },
+        { category: 'Quick Actions', title: 'Copy Email Address', desc: 'Copy charansuvarna99@gmail.com to clipboard', icon: '📋', action: () => copyEmailToClipboard() },
+        { category: 'Quick Actions', title: 'Copy Phone Number', desc: 'Copy +91 9380455922 to clipboard', icon: '📞', action: () => copyPhoneToClipboard() },
+
+        // Featured Projects
+        { category: 'Featured Projects', title: 'DevLens — AI GitHub Analyzer', desc: 'C#, ASP.NET Core, React & Gemini API', icon: '🔍', action: () => window.open('https://devlens-nine.vercel.app/', '_blank') },
+        { category: 'Featured Projects', title: 'Migration Master — PostgreSQL Tool', desc: 'Binary COPY, Kahn Topological Sort in C#', icon: '🚀', action: () => window.open('https://github.com/charan-kumar99/Migration-Master', '_blank') },
+        { category: 'Featured Projects', title: 'Vaulta — Document Manager PWA', desc: '100% Offline IndexedDB & PDF.js pipeline', icon: '🔒', action: () => window.open('https://charan-kumar99.github.io/Vaulta/', '_blank') },
+        { category: 'Featured Projects', title: 'Money Mate — Personal Finance', desc: 'Flask, SQLite, SQLAlchemy, Chart.js', icon: '💰', action: () => window.open('https://money-mate-e33v.onrender.com/login', '_blank') },
+        { category: 'Featured Projects', title: 'Orion — Voice Assistant', desc: 'Python, Flask, Google TTS & Speech Recog', icon: '🎙️', action: () => window.open('https://orion-assistant-bfwt.onrender.com/', '_blank') },
+        { category: 'Featured Projects', title: 'Agremate — Property Backend', desc: 'ASP.NET Core, Clean Architecture, Docker', icon: '🏢', action: () => scrollToSection('#projects') },
+        { category: 'Featured Projects', title: 'RTGS/NEFT — Banking Microservices', desc: 'Enterprise microservices for major banks', icon: '🏦', action: () => scrollToSection('#projects') },
+
+        // Theme Switcher
+        { category: 'Color Theme', title: 'Neo-Cyan Dark Theme', desc: 'Default sleek cyber dark mode', icon: '🌌', action: () => applyPalette('dark') },
+        { category: 'Color Theme', title: 'Cyberpunk Neon Theme', desc: 'Vibrant magenta & purple neon glow', icon: '⚡', action: () => applyPalette('cyberpunk') },
+        { category: 'Color Theme', title: 'Emerald Minimalist Theme', desc: 'Fresh deep green & mint accents', icon: '🌿', action: () => applyPalette('emerald') },
+        { category: 'Color Theme', title: 'Light Mode Pro Theme', desc: 'High-contrast clean corporate light palette', icon: '☀️', action: () => applyPalette('light') }
+    ];
+
+    function scrollToSection(selector) {
+        const el = document.querySelector(selector);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function triggerResumeModal(type) {
+        const btn = document.getElementById('floatingResumeBtn');
+        if (btn) btn.click();
+        if (type === 'cv') {
+            const pillCV = document.getElementById('pillCV');
+            if (pillCV) pillCV.click();
+        }
+    }
+
+    function openPalette() {
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+        input.value = '';
+        selectedIndex = 0;
+        renderResults('');
+        setTimeout(() => input.focus(), 50);
+    }
+
+    function closePalette() {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    function renderResults(query) {
+        const q = query.toLowerCase().trim();
+        if (!q) {
+            filteredCommands = COMMANDS_REGISTRY;
+        } else {
+            filteredCommands = COMMANDS_REGISTRY.filter(cmd => 
+                cmd.title.toLowerCase().includes(q) || 
+                cmd.desc.toLowerCase().includes(q) ||
+                cmd.category.toLowerCase().includes(q)
+            );
+        }
+
+        if (filteredCommands.length === 0) {
+            resultsContainer.innerHTML = `
+                <div class="cmd-palette-empty">
+                    <p>No commands found matching "<strong>${escapeHtml(query)}</strong>"</p>
+                </div>
+            `;
+            return;
+        }
+
+        if (selectedIndex >= filteredCommands.length) selectedIndex = 0;
+
+        let html = '';
+        let currentCategory = '';
+
+        filteredCommands.forEach((cmd, idx) => {
+            if (cmd.category !== currentCategory) {
+                currentCategory = cmd.category;
+                html += `<div class="cmd-category-header">${currentCategory}</div>`;
+            }
+
+            const isSelected = idx === selectedIndex;
+            html += `
+                <div class="cmd-palette-item ${isSelected ? 'active' : ''}" data-index="${idx}">
+                    <div class="cmd-item-left">
+                        <span class="cmd-item-icon">${cmd.icon}</span>
+                        <div>
+                            <div class="cmd-item-title">${escapeHtml(cmd.title)}</div>
+                            <div class="cmd-item-desc">${escapeHtml(cmd.desc)}</div>
+                        </div>
+                    </div>
+                    <span class="cmd-item-action-badge">Run ↵</span>
+                </div>
+            `;
+        });
+
+        resultsContainer.innerHTML = html;
+
+        resultsContainer.querySelectorAll('.cmd-palette-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const idx = parseInt(item.getAttribute('data-index'), 10);
+                selectedIndex = idx;
+                updateActiveSelection();
+            });
+            item.addEventListener('click', () => {
+                const idx = parseInt(item.getAttribute('data-index'), 10);
+                executeCommand(idx);
+            });
+        });
+    }
+
+    function updateActiveSelection() {
+        const items = resultsContainer.querySelectorAll('.cmd-palette-item');
+        items.forEach((item) => {
+            const itemIdx = parseInt(item.getAttribute('data-index'), 10);
+            item.classList.toggle('active', itemIdx === selectedIndex);
+            if (itemIdx === selectedIndex) {
+                item.scrollIntoView({ block: 'nearest' });
+            }
+        });
+    }
+
+    function executeCommand(idx) {
+        if (filteredCommands[idx]) {
+            closePalette();
+            try {
+                filteredCommands[idx].action();
+            } catch (e) {
+                console.error('Command execution failed:', e);
+            }
+        }
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // Global keyboard listener
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (backdrop.classList.contains('open')) {
+                closePalette();
+            } else {
+                openPalette();
+            }
+        } else if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+            closePalette();
+        }
+    });
+
+    if (triggerBtn) {
+        triggerBtn.addEventListener('click', openPalette);
+    }
+
+    backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) closePalette();
+    });
+
+    input.addEventListener('input', (e) => {
+        selectedIndex = 0;
+        renderResults(e.target.value);
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (filteredCommands.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectedIndex = (selectedIndex + 1) % filteredCommands.length;
+            updateActiveSelection();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectedIndex = (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+            updateActiveSelection();
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            executeCommand(selectedIndex);
+        }
+    });
+})();
+
+/* ==========================================================================
+   DYNAMIC HERO METRICS (LIVE CAREER EXPERIENCE & FEATURED PROJECTS COUNT)
+   ========================================================================== */
+function initDynamicHeroMetrics() {
+    // Career Start Date: September 11, 2025
+    const careerStart = new Date(2025, 8, 11);
+    const now = new Date();
+
+    let years = now.getFullYear() - careerStart.getFullYear();
+    let months = now.getMonth() - careerStart.getMonth();
+    let days = now.getDate() - careerStart.getDate();
+
+    if (days < 0) {
+        months -= 1;
+    }
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+
+    const totalMonths = (years * 12) + months;
+    const expValEl = document.getElementById("heroExpYears");
+    const expUnitEl = document.getElementById("heroExpUnit");
+
+    if (totalMonths < 12) {
+        if (expValEl) expValEl.textContent = `${Math.max(1, totalMonths)}+`;
+        if (expUnitEl) expUnitEl.textContent = "Mo";
+    } else {
+        const remainingMonths = totalMonths % 12;
+        let formattedYears = `${years}`;
+        if (remainingMonths >= 6) {
+            formattedYears = `${years}.5`;
+        }
+        if (expValEl) expValEl.textContent = `${formattedYears}+`;
+        if (expUnitEl) expUnitEl.textContent = "Yrs";
+    }
+
+    // Dynamic Projects Count (Automatically counts .project-card elements in DOM)
+    const projectCards = document.querySelectorAll(".project-card");
+    const countEl = document.getElementById("heroProjectsCount");
+    if (countEl && projectCards.length > 0) {
+        countEl.textContent = projectCards.length;
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDynamicHeroMetrics);
+} else {
+    initDynamicHeroMetrics();
+}
+
 

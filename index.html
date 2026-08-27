@@ -48,6 +48,10 @@
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
             <div class="nav-controls">
+                <button id="cmdKBtn" class="cmd-k-nav-btn" aria-label="Open Command Palette" title="Command Palette (Ctrl + K / ⌘K)">
+                    <span class="cmd-k-icon">🔍</span>
+                    <span class="cmd-k-badge"><kbd>⌘</kbd><kbd>K</kbd></span>
+                </button>
                 <div class="palette-wrapper" id="paletteWrapper">
                     <button id="themeToggle" aria-label="Change theme palette" title="Change theme palette" onclick="togglePalettePanel()">
                         <span id="themeIcon">🎨</span>
@@ -101,6 +105,29 @@
                 <a href="#projects" class="btn btn-primary"><span>View My Work</span></a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
+            
+            <div class="hero-metrics-strip">
+                <div class="metric-item">
+                    <div class="metric-value"><span id="heroExpYears">11+</span> <span class="metric-unit" id="heroExpUnit">Mo</span></div>
+                    <div class="metric-label">Enterprise Experience</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value" id="heroProjectsCount">9</div>
+                    <div class="metric-label">Featured Projects</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value">2</div>
+                    <div class="metric-label">FinTech &amp; PropTech</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value">Clean</div>
+                    <div class="metric-label">Architecture &amp; Docker</div>
+                </div>
+            </div>
+
             <div class="hero-chips">
                 <button class="hero-chip" onclick="askAiQuestion('Tell me about Charan\'s Clean Architecture experience')">
                     <span class="chip-emoji">🤖</span> Ask AI about Charan's Clean Architecture experience
@@ -1468,7 +1495,6 @@
             <p class="resume-modal-subtitle">Paste a job description for a tailored document — or leave blank to download Charan's primary generalist document.</p>
             
             <div class="resume-modal-body">
-                
                 <div class="doc-type-selector">
                     <label class="input-label">Document Type</label>
                     <div class="doc-type-pills">
@@ -1500,10 +1526,21 @@
             </div>
             
             <div class="resume-modal-footer">
-                <button class="btn btn-secondary modal-btn-cancel" id="cancelResumeBtn">Cancel</button>
-                <button class="btn btn-primary modal-btn-generate" id="generateResumeBtn">
-                    <span>⚡ Generate &amp; Download</span>
-                </button>
+                <div class="ats-footer-score-pill" id="atsScoreCard" style="display: none;">
+                    <div class="ats-mini-gauge">
+                        <svg viewBox="0 0 36 36" class="ats-gauge-circle-svg">
+                            <path class="ats-gauge-track" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="ats-gauge-progress" id="atsGaugeProgress" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                    </div>
+                    <span class="ats-score-text">ATS Match: <strong id="atsScorePercent">0%</strong></span>
+                </div>
+                <div class="modal-footer-btns">
+                    <button class="btn btn-secondary modal-btn-cancel" id="cancelResumeBtn">Cancel</button>
+                    <button class="btn btn-primary modal-btn-generate" id="generateResumeBtn">
+                        <span>⚡ Generate &amp; Download</span>
+                    </button>
+                </div>
             </div>
 
             <div class="resume-loading-overlay" id="resumeLoadingOverlay">
@@ -1520,6 +1557,35 @@
             </div>
         </div>
     </div>
+
+    <div class="cmd-palette-backdrop" id="cmdPaletteBackdrop" aria-hidden="true">
+        <div class="cmd-palette-dialog" role="dialog" aria-modal="true" aria-label="Command Palette">
+            <div class="cmd-palette-search-bar">
+                <svg class="cmd-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="cmdPaletteInput" class="cmd-palette-input" placeholder="Type a command or search (e.g. Projects, Skills, Resume, Theme)..." autocomplete="off" spellcheck="false">
+                <span class="cmd-palette-esc-badge"><kbd>ESC</kbd></span>
+            </div>
+            
+            <div class="cmd-palette-results" id="cmdPaletteResults">
+                <!-- Populated dynamically by script.js -->
+            </div>
+            
+            <div class="cmd-palette-footer">
+                <div class="cmd-footer-shortcuts">
+                    <span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+                    <span><kbd>↵</kbd> Select</span>
+                    <span><kbd>ESC</kbd> Close</span>
+                </div>
+                <div class="cmd-footer-tag">Quick Action Center</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
